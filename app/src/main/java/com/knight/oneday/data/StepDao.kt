@@ -1,9 +1,7 @@
 package com.knight.oneday.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Query
+import androidx.room.*
 import com.knight.oneday.utilities.TABLE_NAME_STEP
 
 /**
@@ -25,5 +23,8 @@ interface StepDao {
 
     @Query("DELETE FROM $TABLE_NAME_STEP")
     suspend fun deleteAll()
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertStep(step: Step)
 
 }
