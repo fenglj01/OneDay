@@ -12,11 +12,17 @@ import com.knight.oneday.utilities.TABLE_NAME_EVENT
  */
 @Entity(tableName = TABLE_NAME_EVENT)
 data class Event(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val eventId: Long? = null,
     val content: String,
     @ColumnInfo(name = "create_time") val createTime: Long,
     @ColumnInfo(name = "completion_time") val completionTime: Long,
     val type: Int,
     val state: Int,
     @ColumnInfo(name = "now_step_id") var nowStepId: Long? = null
-)
+) {
+    /**
+     * 主键的优化写法
+     */
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    var eventId: Long = 0
+}
