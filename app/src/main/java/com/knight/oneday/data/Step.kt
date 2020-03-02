@@ -27,8 +27,8 @@ import com.knight.oneday.utilities.TABLE_NAME_STEP
 data class Step(
     val content: String,
     @ColumnInfo(name = "create_time") val createTime: Long,
-    @ColumnInfo(name = "completion_time") val completionTime: Long,
-    @ColumnInfo(name = "serial_number") val serialNumber: Int,
+    @ColumnInfo(name = "completion_time") var completionTime: Long = 0L,
+    @ColumnInfo(name = "serial_number") var serialNumber: Int = 0,
     @ColumnInfo(name = "event_id") val eventId: Long
 ) {
     @PrimaryKey(autoGenerate = true)

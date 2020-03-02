@@ -14,9 +14,9 @@ import com.knight.oneday.utilities.TABLE_NAME_EVENT
 data class Event(
     val content: String,
     @ColumnInfo(name = "create_time") val createTime: Long,
-    @ColumnInfo(name = "completion_time") val completionTime: Long,
+    @ColumnInfo(name = "completion_time") var completionTime: Long = 0L,
     val type: Int,
-    val state: Int,
+    var state: Int = 0,
     @ColumnInfo(name = "now_step_id") var nowStepId: Long? = null
 ) {
     /**

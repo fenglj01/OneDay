@@ -8,3 +8,8 @@ package com.knight.oneday.utilities
 const val DATABASE_NAME = "oneDay-db"
 const val TABLE_NAME_EVENT = "event_table"
 const val TABLE_NAME_STEP = "step_table"
+/**
+ * 完成状态
+ */
+const val FINISHED = 1
+const val UNFINISHED = 0
