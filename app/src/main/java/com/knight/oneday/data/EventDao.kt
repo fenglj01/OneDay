@@ -23,4 +23,7 @@ interface EventDao {
 
     @Query("DELETE FROM $TABLE_NAME_EVENT")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM $TABLE_NAME_EVENT WHERE id = :id")
+    suspend fun deleteById(id: Long)
 }
