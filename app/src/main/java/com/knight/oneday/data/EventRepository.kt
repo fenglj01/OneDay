@@ -1,12 +1,14 @@
 package com.knight.oneday.data
 
+import java.util.*
+
 /**
  * Create by FLJ in 2020/3/2 14:52
  * 事件仓库，仓库也严格的使用单例来保证严谨
  */
 class EventRepository private constructor(private val eventDao: EventDao) {
 
-    fun getEventsByTimeInterval(startTime: Long, endTine: Long) =
+    fun getEventsByTimeInterval(startTime: Calendar, endTine: Calendar) =
         eventDao.getEventByTimeInterval(startTime, endTine)
 
     suspend fun createEvent(event: Event) {

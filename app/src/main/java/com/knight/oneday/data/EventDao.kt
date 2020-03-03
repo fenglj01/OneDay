@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.knight.oneday.utilities.TABLE_NAME_EVENT
+import java.util.*
 
 /**
  * @author knight
@@ -16,7 +17,7 @@ import com.knight.oneday.utilities.TABLE_NAME_EVENT
 interface EventDao {
 
     @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE create_time BETWEEN :startTime AND :endTime")
-    fun getEventByTimeInterval(startTime: Long, endTime: Long): LiveData<List<Event>>
+    fun getEventByTimeInterval(startTime: Calendar, endTime: Calendar): LiveData<List<Event>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(event: Event)
