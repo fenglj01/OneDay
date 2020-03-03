@@ -4,7 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.TABLE_NAME_STEP
+import com.knight.oneday.utilities.UNFINISHED
+import java.util.*
 
 /**
  * @author knight
@@ -26,10 +29,11 @@ import com.knight.oneday.utilities.TABLE_NAME_STEP
 )
 data class Step(
     val content: String,
-    @ColumnInfo(name = "create_time") val createTime: Long,
-    @ColumnInfo(name = "completion_time") var completionTime: Long = 0L,
+    @ColumnInfo(name = "create_time") val createTime: Calendar = Calendar.getInstance(),
+    @ColumnInfo(name = "completion_time") var completionTime: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "serial_number") var serialNumber: Int = 0,
-    @ColumnInfo(name = "event_id") val eventId: Long
+    @ColumnInfo(name = "event_id") val eventId: Long,
+    var state: EventState = EventState.UNFINISHED
 ) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
