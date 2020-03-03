@@ -4,7 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.knight.oneday.utilities.DATABASE_NAME
+import com.knight.oneday.workers.SeedDatabaseWorker
 
 /**
  * @author knight
@@ -27,7 +30,14 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     DATABASE_NAME
                 )
-                    .addCallback(DatabaseCallback())
+                    .addCallback(object : RoomDatabase.Callback() {
+                        override fun onCreate(db: SupportSQLiteDatabase) {
+                            super.onCreate(db)
+                            // 在创建数据库得时候 加载一些默认数据 (这里时引导用户使用得一些数据)
+                            val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
+                            WorkManager.getInstance(context).enqueue(request)
+                        }
+                    })
                     .build()
                 INSTANCE = instance
                 instance
@@ -36,12 +46,5 @@ abstract class AppDatabase : RoomDatabase() {
 
     }
 
-    private class DatabaseCallback : RoomDatabase.Callback() {
-        // TODO 在数据库创建的时候 创建一条初始数据 用于指引用户完成OneDay的基本使用 可以通过json作为数据源 workManager来完成后台任务
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-
-        }
-    }
 }
 

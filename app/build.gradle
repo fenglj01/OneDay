@@ -27,6 +27,10 @@ android {
         exclude 'META-INF/atomicfu.kotlin_module'
     }
 
+    // work-runtime-ktx 2.1.0 and above now requires Java 8
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -56,4 +60,6 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
     // Testing
     androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    // Worker
+    implementation "androidx.work:work-runtime-ktx:$rootProject.workVersion"
 }
