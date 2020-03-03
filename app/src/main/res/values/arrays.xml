@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="guide_content">
+        <item>@string/guide_step_one</item>
+        <item>@string/guide_step_two</item>
+        <item>@string/guide_step_three</item>
+        <item>@string/guide_step_four</item>
+        <item>@string/guide_step_five</item>
+    </string-array>
+</resources>

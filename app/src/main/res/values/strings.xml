@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">OneDay</string>
+
+    <!-- 引导步骤content -->
+    <string name="guide_step_one">创建一个次要任务</string>
+    <string name="guide_step_two">完成一个次要任务</string>
+    <string name="guide_step_three">创建一个重要任务</string>
+    <string name="guide_step_four">创建一个步骤</string>
+    <string name="guide_step_five">完成一个步骤</string>
 </resources>

@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.utilities.TABLE_NAME_EVENT
-import com.knight.oneday.utilities.UNFINISHED
 import java.util.*
 
 /**
