@@ -7,4 +7,5 @@
     <string name="guide_step_three">创建一个重要任务</string>
     <string name="guide_step_four">创建一个步骤</string>
     <string name="guide_step_five">完成一个步骤</string>
+    <string name="guide_event_content">了解使用OneDay</string>
 </resources>

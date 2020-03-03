@@ -27,4 +27,6 @@ interface StepDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertStep(step: Step)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAll(list: List<Step>)
 }
