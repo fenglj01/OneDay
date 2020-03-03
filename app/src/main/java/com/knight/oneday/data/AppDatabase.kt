@@ -16,7 +16,7 @@ import com.knight.oneday.workers.SeedDatabaseWorker
  * create at 20-2-29 下午4:01
  * AppDatabase
  */
-@Database(entities = [Event::class, Step::class], version = 1, exportSchema = false)
+@Database(entities = [Event::class, Step::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun eventDao(): EventDao

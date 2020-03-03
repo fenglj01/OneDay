@@ -13,7 +13,7 @@ import com.knight.oneday.utilities.TABLE_NAME_STEP
 interface StepDao {
 
     @Query("SELECT * FROM $TABLE_NAME_STEP WHERE event_id = :eventId ORDER BY create_time ASC")
-    fun getStepByEventId(eventId: Long): LiveData<List<StepDao>>
+    fun getStepByEventId(eventId: Long): LiveData<List<Step>>
 
     @Query("DELETE FROM $TABLE_NAME_STEP WHERE id = :stepId")
     suspend fun deleteStepById(stepId: Long)

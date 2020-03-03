@@ -1,9 +1,6 @@
 package com.knight.oneday.data
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.TABLE_NAME_STEP
 import java.util.*
@@ -24,7 +21,8 @@ import java.util.*
         parentColumns = ["id"],
         childColumns = ["event_id"],
         onDelete = ForeignKey.CASCADE
-    )]
+    )],
+    indices = [Index("event_id")]
 )
 data class Step(
     val content: String,

@@ -19,6 +19,9 @@ interface EventDao {
     @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE create_time BETWEEN :startTime AND :endTime")
     fun getEventByTimeInterval(startTime: Calendar, endTime: Calendar): LiveData<List<Event>>
 
+    @Query("SELECT * FROM $TABLE_NAME_EVENT")
+    fun getAllEvent(): LiveData<List<Event>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(event: Event)
 

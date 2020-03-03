@@ -9,6 +9,7 @@ import com.knight.oneday.data.AppDatabase
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.Step
 import com.knight.oneday.utilities.EventType
+import com.knight.oneday.utilities.TimeUtils
 import kotlinx.coroutines.coroutineScope
 import java.lang.Exception
 
@@ -28,13 +29,14 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) :
             )
             val database = AppDatabase.getDatabase(applicationContext)
             database.eventDao().insert(guideEvent)
-            database.stepDao().insertAll(guideArray.mapIndexed { index, content ->
-                Step(
-                    content = content,
-                    serialNumber = index,
-                    eventId = guideEvent.eventId
-                )
-            })
+            val data = database.eventDao().getAllEvent().value
+            Log.d(TAG, "$data")
+             /*database.stepDao().insertAll(guideArray.mapIndexed { index, content ->
+                 Step(
+                     content = content,
+                     serialNumber = index
+                 )
+             })*/
             Result.success()
         } catch (ex: Exception) {
             Log.e(TAG, "Error seeding database", ex)
