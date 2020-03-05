@@ -15,4 +15,8 @@ data class EventAndEventSteps(
     /* @Relation 关系*/
     @Relation(parentColumn = "id", entityColumn = "event_id")
     val eventSteps: List<Step> = emptyList()
-)
+) {
+    override fun toString(): String {
+        return "event:${event.eventId}-${event.content} \n steps :$eventSteps"
+    }
+}

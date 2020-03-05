@@ -27,24 +27,12 @@ class DayEventAndStepViewModel(
         eventRepository.getAllEvent()
     val steps =
         stepRepository.getStepsByEventId(1)
+    
+    val eventsWithSteps =
+        eventRepository.getEventsWithSteps()
 
     fun addEvent() {
         viewModelScope.launch {
-            eventRepository.createEvent(
-                Event(
-                    content = "一次测试",
-                    type = EventType.GUIDE
-                )
-            )
-            stepRepository.createStep(
-                Step(
-                    content = "一次测试步骤",
-                    eventId = 1
-                )
-            )
-            eventRepository.getAllEvent()
-
-
         }
     }
 

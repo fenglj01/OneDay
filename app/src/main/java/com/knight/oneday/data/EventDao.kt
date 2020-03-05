@@ -22,6 +22,9 @@ interface EventDao {
     @Query("SELECT * FROM $TABLE_NAME_EVENT")
     fun getAllEvent(): LiveData<List<Event>>
 
+    @Query("SELECT * FROM $TABLE_NAME_EVENT")
+    fun getEventsWithSteps(): LiveData<List<EventAndEventSteps>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(event: Event)
 
