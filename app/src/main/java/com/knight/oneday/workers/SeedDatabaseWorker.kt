@@ -29,14 +29,13 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) :
             )
             val database = AppDatabase.getDatabase(applicationContext)
             database.eventDao().insert(guideEvent)
-            val data = database.eventDao().getAllEvent().value
-            Log.d(TAG, "$data")
-             /*database.stepDao().insertAll(guideArray.mapIndexed { index, content ->
-                 Step(
-                     content = content,
-                     serialNumber = index
-                 )
-             })*/
+            database.stepDao().insertAll(guideArray.mapIndexed { index, content ->
+                Step(
+                    content = content,
+                    serialNumber = index,
+                    eventId = 1
+                )
+            })
             Result.success()
         } catch (ex: Exception) {
             Log.e(TAG, "Error seeding database", ex)

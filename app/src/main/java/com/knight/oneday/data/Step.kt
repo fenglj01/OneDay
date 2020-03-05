@@ -35,4 +35,8 @@ data class Step(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var stepId: Long = 0
+
+    override fun toString(): String {
+        return "id $stepId - eventId $eventId content $content"
+    }
 }

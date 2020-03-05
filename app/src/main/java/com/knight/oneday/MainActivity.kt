@@ -20,10 +20,13 @@ class MainActivity : AppCompatActivity() {
         viewModel.events.observe(this, Observer {
             tvText.text = it.toString()
         })
-        viewModel.addEvent()
         viewModel.steps.observe(this, Observer {
             Log.d("step", "$it")
         })
+        /*viewModel.addEvent()
+        viewModel.steps.observe(this, Observer {
+            Log.d("step", "$it")
+        })*/
     }
 
 }
