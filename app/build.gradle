@@ -62,4 +62,7 @@ dependencies {
     androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
     // Worker
     implementation "androidx.work:work-runtime-ktx:$rootProject.workVersion"
+    debugImplementation 'com.idescout.sql:sqlscout-server:4.1'
+    releaseImplementation 'com.idescout.sql:sqlscout-server-noop:4.1'
+
 }
