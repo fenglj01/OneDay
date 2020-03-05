@@ -1,8 +1,6 @@
 package com.knight.oneday.data
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.utilities.TABLE_NAME_EVENT
@@ -28,4 +26,8 @@ data class Event(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var eventId: Long = 0
+
+    override fun toString(): String {
+        return "$eventId - $content"
+    }
 }

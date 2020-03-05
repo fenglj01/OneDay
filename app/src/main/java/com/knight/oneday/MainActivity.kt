@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.events.observe(this, Observer {
             tvText.text = it.toString()
         })
-
+        viewModel.addEvent()
     }
 
 }

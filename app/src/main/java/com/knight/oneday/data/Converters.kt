@@ -10,7 +10,6 @@ import java.util.*
  * Create by FLJ in 2020/3/3 9:43
  * 类型转换，使得room基源数据和包装类型之间进行转换
  */
-@TypeConverters
 class Converters {
 
     /**

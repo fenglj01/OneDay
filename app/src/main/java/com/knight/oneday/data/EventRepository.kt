@@ -11,6 +11,8 @@ class EventRepository private constructor(private val eventDao: EventDao) {
     fun getEventsByTimeInterval(startTime: Calendar, endTine: Calendar) =
         eventDao.getEventByTimeInterval(startTime, endTine)
 
+    fun getAllEvent() = eventDao.getAllEvent()
+
     suspend fun createEvent(event: Event) {
         eventDao.insert(event)
     }
