@@ -2,6 +2,7 @@ package com.knight.oneday
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.viewmodels.DayEventAndStepViewModel
@@ -20,6 +21,9 @@ class MainActivity : AppCompatActivity() {
             tvText.text = it.toString()
         })
         viewModel.addEvent()
+        viewModel.steps.observe(this, Observer {
+            Log.d("step", "$it")
+        })
     }
 
 }
