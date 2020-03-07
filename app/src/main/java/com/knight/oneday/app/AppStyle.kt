@@ -7,8 +7,6 @@ package com.knight.oneday.app
  */
 interface AppStyle {
 
-    fun goHomeFrag()
-
     /**
      * 不同的风格有不同的自行逻辑 比如自定义模式下 涉及到进行事件类型的定义
      */
