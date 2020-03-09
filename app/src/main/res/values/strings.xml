@@ -16,4 +16,5 @@
     <string name="menu_setting" >设置</string>
     <string name="menu_hide_finished">隐藏已完成</string>
     <string name="menu_about">关于</string>
+    <string name="hint_input_event">准备做点什么?</string>
 </resources>

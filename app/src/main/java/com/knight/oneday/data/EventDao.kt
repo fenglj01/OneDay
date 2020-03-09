@@ -1,10 +1,7 @@
 package com.knight.oneday.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.knight.oneday.utilities.TABLE_NAME_EVENT
 import java.util.*
 
@@ -18,6 +15,9 @@ interface EventDao {
 
     @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE create_time BETWEEN :startTime AND :endTime")
     fun getEventByTimeInterval(startTime: Calendar, endTime: Calendar): LiveData<List<Event>>
+
+    @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE state = 0")
+    fun getAllUnFinishedEvents(): LiveData<List<Event>>
 
     @Query("SELECT * FROM $TABLE_NAME_EVENT")
     fun getAllEvent(): LiveData<List<Event>>

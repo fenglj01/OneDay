@@ -5,6 +5,7 @@ import com.knight.oneday.data.AppDatabase
 import com.knight.oneday.data.EventRepository
 import com.knight.oneday.data.StepRepository
 import com.knight.oneday.viewmodels.DayEventAndStepViewModel
+import com.knight.oneday.viewmodels.MiniViewModel
 
 /**
  * Create by FLJ in 2020/3/3 13:43
@@ -17,6 +18,10 @@ object InjectorUtils {
             getEventRepository(context),
             getStepRepository(context)
         )
+    }
+
+    fun miniEventViewModelFactory(context: Context): MiniViewModel {
+        return MiniViewModel(getEventRepository(context))
     }
 
     private fun getEventRepository(context: Context): EventRepository =
