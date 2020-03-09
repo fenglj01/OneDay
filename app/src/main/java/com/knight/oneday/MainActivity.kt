@@ -25,9 +25,9 @@ class MainActivity : AppCompatActivity() {
         viewModel.steps.observe(this, Observer {
             Log.d("step", "$it")
         })*/
-        viewModel.eventsWithSteps.observe(this, Observer {
+        /*viewModel.eventsWithSteps.observe(this, Observer {
             tvText.text = it.toString()
-        })
+        })*/
         /*viewModel.addEvent()
         viewModel.steps.observe(this, Observer {
             Log.d("step", "$it")
