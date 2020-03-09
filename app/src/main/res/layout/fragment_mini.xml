@@ -16,7 +16,23 @@
         app:menu="@menu/toolbar_menu_mini"
         app:popupTheme="@style/OverflowMenuStyle" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEvent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+    <RelativeLayout
+        android:id="@+id/rlInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <include layout="@layout/input_event_layout" />
+    </RelativeLayout>
+    <!--<androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDate"
         style="@style/whiteTextView"
         android:layout_marginStart="@dimen/dp_16"
@@ -33,7 +49,7 @@
         android:text="@string/test_week"
         android:textSize="@dimen/sp_24"
         app:layout_constraintStart_toStartOf="@+id/tvDate"
-        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDate" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"

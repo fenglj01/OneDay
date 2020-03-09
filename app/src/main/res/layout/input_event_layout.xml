@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/dp_16"
-    android:background="@color/color43434E">
+    android:background="@color/color43434E"
+    android:paddingBottom="@dimen/dp_16">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivTopic"
@@ -35,6 +35,7 @@
         app:layout_constraintTop_toTopOf="@id/ivTopic" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtEvent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_16"
@@ -44,6 +45,8 @@
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorAccent"
         android:textSize="@dimen/sp_16"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivTopic" />

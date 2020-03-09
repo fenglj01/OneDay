@@ -1,6 +1,9 @@
 package com.knight.oneday.utilities
 
+import android.app.Activity
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Checkable
 
 /**
@@ -33,3 +36,7 @@ fun <T : View> T.singleClick(onClickListener: View.OnClickListener, time: Long =
 var <T : View> T.lastClickTime: Long
     set(value) = setTag(1766613352, value)
     get() = getTag(1766613352) as? Long ?: 0
+
+
+fun getInputManager(activity: Activity): InputMethodManager =
+    activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
