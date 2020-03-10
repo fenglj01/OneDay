@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.viewModels
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.getInputManager
 import com.knight.oneday.utilities.singleClick
@@ -22,7 +23,12 @@ import kotlinx.android.synthetic.main.input_event_layout.*
  */
 class MiniFragment : Fragment() {
 
-    private val miniVm: MiniViewModel by lazy { InjectorUtils.miniEventViewModelFactory(context!!) }
+    private val miniVm: MiniViewModel by viewModels {
+        InjectorUtils.miniEventViewModelFactory(
+            context!!
+        )
+    }
+
     private val inputManager: InputMethodManager by lazy {
         getInputManager(activity!!)
     }
@@ -36,10 +42,10 @@ class MiniFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initListener()
+        initListeners()
     }
 
-    private fun initListener() {
+    private fun initListeners() {
         fabAdd.singleClick {
             showInputView()
         }
@@ -50,7 +56,6 @@ class MiniFragment : Fragment() {
 
     private fun showInputView() {
         rlInput.visibility = View.VISIBLE
-        // 获取焦点
         edtEvent.requestFocus()
         inputManager.showSoftInput(edtEvent, InputMethodManager.SHOW_IMPLICIT)
         fabAdd.hide()
