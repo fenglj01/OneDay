@@ -1,15 +1,16 @@
 package com.knight.oneday
 
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.knight.oneday.utilities.InjectorUtils
+import com.knight.oneday.utilities.addKeyBoardListener
 import com.knight.oneday.utilities.getInputManager
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.MiniViewModel
@@ -52,6 +53,14 @@ class MiniFragment : Fragment() {
         ivSend.singleClick {
             hideInputView()
         }
+        contentView.addKeyBoardListener(
+            onShow = {
+                Log.d("aa","show")
+            },
+            onHide = {
+                Log.d("aa","hide")
+            }
+        )
     }
 
     private fun showInputView() {

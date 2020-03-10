@@ -1,8 +1,10 @@
 package com.knight.oneday
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.idescout.sql.SqlScoutServer
 import com.knight.oneday.utilities.InjectorUtils
@@ -33,5 +35,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("step", "$it")
         })*/
     }
+
 
 }
