@@ -2,6 +2,7 @@ package com.knight.oneday
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.annotation.SuppressLint
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.res.Configuration
 import android.os.Bundle
@@ -68,8 +69,10 @@ class MiniFragment : Fragment() {
         )
     }
 
+    @SuppressLint("RestrictedApi")
     private fun showInputView() {
-        fabAdd.hide()
+        // 使用动画效果fab 会随着布局跑 看起来有点鬼畜 这里直接变为不可见
+        fabAdd.visibility = View.INVISIBLE
         rlInput.visibility = View.VISIBLE
         edtEvent.requestFocus()
         inputManager.showSoftInput(edtEvent, InputMethodManager.SHOW_IMPLICIT)
