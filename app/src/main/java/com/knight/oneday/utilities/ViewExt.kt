@@ -70,29 +70,16 @@ inline fun ViewGroup.addKeyBoardListener(
     }
 }
 
-fun FloatingActionButton.addVisibilityListener(
-    onShow: (() -> Unit)? = null,
-    onHide: (() -> Unit)? = null
-) {
-    onHide?.let {
-        addOnHideAnimationListener(
-            object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
-                    super.onAnimationEnd(animation)
-                    it.invoke()
-                }
-            }
-        )
-    }
-    onShow?.let {
-        addOnShowAnimationListener(
-            object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator?) {
-                    super.onAnimationEnd(animation)
-                    it.invoke()
-                }
-            }
-        )
+inline fun ViewGroup.addOnKeyBoardHidden(crossinline onHidden: () -> Unit) {
+    viewTreeObserver.addOnGlobalLayoutListener {
+        val rect = Rect()
+        getWindowVisibleDisplayFrame(rect)
+        val screenHeight = rootView.height
+        val keypadHeight = screenHeight - rect.bottom
+        if (keypadHeight < screenHeight * 0.15) {
+            onHidden.invoke()
+        }
     }
 }
+
 

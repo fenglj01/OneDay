@@ -59,14 +59,10 @@ class MiniFragment : Fragment() {
             hideInputView()
         }
 
-        contentView.addKeyBoardListener(
-            onShow = {
-            },
-            onHide = {
-                rlInput.visibility = View.INVISIBLE
-                fabAdd.show()
-            }
-        )
+        contentView.addOnKeyBoardHidden {
+            rlInput.visibility = View.INVISIBLE
+            fabAdd.show()
+        }
     }
 
     @SuppressLint("RestrictedApi")
