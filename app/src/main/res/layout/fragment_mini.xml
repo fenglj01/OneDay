@@ -28,7 +28,7 @@
         android:id="@+id/rlInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <include layout="@layout/input_event_layout" />

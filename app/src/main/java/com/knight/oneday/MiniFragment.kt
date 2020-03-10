@@ -1,5 +1,7 @@
 package com.knight.oneday
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.res.Configuration
 import android.os.Bundle
@@ -9,10 +11,8 @@ import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.knight.oneday.utilities.InjectorUtils
-import com.knight.oneday.utilities.addKeyBoardListener
-import com.knight.oneday.utilities.getInputManager
-import com.knight.oneday.utilities.singleClick
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
 import kotlinx.android.synthetic.main.fragment_mini.*
 import kotlinx.android.synthetic.main.input_event_layout.*
@@ -29,6 +29,8 @@ class MiniFragment : Fragment() {
             context!!
         )
     }
+
+    private var showInput: Boolean = false
 
     private val inputManager: InputMethodManager by lazy {
         getInputManager(activity!!)
@@ -47,32 +49,35 @@ class MiniFragment : Fragment() {
     }
 
     private fun initListeners() {
+
         fabAdd.singleClick {
             showInputView()
         }
+
         ivSend.singleClick {
             hideInputView()
         }
+
         contentView.addKeyBoardListener(
             onShow = {
-                Log.d("aa","show")
             },
             onHide = {
-                Log.d("aa","hide")
+                rlInput.visibility = View.INVISIBLE
+                fabAdd.show()
             }
         )
     }
 
     private fun showInputView() {
+        fabAdd.hide()
         rlInput.visibility = View.VISIBLE
         edtEvent.requestFocus()
         inputManager.showSoftInput(edtEvent, InputMethodManager.SHOW_IMPLICIT)
-        fabAdd.hide()
     }
 
     private fun hideInputView() {
-        rlInput.visibility = View.INVISIBLE
         fabAdd.show()
+        rlInput.visibility = View.INVISIBLE
         inputManager.hideSoftInputFromWindow(activity!!.window.peekDecorView().windowToken, 0)
     }
 

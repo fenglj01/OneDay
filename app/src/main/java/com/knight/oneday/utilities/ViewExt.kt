@@ -1,5 +1,7 @@
 package com.knight.oneday.utilities
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.graphics.Rect
@@ -11,6 +13,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Checkable
 import android.widget.EditText
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
  * @author knight
@@ -64,6 +67,32 @@ inline fun ViewGroup.addKeyBoardListener(
         } else {
             onHide.invoke()
         }
+    }
+}
+
+fun FloatingActionButton.addVisibilityListener(
+    onShow: (() -> Unit)? = null,
+    onHide: (() -> Unit)? = null
+) {
+    onHide?.let {
+        addOnHideAnimationListener(
+            object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    it.invoke()
+                }
+            }
+        )
+    }
+    onShow?.let {
+        addOnShowAnimationListener(
+            object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    it.invoke()
+                }
+            }
+        )
     }
 }
 
