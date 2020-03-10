@@ -31,8 +31,6 @@ class MiniFragment : Fragment() {
         )
     }
 
-    private var showInput: Boolean = false
-
     private val inputManager: InputMethodManager by lazy {
         getInputManager(activity!!)
     }
