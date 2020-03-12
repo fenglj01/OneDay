@@ -1,22 +1,21 @@
 package com.knight.oneday
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
-import android.content.Context.INPUT_METHOD_SERVICE
-import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
+import com.knight.oneday.data.Event
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
+import com.knight.oneday.views.SectionBean
+import com.knight.oneday.views.SectionDecoration
 import kotlinx.android.synthetic.main.fragment_mini.*
 import kotlinx.android.synthetic.main.input_event_layout.*
+import java.util.*
 
 /**
  * @author knight
@@ -45,6 +44,35 @@ class MiniFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
+        initTestRecyclerView()
+    }
+
+    private fun initTestRecyclerView() {
+        rvEvent.layoutManager = LinearLayoutManager(context)
+        //rvEvent.addItemDecoration(SectionDecoration(context!!))
+        val adapter = MiniEventRecyclerViewAdapter()
+
+        val miniData = mutableListOf<Event>()
+        for (i in 0..30) {
+            miniData.add(
+                Event(
+                    content = "$i",
+                    type = EventType.GUIDE,
+                    createTime = if (i < 5) Calendar.getInstance() else Calendar.getInstance().apply {
+                        set(
+                            Calendar.DAY_OF_MONTH,
+                            13
+                        )
+                    }
+                )
+            )
+        }
+        rvEvent.adapter = adapter
+        adapter.submitList(miniData)
+        val seData = miniData.map {
+            SectionBean("${it.createTime.get(Calendar.DAY_OF_MONTH)}")
+        }
+        rvEvent.addItemDecoration(SectionDecoration(seData.toMutableList(), context!!))
     }
 
     private fun initListeners() {
