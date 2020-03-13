@@ -61,10 +61,12 @@ class SectionDecoration(
         super.getItemOffsets(outRect, view, parent, state)
         for (index in 0 until parent.childCount) {
             val position = parent.getChildAdapterPosition(view)
-            if(sectionCallback.itemNeedSection(position)){
-                outRect.set(0, sectionHeight, 0, 0)
-            }else{
-
+            if (sectionCallback.itemNeedSection(position)) {
+                // 预留出分段标签的位置
+                outRect.set(0, sectionHeight, 0, 1)
+            } else {
+                // 预留出分割线的位置
+                outRect.set(0, 0, 0, 1)
             }
         }
     }
@@ -76,14 +78,23 @@ class SectionDecoration(
 
             val view = /*parent[index]*/ parent.getChildAt(index)
             val position = parent.getChildAdapterPosition(view)
-            if(sectionCallback.itemNeedSection(position)){
+            if (sectionCallback.itemNeedSection(position)) {
                 val left = view.left.toFloat()
                 val right = view.right.toFloat()
                 val bottom = view.top.toFloat()
                 val top = 0F
+                // 画出分段标签的背景 并且画出分割线
                 c.drawRect(left, top, right, bottom, decorationPaint)
-            }else{
-
+                c.drawLine(
+                    0F, view.bottom.toFloat(),
+                    view.right.toFloat(), (view.bottom + 1).toFloat(), decorationPaint
+                )
+            } else {
+                // 不需要分段标签的情况下 只需要画出分割线
+                c.drawLine(
+                    0F, view.bottom.toFloat(),
+                    view.right.toFloat(), (view.bottom + 1).toFloat(), decorationPaint
+                )
             }
         }
     }
@@ -94,7 +105,7 @@ class SectionDecoration(
         for (index in 0 until parent.childCount) {
             val view = parent[index]
             val position = parent.getChildAdapterPosition(view)
-            if(sectionCallback.itemNeedSection(position)){
+            if (sectionCallback.itemNeedSection(position)) {
                 val left = view.left.toFloat()
                 val right = view.right.toFloat()
                 val bottom = view.top.toFloat()
@@ -106,7 +117,7 @@ class SectionDecoration(
                     view.top - (sectionHeight / 2 - sectionTextHeight / 2),
                     sectionPaint
                 )
-            }else{
+            } else {
 
             }
 
