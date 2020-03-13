@@ -10,6 +10,7 @@ import android.view.View
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
+import com.knight.oneday.utilities.dp
 import com.knight.oneday.utilities.sp
 
 /**
@@ -21,7 +22,6 @@ import com.knight.oneday.utilities.sp
  * https://www.jianshu.com/p/41ae13016243
  */
 class SectionDecoration(
-    private val sectionList: MutableList<SectionBean>,
     private val context: Context,
     private val sectionCallback: SectionCallback
 ) :
@@ -59,82 +59,103 @@ class SectionDecoration(
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        for (index in 0 until parent.childCount) {
-            val position = parent.getChildAdapterPosition(view)
-            if (sectionCallback.itemNeedSection(position)) {
-                // 预留出分段标签的位置
-                outRect.set(0, sectionHeight, 0, 1)
-            } else {
-                // 预留出分割线的位置
-                outRect.set(0, 0, 0, 1)
-            }
-        }
+        val position = parent.getChildAdapterPosition(view)
+        val sectionContent = sectionCallback.getSectionContent(position)
+        if (sectionContent.isNullOrEmpty()) return
+        outRect.top =
+            if (position == 0 || isFirstSectionInGroup(position)) sectionHeight else 1
     }
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
         // getChildAt 当前可见得
         for (index in 0 until parent.childCount) {
-
             val view = /*parent[index]*/ parent.getChildAt(index)
             val position = parent.getChildAdapterPosition(view)
-            if (sectionCallback.itemNeedSection(position)) {
-                val left = view.left.toFloat()
-                val right = view.right.toFloat()
-                val bottom = view.top.toFloat()
-                val top = 0F
-                // 画出分段标签的背景 并且画出分割线
-                c.drawRect(left, top, right, bottom, decorationPaint)
-                c.drawLine(
-                    0F, view.bottom.toFloat(),
-                    view.right.toFloat(), (view.bottom + 1).toFloat(), decorationPaint
+            val sectionBottom = view.top
+            val sectionLeft = view.left
+            val sectionRight = view.right
+            if (isFirstSectionInGroup(position)) {  // 绘制分割组
+                val sectionTop = sectionBottom - sectionHeight
+                c.drawRect(
+                    sectionLeft.toFloat(),
+                    sectionTop.toFloat(),
+                    sectionRight.toFloat(),
+                    sectionBottom.toFloat(),
+                    decorationPaint
                 )
-            } else {
-                // 不需要分段标签的情况下 只需要画出分割线
+                c.drawText(
+                    sectionCallback.getSectionContent(position),
+                    parent.paddingLeft.toFloat(),
+                    view.top - (sectionHeight / 2 - sectionTextHeight / 2),
+                    sectionPaint
+                )
+            } else {    // 绘制分割线
+                val lineTop = sectionBottom - 1
                 c.drawLine(
-                    0F, view.bottom.toFloat(),
-                    view.right.toFloat(), (view.bottom + 1).toFloat(), decorationPaint
+                    sectionLeft.toFloat(),
+                    lineTop.toFloat(),
+                    sectionRight.toFloat(),
+                    lineTop.toFloat(),
+                    decorationPaint
                 )
             }
+
         }
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
-        val textRect = Rect()
-        for (index in 0 until parent.childCount) {
-            val view = parent[index]
-            val position = parent.getChildAdapterPosition(view)
-            if (sectionCallback.itemNeedSection(position)) {
-                val left = view.left.toFloat()
-                val right = view.right.toFloat()
-                val bottom = view.top.toFloat()
-                val top = 0F
-                // 绘制标题分段
-                c.drawText(
-                    sectionList[position].content,
-                    parent.paddingLeft.toFloat(),
-                    view.top - (sectionHeight / 2 - sectionTextHeight / 2),
-                    sectionPaint
-                )
-            } else {
-
-            }
-
+        // childCount 是屏幕能展示数目的个数
+        val firstVisibleView = parent[0]
+        val firstVisiblePosition = parent.getChildAdapterPosition(firstVisibleView)
+        val firstSectionContent = sectionCallback.getSectionContent(firstVisiblePosition)
+        val left = parent.paddingLeft
+        val right = firstVisibleView.width - parent.paddingRight
+        if (firstVisibleView.bottom <= sectionHeight && isFirstSectionInGroup(firstVisiblePosition + 1)) {
+            c.drawRect(
+                left.toFloat(),
+                0F,
+                right.toFloat(),
+                firstVisibleView.bottom.toFloat(),
+                decorationPaint
+            )
+            c.drawText(
+                firstSectionContent,
+                left.toFloat(),
+                firstVisibleView.top - (sectionHeight / 2 - sectionTextHeight / 2),
+                sectionPaint
+            )
+        } else {
+            c.drawRect(
+                left.toFloat(),
+                0F,
+                right.toFloat(),
+                sectionHeight.toFloat(),
+                decorationPaint
+            )
+            c.drawText(
+                firstSectionContent,
+                left.toFloat(),
+                (sectionHeight / 2 + sectionTextHeight / 2),
+                sectionPaint
+            )
         }
+
     }
 
+    private fun isFirstSectionInGroup(dataPosition: Int): Boolean {
+        return if (dataPosition == 0) true else sectionCallback.getSectionContent(dataPosition) != sectionCallback.getSectionContent(
+            dataPosition - 1
+        )
+    }
 
-    /* fun addSection(sectionBean: SectionBean) {
-         sectionList.add(sectionBean)
-     }*/
-
+    interface SectionCallback {
+        fun getSectionContent(dataPosition: Int): String
+    }
 
 }
 
 /* 分段标题 */
 data class SectionBean(val content: String)
 
-interface SectionCallback {
-    fun itemNeedSection(dataPosition: Int): Boolean
-}

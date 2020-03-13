@@ -12,7 +12,6 @@ import com.knight.oneday.data.Event
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
 import com.knight.oneday.views.SectionBean
-import com.knight.oneday.views.SectionCallback
 import com.knight.oneday.views.SectionDecoration
 import kotlinx.android.synthetic.main.fragment_mini.*
 import kotlinx.android.synthetic.main.input_event_layout.*
@@ -59,11 +58,31 @@ class MiniFragment : Fragment() {
                 Event(
                     content = "$i",
                     type = EventType.GUIDE,
-                    createTime = if (i < 5) Calendar.getInstance() else Calendar.getInstance().apply {
-                        set(
-                            Calendar.DAY_OF_MONTH,
-                            14
-                        )
+                    createTime = when(i){
+                        in 0..5 -> Calendar.getInstance().apply {
+                            set(
+                                Calendar.DAY_OF_MONTH,
+                                13
+                            )
+                        }
+                        in 6..10 ->Calendar.getInstance().apply {
+                            set(
+                                Calendar.DAY_OF_MONTH,
+                                14
+                            )
+                        }
+                        in 11..15 ->Calendar.getInstance().apply {
+                            set(
+                                Calendar.DAY_OF_MONTH,
+                                15
+                            )
+                        }
+                        else ->Calendar.getInstance().apply {
+                            set(
+                                Calendar.DAY_OF_MONTH,
+                                16
+                            )
+                        }
                     }
                 )
             )
@@ -74,14 +93,11 @@ class MiniFragment : Fragment() {
             SectionBean("${it.createTime.get(Calendar.DAY_OF_MONTH)}")
         }
         rvEvent.addItemDecoration(
-            SectionDecoration(
-                seData.toMutableList(),
-                context!!,
-                object : SectionCallback {
-                    override fun itemNeedSection(dataPosition: Int): Boolean {
-                        return if (dataPosition == 0) true else seData[dataPosition] != seData[dataPosition - 1]
-                    }
-                })
+            SectionDecoration(context!!, object : SectionDecoration.SectionCallback {
+                override fun getSectionContent(dataPosition: Int): String {
+                    return "${miniData[dataPosition].reminderTime[Calendar.DAY_OF_MONTH]}"
+                }
+            })
         )
     }
 
