@@ -96,9 +96,6 @@ class MiniFragment : Fragment() {
         }
         rvEvent.adapter = adapter
         adapter.submitList(miniData)
-        val seData = miniData.map {
-            SectionBean("${it.createTime.get(Calendar.DAY_OF_MONTH)}")
-        }
         rvEvent.addItemDecoration(
             SectionDecoration(context!!, object : SectionDecoration.SectionCallback {
                 override fun getSectionContent(dataPosition: Int): String {
@@ -109,15 +106,12 @@ class MiniFragment : Fragment() {
     }
 
     private fun initListeners() {
-
         fabAdd.singleClick {
             showInputView()
         }
-
         ivSend.singleClick {
             hideInputView()
         }
-
         contentView.addOnKeyBoardHidden {
             rlInput.visibility = View.INVISIBLE
             fabAdd.show()

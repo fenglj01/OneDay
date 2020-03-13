@@ -30,6 +30,14 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+   <!-- <ViewStub
+        android:id="@+id/stubInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="invisible"
+        android:layout="@layout/input_event_layout"
+        />-->
     <RelativeLayout
         android:id="@+id/rlInput"
         android:layout_width="match_parent"
