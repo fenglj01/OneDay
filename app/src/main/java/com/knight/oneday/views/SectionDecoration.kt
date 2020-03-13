@@ -3,7 +3,6 @@ package com.knight.oneday.views
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.text.TextPaint
@@ -31,13 +30,15 @@ class SectionDecoration(
     private val decorationPaint: Paint
     private val sectionHeight: Int
     private val sectionResources: Resources
+    private val sectionTextRect: Rect
+    private val sectionTextHeight: Float
 
     init {
         sectionResources = context.resources
         sectionPaint = TextPaint().apply {
             isAntiAlias = true
-            textSize = 24F.sp
-            color = sectionResources.getColor(R.color.colorAccent)
+            textSize = 16F.sp
+            color = sectionResources.getColor(R.color.colorWhite)
             textAlign = Paint.Align.LEFT
         }
         decorationPaint = Paint().apply {
@@ -45,6 +46,9 @@ class SectionDecoration(
             color = sectionResources.getColor(R.color.color43434E)
         }
         sectionHeight = sectionResources.getDimensionPixelSize(R.dimen.dp_32)
+        sectionTextRect = Rect()
+        sectionPaint.getTextBounds("1", 0, 1, sectionTextRect)
+        sectionTextHeight = sectionTextRect.height().toFloat()
     }
 
     override fun getItemOffsets(
@@ -72,6 +76,8 @@ class SectionDecoration(
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
+        val textRect = Rect()
+
         for (index in 0 until parent.childCount) {
             val view = parent[index]
             val position = parent.getChildAdapterPosition(view)
@@ -79,9 +85,14 @@ class SectionDecoration(
             val right = view.right.toFloat()
             val bottom = view.top.toFloat()
             val top = 0F
-            c.drawText(sectionList[position].content, parent.paddingLeft.toFloat(), (view.top).toFloat(), sectionPaint)
-        }
 
+            c.drawText(
+                sectionList[position].content,
+                parent.paddingLeft.toFloat(),
+                view.top - (sectionHeight / 2 - sectionTextHeight / 2),
+                sectionPaint
+            )
+        }
     }
 
 
