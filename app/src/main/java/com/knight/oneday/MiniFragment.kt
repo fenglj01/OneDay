@@ -43,8 +43,15 @@ class MiniFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar()
         initListeners()
         initTestRecyclerView()
+    }
+
+    private fun initToolbar() {
+        toolBar.apply {
+            title = TimeUtils.getTodayMonthAndDayStr()
+        }
     }
 
     private fun initTestRecyclerView() {
@@ -58,26 +65,26 @@ class MiniFragment : Fragment() {
                 Event(
                     content = "$i",
                     type = EventType.GUIDE,
-                    createTime = when(i){
+                    createTime = when (i) {
                         in 0..5 -> Calendar.getInstance().apply {
                             set(
                                 Calendar.DAY_OF_MONTH,
                                 13
                             )
                         }
-                        in 6..10 ->Calendar.getInstance().apply {
+                        in 6..10 -> Calendar.getInstance().apply {
                             set(
                                 Calendar.DAY_OF_MONTH,
                                 14
                             )
                         }
-                        in 11..15 ->Calendar.getInstance().apply {
+                        in 11..15 -> Calendar.getInstance().apply {
                             set(
                                 Calendar.DAY_OF_MONTH,
                                 15
                             )
                         }
-                        else ->Calendar.getInstance().apply {
+                        else -> Calendar.getInstance().apply {
                             set(
                                 Calendar.DAY_OF_MONTH,
                                 16

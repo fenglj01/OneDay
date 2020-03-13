@@ -7,6 +7,11 @@ import java.util.*
  */
 object TimeUtils {
 
+    fun getTodayMonthAndDayStr(): String {
+        val now = Calendar.getInstance()
+        return "${now[Calendar.MONTH] + 1}-${now[Calendar.DAY_OF_MONTH]}"
+    }
+
     fun getTodayTimeInterval(): TimeInterval {
         var now = Calendar.getInstance()
         return TimeInterval(getZeroTime(now), getZero23Time(now))
