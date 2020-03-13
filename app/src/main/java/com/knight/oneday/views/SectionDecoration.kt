@@ -22,7 +22,8 @@ import com.knight.oneday.utilities.sp
  */
 class SectionDecoration(
     private val sectionList: MutableList<SectionBean>,
-    private val context: Context
+    private val context: Context,
+    private val sectionCallback: SectionCallback
 ) :
     RecyclerView.ItemDecoration() {
 
@@ -58,40 +59,57 @@ class SectionDecoration(
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        // 设置顶部偏移
-        outRect.set(0, sectionHeight, 0, 0)
+        for (index in 0 until parent.childCount) {
+            val position = parent.getChildAdapterPosition(view)
+            if(sectionCallback.itemNeedSection(position)){
+                outRect.set(0, sectionHeight, 0, 0)
+            }else{
+
+            }
+        }
     }
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
+        // getChildAt 当前可见得
         for (index in 0 until parent.childCount) {
+
             val view = /*parent[index]*/ parent.getChildAt(index)
-            val left = view.left.toFloat()
-            val right = view.right.toFloat()
-            val bottom = view.top.toFloat()
-            val top = 0F
-            c.drawRect(left, top, right, bottom, decorationPaint)
+            val position = parent.getChildAdapterPosition(view)
+            if(sectionCallback.itemNeedSection(position)){
+                val left = view.left.toFloat()
+                val right = view.right.toFloat()
+                val bottom = view.top.toFloat()
+                val top = 0F
+                c.drawRect(left, top, right, bottom, decorationPaint)
+            }else{
+
+            }
         }
     }
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
         val textRect = Rect()
-
         for (index in 0 until parent.childCount) {
             val view = parent[index]
             val position = parent.getChildAdapterPosition(view)
-            val left = view.left.toFloat()
-            val right = view.right.toFloat()
-            val bottom = view.top.toFloat()
-            val top = 0F
+            if(sectionCallback.itemNeedSection(position)){
+                val left = view.left.toFloat()
+                val right = view.right.toFloat()
+                val bottom = view.top.toFloat()
+                val top = 0F
+                // 绘制标题分段
+                c.drawText(
+                    sectionList[position].content,
+                    parent.paddingLeft.toFloat(),
+                    view.top - (sectionHeight / 2 - sectionTextHeight / 2),
+                    sectionPaint
+                )
+            }else{
 
-            c.drawText(
-                sectionList[position].content,
-                parent.paddingLeft.toFloat(),
-                view.top - (sectionHeight / 2 - sectionTextHeight / 2),
-                sectionPaint
-            )
+            }
+
         }
     }
 
@@ -105,3 +123,7 @@ class SectionDecoration(
 
 /* 分段标题 */
 data class SectionBean(val content: String)
+
+interface SectionCallback {
+    fun itemNeedSection(dataPosition: Int): Boolean
+}

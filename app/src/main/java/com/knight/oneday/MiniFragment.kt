@@ -12,6 +12,7 @@ import com.knight.oneday.data.Event
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
 import com.knight.oneday.views.SectionBean
+import com.knight.oneday.views.SectionCallback
 import com.knight.oneday.views.SectionDecoration
 import kotlinx.android.synthetic.main.fragment_mini.*
 import kotlinx.android.synthetic.main.input_event_layout.*
@@ -61,7 +62,7 @@ class MiniFragment : Fragment() {
                     createTime = if (i < 5) Calendar.getInstance() else Calendar.getInstance().apply {
                         set(
                             Calendar.DAY_OF_MONTH,
-                            13
+                            14
                         )
                     }
                 )
@@ -72,7 +73,16 @@ class MiniFragment : Fragment() {
         val seData = miniData.map {
             SectionBean("${it.createTime.get(Calendar.DAY_OF_MONTH)}")
         }
-        rvEvent.addItemDecoration(SectionDecoration(seData.toMutableList(), context!!))
+        rvEvent.addItemDecoration(
+            SectionDecoration(
+                seData.toMutableList(),
+                context!!,
+                object : SectionCallback {
+                    override fun itemNeedSection(dataPosition: Int): Boolean {
+                        return if (dataPosition == 0) true else seData[dataPosition] != seData[dataPosition - 1]
+                    }
+                })
+        )
     }
 
     private fun initListeners() {
