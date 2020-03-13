@@ -3,6 +3,7 @@ package com.knight.oneday.utilities
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
+import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.res.Resources
 import android.graphics.Rect
@@ -101,5 +102,8 @@ val Int.sp: Int
     get() = android.util.TypedValue.applyDimension(
         android.util.TypedValue.COMPLEX_UNIT_SP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
 
+fun dp2px(context: Context, dp:Float):Float=dp * context.resources.displayMetrics.density
+
+fun px2dp(context:Context,px:Float):Float =px / context.resources.displayMetrics.density
 
 

@@ -11,6 +11,7 @@ import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
 import com.knight.oneday.utilities.dp
+import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.sp
 
 /**
@@ -33,6 +34,7 @@ class SectionDecoration(
     private val sectionResources: Resources
     private val sectionTextRect: Rect
     private val sectionTextHeight: Float
+    private val sectionTextPadding: Float
 
     init {
         sectionResources = context.resources
@@ -50,6 +52,7 @@ class SectionDecoration(
         sectionTextRect = Rect()
         sectionPaint.getTextBounds("1", 0, 1, sectionTextRect)
         sectionTextHeight = sectionTextRect.height().toFloat()
+        sectionTextPadding = dp2px(context, 16F)
     }
 
     override fun getItemOffsets(
@@ -86,7 +89,7 @@ class SectionDecoration(
                 )
                 c.drawText(
                     sectionCallback.getSectionContent(position),
-                    parent.paddingLeft.toFloat(),
+                    parent.paddingLeft.toFloat() + sectionTextPadding,
                     view.top - (sectionHeight / 2 - sectionTextHeight / 2),
                     sectionPaint
                 )
@@ -122,7 +125,7 @@ class SectionDecoration(
             )
             c.drawText(
                 firstSectionContent,
-                left.toFloat(),
+                left.toFloat() + sectionTextPadding,
                 firstVisibleView.top - (sectionHeight / 2 - sectionTextHeight / 2),
                 sectionPaint
             )
@@ -136,7 +139,7 @@ class SectionDecoration(
             )
             c.drawText(
                 firstSectionContent,
-                left.toFloat(),
+                left.toFloat() + sectionTextPadding,
                 (sectionHeight / 2 + sectionTextHeight / 2),
                 sectionPaint
             )
