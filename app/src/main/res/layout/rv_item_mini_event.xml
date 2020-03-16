@@ -7,6 +7,10 @@
         <variable
             name="event"
             type="com.knight.oneday.data.Event" />
+
+        <variable
+            name="topic"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
