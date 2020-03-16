@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
 import com.knight.oneday.data.Event
+import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
 import com.knight.oneday.views.SectionBean
@@ -26,9 +28,11 @@ class MiniFragment : Fragment() {
 
     private val miniVm: MiniViewModel by viewModels {
         InjectorUtils.miniEventViewModelFactory(
-            context!!
+            requireContext()
         )
     }
+
+    private lateinit var binding: FragmentMiniBinding
 
     private val inputManager: InputMethodManager by lazy {
         getInputManager(activity!!)
@@ -38,24 +42,20 @@ class MiniFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_mini, container, false)
+        binding = FragmentMiniBinding.inflate(inflater, container, false)
+        binding.viewModel = miniVm
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbar()
         initListeners()
         initTestRecyclerView()
     }
 
-    private fun initToolbar() {
-        toolBar.apply {
-            title = TimeUtils.getTodayMonthAndDayStr()
-        }
-    }
-
     private fun initTestRecyclerView() {
         rvEvent.layoutManager = LinearLayoutManager(context)
+
         //rvEvent.addItemDecoration(SectionDecoration(context!!))
         val adapter = MiniEventRecyclerViewAdapter()
 

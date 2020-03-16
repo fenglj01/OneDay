@@ -2,6 +2,7 @@ package com.knight.oneday.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.knight.oneday.data.EventRepository
+import com.knight.oneday.utilities.TimeUtils
 
 /**
  * @author knight
@@ -9,5 +10,7 @@ import com.knight.oneday.data.EventRepository
  * 极简风格的ViewModel
  */
 class MiniViewModel(repository: EventRepository) : ViewModel() {
+
+    val todayStr = TimeUtils.getTodayMonthAndDayStr()
 
 }
