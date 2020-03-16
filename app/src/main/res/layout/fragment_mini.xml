@@ -38,7 +38,9 @@
             android:id="@+id/rvEvent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/rv_item_mini_event" />
 
         <!-- <ViewStub
              android:id="@+id/stubInput"

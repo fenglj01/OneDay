@@ -35,7 +35,7 @@ class MiniFragment : Fragment() {
     private lateinit var binding: FragmentMiniBinding
 
     private val inputManager: InputMethodManager by lazy {
-        getInputManager(activity!!)
+        getInputManager(requireActivity())
     }
 
     override fun onCreateView(
@@ -50,59 +50,6 @@ class MiniFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
-        initTestRecyclerView()
-    }
-
-    private fun initTestRecyclerView() {
-        rvEvent.layoutManager = LinearLayoutManager(context)
-
-        //rvEvent.addItemDecoration(SectionDecoration(context!!))
-        val adapter = MiniEventRecyclerViewAdapter()
-
-        val miniData = mutableListOf<Event>()
-        for (i in 0..30) {
-            miniData.add(
-                Event(
-                    content = "$i",
-                    type = EventType.GUIDE,
-                    createTime = when (i) {
-                        in 0..5 -> Calendar.getInstance().apply {
-                            set(
-                                Calendar.DAY_OF_MONTH,
-                                13
-                            )
-                        }
-                        in 6..10 -> Calendar.getInstance().apply {
-                            set(
-                                Calendar.DAY_OF_MONTH,
-                                14
-                            )
-                        }
-                        in 11..15 -> Calendar.getInstance().apply {
-                            set(
-                                Calendar.DAY_OF_MONTH,
-                                15
-                            )
-                        }
-                        else -> Calendar.getInstance().apply {
-                            set(
-                                Calendar.DAY_OF_MONTH,
-                                16
-                            )
-                        }
-                    }
-                )
-            )
-        }
-        rvEvent.adapter = adapter
-        adapter.submitList(miniData)
-        rvEvent.addItemDecoration(
-            SectionDecoration(context!!, object : SectionDecoration.SectionCallback {
-                override fun getSectionContent(dataPosition: Int): String {
-                    return "${miniData[dataPosition].reminderTime[Calendar.DAY_OF_MONTH]}"
-                }
-            })
-        )
     }
 
     private fun initListeners() {

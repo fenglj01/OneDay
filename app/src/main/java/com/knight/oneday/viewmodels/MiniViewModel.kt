@@ -13,4 +13,6 @@ class MiniViewModel(repository: EventRepository) : ViewModel() {
 
     val todayStr = TimeUtils.getTodayMonthAndDayStr()
 
+    val eventList = repository.getAllEvent()
+
 }
