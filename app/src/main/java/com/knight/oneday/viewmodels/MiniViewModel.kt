@@ -13,14 +13,14 @@ import kotlinx.coroutines.launch
  * create at 20-3-9 下午7:51
  * 极简风格的ViewModel
  */
-class MiniViewModel(val repository: EventRepository) : ViewModel() {
+class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
 
     var todayStr = TimeUtils.getTodayMonthAndDayStr()
 
     val eventList = repository.getAllEvent()
 
     fun addEvent(content: String) {
-        viewModelScope.launch {
+        launchOnIO(tryBlock = {
             repository.createEvent(
                 Event(
                     content = content,
@@ -28,7 +28,7 @@ class MiniViewModel(val repository: EventRepository) : ViewModel() {
                 )
             )
             todayStr = TimeUtils.getTodayMonthAndDayStr()
-        }
+        })
     }
 
 
