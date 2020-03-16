@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
 import com.knight.oneday.data.Event
@@ -44,6 +45,19 @@ class MiniFragment : Fragment() {
     ): View? {
         binding = FragmentMiniBinding.inflate(inflater, container, false)
         binding.viewModel = miniVm
+        val adapter = MiniEventRecyclerViewAdapter()
+        binding.rvEvent.adapter = adapter
+        binding.rvEvent.addItemDecoration(
+            SectionDecoration(requireContext(),
+                object : SectionDecoration.SectionCallback {
+                    override fun getSectionContent(dataPosition: Int): String {
+                        return "${adapter.getEvent(dataPosition).reminderTime[Calendar.DAY_OF_MONTH]}"
+                    }
+                })
+        )
+        miniVm.eventList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
         return binding.root
     }
 
