@@ -15,6 +15,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Checkable
 import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
@@ -86,24 +87,34 @@ inline fun ViewGroup.addOnKeyBoardHidden(crossinline onHidden: () -> Unit) {
 
 val Float.dp: Float                 // [xxhdpi](360 -> 1080)
     get() = android.util.TypedValue.applyDimension(
-        android.util.TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
+        android.util.TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics
+    )
 
 val Int.dp: Int
     get() = android.util.TypedValue.applyDimension(
-        android.util.TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
+        android.util.TypedValue.COMPLEX_UNIT_DIP,
+        this.toFloat(),
+        Resources.getSystem().displayMetrics
+    ).toInt()
 
 
 val Float.sp: Float                 // [xxhdpi](360 -> 1080)
     get() = android.util.TypedValue.applyDimension(
-        android.util.TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics)
+        android.util.TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics
+    )
 
 
 val Int.sp: Int
     get() = android.util.TypedValue.applyDimension(
-        android.util.TypedValue.COMPLEX_UNIT_SP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
+        android.util.TypedValue.COMPLEX_UNIT_SP,
+        this.toFloat(),
+        Resources.getSystem().displayMetrics
+    ).toInt()
 
-fun dp2px(context: Context, dp:Float):Float=dp * context.resources.displayMetrics.density
+fun dp2px(context: Context, dp: Float): Float = dp * context.resources.displayMetrics.density
 
-fun px2dp(context:Context,px:Float):Float =px / context.resources.displayMetrics.density
+fun px2dp(context: Context, px: Float): Float = px / context.resources.displayMetrics.density
 
-
+fun AppCompatEditText.clear() {
+    setText("")
+}

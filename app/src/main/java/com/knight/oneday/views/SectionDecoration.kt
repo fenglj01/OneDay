@@ -8,6 +8,7 @@ import android.graphics.Rect
 import android.text.TextPaint
 import android.view.View
 import androidx.core.view.get
+import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
 import com.knight.oneday.utilities.dp
@@ -109,6 +110,7 @@ class SectionDecoration(
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
+        if (parent.isEmpty()) return
         // childCount 是屏幕能展示数目的个数
         val firstVisibleView = parent[0]
         val firstVisiblePosition = parent.getChildAdapterPosition(firstVisibleView)
