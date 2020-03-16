@@ -51,7 +51,8 @@ class MiniFragment : Fragment() {
             SectionDecoration(requireContext(),
                 object : SectionDecoration.SectionCallback {
                     override fun getSectionContent(dataPosition: Int): String {
-                        return "${adapter.getEvent(dataPosition).reminderTime[Calendar.DAY_OF_MONTH]}"
+                        val event = adapter.getEvent(dataPosition)
+                        return reminderSection(event.createTime, event.reminderTime)
                     }
                 })
         )

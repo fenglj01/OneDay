@@ -17,4 +17,9 @@
     <string name="menu_hide_finished">隐藏已完成</string>
     <string name="menu_about">关于</string>
     <string name="hint_input_event">准备做点什么?</string>
+    <string name="section_no_date">无日期</string>
+    <string name="section_today">今天</string>
+    <string name="section_tomorrow">明天</string>
+    <string name="section_after_tomorrow">后天</string>
+    <string name="section_by_date">%1$d-%2$d</string>
 </resources>
