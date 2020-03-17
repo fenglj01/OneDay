@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.Event
 import com.knight.oneday.databinding.RvItemMiniEventBinding
+import com.knight.oneday.utilities.singleClick
+import kotlinx.android.synthetic.main.rv_item_mini_event.view.*
 
 /**
  * @author knight
@@ -17,6 +19,7 @@ class MiniEventRecyclerViewAdapter :
     ListAdapter<Event, MiniEventRecyclerViewAdapter.MiniEventViewHolder>(EventDiffCallback()) {
 
     private lateinit var binding: RvItemMiniEventBinding
+    var onItemEvent: OnItemEvent? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MiniEventViewHolder {
         binding = RvItemMiniEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,7 +27,11 @@ class MiniEventRecyclerViewAdapter :
     }
 
     override fun onBindViewHolder(holder: MiniEventViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val event = getItem(position)
+        holder.bind(event)
+        binding.ivStatus.singleClick {
+            onItemEvent?.onItemFinishClick(event)
+        }
     }
 
     fun getEvent(position: Int) = getItem(position)
@@ -32,12 +39,18 @@ class MiniEventRecyclerViewAdapter :
     class MiniEventViewHolder(private val binding: RvItemMiniEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+
         fun bind(item: Event) {
             binding.apply {
                 event = item
                 executePendingBindings()
             }
         }
+    }
+
+    interface OnItemEvent {
+        /*fun onItemClick(event: Event)*/
+        fun onItemFinishClick(event: Event)
     }
 
 }

@@ -1,5 +1,6 @@
 package com.knight.oneday.data
 
+import com.knight.oneday.utilities.EventState
 import java.util.*
 
 /**
@@ -18,6 +19,11 @@ class EventRepository private constructor(private val eventDao: EventDao) {
     suspend fun createEvent(event: Event) {
         eventDao.insert(event)
     }
+
+    suspend fun updateEventState(eventState: EventState, id: Long) {
+        eventDao.updateEventState(eventState, id)
+    }
+
 
     suspend fun removeAllEvent() {
         eventDao.deleteAll()

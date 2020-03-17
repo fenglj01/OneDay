@@ -2,6 +2,7 @@ package com.knight.oneday.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.TABLE_NAME_EVENT
 import java.util.*
 
@@ -21,6 +22,9 @@ interface EventDao {
 
     @Query("SELECT * FROM $TABLE_NAME_EVENT GROUP BY state,create_time ORDER BY remind_time desc")
     fun getAllEvent(): LiveData<List<Event>>
+
+    @Query("UPDATE $TABLE_NAME_EVENT SET state =:eventState WHERE id =:id")
+    suspend fun updateEventState(eventState: EventState, id: Long)
 
     @Query("SELECT * FROM $TABLE_NAME_EVENT")
     fun getEventsWithSteps(): LiveData<List<EventAndEventSteps>>
