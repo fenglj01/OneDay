@@ -23,7 +23,7 @@
             android:id="@+id/ivImportant"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
-            app:eventIsImportant="@{event.type}"
+            app:eventIsImportantIcon="@{event.type}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,17 +32,18 @@
             android:id="@+id/eventContent"
             style="@style/whiteTextView"
             android:layout_marginStart="@dimen/dp_8"
-            app:layout_goneMarginStart="@dimen/dp_0"
             android:text="@{event.content}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivImportant"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="@dimen/dp_0"
+            app:textColorByState="@{event.state}" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivStatus"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
-            app:eventState="@{event.state}"
+            app:eventStateIcon="@{event.state}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
