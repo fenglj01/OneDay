@@ -55,8 +55,8 @@ class MiniFragment : Fragment() {
 
     private fun initEventRecyclerView() {
         adapter.onItemEvent = object : MiniEventRecyclerViewAdapter.OnItemEvent {
-            override fun onItemFinishClick(position: Int) {
-                miniVm.changeEventState(position)
+            override fun onItemFinishClick(eventId: Long) {
+                miniVm.changeEventState(eventId)
                 adapter.notifyDataSetChanged()
             }
         }

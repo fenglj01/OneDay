@@ -29,16 +29,20 @@ class MiniEventRecyclerViewAdapter :
     override fun onBindViewHolder(holder: MiniEventViewHolder, position: Int) {
         val event = getItem(position)
         holder.bind(event)
-        binding.ivStatus.singleClick {
-            onItemEvent?.onItemFinishClick(position)
-        }
     }
 
     fun getEvent(position: Int) = getItem(position)
 
-    class MiniEventViewHolder(private val binding: RvItemMiniEventBinding) :
+    inner class MiniEventViewHolder(private val binding: RvItemMiniEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            binding.ivStatus.singleClick {
+                binding.event?.run {
+                    onItemEvent?.onItemFinishClick(eventId)
+                }
+            }
+        }
 
         fun bind(item: Event) {
             binding.apply {
@@ -50,7 +54,7 @@ class MiniEventRecyclerViewAdapter :
 
     interface OnItemEvent {
         /*fun onItemClick(event: Event)*/
-        fun onItemFinishClick(position: Int)
+        fun onItemFinishClick(eventId: Long)
     }
 
 }

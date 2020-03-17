@@ -32,8 +32,8 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
         })
     }
 
-    fun changeEventState(position: Int) {
-        val event = eventList.value?.get(position)
+    fun changeEventState(eventId: Long) {
+        val event = eventList.value?.first { it.eventId == eventId }
         event?.run {
             launchOnUI(
                 tryBlock = {
