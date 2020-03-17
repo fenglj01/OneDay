@@ -23,7 +23,7 @@
             android:id="@+id/ivImportant"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
-            android:src="@drawable/ic_important_topic_accent"
+            app:eventIsImportant="@{event.type}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +32,7 @@
             android:id="@+id/eventContent"
             style="@style/whiteTextView"
             android:layout_marginStart="@dimen/dp_8"
+            app:layout_goneMarginStart="@dimen/dp_0"
             android:text="@{event.content}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivImportant"
@@ -41,7 +42,7 @@
             android:id="@+id/ivStatus"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
-            android:src="@drawable/ic_unfinished"
+            app:eventState="@{event.state}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
