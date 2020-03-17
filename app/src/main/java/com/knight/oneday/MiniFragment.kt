@@ -2,19 +2,16 @@ package com.knight.oneday
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
-import com.knight.oneday.data.Event
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
-import com.knight.oneday.views.SectionBean
 import com.knight.oneday.views.SectionDecoration
 import kotlinx.android.synthetic.main.fragment_mini.*
 import kotlinx.android.synthetic.main.input_event_layout.*
@@ -67,6 +64,7 @@ class MiniFragment : Fragment() {
     private fun subscribeUi() {
         miniVm.eventList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            Log.d("TAG", "$it")
         }
     }
 
@@ -104,7 +102,9 @@ class MiniFragment : Fragment() {
     private fun getSectionCallback(): SectionDecoration.SectionCallback =
         object : SectionDecoration.SectionCallback {
             override fun getSectionContent(dataPosition: Int): String {
+                if (dataPosition == -1) return ""
                 val event = adapter.getEvent(dataPosition)
+                if (event.state == EventState.FINISHED) return getString(R.string.section_finished)
                 return reminderSection(event.createTime, event.reminderTime)
             }
         }

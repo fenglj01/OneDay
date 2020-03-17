@@ -19,7 +19,7 @@ interface EventDao {
     @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE state = 0")
     fun getAllUnFinishedEvents(): LiveData<List<Event>>
 
-    @Query("SELECT * FROM $TABLE_NAME_EVENT")
+    @Query("SELECT * FROM $TABLE_NAME_EVENT GROUP BY state,create_time ORDER BY remind_time desc")
     fun getAllEvent(): LiveData<List<Event>>
 
     @Query("SELECT * FROM $TABLE_NAME_EVENT")
