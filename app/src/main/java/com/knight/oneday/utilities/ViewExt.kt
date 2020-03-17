@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Checkable
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
@@ -50,8 +51,9 @@ var <T : View> T.lastClickTime: Long
     get() = getTag(1766613352) as? Long ?: 0
 
 
-fun getInputManager(activity: Activity): InputMethodManager =
-    activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+fun Fragment.getInputManagerService(): InputMethodManager =
+    requireContext().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+
 
 /**
  * 监听输入键盘的显示和隐藏

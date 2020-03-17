@@ -32,12 +32,11 @@ class MiniFragment : Fragment() {
             requireContext()
         )
     }
-
-    private lateinit var binding: FragmentMiniBinding
-
+    private val adapter: MiniEventRecyclerViewAdapter by lazy { MiniEventRecyclerViewAdapter() }
     private val inputManager: InputMethodManager by lazy {
-        getInputManager(requireActivity())
+        getInputManagerService()
     }
+    private lateinit var binding: FragmentMiniBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,26 +44,30 @@ class MiniFragment : Fragment() {
     ): View? {
         binding = FragmentMiniBinding.inflate(inflater, container, false)
         binding.viewModel = miniVm
-        val adapter = MiniEventRecyclerViewAdapter()
-        binding.rvEvent.adapter = adapter
-        binding.rvEvent.addItemDecoration(
-            SectionDecoration(requireContext(),
-                object : SectionDecoration.SectionCallback {
-                    override fun getSectionContent(dataPosition: Int): String {
-                        val event = adapter.getEvent(dataPosition)
-                        return reminderSection(event.createTime, event.reminderTime)
-                    }
-                })
-        )
-        miniVm.eventList.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
+        initEventRecyclerView()
+        subscribeUi()
+    }
+
+    private fun initEventRecyclerView() {
+        binding.rvEvent.adapter = adapter
+        binding.rvEvent.addItemDecoration(
+            SectionDecoration(
+                requireContext(),
+                getSectionCallback()
+            )
+        )
+    }
+
+    private fun subscribeUi() {
+        miniVm.eventList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 
     private fun initListeners() {
@@ -98,5 +101,12 @@ class MiniFragment : Fragment() {
         inputManager.hideSoftInputFromWindow(activity!!.window.peekDecorView().windowToken, 0)
     }
 
+    private fun getSectionCallback(): SectionDecoration.SectionCallback =
+        object : SectionDecoration.SectionCallback {
+            override fun getSectionContent(dataPosition: Int): String {
+                val event = adapter.getEvent(dataPosition)
+                return reminderSection(event.createTime, event.reminderTime)
+            }
+        }
 
 }
