@@ -1,0 +1,10 @@
+3-17
+---------------
+1.完成了更新事件状态的操作
+
+    问题①：
+        通过在ViewHolder bind()中去设置点击事件 回传position会出现数据错乱,响应有问题
+        分析:
+            拿新增一个Event来说，因为内部类的问题，position在创建点击事件的时候可能就一直都固定了
+        解决:
+            DataBinding中绑定了Event,将eventId回传到ViewModel,再通过id去修改，id唯一所以一定不回出错
