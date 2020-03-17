@@ -26,6 +26,9 @@ interface EventDao {
     @Query("UPDATE $TABLE_NAME_EVENT SET state =:eventState WHERE id =:id")
     suspend fun updateEventState(eventState: EventState, id: Long)
 
+    @Update
+    suspend fun updateEvent(event: Event)
+
     @Query("SELECT * FROM $TABLE_NAME_EVENT")
     fun getEventsWithSteps(): LiveData<List<EventAndEventSteps>>
 

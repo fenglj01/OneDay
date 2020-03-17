@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.EventRepository
+import com.knight.oneday.data.isFinished
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.utilities.TimeUtils
@@ -28,11 +29,27 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
                     type = EventType.MINI_NORMAL
                 )
             )
-            todayStr = TimeUtils.getTodayMonthAndDayStr()
         })
     }
 
-    fun finishEvent(eventId: Long) {
+    fun changeEventState(position: Int) {
+        val event = eventList.value?.get(position)
+        event?.run {
+            launchOnUI(
+                tryBlock = {
+                    val eventState =
+                        if (isFinished()) EventState.UNFINISHED else EventState.FINISHED
+                    repository.updateEventState(
+                        eventState,
+                        eventId
+                    )
+                    state = eventState
+                }
+            )
+        }
+    }
+
+    fun finishEvent(eventId: Long, position: Int) {
         launchOnIO(tryBlock = {
             repository.updateEventState(
                 eventState = EventState.FINISHED,
@@ -41,7 +58,7 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
         })
     }
 
-    fun cancelFinishedEvent(eventId: Long) {
+    fun cancelFinishedEvent(eventId: Long, position: Int) {
         launchOnIO(tryBlock = {
             repository.updateEventState(
                 eventState = EventState.UNFINISHED,

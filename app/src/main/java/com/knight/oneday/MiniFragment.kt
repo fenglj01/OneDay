@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
 import com.knight.oneday.data.Event
+import com.knight.oneday.data.isFinished
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
@@ -54,9 +55,9 @@ class MiniFragment : Fragment() {
 
     private fun initEventRecyclerView() {
         adapter.onItemEvent = object : MiniEventRecyclerViewAdapter.OnItemEvent {
-            override fun onItemFinishClick(event: Event) {
-                if (event.state == EventState.UNFINISHED) miniVm.finishEvent(event.eventId)
-                else miniVm.cancelFinishedEvent(event.eventId)
+            override fun onItemFinishClick(position: Int) {
+                miniVm.changeEventState(position)
+                adapter.notifyDataSetChanged()
             }
         }
 

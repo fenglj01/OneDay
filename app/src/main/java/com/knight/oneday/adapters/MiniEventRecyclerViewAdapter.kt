@@ -30,7 +30,7 @@ class MiniEventRecyclerViewAdapter :
         val event = getItem(position)
         holder.bind(event)
         binding.ivStatus.singleClick {
-            onItemEvent?.onItemFinishClick(event)
+            onItemEvent?.onItemFinishClick(position)
         }
     }
 
@@ -50,7 +50,7 @@ class MiniEventRecyclerViewAdapter :
 
     interface OnItemEvent {
         /*fun onItemClick(event: Event)*/
-        fun onItemFinishClick(event: Event)
+        fun onItemFinishClick(position: Int)
     }
 
 }
@@ -61,6 +61,6 @@ private class EventDiffCallback : DiffUtil.ItemCallback<Event>() {
     }
 
     override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
-        return oldItem.content == newItem.content
+        return oldItem.content == newItem.content && oldItem.state == newItem.state && oldItem.type == newItem.type
     }
 }

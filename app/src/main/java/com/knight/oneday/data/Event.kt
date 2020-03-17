@@ -29,6 +29,8 @@ data class Event(
     var eventId: Long = 0
 
     override fun toString(): String {
-        return "$eventId - $content"
+        return "$eventId - $content -$state"
     }
 }
+
+inline fun Event.isFinished(): Boolean = state == EventState.FINISHED

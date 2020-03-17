@@ -16,6 +16,10 @@ class EventRepository private constructor(private val eventDao: EventDao) {
 
     fun getEventsWithSteps() = eventDao.getEventsWithSteps()
 
+    suspend fun updateEvent(event: Event) {
+        eventDao.updateEvent(event)
+    }
+
     suspend fun createEvent(event: Event) {
         eventDao.insert(event)
     }
