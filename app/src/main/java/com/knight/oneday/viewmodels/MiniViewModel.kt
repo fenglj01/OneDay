@@ -49,23 +49,4 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
         }
     }
 
-    fun finishEvent(eventId: Long, position: Int) {
-        launchOnIO(tryBlock = {
-            repository.updateEventState(
-                eventState = EventState.FINISHED,
-                id = eventId
-            )
-        })
-    }
-
-    fun cancelFinishedEvent(eventId: Long, position: Int) {
-        launchOnIO(tryBlock = {
-            repository.updateEventState(
-                eventState = EventState.UNFINISHED,
-                id = eventId
-            )
-        })
-    }
-
-
 }
