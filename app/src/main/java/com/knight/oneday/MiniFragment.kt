@@ -16,7 +16,6 @@ import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
 import com.knight.oneday.views.SectionDecoration
 import kotlinx.android.synthetic.main.fragment_mini.*
-import kotlinx.android.synthetic.main.input_event_layout.*
 import java.util.*
 
 /**
@@ -42,6 +41,7 @@ class MiniFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMiniBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
         binding.viewModel = miniVm
         return binding.root
     }
@@ -60,7 +60,6 @@ class MiniFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             }
         }
-
         binding.rvEvent.adapter = adapter
         binding.rvEvent.addItemDecoration(
             SectionDecoration(
@@ -88,7 +87,7 @@ class MiniFragment : Fragment() {
             edtEvent.clear()
         }
         contentView.addOnKeyBoardHidden {
-            rlInput.visibility = View.INVISIBLE
+            clInput.visibility = View.INVISIBLE
             fabAdd.show()
         }
     }
@@ -97,14 +96,14 @@ class MiniFragment : Fragment() {
     private fun showInputView() {
         // 使用动画效果fab 会随着布局跑 看起来有点鬼畜 这里直接变为不可见
         fabAdd.visibility = View.INVISIBLE
-        rlInput.visibility = View.VISIBLE
+        clInput.visibility = View.VISIBLE
         edtEvent.requestFocus()
         inputManager.showSoftInput(edtEvent, InputMethodManager.SHOW_IMPLICIT)
     }
 
     private fun hideInputView() {
         fabAdd.show()
-        rlInput.visibility = View.INVISIBLE
+        clInput.visibility = View.INVISIBLE
         inputManager.hideSoftInputFromWindow(activity!!.window.peekDecorView().windowToken, 0)
     }
 

@@ -24,6 +24,23 @@ fun eventIsImportantIcon(iv: ImageView, eventType: EventType) {
     }
 }
 
+@BindingAdapter("app:addEventIsImportant")
+fun addEventIsImportant(iv: ImageView, eventType: EventType) {
+    if (eventType == EventType.IMPORTANT || eventType == EventType.MINI_IMPORTANT) {
+        iv.setImageDrawable(iv.context.getDrawable(R.drawable.ic_important_topic_accent))
+    } else {
+        iv.setImageDrawable(iv.context.getDrawable(R.drawable.ic_important_topic))
+    }
+}
+
+@BindingAdapter("app:canSendIcon")
+fun canSendIcon(iv: ImageView, content: String) {
+    val resId =
+        if (content.isEmpty()) R.drawable.ic_cannot_send else R.drawable.ic_send
+    iv.setImageDrawable(iv.context.getDrawable(resId))
+}
+
+
 @BindingAdapter("app:textColorByState")
 fun textColorByState(tv: TextView, eventState: EventState) {
     with(tv.context.resources) {

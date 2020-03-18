@@ -11,3 +11,5 @@ enum class EventType {
     MINI_NORMAL,        // 简略版普通事件
     MINI_IMPORTANT      // 简略版重要事件
 }
+
+fun EventType.miniIsImportant(): Boolean = this == EventType.MINI_IMPORTANT

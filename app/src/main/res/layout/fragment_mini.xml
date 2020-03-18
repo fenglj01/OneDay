@@ -42,23 +42,64 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:listitem="@layout/rv_item_mini_event" />
 
-        <!-- <ViewStub
-             android:id="@+id/stubInput"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_gravity="bottom"
-             android:visibility="invisible"
-             android:layout="@layout/input_event_layout"
-             />-->
-        <RelativeLayout
-            android:id="@+id/rlInput"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@color/color43434E"
+            android:paddingBottom="@dimen/dp_16"
             android:visibility="invisible">
 
-            <include layout="@layout/input_event_layout" />
-        </RelativeLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivTopic"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_16"
+                android:onClick="@{() -> viewModel.changeEventType()}"
+                app:addEventIsImportant="@{viewModel.addEventType}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivRemind"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_marginStart="@dimen/dp_8"
+                android:src="@drawable/ic_time_remind"
+                app:layout_constraintStart_toEndOf="@id/ivTopic"
+                app:layout_constraintTop_toTopOf="@id/ivTopic" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivSend"
+                android:layout_width="@dimen/dp_32"
+                android:layout_height="@dimen/dp_32"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:src="@drawable/ic_send"
+                app:canSendIcon="@{viewModel.addContent}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivTopic" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtEvent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginEnd="@dimen/dp_16"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="@string/hint_input_event"
+                android:text="@{viewModel.addContent}"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivTopic" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
