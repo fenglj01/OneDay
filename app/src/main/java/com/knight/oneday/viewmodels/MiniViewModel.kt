@@ -27,7 +27,7 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
     // 可变
     private val _addEventContent = MutableLiveData("")
     private val _addEventType = MutableLiveData(EventType.MINI_NORMAL)
-    // 只读
+    // 只读(对外部而言,这一切都是不可修改的，这是一种思想)
     var addContent: LiveData<String> = _addEventContent
     var addEventType: LiveData<EventType> = _addEventType
 
@@ -40,6 +40,7 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
                     type = EventType.MINI_NORMAL
                 )
             )
+            clearAddEventData()
         })
     }
 
@@ -67,6 +68,14 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
 
     fun changeContent(content: String) {
         _addEventContent.value = content
+    }
+
+    /**
+     * 重置添加内容
+     */
+    fun clearAddEventData() {
+        _addEventType.value = EventType.MINI_NORMAL
+        _addEventContent.value = ""
     }
 
 
