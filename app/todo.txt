@@ -44,3 +44,17 @@
 
     想要用ViewModel来存储这些状态，发现键盘布局是通过include进来的，会出现aDataBinding.bDataBinding的恶心代码。如果
     不使用include界面又会显得太复杂，切复用性会收到限制(最后思考，不同风格的键盘布局是不一样的，所以规避复用性问题)
+2.完成重要事件的时间选择问题
+    2.1 上来materialDatePicker就出现了问题
+        反而找到了一些关于搭建一个material风格App的指引(ps:周末可以好好看看，构建一个好看的OneDay)
+        https://codelabs.developers.google.com/codelabs/mdc-android/index.html?index=..%2F..index#0
+    2.2 找到了一篇指引文章
+        https://ahsensaeed.com/android-material-design-library-date-picker-dialog/
+    2.3 关于MD(这块要下点儿功夫 感觉问题挺多的 特别是颜色这块)
+        https://material.io
+3-19 计划
+----------
+    1.研究好Theme
+    2.可以把图标切换为Google官方的图标 在Material.io中
+    3.完成时间的选择
+

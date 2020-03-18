@@ -9,15 +9,13 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
-import com.knight.oneday.data.Event
-import com.knight.oneday.data.isFinished
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
 import com.knight.oneday.views.SectionDecoration
 import kotlinx.android.synthetic.main.fragment_mini.*
-import java.util.*
 
 /**
  * @author knight
@@ -95,6 +93,9 @@ class MiniFragment : Fragment() {
                 it?.run { miniVm.changeContent(toString()) }
             }
         )
+        ivRemind.singleClick {
+            showDatePickerDialog()
+        }
     }
 
     @SuppressLint("RestrictedApi")
@@ -121,5 +122,10 @@ class MiniFragment : Fragment() {
                 return reminderSection(event.createTime, event.reminderTime)
             }
         }
+
+    private fun showDatePickerDialog() {
+        val builder = MaterialDatePicker.Builder.datePicker()
+        builder.build().show(activity!!.supportFragmentManager, null)
+    }
 
 }

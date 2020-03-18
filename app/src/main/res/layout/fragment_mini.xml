@@ -108,7 +108,9 @@
             android:layout_gravity="bottom|right"
             android:layout_marginEnd="@dimen/dp_16"
             android:layout_marginBottom="@dimen/dp_48"
-            android:src="@drawable/ic_button_add"
+            android:backgroundTint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_button_add"
+            android:tint="@color/colorWhite"
             app:rippleColor="@color/colorAccent" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
