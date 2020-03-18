@@ -52,7 +52,7 @@
         https://ahsensaeed.com/android-material-design-library-date-picker-dialog/
     2.3 关于MD(这块要下点儿功夫 感觉问题挺多的 特别是颜色这块)
         https://material.io
-3-19 计划
+3-19 计划 研究好MD 开发出MD友好的界面交互来
 ----------
     1.研究好Theme
     2.可以把图标切换为Google官方的图标 在Material.io中
