@@ -32,12 +32,13 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
     var addEventType: LiveData<EventType> = _addEventType
 
 
-    fun addEvent(content: String) {
+    fun addEvent() {
+        if (_addEventContent.value.isNullOrEmpty()) return
         launchOnIO(tryBlock = {
             repository.createEvent(
                 Event(
-                    content = content,
-                    type = EventType.MINI_NORMAL
+                    content = _addEventContent.value!!,
+                    type = _addEventType.value!!
                 )
             )
             clearAddEventData()
@@ -74,8 +75,8 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
      * 重置添加内容
      */
     fun clearAddEventData() {
-        _addEventType.value = EventType.MINI_NORMAL
-        _addEventContent.value = ""
+        _addEventType.postValue(EventType.MINI_NORMAL)
+        _addEventContent.postValue("")
     }
 
 

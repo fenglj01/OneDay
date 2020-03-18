@@ -84,8 +84,7 @@ class MiniFragment : Fragment() {
         ivSend.singleClick {
             hideInputView()
             if (edtEvent.text.isNullOrEmpty()) return@singleClick
-            miniVm.addEvent(edtEvent.text.toString())
-            edtEvent.clear()
+            miniVm.addEvent()
         }
         contentView.addOnKeyBoardHidden {
             clInput.visibility = View.INVISIBLE
