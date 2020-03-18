@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
@@ -90,6 +91,11 @@ class MiniFragment : Fragment() {
             clInput.visibility = View.INVISIBLE
             fabAdd.show()
         }
+        edtEvent.addTextChangedListener(
+            afterTextChanged = {
+                it?.run { miniVm.changeContent(toString()) }
+            }
+        )
     }
 
     @SuppressLint("RestrictedApi")

@@ -1,6 +1,7 @@
 package com.knight.oneday.viewmodels
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -27,8 +28,8 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
     private val _addEventContent = MutableLiveData("")
     private val _addEventType = MutableLiveData(EventType.MINI_NORMAL)
     // 只读
-    var addContent = _addEventContent
-    var addEventType = _addEventType
+    var addContent: LiveData<String> = _addEventContent
+    var addEventType: LiveData<EventType> = _addEventType
 
 
     fun addEvent(content: String) {
@@ -63,5 +64,10 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
         _addEventType.value =
             if (_addEventType.value?.miniIsImportant() != false) EventType.MINI_NORMAL else EventType.MINI_IMPORTANT
     }
+
+    fun changeContent(content: String) {
+        _addEventContent.value = content
+    }
+
 
 }
