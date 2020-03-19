@@ -57,4 +57,19 @@
     1.研究好Theme
     2.可以把图标切换为Google官方的图标 在Material.io中
     3.完成时间的选择
+3-29
+----------
+    1.找到了新大陆 animated vector drawable 让图标动画起来
+    https://sourcediving.com/android-recipes-the-easy-path-to-animated-icons-878bffcb0920
+    AnimatedVectorDrawableCompat
+    要有一个好的体验：AnimatedVectorDrawableCompat 能够支持我们从一个svg友好的过渡到另一个svg，但是要逆向的话，需要
+    编写代码，可以通过自定义View来完善这一件事情,但是最大的问题在于AnimatedVectorDrawableCompat需要两个兼容的SVG
+        (仅当两个SVG图像的路径具有相同的命令，相同的顺序并且每个命令具有相同数量的参数时，它们才适用于变形变换。)
+        这就是最大的问题所在，因为设计师不会考虑将两个不同的图标关联出相同的Path来，这对设计师来讲没有意义，如果让我们自己
+    手动去修改Path直到它们兼容，这样是很难的，很费时间
+    step1: 两张相同大小的svg
+    step2: https://shapeshifter.design/
+           对两张SVG做过渡动画
+    step3: 做出反向动画
+    step4: 自定义View来切换两种状态
 
