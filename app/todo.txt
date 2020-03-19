@@ -72,4 +72,5 @@
            对两张SVG做过渡动画
     step3: 做出反向动画
     step4: 自定义View来切换两种状态
+    制作教程视频:https://www.youtube.com/watch?v=v7I6eo4Fo6U
 
