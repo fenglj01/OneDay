@@ -14,7 +14,6 @@
         android:id="@+id/contentView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
         tools:context=".MiniFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -29,6 +28,7 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/toolbar_menu_mini"
                 app:popupTheme="@style/OverflowMenuStyle"
+                android:background="@color/colorPrimary"
                 app:title="@{viewModel.todayStr}"
                 app:titleTextColor="@color/colorWhite" />
         </com.google.android.material.appbar.AppBarLayout>
@@ -108,9 +108,7 @@
             android:layout_gravity="bottom|right"
             android:layout_marginEnd="@dimen/dp_16"
             android:layout_marginBottom="@dimen/dp_48"
-            android:backgroundTint="@color/colorAccent"
             app:srcCompat="@drawable/ic_button_add"
-            android:tint="@color/colorWhite"
             app:rippleColor="@color/colorAccent" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

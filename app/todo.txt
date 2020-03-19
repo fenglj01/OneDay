@@ -57,9 +57,11 @@
     1.研究好Theme
     2.可以把图标切换为Google官方的图标 在Material.io中
     3.完成时间的选择
-3-29
+    MD风格配色预览：　ColorTool
+        https://material.io/resources/color
+3-19
 ----------
-    1.找到了新大陆 animated vector drawable 让图标动画起来
+    1.找到了新大陆 animated vector drawable 让图标动画起来 ★★★★★
     https://sourcediving.com/android-recipes-the-easy-path-to-animated-icons-878bffcb0920
     AnimatedVectorDrawableCompat
     要有一个好的体验：AnimatedVectorDrawableCompat 能够支持我们从一个svg友好的过渡到另一个svg，但是要逆向的话，需要
@@ -74,3 +76,11 @@
     step4: 自定义View来切换两种状态
     制作教程视频:https://www.youtube.com/watch?v=v7I6eo4Fo6U
 
+    晚上回去做图标和体验，白天来完善代码逻辑比较合适
+
+    md 好文章 ★★★★★ (对MD有了全新更深的理解和运用)
+    https://medium.com/over-engineering/setting-up-a-material-components-theme-for-android-fbf7774da739
+    多模式切换
+    https://segmentfault.com/a/1190000021907887
+
+    问题：colorSurface 始终会变亮一点 有点搞不懂 ~

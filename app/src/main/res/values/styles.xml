@@ -1,13 +1,31 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <!-- 修改了Toolbar 图标的颜色 但是它的作用域是整个主题 -->
         <item name="colorControlNormal">@color/colorWhite</item>
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <!-- 显示在原色顶部元素的颜色 -->
+        <item name="colorOnPrimary">@color/colorWhite</item>
+        <!-- 和以前的colorAccent相似 -->
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryDark</item>
+        <!-- 显示在第二颜色上的元素的颜色 eg:floatingActionBar -->
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorError">#F44336</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <!-- 表面 -->
+        <item name="colorSurface">@color/colorPrimary</item>
+        <item name="colorOnSurface">@color/colorWhite</item>
+        <!-- 背景 -->
+        <item name="android:colorBackground">@color/colorPrimaryDark</item>
+        <item name="colorOnBackground">@color/colorWhite</item>
+
+       <!-- <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>-->
     </style>
 
     <style name="wrapContent">
@@ -29,5 +47,8 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
-
+    <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources>
