@@ -16,7 +16,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_72"
-        android:background="@color/colorPrimary"
         android:padding="@dimen/dp_16">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -33,11 +32,13 @@
             style="@style/whiteTextView"
             android:layout_marginStart="@dimen/dp_8"
             android:text="@{event.content}"
+            android:textColor="@color/color_event_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivImportant"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_goneMarginStart="@dimen/dp_0"
-            app:textColorByState="@{event.state}" />
+            app:layout_goneMarginStart="@dimen/dp_0" />
+
+        <!--app:textColorByState="@{event.state}" />-->
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivStatus"

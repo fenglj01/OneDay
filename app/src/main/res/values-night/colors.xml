@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <color name="colorWhite">#ffffff</color>
-    <color name="colorBlack">#000000</color>
-    <color name="color9D9D9D">#9d9d9d</color>
-    <color name="color43434E">#43434E</color>
-
     <color name="color_primary">#33333D</color>
     <color name="color_primary_variant">#5d5c67</color>
     <color name="color_secondary">#1EB980</color>
     <color name="color_secondary_variant">#008853</color>
 
-    <color name="color_background">#ffffff</color>
-    <color name="color_surface">@color/color_primary</color>
+    <color name="color_background">#000</color>
+    <color name="color_surface">#000</color>
     <color name="color_error">#ad1457</color>
 
     <color name="color_on_primary">#ffffff</color>
     <color name="color_on_secondary">#fff</color>
-    <color name="color_on_background">#757575</color>
+    <color name="color_on_background">#000</color>
     <color name="color_on_surface">#fff</color>
-    <color name="color_on_error">#000000</color>
+    <color name="color_on_error">#fff</color>
 
-    <color name="color_event_content">@color/colorBlack</color>
+    <color name="color_event_content">@color/colorWhite</color>
     <color name="color_tool">@color/color_primary</color>
 </resources>

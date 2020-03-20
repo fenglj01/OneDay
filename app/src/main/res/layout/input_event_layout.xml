@@ -43,7 +43,6 @@
         android:layout_marginEnd="@dimen/dp_16"
         android:hint="@string/hint_input_event"
         android:textColor="@color/colorWhite"
-        android:textColorHint="@color/colorAccent"
         android:textSize="@dimen/sp_16"
         android:focusable="true"
         android:focusableInTouchMode="true"

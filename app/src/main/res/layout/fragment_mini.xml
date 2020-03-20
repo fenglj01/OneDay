@@ -25,10 +25,10 @@
                 android:id="@+id/toolBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/color_tool"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/toolbar_menu_mini"
                 app:popupTheme="@style/OverflowMenuStyle"
-                android:background="@color/colorPrimary"
                 app:title="@{viewModel.todayStr}"
                 app:titleTextColor="@color/colorWhite" />
         </com.google.android.material.appbar.AppBarLayout>
@@ -40,6 +40,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:itemCount="4"
             tools:listitem="@layout/rv_item_mini_event" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,9 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/color43434E"
             android:paddingBottom="@dimen/dp_16"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivTopic"
@@ -93,7 +93,6 @@
                 android:hint="@string/hint_input_event"
                 android:text="@{viewModel.addContent}"
                 android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorAccent"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,12 +102,12 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAdd"
+            style="@style/Widget.Design.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
+            android:layout_gravity="bottom|end"
             android:layout_marginEnd="@dimen/dp_16"
             android:layout_marginBottom="@dimen/dp_48"
-            app:srcCompat="@drawable/ic_button_add"
-            app:rippleColor="@color/colorAccent" />
+            app:srcCompat="@drawable/ic_button_add" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

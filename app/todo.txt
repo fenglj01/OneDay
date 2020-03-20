@@ -86,3 +86,10 @@
     material-components-android-examples
 
     问题：colorSurface 始终会变亮一点 有点搞不懂 ~
+
+3-20
+-----------
+今天做好黑暗模式和模式的切换吧
+
+    step1 : 2套color
+    step2 : 2套style

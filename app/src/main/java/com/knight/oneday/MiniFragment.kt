@@ -60,12 +60,12 @@ class MiniFragment : Fragment() {
             }
         }
         binding.rvEvent.adapter = adapter
-        binding.rvEvent.addItemDecoration(
+        /*binding.rvEvent.addItemDecoration(
             SectionDecoration(
                 requireContext(),
                 getSectionCallback()
             )
-        )
+        )*/
     }
 
     private fun subscribeUi() {
