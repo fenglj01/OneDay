@@ -30,7 +30,7 @@
                 app:menu="@menu/toolbar_menu_mini"
                 app:popupTheme="@style/OverflowMenuStyle"
                 app:title="@{viewModel.todayStr}"
-                app:titleTextColor="@color/colorWhite" />
+                app:titleTextColor="?attr/colorOnPrimary" />
         </com.google.android.material.appbar.AppBarLayout>
 
 
