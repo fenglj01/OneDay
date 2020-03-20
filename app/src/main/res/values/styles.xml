@@ -28,7 +28,7 @@
         <item name="materialCalendarTheme">@style/CalendarStyle</item>
     </style>
 
-    <style name="CalendarStyle" parent="Widget.MaterialComponents.MaterialCalendar.Year.Today">
+    <style name="CalendarStyle" parent="Widget.MaterialComponents.MaterialCalendar">
 
     </style>
 
