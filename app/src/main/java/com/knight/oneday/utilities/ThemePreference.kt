@@ -28,6 +28,10 @@ class ThemePreference(private val sp: SharedPreferences) {
             }
         }
 
+    init {
+        _uiModeLive.value = _appTheme
+        sp.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
+    }
 
     companion object {
         private const val PREFERENCE_THEME_KEY = "theme"

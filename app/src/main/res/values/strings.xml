@@ -13,7 +13,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test_date">3-9 </string>
     <string name="test_week">星期一</string>
-    <string name="menu_setting" >设置</string>
+    <string name="menu_setting">设置</string>
     <string name="menu_hide_finished">隐藏已完成</string>
     <string name="menu_about">关于</string>
     <string name="hint_input_event">准备做点什么?</string>
@@ -23,4 +23,10 @@
     <string name="section_after_tomorrow">后天</string>
     <string name="section_by_date">%1$d-%2$d</string>
     <string name="section_finished">已完成</string>
+    <string name="title_theme_preference">主题</string>
+
+    <string name="theme_normal">白昼</string>
+    <string name="theme_dark">黑暗</string>
+    <string name="theme_system">系统默认</string>
+    <string name="def">Default</string>
 </resources>

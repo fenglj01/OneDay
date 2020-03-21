@@ -1,11 +1,14 @@
 package com.knight.oneday
 
 import android.content.res.Configuration
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import com.idescout.sql.SqlScoutServer
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.viewmodels.DayEventAndStepViewModel
@@ -18,10 +21,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        SqlScoutServer.create(this, packageName)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
+        (OneDayApp.instance() as OneDayApp).themePreference.uiModeLive.observe(this) { uiMode ->
+            Toast.makeText(this, "$uiMode", Toast.LENGTH_SHORT).show()
+            when (uiMode) {
+                "Light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                "Dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                "System" ->
+                    if (Build.VERSION.SDK_INT >= 29)
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                    else
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
+            }
+        }
     }
 
 

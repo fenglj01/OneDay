@@ -11,7 +11,7 @@
         <item name="colorSecondaryVariant">@color/color_secondary_variant</item>
 
         <!-- 出现在可滚动的内容后面 用于默认窗口背景 colorSurface 主要辅助卡片 菜单的颜色 colorError主要作用在组件的错误状态 -->
-        <item name="android:colorBackground">#000</item>
+        <item name="android:colorBackground">#fff</item>
         <item name="colorSurface">@color/color_surface</item>
         <item name="colorError">@color/color_error</item>
         <!-- On开头的就是作用在其上面的颜色 比如fab的按钮-->

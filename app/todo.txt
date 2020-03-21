@@ -85,7 +85,7 @@
     github 指引
     material-components-android-examples
 
-    问题：colorSurface 始终会变亮一点 有点搞不懂 ~
+    问题：colorSurface 始终会变亮一点 有点搞不懂 (是自己理解没到位 已纠正)~
 
 3-20
 -----------

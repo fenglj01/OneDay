@@ -45,7 +45,11 @@
         android:id="@+id/miniFragment"
         android:name="com.knight.oneday.MiniFragment"
         android:label="fragment_mini"
-        tools:layout="@layout/fragment_mini" />
+        tools:layout="@layout/fragment_mini" >
+        <action
+            android:id="@+id/action_miniFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/standardFragment"
         android:name="com.knight.oneday.StandardFragment"
@@ -65,4 +69,8 @@
             android:id="@+id/action_customFinishFragment_to_customFragment2"
             app:destination="@id/customFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.knight.oneday.SettingFragment"
+        android:label="SettingFragment" />
 </navigation>

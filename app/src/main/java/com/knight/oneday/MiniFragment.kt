@@ -1,14 +1,19 @@
 package com.knight.oneday
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
+import androidx.preference.ListPreference
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
@@ -23,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_mini.*
  * create at 20-3-9 下午7:21
  * 极简风格的主页
  */
-class MiniFragment : PreferenceFragmentCompat() {
+class MiniFragment : Fragment() {
 
     private val miniVm: MiniViewModel by viewModels {
         InjectorUtils.miniEventViewModelFactory(
@@ -51,6 +56,15 @@ class MiniFragment : PreferenceFragmentCompat() {
         initListeners()
         initEventRecyclerView()
         subscribeUi()
+        toolBar.setOnMenuItemClickListener { item: MenuItem? ->
+            when (item?.itemId) {
+                R.id.menu_setting -> {
+                    findNavController().navigate(R.id.action_miniFragment_to_settingFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun initEventRecyclerView() {
@@ -86,8 +100,8 @@ class MiniFragment : PreferenceFragmentCompat() {
             miniVm.addEvent()
         }
         contentView.addOnKeyBoardHidden {
-            clInput.visibility = View.INVISIBLE
-            fabAdd.show()
+           /* clInput.visibility = View.INVISIBLE
+            fabAdd.show()*/
         }
         edtEvent.addTextChangedListener(
             afterTextChanged = {
@@ -98,6 +112,7 @@ class MiniFragment : PreferenceFragmentCompat() {
             showDatePickerDialog()
         }
     }
+
 
     @SuppressLint("RestrictedApi")
     private fun showInputView() {
@@ -129,7 +144,5 @@ class MiniFragment : PreferenceFragmentCompat() {
         builder.build().show(activity!!.supportFragmentManager, null)
     }
 
-    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 
-    }
 }

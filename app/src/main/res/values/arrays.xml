@@ -7,4 +7,22 @@
         <item>@string/guide_step_four</item>
         <item>@string/guide_step_five</item>
     </string-array>
+
+    <string-array name="theme_options_above_q">
+        <item>@string/theme_normal</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_system</item>
+    </string-array>
+
+    <string-array name="theme_options_below_q">
+        <item>@string/theme_normal</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_system</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System</item>
+    </string-array>
 </resources>

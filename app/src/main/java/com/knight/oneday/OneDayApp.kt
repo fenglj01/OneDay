@@ -2,7 +2,7 @@ package com.knight.oneday
 
 import android.app.Application
 import android.content.Context
-import android.preference.PreferenceManager
+import androidx.preference.PreferenceManager
 import com.knight.oneday.utilities.ThemePreference
 
 class OneDayApp : Application() {
@@ -19,7 +19,7 @@ class OneDayApp : Application() {
         super.onCreate()
         instance = this
         themePreference =
-            ThemePreference(getSharedPreferences(ONE_DAY_PREFERENCE, Context.MODE_PRIVATE))
+            ThemePreference(PreferenceManager.getDefaultSharedPreferences(this))
     }
 
 
