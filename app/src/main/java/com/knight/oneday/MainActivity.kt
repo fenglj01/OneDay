@@ -21,19 +21,7 @@ class MainActivity : AppCompatActivity() {
         SqlScoutServer.create(this, packageName)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        /*viewModel.events.observe(this, Observer {
-            tvText.text = it.toString()
-        })
-        viewModel.steps.observe(this, Observer {
-            Log.d("step", "$it")
-        })*/
-        /*viewModel.eventsWithSteps.observe(this, Observer {
-            tvText.text = it.toString()
-        })*/
-        /*viewModel.addEvent()
-        viewModel.steps.observe(this, Observer {
-            Log.d("step", "$it")
-        })*/
+        
     }
 
 

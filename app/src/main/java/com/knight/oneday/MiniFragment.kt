@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
 import com.knight.oneday.databinding.FragmentMiniBinding
@@ -22,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_mini.*
  * create at 20-3-9 下午7:21
  * 极简风格的主页
  */
-class MiniFragment : Fragment() {
+class MiniFragment : PreferenceFragmentCompat() {
 
     private val miniVm: MiniViewModel by viewModels {
         InjectorUtils.miniEventViewModelFactory(
@@ -128,4 +129,7 @@ class MiniFragment : Fragment() {
         builder.build().show(activity!!.supportFragmentManager, null)
     }
 
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+
+    }
 }
