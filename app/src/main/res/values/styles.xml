@@ -23,6 +23,8 @@
         <item name="colorAccent">@color/color_1EB980</item>
         <item name="colorPrimaryDark">@color/color_ccc</item>
         <item name="colorControlNormal">@color/color_000</item>
+
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
     </style>
 
     <!-- Toolbar 弹出风格为溢出 -->

@@ -111,3 +111,11 @@ color中配置即可)
 ★★★★★
 NightKing作为入门Demo 能够很快得看到效果，https://github.com/fenglj01/material-components-android-examples
 这个项目里面有相关MD得官方配置和 一套colors 两套themes得实现方案
+
+通过Reply这个demo来重新输送一下整个项目
+
+使用代理给git加速 https://juejin.im/post/5cfe66406fb9a07edb393c56
+
+公司的网太low了，回家clone reply 然后开始搞起来
+
+然后笔记本接电视 搞起来

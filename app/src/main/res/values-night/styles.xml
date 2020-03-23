@@ -8,9 +8,8 @@
         <!--和以前的accent比较相似 主要作用在Fab ProgressBar 这些强调元件上 -->
         <item name="colorSecondary">@color/color_1EB980</item>
         <item name="colorSecondaryVariant">@color/color_008853</item>
-
         <!-- 出现在可滚动的内容后面 用于默认窗口背景 colorSurface 主要辅助卡片 菜单的颜色 colorError主要作用在组件的错误状态 -->
-        <item name="android:colorBackground">@color/color_000</item>
+        <item name="android:colorBackground">@color/color_33333D</item>
         <item name="colorSurface">@color/color_5D5C67</item>
         <item name="colorError">@color/color_AD1457</item>
         <!-- On开头的就是作用在其上面的颜色 比如fab的按钮-->
