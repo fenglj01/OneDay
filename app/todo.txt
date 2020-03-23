@@ -107,3 +107,7 @@ material-components-android-examples
 
 最后并且了两套color得做法 采用一套color使用两套style得方式达到了正确效果 ，不过会出现textColor得适配问题(之前直接放在
 color中配置即可)
+
+★★★★★
+NightKing作为入门Demo 能够很快得看到效果，https://github.com/fenglj01/material-components-android-examples
+这个项目里面有相关MD得官方配置和 一套colors 两套themes得实现方案
