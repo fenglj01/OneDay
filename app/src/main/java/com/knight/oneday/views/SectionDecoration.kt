@@ -11,7 +11,6 @@ import androidx.core.view.get
 import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
-import com.knight.oneday.utilities.dp
 import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.sp
 
@@ -42,12 +41,12 @@ class SectionDecoration(
         sectionPaint = TextPaint().apply {
             isAntiAlias = true
             textSize = 16F.sp
-            color = sectionResources.getColor(R.color.colorWhite)
+            color = sectionResources.getColor(R.color.color_fff)
             textAlign = Paint.Align.LEFT
         }
         decorationPaint = Paint().apply {
             isAntiAlias = true
-            color = sectionResources.getColor(R.color.color43434E)
+            color = sectionResources.getColor(R.color.color_43434E)
         }
         sectionHeight = sectionResources.getDimensionPixelSize(R.dimen.dp_32)
         sectionTextRect = Rect()

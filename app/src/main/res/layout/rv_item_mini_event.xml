@@ -29,10 +29,10 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/eventContent"
-            style="@style/whiteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
             android:text="@{event.content}"
-            android:textColor="@color/color_event_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivImportant"
             app:layout_constraintTop_toTopOf="parent"

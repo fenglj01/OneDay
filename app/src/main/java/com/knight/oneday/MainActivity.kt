@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         (OneDayApp.instance() as OneDayApp).themePreference.uiModeLive.observe(this) { uiMode ->
-            Toast.makeText(this, "$uiMode", Toast.LENGTH_SHORT).show()
+            Log.d("TAG_UiMode", "$uiMode")
             when (uiMode) {
                 "Light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 "Dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)

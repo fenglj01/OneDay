@@ -98,3 +98,12 @@ material-components-android-examples
         https://github.com/fenglj01/material-components-android-examples themes中有详尽得color作用
         这两个项目 周末一定要搭建好两种模式 并支持切换
 可能考虑放弃MaterialCalendarView 1是因为没有时间选择 2是因为真的不太好用得感觉
+
+3-21
+-----------
+
+出现了Android 10 一下会出现主题选择得bug 而Demo没有出现这样得bug
+效果出现得十分诡异
+
+最后并且了两套color得做法 采用一套color使用两套style得方式达到了正确效果 ，不过会出现textColor得适配问题(之前直接放在
+color中配置即可)

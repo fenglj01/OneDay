@@ -3,38 +3,28 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!--组件和元素的颜色 比如actionBar 按钮-->
-        <item name="colorPrimary">@color/color_primary</item>
-
-        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
+        <item name="colorPrimary">@color/color_33333D</item>
+        <item name="colorPrimaryVariant">@color/color_5D5C67</item>
         <!--和以前的accent比较相似 主要作用在Fab ProgressBar 这些强调元件上 -->
-        <item name="colorSecondary">@color/color_secondary</item>
-        <item name="colorSecondaryVariant">@color/color_secondary_variant</item>
+        <item name="colorSecondary">@color/color_1EB980</item>
+        <item name="colorSecondaryVariant">@color/color_008853</item>
 
         <!-- 出现在可滚动的内容后面 用于默认窗口背景 colorSurface 主要辅助卡片 菜单的颜色 colorError主要作用在组件的错误状态 -->
-        <item name="android:colorBackground">#000</item>
-        <item name="colorSurface">@color/color_surface</item>
-        <item name="colorError">@color/color_error</item>
+        <item name="android:colorBackground">@color/color_000</item>
+        <item name="colorSurface">@color/color_5D5C67</item>
+        <item name="colorError">@color/color_AD1457</item>
         <!-- On开头的就是作用在其上面的颜色 比如fab的按钮-->
-        <item name="colorOnPrimary">@color/color_on_primary</item>
-        <item name="colorOnSecondary">@color/color_on_secondary</item>
-        <item name="colorOnError">@color/color_on_error</item>
-        <item name="colorOnSurface">@color/color_on_surface</item>
-        <item name="colorOnBackground">@color/color_on_background</item>
+        <item name="colorOnPrimary">@color/color_fff</item>
+        <item name="colorOnSecondary">@color/color_fff</item>
+        <item name="colorOnError">@color/color_fff</item>
+        <item name="colorOnSurface">@color/color_fff</item>
+        <item name="colorOnBackground">@color/color_fff</item>
 
-        <item name="colorAccent">@color/color_secondary</item>
-        <item name="colorPrimaryDark">@color/color_primary_variant</item>
-
-        <!-- <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>-->
+        <item name="colorAccent">@color/color_1EB980</item>
+        <item name="colorPrimaryDark">@color/color_5D5C67</item>
+        <item name="colorControlNormal">@color/color_fff</item>
     </style>
 
-    <style name="wrapContent">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="whiteTextView" parent="wrapContent">
-        <item name="android:textColor">@color/colorWhite</item>
-    </style>
     <!-- Toolbar 弹出风格为溢出 -->
     <style name="OverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
         <item name="overlapAnchor">false</item>
@@ -43,9 +33,6 @@
         <item name="android:dropDownVerticalOffset">5dp</item>
         <item name="android:dropDownHorizontalOffset">0dp</item>
     </style>
+    
 
-    <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">cut</item>
-        <item name="cornerSize">8dp</item>
-    </style>
 </resources>
