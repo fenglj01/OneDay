@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -22,7 +21,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     private val viewModel: DayEventAndStepViewModel by lazy {
         InjectorUtils.dayEventAndStepViewModelFactory(this)
     }
-    private val navController: NavController by lazy { findNavController(R.id.nav_host_fragment) }
+    private lateinit var navController: NavController
     private val binding: ActivityMainBinding by contentView(R.layout.activity_main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +31,15 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     }
 
     private fun setUpBottomBarAndFab() {
-        navController.addOnDestinationChangedListener(this@MainActivity)
-        fab.apply {
+
+        binding.run {
+            navController = findNavController(R.id.nav_host_fragment)
+            navController.addOnDestinationChangedListener(this@MainActivity)
+        }
+
+        binding.fab.apply {
             singleClick {
-                navController.navigate(R.id.action_miniFragment_to_createEventFragment)
+                //navController.navigate(R.id.action_miniFragment_to_createEventFragment)
             }
         }
     }
