@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="color_fff">#ffffff</color>
-    <color name="color_ccc">#ccc</color>
-    <color name="color_000">#000000</color>
-    <color name="color_9D9D9D">#9d9d9d</color>
-    <color name="color_33333D">#33333D</color>
-    <color name="color_5D5C67">#5d5c67</color>
-    <color name="color_43434E">#43434E</color>
-    <color name="color_1EB980">#1EB980</color>
-    <color name="color_008853">#008853</color>
-    <color name="color_AD1457">#ad1357</color>
-    <color name="color_event_content">@color/color_000</color>
+    <color name="color_event_content">@color/one_day_black</color>
+    <!-- 白色主色 -->
+    <color name="one_day_white">#fff</color>
+    <color name="one_day_white_dark">#ccc</color>
+    <!-- 绿色 强调色 -->
+    <color name="one_day_green">#1EB980</color>
+    <color name="one_day_green_light">#62ecb0</color>
+    <color name="one_day_green_dark">#008853</color>
+    <!-- 粉色 错误色 -->
+    <color name="one_day_pink">#ad1357</color>
+    <!-- 蓝灰色 主色 -->
+    <color name="one_day_blue_grey">#33333D</color>
+    <color name="one_day_blue_grey_light">#5d5c67</color>
+    <color name="one_day_blue_grey_dark">#0c0c17</color>
+    <color name="one_day_black">#000</color>
+    <color name="one_day_black_900_alpha_020">#33000000</color>
+    <color name="one_day_black_900_alpha_087">#de000000</color>
+    <color name="one_day_black_900_alpha_060">#99000000</color>
+
 </resources>

@@ -41,12 +41,12 @@ class SectionDecoration(
         sectionPaint = TextPaint().apply {
             isAntiAlias = true
             textSize = 16F.sp
-            color = sectionResources.getColor(R.color.color_fff)
+            color = sectionResources.getColor(R.color.one_day_white)
             textAlign = Paint.Align.LEFT
         }
         decorationPaint = Paint().apply {
             isAntiAlias = true
-            color = sectionResources.getColor(R.color.color_43434E)
+            color = sectionResources.getColor(R.color.one_day_black_900_alpha_020)
         }
         sectionHeight = sectionResources.getDimensionPixelSize(R.dimen.dp_32)
         sectionTextRect = Rect()

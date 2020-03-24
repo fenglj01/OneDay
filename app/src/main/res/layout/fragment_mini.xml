@@ -91,7 +91,7 @@
                 android:focusableInTouchMode="true"
                 android:hint="@string/hint_input_event"
                 android:text="@{viewModel.addContent}"
-                android:textColor="@color/color_fff"
+                android:textColor="@color/one_day_white"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

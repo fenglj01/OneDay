@@ -45,8 +45,8 @@ fun canSendIcon(iv: ImageView, content: String) {
 fun textColorByState(tv: TextView, eventState: EventState) {
     with(tv.context.resources) {
         val textColor =
-            if (eventState == EventState.FINISHED) getColor(R.color.color_9D9D9D) else getColor(
-                R.color.color_fff
+            if (eventState == EventState.FINISHED) getColor(R.color.one_day_white_dark) else getColor(
+                R.color.one_day_white
             )
         tv.setTextColor(textColor)
     }
