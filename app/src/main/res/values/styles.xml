@@ -23,7 +23,7 @@
         <item name="colorAccent">@color/one_day_green</item>
         <item name="colorPrimaryDark">@color/one_day_white_dark</item>
         <item name="colorControlNormal">@color/one_day_black</item>
-
+        <item name="android:textColorPrimary">@color/one_day_white</item>
         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
     </style>
 

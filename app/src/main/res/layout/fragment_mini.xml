@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:paddingBottom="@dimen/dp_16"
+            android:background="?attr/colorOnSecondary"
             android:visibility="invisible">
 
             <androidx.appcompat.widget.AppCompatImageView

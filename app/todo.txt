@@ -120,9 +120,25 @@ NightKing作为入门Demo 能够很快得看到效果，https://github.com/fengl
 
 选择了一些图片 制作Icon drawable
 
-3-22
+3-24
 -----------
-实现首页,并实现Theme的切换
-3-23
-----------
-制作动画图标
+查看官方关于主题的理解后得到启发：
+https://www.youtube.com/watch?v=Owkf8DhAOSo
+
+1.style 作用于 View Theme 作用于整个应用
+2.?attr 访问的是 Theme中定义的属性 比如?attr/colorPrimary
+3.selector 中 defaultColor最好放置在最下面
+4.一些技巧
+    tips1- : color命名 red_500 purple_200 等 直接语义化的命名 不要使用colorPrimary这样的命名方案
+    tips2- : style Theme的定义上 使用.来表示继承关系 更加语义化
+            Theme.AppName.Blue
+            Widget.AppName.Toolbar.Blue
+    tips3- : 文件的分割
+            themes.xml Themes And ThemeOverlays
+            types.xml TextAppear  textSize
+            shape.xml
+5.MD 的主要构成成份
+    shape color typography
+
+构建方案可以使用 MaterialThemeBuilder 调整好颜色、形状和字体后 再把代码copy过去进行使用
+

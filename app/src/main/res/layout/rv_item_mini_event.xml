@@ -33,6 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
             android:text="@{event.content}"
+            android:textColor="@color/material_on_surface_emphasis_high_type"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivImportant"
             app:layout_constraintTop_toTopOf="parent"
