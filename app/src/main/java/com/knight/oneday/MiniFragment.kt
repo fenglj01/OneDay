@@ -56,7 +56,7 @@ class MiniFragment : Fragment() {
         initListeners()
         initEventRecyclerView()
         subscribeUi()
-        toolBar.setOnMenuItemClickListener { item: MenuItem? ->
+        /*toolBar.setOnMenuItemClickListener { item: MenuItem? ->
             when (item?.itemId) {
                 R.id.menu_setting -> {
                     findNavController().navigate(R.id.action_miniFragment_to_settingFragment)
@@ -64,7 +64,7 @@ class MiniFragment : Fragment() {
                 }
                 else -> false
             }
-        }
+        }*/
     }
 
     private fun initEventRecyclerView() {
@@ -91,7 +91,7 @@ class MiniFragment : Fragment() {
     }
 
     private fun initListeners() {
-        fabAdd.singleClick {
+       /* fabAdd.singleClick {
             showInputView()
         }
         ivSend.singleClick {
@@ -100,8 +100,8 @@ class MiniFragment : Fragment() {
             miniVm.addEvent()
         }
         contentView.addOnKeyBoardHidden {
-           /* clInput.visibility = View.INVISIBLE
-            fabAdd.show()*/
+           *//* clInput.visibility = View.INVISIBLE
+            fabAdd.show()*//*
         }
         edtEvent.addTextChangedListener(
             afterTextChanged = {
@@ -110,23 +110,23 @@ class MiniFragment : Fragment() {
         )
         ivRemind.singleClick {
             showDatePickerDialog()
-        }
+        }*/
     }
 
 
     @SuppressLint("RestrictedApi")
     private fun showInputView() {
-        // 使用动画效果fab 会随着布局跑 看起来有点鬼畜 这里直接变为不可见
+       /* // 使用动画效果fab 会随着布局跑 看起来有点鬼畜 这里直接变为不可见
         fabAdd.visibility = View.INVISIBLE
         clInput.visibility = View.VISIBLE
         edtEvent.requestFocus()
-        inputManager.showSoftInput(edtEvent, InputMethodManager.SHOW_IMPLICIT)
+        inputManager.showSoftInput(edtEvent, InputMethodManager.SHOW_IMPLICIT)*/
     }
 
     private fun hideInputView() {
-        fabAdd.show()
+        /*fabAdd.show()
         clInput.visibility = View.INVISIBLE
-        inputManager.hideSoftInputFromWindow(activity!!.window.peekDecorView().windowToken, 0)
+        inputManager.hideSoftInputFromWindow(activity!!.window.peekDecorView().windowToken, 0)*/
     }
 
     private fun getSectionCallback(): SectionDecoration.SectionCallback =

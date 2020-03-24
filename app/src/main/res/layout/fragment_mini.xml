@@ -8,6 +8,7 @@
         <variable
             name="viewModel"
             type="com.knight.oneday.viewmodels.MiniViewModel" />
+        
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -16,98 +17,13 @@
         android:layout_height="match_parent"
         tools:context=".MiniFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolBar"
-                style="?attr/toolbarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:menu="@menu/toolbar_menu_mini"
-                app:title="@{viewModel.todayStr}"
-                app:titleTextColor="?attr/colorOnPrimary" />
-        </com.google.android.material.appbar.AppBarLayout>
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvEvent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:itemCount="4"
             tools:listitem="@layout/rv_item_mini_event" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="?attr/colorOnSecondary"
-            android:paddingBottom="@dimen/dp_16"
-            android:visibility="invisible">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivTopic"
-                android:layout_width="@dimen/dp_32"
-                android:layout_height="@dimen/dp_32"
-                android:layout_marginStart="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_16"
-                android:onClick="@{() -> viewModel.changeEventType()}"
-                app:addEventIsImportant="@{viewModel.addEventType}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivRemind"
-                android:layout_width="@dimen/dp_32"
-                android:layout_height="@dimen/dp_32"
-                android:layout_marginStart="@dimen/dp_8"
-                android:src="@drawable/ic_time_remind"
-                app:layout_constraintStart_toEndOf="@id/ivTopic"
-                app:layout_constraintTop_toTopOf="@id/ivTopic" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivSend"
-                android:layout_width="@dimen/dp_32"
-                android:layout_height="@dimen/dp_32"
-                android:layout_marginEnd="@dimen/dp_16"
-                android:src="@drawable/ic_send"
-                app:canSendIcon="@{viewModel.addContent}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/ivTopic" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtEvent"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_16"
-                android:layout_marginTop="@dimen/dp_16"
-                android:layout_marginEnd="@dimen/dp_16"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/hint_input_event"
-                android:text="@{viewModel.addContent}"
-                android:textColor="@color/white_50"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivTopic" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAdd"
-            style="@style/Widget.Design.FloatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="@dimen/dp_16"
-            android:layout_marginBottom="@dimen/dp_48"
-            app:srcCompat="@drawable/ic_button_add" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
