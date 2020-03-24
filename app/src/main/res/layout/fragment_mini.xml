@@ -8,7 +8,7 @@
         <variable
             name="viewModel"
             type="com.knight.oneday.viewmodels.MiniViewModel" />
-        
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -21,6 +21,7 @@
             android:id="@+id/rvEvent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scrollbars="none"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="4"
             tools:listitem="@layout/rv_item_mini_event" />

@@ -22,9 +22,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.run {
+        setUpBottomBarAndFab()
+        observeUiMode()
+    }
 
-        }
+    private fun setUpBottomBarAndFab() {
+
+    }
+
+
+    /**
+     * 监听主题切换状态
+     */
+    private fun observeUiMode() {
         (OneDayApp.instance() as OneDayApp).themePreference.uiModeLive.observe(this) { uiMode ->
             Log.d("TAG_UiMode", "$uiMode")
             when (uiMode) {

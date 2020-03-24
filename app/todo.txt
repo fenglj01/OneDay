@@ -142,3 +142,16 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
 构建方案可以使用 MaterialThemeBuilder 调整好颜色、形状和字体后 再把代码copy过去进行使用
 
+代码实现思路:
+    难点分析
+        1.BottomAppBar的显示样式 显示规则是动态的
+        2.BottomAppBar上的menu也是动态的
+    重要解决点:
+        对目的地切换进行监听
+        对BottomNavFrag的滑动实现监听 来达到这样的效果
+
+    实现步骤考虑
+        1.实现跳转到添加界面 (监听目的地的切换 显示和隐藏bottomAppBar)
+        2.实现跳转到编辑界面 (监听目的地的切换 改变bottomAppBar上的按钮和功能 fab的功能也要切换)
+
+
