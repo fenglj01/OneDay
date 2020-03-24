@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_miniFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_miniFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/standardFragment"
@@ -73,4 +76,9 @@
         android:id="@+id/settingFragment"
         android:name="com.knight.oneday.SettingFragment"
         android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="com.knight.oneday.CreateEventFragment"
+        android:label="fragment_create_event"
+        tools:layout="@layout/fragment_create_event" />
 </navigation>

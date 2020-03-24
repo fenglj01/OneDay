@@ -7,17 +7,22 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.findNavController
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.contentView
+import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.DayEventAndStepViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
 
     private val viewModel: DayEventAndStepViewModel by lazy {
         InjectorUtils.dayEventAndStepViewModelFactory(this)
     }
+    private val navController: NavController by lazy { findNavController(R.id.nav_host_fragment) }
     private val binding: ActivityMainBinding by contentView(R.layout.activity_main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +32,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpBottomBarAndFab() {
-
+        navController.addOnDestinationChangedListener(this@MainActivity)
+        fab.apply {
+            singleClick {
+                navController.navigate(R.id.action_miniFragment_to_createEventFragment)
+            }
+        }
     }
 
 
@@ -49,5 +59,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    override fun onDestinationChanged(
+        controller: NavController,
+        destination: NavDestination,
+        arguments: Bundle?
+    ) {
+        when (destination.id) {
+            R.id.miniFragment -> {
+            }
+            R.id.createEventFragment -> {
+            }
+        }
+    }
 }
