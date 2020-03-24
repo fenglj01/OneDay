@@ -23,11 +23,11 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolBar"
+                style="?attr/toolbarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:menu="@menu/toolbar_menu_mini"
-                app:popupTheme="@style/OverflowMenuStyle"
                 app:title="@{viewModel.todayStr}"
                 app:titleTextColor="?attr/colorOnPrimary" />
         </com.google.android.material.appbar.AppBarLayout>
@@ -47,8 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:paddingBottom="@dimen/dp_16"
             android:background="?attr/colorOnSecondary"
+            android:paddingBottom="@dimen/dp_16"
             android:visibility="invisible">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -92,7 +92,7 @@
                 android:focusableInTouchMode="true"
                 android:hint="@string/hint_input_event"
                 android:text="@{viewModel.addContent}"
-                android:textColor="@color/one_day_white"
+                android:textColor="@color/white_50"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
