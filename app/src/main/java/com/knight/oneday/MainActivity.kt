@@ -14,13 +14,9 @@ import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.contentView
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.DayEventAndStepViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
 
-    private val viewModel: DayEventAndStepViewModel by lazy {
-        InjectorUtils.dayEventAndStepViewModelFactory(this)
-    }
     private lateinit var navController: NavController
     private val binding: ActivityMainBinding by contentView(R.layout.activity_main)
 
@@ -31,7 +27,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     }
 
     private fun setUpBottomBarAndFab() {
-
         binding.run {
             navController = findNavController(R.id.nav_host_fragment)
             navController.addOnDestinationChangedListener(this@MainActivity)
@@ -39,7 +34,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
         binding.fab.apply {
             singleClick {
-                //navController.navigate(R.id.action_miniFragment_to_createEventFragment)
+                navController.navigate(R.id.action_miniFragment_to_createEventFragment)
             }
         }
     }
