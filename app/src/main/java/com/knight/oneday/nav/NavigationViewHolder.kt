@@ -2,6 +2,9 @@ package com.knight.oneday.nav
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.knight.oneday.databinding.NavDividerItemLayoutBinding
+import com.knight.oneday.databinding.NavEventTagItemLayoutBinding
+import com.knight.oneday.databinding.NavMenuItemLayoutBinding
 
 /**
  * Create by FLJ in 2020/3/25 15:06
@@ -12,5 +15,41 @@ sealed class NavigationViewHolder<T : NavigationModelItem>(view: View) :
 
     abstract fun bind(navItem: T)
 
+    class NavMenuItemViewHolder(
+        private val binding: NavMenuItemLayoutBinding,
+        private val listener: NavBottomAdapter.NavigationAdapterListener
+    ) : NavigationViewHolder<NavigationModelItem.NavMenuItem>(binding.root) {
+        override fun bind(navItem: NavigationModelItem.NavMenuItem) {
+            binding.run {
+                navMenuItem = navItem
+                navListener = listener
+                executePendingBindings()
+            }
+        }
+    }
+
+    class NavDividerViewHolder(
+        private val binding: NavDividerItemLayoutBinding
+    ) : NavigationViewHolder<NavigationModelItem.NavDivider>(binding.root) {
+        override fun bind(navItem: NavigationModelItem.NavDivider) {
+            binding.run {
+                navDivider = navItem
+                executePendingBindings()
+            }
+        }
+    }
+
+    class NavEventTagViewHolder(
+        private val binding: NavEventTagItemLayoutBinding,
+        private val listener: NavBottomAdapter.NavigationAdapterListener
+    ) : NavigationViewHolder<NavigationModelItem.NavEventTag>(binding.root) {
+        override fun bind(navItem: NavigationModelItem.NavEventTag) {
+            binding.run {
+                navEventTag = navItem
+                navListener = listener
+                executePendingBindings()
+            }
+        }
+    }
 
 }

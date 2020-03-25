@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright (c) 2019 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+  in compliance with the License. You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software distributed under the License
+  is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  or implied. See the License for the specific language governing permissions and limitations under
+  the License.
+  -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.knight.oneday.R" />
+
+        <variable
+            name="navMenuItem"
+            type="com.knight.oneday.nav.NavigationModelItem.NavMenuItem" />
+
+        <variable
+            name="navListener"
+            type="com.knight.oneday.nav.NavBottomAdapter.NavigationAdapterListener" />
+    </data>
+
+    <CheckedTextView
+        android:id="@+id/nav_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navigation_drawer_menu_item_height"
+        android:background="?attr/selectableItemBackground"
+        android:checked="@{navMenuItem.checked}"
+        android:drawablePadding="@dimen/dp_32"
+        android:ellipsize="end"
+        android:gravity="center_vertical|start"
+        android:lines="1"
+        android:onClick="@{() -> navListener.onNavMenuItemClicked(navMenuItem)}"
+        android:paddingLeft="@dimen/dp_32"
+        android:paddingRight="@dimen/dp_32"
+        android:text="@{navMenuItem.titleRes}"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textColor="@color/color_navigation_drawer_menu_item"
+        app:drawableStart="@{navMenuItem.icon}"
+        app:drawableTint="@color/color_navigation_drawer_menu_item"
+        tools:text="Inbox" />
+
+</layout>
