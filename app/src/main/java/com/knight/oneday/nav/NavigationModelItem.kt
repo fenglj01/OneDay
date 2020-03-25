@@ -3,6 +3,8 @@ package com.knight.oneday.nav
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.DiffUtil
+import com.knight.oneday.data.EventTag
+import com.knight.oneday.data.EventTagDiff
 
 /**
  * Create by FLJ in 2020/3/25 14:54
@@ -10,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
  */
 sealed class NavigationModelItem {
 
-    // 操作子项
+    // 菜单
     data class NavMenuItem(
         val id: Int,
         @DrawableRes val icon: Int,
@@ -21,6 +23,9 @@ sealed class NavigationModelItem {
     // 分割线
     data class NavDivider(val title: String) : NavigationModelItem()
 
+    // 事件分类
+    data class NavEventTag(val eventTag: EventTag) : NavigationModelItem()
+
     // 相同区分
     object NavModeItemDiff : DiffUtil.ItemCallback<NavigationModelItem>() {
         override fun areItemsTheSame(
@@ -30,6 +35,10 @@ sealed class NavigationModelItem {
             return when {
                 oldItem is NavMenuItem && newItem is NavMenuItem -> oldItem.id == newItem.id
                 oldItem is NavDivider && newItem is NavDivider -> oldItem.title == newItem.title
+                oldItem is NavEventTag && newItem is NavEventTag -> EventTagDiff.areItemsTheSame(
+                    oldItem.eventTag,
+                    newItem.eventTag
+                )
                 else -> oldItem == newItem
             }
         }
@@ -41,6 +50,10 @@ sealed class NavigationModelItem {
             return when {
                 oldItem is NavMenuItem && newItem is NavMenuItem -> oldItem.id == newItem.id && oldItem.icon == newItem.icon && oldItem.titleRes == newItem.titleRes && oldItem.checked == newItem.checked
                 oldItem is NavDivider && newItem is NavDivider -> oldItem.title == newItem.title
+                oldItem is NavEventTag && newItem is NavEventTag -> EventTagDiff.areContentsTheSame(
+                    oldItem.eventTag,
+                    newItem.eventTag
+                )
                 else -> false
             }
         }
