@@ -29,4 +29,8 @@
     <string name="theme_dark">黑暗</string>
     <string name="theme_system">系统默认</string>
     <string name="def">Default</string>
+
+    <string name="nav_menu_about">关于</string>
+    <string name="nav_menu_chart">统计</string>
+    <string name="nav_menu_settings">设置</string>
 </resources>
