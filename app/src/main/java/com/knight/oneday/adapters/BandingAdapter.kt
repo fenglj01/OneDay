@@ -3,10 +3,12 @@ package com.knight.oneday.adapters
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import com.knight.oneday.R
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
+import com.knight.oneday.views.getDrawableOrNull
 
 @BindingAdapter("app:eventStateIcon")
 fun eventStateIcon(iv: ImageView, state: EventState) {
@@ -60,4 +62,29 @@ fun View.bindLayoutFullscreen(previousFullscreen: Boolean, fullscreen: Boolean) 
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
                 View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
     }
+}
+
+@BindingAdapter(
+    "drawableStart",
+    "drawableLeft",
+    "drawableTop",
+    "drawableEnd",
+    "drawableRight",
+    "drawableBottom",
+    requireAll = false
+)
+fun TextView.bindDrawables(
+    @DrawableRes drawableStart: Int? = null,
+    @DrawableRes drawableLeft: Int? = null,
+    @DrawableRes drawableTop: Int? = null,
+    @DrawableRes drawableEnd: Int? = null,
+    @DrawableRes drawableRight: Int? = null,
+    @DrawableRes drawableBottom: Int? = null
+) {
+    setCompoundDrawablesWithIntrinsicBounds(
+        context.getDrawableOrNull(drawableStart ?: drawableLeft),
+        context.getDrawableOrNull(drawableTop),
+        context.getDrawableOrNull(drawableEnd ?: drawableRight),
+        context.getDrawableOrNull(drawableBottom)
+    )
 }

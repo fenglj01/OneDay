@@ -10,15 +10,20 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.knight.oneday.databinding.ActivityMainBinding
+import com.knight.oneday.nav.BottomNavDrawerFragment
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.contentView
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.DayEventAndStepViewModel
+import kotlin.LazyThreadSafetyMode.NONE
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
 
     private lateinit var navController: NavController
     private val binding: ActivityMainBinding by contentView(R.layout.activity_main)
+    private val bottomNavDrawer: BottomNavDrawerFragment by lazy(NONE) {
+        supportFragmentManager.findFragmentById(R.id.bottom_nav_drawer) as BottomNavDrawerFragment
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +47,9 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             singleClick {
                 navController.navigate(R.id.action_miniFragment_to_createEventFragment)
             }
+        }
+        binding.bottomAppBarContentContainer.singleClick {
+            bottomNavDrawer.toggle()
         }
     }
 

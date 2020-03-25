@@ -18,12 +18,11 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/oneday" />
 
-        <!--<androidx.fragment.app.FragmentContainerView
+        <fragment
             android:id="@+id/bottom_nav_drawer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            />-->
+            android:name="com.knight.oneday.nav.BottomNavDrawerFragment"/>
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottom_app_bar"
@@ -36,6 +35,7 @@
             app:hideOnScroll="true">
 
             <LinearLayout
+                android:id="@+id/bottom_app_bar_content_container"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/min_touch_target_size"
                 android:layout_marginHorizontal="@dimen/dp_8"

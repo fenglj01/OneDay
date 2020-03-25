@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -17,7 +19,7 @@ import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.themeColor
 import com.knight.oneday.views.themeInterpolator
 
-class BottomNavDrawerFragment : Fragment() {
+class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterListener {
 
     /**
      * 底部弹出框状态
@@ -76,11 +78,48 @@ class BottomNavDrawerFragment : Fragment() {
             behavior.state = STATE_HIDDEN
 
         }
+        initNavigation()
+    }
+
+    private fun initNavigation() {
+
+        binding.run {
+            val adapter = NavBottomAdapter(this@BottomNavDrawerFragment)
+            navRecyclerView.adapter = adapter
+            NavigationModel.navigationList.observe(this@BottomNavDrawerFragment) {
+                adapter.submitList(it)
+            }
+            NavigationModel.setNavigationMenuItemChecked(0)
+        }
     }
 
     private fun close() {
+        behavior.state = STATE_HIDDEN
+    }
+
+    private fun open(){
+        behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
+    }
+
+    private fun toggleSandwich(){
 
     }
 
+    fun toggle() {
+        when {
+            sandwichState == SandwichState.OPEN -> toggleSandwich()
+            behavior.state == STATE_HIDDEN -> open()
+            behavior.state == STATE_HIDDEN
+                    || behavior.state == BottomSheetBehavior.STATE_HALF_EXPANDED
+                    || behavior.state == BottomSheetBehavior.STATE_EXPANDED
+                    || behavior.state == BottomSheetBehavior.STATE_COLLAPSED -> close()
+        }
+    }
 
+    override fun onNavMenuItemClicked(item: NavigationModelItem.NavMenuItem) {
+
+    }
+
+    override fun onNavEventTagClicked(folder: NavigationModelItem.NavEventTag) {
+    }
 }
