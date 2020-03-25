@@ -22,17 +22,23 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initNavController()
         setUpBottomBarAndFab()
         observeUiMode()
     }
 
-    private fun setUpBottomBarAndFab() {
+    private fun initNavController() {
         binding.run {
             navController = findNavController(R.id.nav_host_fragment)
             navController.addOnDestinationChangedListener(this@MainActivity)
         }
+    }
 
+    private fun setUpBottomBarAndFab() {
+        // init fab
         binding.fab.apply {
+            setShowMotionSpecResource(R.animator.fab_show)
+            setHideMotionSpecResource(R.animator.fab_hide)
             singleClick {
                 navController.navigate(R.id.action_miniFragment_to_createEventFragment)
             }
@@ -65,9 +71,25 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     ) {
         when (destination.id) {
             R.id.miniFragment -> {
+                showBottomAppBarAndFab()
             }
             R.id.createEventFragment -> {
+                hideBottomAppBarAndFab()
             }
+        }
+    }
+
+    private fun showBottomAppBarAndFab() {
+        binding.run {
+            bottomAppBar.performShow()
+            fab.show()
+        }
+    }
+
+    private fun hideBottomAppBarAndFab() {
+        binding.run {
+            bottomAppBar.performHide()
+            fab.hide()
         }
     }
 }
