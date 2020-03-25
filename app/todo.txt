@@ -161,6 +161,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
                 3.4.1 NavigationModelItem 一个密封类来确认整个底部弹出框当中可能会出现的类型 确保后期扩展
                       当中还封装了一个DiffUtils 来做唯一性的判断
                 3.4.2 NavigationModel 来封装一个提供按钮的模型 以及提供可观察对象 以及监听外置
+            3.5 考虑一致大部分内容 除了账户切换recyclerView
 
         底部弹窗输出
             1.基本设置menu
