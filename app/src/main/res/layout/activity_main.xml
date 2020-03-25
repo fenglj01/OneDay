@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/oneday"/>
+            app:navGraph="@navigation/oneday" />
 
         <!--<androidx.fragment.app.FragmentContainerView
             android:id="@+id/bottom_nav_drawer"
@@ -47,7 +47,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/theme_system"
-                    android:src="@drawable/ic_one_day_arrow_drop_up" />
+                    android:src="@drawable/ic_one_day_arrow_drop_up"
+                    android:tint="?attr/colorOnPrimarySurface" />
 
                 <!-- <ImageView
                      android:id="@+id/bottom_app_bar_icon"

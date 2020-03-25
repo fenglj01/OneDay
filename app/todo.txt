@@ -151,9 +151,22 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         对BottomNavFrag的滑动实现监听 来达到这样的效果
 
     实现步骤考虑
-        1.实现跳转到添加界面 (监听目的地的切换 显示和隐藏bottomAppBar)
-        2.实现跳转到编辑界面 (监听目的地的切换 改变bottomAppBar上的按钮和功能 fab的功能也要切换)
+        1.实现跳转到添加界面 (监听目的地的切换 显示和隐藏bottomAppBar) √ 3-25
+        2.实现跳转到编辑界面 (监听目的地的切换 改变bottomAppBar上的按钮和功能 fab的功能也要切换) 延后
         3.实现底部操作栏的弹出 (监听滑动 监听弹出状态 从而改变bottomAppBar的显示和隐藏)
+            3.1 实现弹出框
+            3.2 实现sandwich跟随动画
+            3.3 监听相关
+            3.4 底部弹窗相关
+                3.4.1 NavigationModelItem 一个密封类来确认整个底部弹出框当中可能会出现的类型 确保后期扩展
+                      当中还封装了一个DiffUtils 来做唯一性的判断
+                3.4.2 NavigationModel 来封装一个提供按钮的模型 以及提供可观察对象 以及监听外置
+
+        底部弹窗输出
+            1.基本设置menu
+            2.分割线
+            3.用户定义的分类
+
 
         Tips 1-3-5 和Mini 应该只是 RecyclerView的Adapter不一样 Custom 可以后期版本植入
         按钮的第一次点击 可以友好提示功能 在多次使用以后 或者长时间未使用的情况下可以提示一下 让用户尽快找到操作的方式
@@ -161,4 +174,6 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 ------------
     实现首页BottomAppBar 到添加界面的 切换
     实现黑暗模式的切换
+
+    Tips 右滑完成事件
 

@@ -40,4 +40,8 @@
     <!--color on surface (light)-->
     <color name="black_900">#000000</color>
 
+    <color name="reply_white_50_alpha_060">#99ffffff</color>
+
+    <color name="reply_blue_50_alpha_060">#99eef0f2</color>
+
 </resources>
