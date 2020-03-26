@@ -33,4 +33,10 @@
     <string name="nav_menu_about">关于</string>
     <string name="nav_menu_chart">统计</string>
     <string name="nav_menu_settings">设置</string>
+    <string name="nav_menu_home">主页</string>
+    <string name="divider_tag">分类</string>
+    <string name="tag_life">生活</string>
+    <string name="tag_work">工作</string>
+    <string name="tag_entertainment">娱乐</string>
+    <string name="tag_health">健康</string>
 </resources>

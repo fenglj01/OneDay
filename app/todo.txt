@@ -205,4 +205,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
     Tips 右滑完成事件
     Tips colorPrimarySurface 在light中指向colorPrimary 在dark中执行colorSurface
-
+         on
+3-27
+-----------
+    主要实现底部menu的显示
