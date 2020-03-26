@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
@@ -58,12 +57,47 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
         }
     }
 
+    private val foregroundShapeDrawable: MaterialShapeDrawable by lazy(LazyThreadSafetyMode.NONE) {
+        val foregroundContext = binding.foregroundContainer.context
+        MaterialShapeDrawable(
+            foregroundContext,
+            null,
+            R.attr.bottomSheetStyle,
+            0
+        ).apply {
+            fillColor = ColorStateList.valueOf(
+                foregroundContext.themeColor(R.attr.colorPrimarySurface)
+            )
+            elevation = resources.getDimension(R.dimen.dp_16)
+            shadowCompatibilityMode = MaterialShapeDrawable.SHADOW_COMPAT_MODE_NEVER
+            initializeElevationOverlay(requireContext())
+            shapeAppearanceModel = shapeAppearanceModel.toBuilder()
+                .setTopEdge(
+                    SemiCircleEdgeCutoutTreatment(
+                        resources.getDimension(R.dimen.dp_8),
+                        resources.getDimension(R.dimen.dp_24),
+                        0F,
+                        resources.getDimension(R.dimen.navigation_drawer_profile_image_size_padded)
+                    )
+                )
+                .build()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBottomNavDrawerBinding.inflate(inflater, container, false)
+        binding.foregroundContainer.setOnApplyWindowInsetsListener { view, windowInsets ->
+            /*记录窗口的顶部插图，以便在底页向上滑动时可以应用迎合屏幕的顶部边缘*/
+            view.setTag(
+                R.id.tag_system_window_inset_top,
+                windowInsets.systemWindowInsetTop
+            )
+            windowInsets
+        }
         return binding.root
     }
 
@@ -71,18 +105,16 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
         super.onViewCreated(view, savedInstanceState)
         binding.run {
             backgroundContainer.background = backgroundShapeDrawable
+            foregroundContainer.background = foregroundShapeDrawable
             // 屏幕view 点击隐藏 (达到点击drawer外部点击消失？)
             scrimView.singleClick { close() }
             // 一系列的监听操作
-
             behavior.state = STATE_HIDDEN
-
         }
-        initNavigation()
+        initNavigationMenu()
     }
 
-    private fun initNavigation() {
-
+    private fun initNavigationMenu() {
         binding.run {
             val adapter = NavBottomAdapter(this@BottomNavDrawerFragment)
             navRecyclerView.adapter = adapter
@@ -97,11 +129,11 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
         behavior.state = STATE_HIDDEN
     }
 
-    private fun open(){
+    private fun open() {
         behavior.state = BottomSheetBehavior.STATE_HALF_EXPANDED
     }
 
-    private fun toggleSandwich(){
+    private fun toggleSandwich() {
 
     }
 

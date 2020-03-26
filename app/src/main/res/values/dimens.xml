@@ -22,6 +22,8 @@
 
     <!--BottomNavigationDrawer-->
     <dimen name="navigation_drawer_profile_image_size">48dp</dimen>
-    <dimen name="navigation_drawer_profile_image_size_padded">32dp</dimen>
+    <dimen name="navigation_drawer_profile_image_size_padded">0dp</dimen>
     <dimen name="navigation_drawer_menu_item_height">56dp</dimen>
+
+    <dimen name="chip_icon_diameter">32dp</dimen>
 </resources>

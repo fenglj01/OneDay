@@ -14,9 +14,9 @@
             android:id="@+id/scrim_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
             android:alpha="0"
-            android:background="?attr/scrimBackground"/>
+            android:background="?attr/scrimBackground"
+            android:visibility="gone" />
 
         <FrameLayout
             android:id="@+id/background_container"
@@ -27,15 +27,27 @@
             app:behavior_skipCollapsed="true"
             app:layout_behavior="@string/bottom_sheet_behavior">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/nav_recycler_view"
+            <LinearLayout
+                android:id="@+id/foreground_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipToPadding="false"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:layout_marginTop="@dimen/dp_24"
                 android:paddingTop="@dimen/dp_24"
-                android:paddingBottom="@dimen/bottom_app_bar_height"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:paddingBottom="@dimen/dp_32">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/nav_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dp_24"
+                    android:paddingBottom="@dimen/bottom_app_bar_height"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </LinearLayout>
+
+
         </FrameLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

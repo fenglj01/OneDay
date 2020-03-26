@@ -185,6 +185,8 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     实现
         1. 颜色样式的调整
         2. 状态的监听 同步到appBar相应相关效果
+            底部menu的切换
+            fab的显示与否
 
     Tips 右滑完成事件
 

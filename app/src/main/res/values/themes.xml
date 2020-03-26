@@ -83,11 +83,15 @@
         <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorSurface</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:navigationBarColor" tools:ignore="NewApi">
-            ?android:attr/colorBackground
+            ?android:attr/colorPrimary
         </item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
         <item name="android:navigationBarDividerColor" tools:ignore="NewApi">
             ?attr/colorControlHighlight
         </item>
+        <item name="bottomAppBarStyle">@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface</item>
+        <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet.Modal</item>
+        <item name="navigationViewStyle">@style/Widget.Reply.NavigationView</item>
+        <item name="chipStyle">@style/Widget.Reply.Chip.Entry</item>
     </style>
 </resources>
