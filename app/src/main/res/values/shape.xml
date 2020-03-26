@@ -36,17 +36,26 @@
     <!--Shape Appearance for small components like chips, buttons, text fields and FABs-->
     <style name="ShapeAppearance.MyTheme.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <!--Your custom shape here-->
-        <item name="colorOnSecondary">@color/black_one_day</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/one_day_small_component_corner_radius</item>
     </style>
 
     <!--Shape Appearance for medium components like cards, alert dialogs-->
     <style name="ShapeAppearance.MyTheme.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <!--Your custom shape here-->
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/one_day_medium_component_corner_radius</item>
     </style>
 
     <!--Shape Appearance for large components like side and bottom navigation drawers-->
     <style name="ShapeAppearance.MyTheme.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
         <!--Your custom shape here-->
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/one_day_large_component_corner_radius</item>
     </style>
+
+    <dimen name="one_day_small_component_corner_radius">24dp</dimen>
+    <dimen name="one_day_medium_component_corner_radius">0dp</dimen>
+    <dimen name="one_day_large_component_corner_radius">12dp</dimen>
 
 </resources>

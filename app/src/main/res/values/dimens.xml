@@ -26,4 +26,5 @@
     <dimen name="navigation_drawer_menu_item_height">56dp</dimen>
 
     <dimen name="chip_icon_diameter">32dp</dimen>
+
 </resources>
