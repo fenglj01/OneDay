@@ -199,6 +199,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
             2.4实现sandwich旋转效果
                 fab的显示与否 通过stateAction来判断
                 sandwich的动画 通过slideAction来完成
+                相对来说是比较复杂的 因为我这里不需要进行嵌套 所以相对还要简单一些
             2.5控制底部menu的显示(不同fragment 不同的底部bottom)
 
 

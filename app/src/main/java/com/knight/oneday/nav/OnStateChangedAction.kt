@@ -1,6 +1,7 @@
 package com.knight.oneday.nav
 
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -41,5 +42,13 @@ class VisibilityStateAction(
             BottomSheetBehavior.STATE_HIDDEN -> view.visibility = stateHiddenVisibility
             else -> view.visibility = stateDefaultVisibility
         }
+    }
+}
+
+class ScrollToTopStateAction(
+    private val recyclerView: RecyclerView
+) : OnStateChangedAction {
+    override fun onStateChanged(sheet: View, newState: Int) {
+        if (newState == BottomSheetBehavior.STATE_HIDDEN) recyclerView.scrollToPosition(0)
     }
 }

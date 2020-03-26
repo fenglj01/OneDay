@@ -10,14 +10,17 @@ import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import com.google.android.material.animation.AnimationUtils.lerp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.knight.oneday.R
 import com.knight.oneday.databinding.FragmentBottomNavDrawerBinding
+import com.knight.oneday.utilities.lerp
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.themeColor
 import com.knight.oneday.views.themeInterpolator
+import kotlin.math.abs
 
 class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterListener {
 
@@ -26,13 +29,13 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
      */
     enum class SandwichState {
         OPEN,
-        CLOSE,
+        CLOSED,
         SETTLING
     }
 
     private lateinit var binding: FragmentBottomNavDrawerBinding
     // 角标相关 状态 动画 插值器
-    private var sandwichState: SandwichState = SandwichState.CLOSE
+    private var sandwichState: SandwichState = SandwichState.CLOSED
     private var sandwichAnim: ValueAnimator? = null
     private val sandwichInterp by lazy(LazyThreadSafetyMode.NONE) {
         requireContext().themeInterpolator(R.attr.motionInterpolatorPersistent)
@@ -41,6 +44,8 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
         BottomSheetBehavior.from(binding.backgroundContainer)
     }
     private val bottomSheetCallback = BottomNavigationDrawerCallback()
+
+    private val sandwichSlideActions = mutableListOf<OnSandwichSlideAction>()
 
     // 背景形状
     private val backgroundShapeDrawable: MaterialShapeDrawable by lazy(LazyThreadSafetyMode.NONE) {
@@ -92,6 +97,21 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
         }
     }
 
+    // 旋转 也代表着滑动
+    private var sandwichProgress: Float = 0F
+        set(value) {
+            if (field != value) {
+                sandwichSlideActions.forEach { it.onSlide(value) }
+                val newState = when (value) {
+                    0F -> SandwichState.CLOSED
+                    1F -> SandwichState.OPEN
+                    else -> SandwichState.SETTLING
+                }
+                sandwichState = newState
+                field = value
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 在返回键触发时 将NavDrawer收回
@@ -133,6 +153,16 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
                         closeDrawerOnBackPressed.isEnabled = newState != STATE_HIDDEN
                     }
                 })
+                // recyclerView监听
+                addOnStateChangedAction(ScrollToTopStateAction(navRecyclerView))
+                // sandwich open close监听
+                addOnStateChangedAction(object : OnStateChangedAction {
+                    override fun onStateChanged(sheet: View, newState: Int) {
+                        sandwichAnim?.cancel()
+                        sandwichProgress = 0F
+                    }
+                })
+
             }
             behavior.addBottomSheetCallback(bottomSheetCallback)
             behavior.state = STATE_HIDDEN
@@ -160,7 +190,26 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     }
 
     private fun toggleSandwich() {
-
+        val initialProgress = sandwichProgress
+        val newProgress = when (sandwichState) {
+            SandwichState.CLOSED -> {
+                binding.backgroundContainer.setTag(
+                    R.id.tag_view_top_snapshot,
+                    binding.backgroundContainer.top
+                )
+                1F
+            }
+            SandwichState.OPEN -> 0F
+            SandwichState.SETTLING -> return
+        }
+        sandwichAnim?.cancel()
+        sandwichAnim = ValueAnimator.ofFloat(initialProgress, newProgress).apply {
+            addUpdateListener { sandwichProgress = animatedValue as Float }
+            interpolator = sandwichInterp
+            duration = (abs(newProgress - initialProgress) *
+                    resources.getInteger(R.integer.reply_motion_duration_medium)).toLong()
+        }
+        sandwichAnim?.start()
     }
 
     fun toggle() {
@@ -192,8 +241,9 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     /**
      * Add actions to be run when the slide offset (animation progress) or the sandwiching account
      * picker has changed.
-     *//*
+     */
     fun addOnSandwichSlideAction(action: OnSandwichSlideAction) {
         sandwichSlideActions.add(action)
-    }*/
+    }
+
 }

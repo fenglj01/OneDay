@@ -10,8 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.knight.oneday.databinding.ActivityMainBinding
-import com.knight.oneday.nav.BottomNavDrawerFragment
-import com.knight.oneday.nav.ShowHideFabStateAction
+import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.contentView
 import com.knight.oneday.utilities.singleClick
@@ -50,8 +49,13 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             }
         }
         bottomNavDrawer.apply {
+            // 控制drawer按钮的旋转 控制title的显示 逆时针旋转
+            addOnSlideAction(HalfClockwiseRotateSlideAction(binding.bottomAppBarChevron))
+            addOnSlideAction(AlphaSlideAction(binding.bottomAppBarTitle, true))
             // fab 跟随navDrawer来确定是否显示
             addOnStateChangedAction(ShowHideFabStateAction(binding.fab))
+            // 这个作用不知道是什么
+            //addOnSandwichSlideAction(HalfCounterClockwiseRotateSlideAction(binding.bottomAppBarChevron))
         }
         binding.bottomAppBarContentContainer.singleClick {
             bottomNavDrawer.toggle()
