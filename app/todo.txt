@@ -196,10 +196,10 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
             2.3scrimView的显示 透明度
                 1.需要监听slide
                 2.需要监听state state控制的是可见度 slide控制透明程度来达到一个友好的体验效果
-            2.3实现sandwich旋转效果
+            2.4实现sandwich旋转效果
                 fab的显示与否 通过stateAction来判断
                 sandwich的动画 通过slideAction来完成
-            2.4控制底部menu的显示(不同fragment 不同的底部bottom)
+            2.5控制底部menu的显示(不同fragment 不同的底部bottom)
 
 
     Tips 右滑完成事件
