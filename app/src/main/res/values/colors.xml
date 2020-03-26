@@ -3,6 +3,9 @@
 
     <color name="white_50">#ffffff</color>
 
+    <color name="white_fa">#fafafa</color>
+    <color name="white_c7">#c7c7c7</color>
+
     <color name="green_one_day">#1EB980</color>
     <color name="green_one_day_dark">#008853</color>
     <color name="green_one_day_light">#62ecb0</color>
@@ -10,9 +13,9 @@
     <color name="white_one_day">#ffffff</color>
     <color name="white_one_day_dark">#cccccc</color>
 
-    <color name="blue_grey_one_day">#33333D</color>
-    <color name="blue_grey_one_day_light">#5d5c67</color>
-    <color name="blue_grey_one_day_dark">#0c0c17</color>
+    <color name="blue_grey_one_day">#546e7a</color>
+    <color name="blue_grey_one_day_light">#819ca9</color>
+    <color name="blue_grey_one_day_dark">#29434e</color>
 
     <color name="pink_one_day">#ad1357</color>
 
