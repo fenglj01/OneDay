@@ -124,6 +124,9 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
             scrimView.singleClick { close() }
             // 一系列的监听操作
             bottomSheetCallback.apply {
+                // scrimView的透明度 可见性监听
+                addOnSlideAction(AlphaSlideAction(scrimView))
+                addOnStateChangedAction(VisibilityStateAction(scrimView))
                 // 使得返回键在drawer显示得时候拦截返回键 达到点击返回键后隐藏drawer再次点击则为退出app事件
                 addOnStateChangedAction(object : OnStateChangedAction {
                     override fun onStateChanged(sheet: View, newState: Int) {
