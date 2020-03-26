@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -39,6 +40,7 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     private val behavior: BottomSheetBehavior<FrameLayout> by lazy(LazyThreadSafetyMode.NONE) {
         BottomSheetBehavior.from(binding.backgroundContainer)
     }
+    private val bottomSheetCallback = BottomNavigationDrawerCallback()
 
     // 背景形状
     private val backgroundShapeDrawable: MaterialShapeDrawable by lazy(LazyThreadSafetyMode.NONE) {
@@ -56,7 +58,7 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
             initializeElevationOverlay(requireContext())
         }
     }
-
+    // 前景
     private val foregroundShapeDrawable: MaterialShapeDrawable by lazy(LazyThreadSafetyMode.NONE) {
         val foregroundContext = binding.foregroundContainer.context
         MaterialShapeDrawable(
@@ -82,6 +84,18 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
                 )
                 .build()
         }
+    }
+    // 返回键监听
+    private val closeDrawerOnBackPressed = object : OnBackPressedCallback(false) {
+        override fun handleOnBackPressed() {
+            close()
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 在返回键触发时 将NavDrawer收回
+        requireActivity().onBackPressedDispatcher.addCallback(this, closeDrawerOnBackPressed)
     }
 
     override fun onCreateView(
@@ -109,6 +123,15 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
             // 屏幕view 点击隐藏 (达到点击drawer外部点击消失？)
             scrimView.singleClick { close() }
             // 一系列的监听操作
+            bottomSheetCallback.apply {
+                // 使得返回键在drawer显示得时候拦截返回键 达到点击返回键后隐藏drawer再次点击则为退出app事件
+                addOnStateChangedAction(object : OnStateChangedAction {
+                    override fun onStateChanged(sheet: View, newState: Int) {
+                        closeDrawerOnBackPressed.isEnabled = newState != STATE_HIDDEN
+                    }
+                })
+            }
+            behavior.addBottomSheetCallback(bottomSheetCallback)
             behavior.state = STATE_HIDDEN
         }
         initNavigationMenu()
@@ -154,4 +177,20 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
 
     override fun onNavEventTagClicked(folder: NavigationModelItem.NavEventTag) {
     }
+
+    fun addOnSlideAction(action: OnSlideAction) {
+        bottomSheetCallback.addOnSlideAction(action)
+    }
+
+    fun addOnStateChangedAction(action: OnStateChangedAction) {
+        bottomSheetCallback.addOnStateChangedAction(action)
+    }
+
+    /**
+     * Add actions to be run when the slide offset (animation progress) or the sandwiching account
+     * picker has changed.
+     *//*
+    fun addOnSandwichSlideAction(action: OnSandwichSlideAction) {
+        sandwichSlideActions.add(action)
+    }*/
 }

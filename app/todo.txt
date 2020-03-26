@@ -189,5 +189,5 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
             fab的显示与否
 
     Tips 右滑完成事件
-
+    Tips colorPrimarySurface 在light中指向colorPrimary 在dark中执行colorSurface
 

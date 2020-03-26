@@ -11,6 +11,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.BottomNavDrawerFragment
+import com.knight.oneday.nav.ShowHideFabStateAction
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.contentView
 import com.knight.oneday.utilities.singleClick
@@ -47,6 +48,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             singleClick {
                 navController.navigate(R.id.action_miniFragment_to_createEventFragment)
             }
+        }
+        bottomNavDrawer.apply {
+            // fab 跟随navDrawer来确定是否显示
+            addOnStateChangedAction(ShowHideFabStateAction(binding.fab))
         }
         binding.bottomAppBarContentContainer.singleClick {
             bottomNavDrawer.toggle()
