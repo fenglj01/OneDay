@@ -65,7 +65,7 @@
                     android:layout_marginHorizontal="@dimen/dp_8"
                     android:text="@string/test_date"
                     android:textAppearance="?attr/textAppearanceBody1"
-                    android:textColor="?attr/colorOnSurface" />
+                     />
             </LinearLayout>
 
         </com.google.android.material.bottomappbar.BottomAppBar>

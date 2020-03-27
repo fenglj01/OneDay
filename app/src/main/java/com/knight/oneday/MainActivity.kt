@@ -70,10 +70,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         binding.bottomAppBarContentContainer.singleClick {
             bottomNavDrawer.toggle()
         }
+        changeBottomMenu(false)
     }
 
     private fun changeBottomMenu(showUiMode: Boolean) {
-
         binding.bottomAppBar.replaceMenu(
             if (showUiMode) {
                 R.menu.bottom_app_bar_menu_ui_mode

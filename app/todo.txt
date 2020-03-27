@@ -209,3 +209,5 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 3-27
 -----------
     主要实现底部menu的显示
+
+    tips bottom menu　icon tint 是没有属性来做区分得 所以黑/白两个主题 应该准备两套颜色得icon

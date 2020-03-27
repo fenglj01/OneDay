@@ -36,6 +36,8 @@ class ThemePreference(private val sp: SharedPreferences) {
         _uiModeLive.value = mode
     }
 
+    fun nowUiModeIsLight() = uiModeLive.value == PREFERENCE_THEME_ARRAY[0]
+
     init {
         _uiModeLive.value = _appTheme
         sp.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
