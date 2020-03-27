@@ -41,4 +41,8 @@
     <string name="tag_health">健康</string>
     <string name="menu_item_ui_mode">主题</string>
     <string name="menu_item_search">搜索</string>
+    <string name="menu_dark_theme_light">白昼</string>
+    <string name="menu_dark_theme_dark">黑暗</string>
+    <string name="menu_dark_theme_battery_saver">系统默认</string>
+    <string name="menu_dark_theme_system_default">系统默认</string>
 </resources>

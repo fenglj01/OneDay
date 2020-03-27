@@ -181,7 +181,7 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
         }
     }
 
-    private fun close() {
+    fun close() {
         behavior.state = STATE_HIDDEN
     }
 

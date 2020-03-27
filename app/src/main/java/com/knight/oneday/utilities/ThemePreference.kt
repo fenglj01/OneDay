@@ -1,8 +1,11 @@
 package com.knight.oneday.utilities
 
 import android.content.SharedPreferences
+import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.knight.oneday.OneDayApp
+import com.knight.oneday.R
 
 /**
  * @author knight
@@ -28,6 +31,11 @@ class ThemePreference(private val sp: SharedPreferences) {
             }
         }
 
+    fun changeUiMode(mode: String) {
+        sp.edit().putString(PREFERENCE_THEME_KEY, mode).apply()
+        _uiModeLive.value = mode
+    }
+
     init {
         _uiModeLive.value = _appTheme
         sp.registerOnSharedPreferenceChangeListener(preferenceChangeListener)
@@ -36,6 +44,9 @@ class ThemePreference(private val sp: SharedPreferences) {
     companion object {
         private const val PREFERENCE_THEME_KEY = "theme"
         private const val PREFERENCE_THEME_DEF_VAL = "System"
+
+        val PREFERENCE_THEME_ARRAY = arrayOf("Light", "Dark", "System")
+
     }
 
 }

@@ -4,20 +4,25 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.preference.ListPreference
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.InjectorUtils
+import com.knight.oneday.utilities.ThemePreference
 import com.knight.oneday.utilities.contentView
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.DayEventAndStepViewModel
 import kotlin.LazyThreadSafetyMode.NONE
 
-class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
+class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener,
+    Toolbar.OnMenuItemClickListener {
 
     private lateinit var navController: NavController
     private val binding: ActivityMainBinding by contentView(R.layout.activity_main)
@@ -61,6 +66,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             // 这个作用不知道是什么
             //addOnSandwichSlideAction(HalfCounterClockwiseRotateSlideAction(binding.bottomAppBarChevron))
         }
+        binding.bottomAppBar.setOnMenuItemClickListener(this)
         binding.bottomAppBarContentContainer.singleClick {
             bottomNavDrawer.toggle()
         }
@@ -76,6 +82,27 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             }
         )
     }
+
+
+    private fun showUiModeChangeDialog() {
+        MenuBottomSheetDialogFragment(R.menu.dark_theme_bottom_sheet_menu) {
+            onDarkThemeMenuItemSelected(it.itemId)
+        }.show(supportFragmentManager, null)
+    }
+
+    private fun onDarkThemeMenuItemSelected(id: Int): Boolean {
+        val theme = when (id) {
+            R.id.menu_light -> ThemePreference.PREFERENCE_THEME_ARRAY[0]
+            R.id.menu_dark -> ThemePreference.PREFERENCE_THEME_ARRAY[1]
+            else -> ThemePreference.PREFERENCE_THEME_ARRAY[0]
+        }
+        if (theme != (OneDayApp.instance() as OneDayApp).themePreference.uiModeLive.value) {
+            (OneDayApp.instance() as OneDayApp).themePreference.changeUiMode(theme)
+            return true
+        }
+        return false
+    }
+
 
     private fun getBottomAppBarMenuForDestination(): Int = R.menu.bottom_app_bar_menu_search
 
@@ -124,5 +151,15 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             bottomAppBar.performHide()
             fab.hide()
         }
+    }
+
+    override fun onMenuItemClick(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.menu_settings -> {
+                bottomNavDrawer.close()
+                showUiModeChangeDialog()
+            }
+        }
+        return true
     }
 }
