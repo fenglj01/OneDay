@@ -52,3 +52,22 @@ class ScrollToTopStateAction(
         if (newState == BottomSheetBehavior.STATE_HIDDEN) recyclerView.scrollToPosition(0)
     }
 }
+
+class ChangeUiModeMenuStateAction(
+    private val onShouldShowUiModeMenu: (showUiMode: Boolean) -> Unit
+) : OnStateChangedAction {
+
+    private var hasCalledShowUiModeMenu: Boolean = false
+
+    override fun onStateChanged(sheet: View, newState: Int) {
+        if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+            hasCalledShowUiModeMenu = false
+            onShouldShowUiModeMenu(false)
+        } else {
+            if (!hasCalledShowUiModeMenu) {
+                hasCalledShowUiModeMenu = true
+                onShouldShowUiModeMenu(true)
+            }
+        }
+    }
+}

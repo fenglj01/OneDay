@@ -39,4 +39,6 @@
     <string name="tag_work">工作</string>
     <string name="tag_entertainment">娱乐</string>
     <string name="tag_health">健康</string>
+    <string name="menu_item_ui_mode">主题</string>
+    <string name="menu_item_search">搜索</string>
 </resources>

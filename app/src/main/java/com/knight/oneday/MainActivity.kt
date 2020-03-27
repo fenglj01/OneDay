@@ -54,6 +54,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             addOnSlideAction(AlphaSlideAction(binding.bottomAppBarTitle, true))
             // fab 跟随navDrawer来确定是否显示
             addOnStateChangedAction(ShowHideFabStateAction(binding.fab))
+            // 更改主题切换按钮
+            addOnStateChangedAction(ChangeUiModeMenuStateAction { showUiMode ->
+                changeBottomMenu(showUiMode)
+            })
             // 这个作用不知道是什么
             //addOnSandwichSlideAction(HalfCounterClockwiseRotateSlideAction(binding.bottomAppBarChevron))
         }
@@ -62,6 +66,18 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         }
     }
 
+    private fun changeBottomMenu(showUiMode: Boolean) {
+
+        binding.bottomAppBar.replaceMenu(
+            if (showUiMode) {
+                R.menu.bottom_app_bar_menu_ui_mode
+            } else {
+                getBottomAppBarMenuForDestination()
+            }
+        )
+    }
+
+    private fun getBottomAppBarMenuForDestination(): Int = R.menu.bottom_app_bar_menu_search
 
     /**
      * 监听主题切换状态
