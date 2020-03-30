@@ -36,6 +36,7 @@ class MiniEventRecyclerViewAdapter :
         fun bind(item: Event) {
             binding.apply {
                 event = item
+                // 决定了 突出得圆角(打算用来做已完成得处理)
                 eventCard.progress = 1F
                 executePendingBindings()
             }

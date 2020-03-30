@@ -211,3 +211,8 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     主要实现底部menu的显示
 
     tips bottom menu　icon tint 是没有属性来做区分得 所以黑/白两个主题 应该准备两套颜色得icon
+
+3-30
+-----------
+    实现了Item得基本样式
+    基于想要做一个带有清单或者步骤 插入图片 或者插入视频 插入音频得操作 在考虑富文本编辑器 功能不用太复杂
