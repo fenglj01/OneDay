@@ -19,7 +19,6 @@ class MiniEventRecyclerViewAdapter :
     ListAdapter<Event, MiniEventRecyclerViewAdapter.MiniEventViewHolder>(EventDiffCallback()) {
 
     private lateinit var binding: RvItemMiniEventBinding
-    var onItemEvent: OnItemEvent? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MiniEventViewHolder {
         binding = RvItemMiniEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -31,18 +30,8 @@ class MiniEventRecyclerViewAdapter :
         holder.bind(event)
     }
 
-    fun getEvent(position: Int) = getItem(position)
-
     inner class MiniEventViewHolder(private val binding: RvItemMiniEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        init {
-            binding.ivStatus.singleClick {
-                binding.event?.run {
-                    onItemEvent?.onItemFinishClick(eventId)
-                }
-            }
-        }
 
         fun bind(item: Event) {
             binding.apply {
@@ -50,11 +39,6 @@ class MiniEventRecyclerViewAdapter :
                 executePendingBindings()
             }
         }
-    }
-
-    interface OnItemEvent {
-        /*fun onItemClick(event: Event)*/
-        fun onItemFinishClick(eventId: Long)
     }
 
 }

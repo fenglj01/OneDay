@@ -111,7 +111,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
      */
     private fun observeUiMode() {
         (OneDayApp.instance() as OneDayApp).themePreference.uiModeLive.observe(this) { uiMode ->
-            Log.d("TAG_UiMode", "$uiMode")
             when (uiMode) {
                 "Light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 "Dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
