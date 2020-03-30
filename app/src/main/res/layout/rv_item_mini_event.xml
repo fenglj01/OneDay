@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,42 +14,71 @@
             type="Boolean" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/event_frame"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_72"
-        android:padding="@dimen/dp_16">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_4"
+        android:layout_marginVertical="@dimen/dp_2"
+        android:background="?attr/colorSecondary">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivImportant"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            app:eventIsImportantIcon="@{event.type}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/eventContent"
-            android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/event_card"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_8"
-            android:text="@{event.content}"
-            android:textColor="@color/material_on_surface_emphasis_high_type"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivImportant"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_goneMarginStart="@dimen/dp_0" />
+            android:clickable="true"
+            android:elevation="@dimen/dp_0"
+            android:focusable="true"
+            app:cardPreventCornerOverlap="false"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyTheme.MediumComponent.Marked">
 
-        <!--app:textColorByState="@{event.state}" />-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_16">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivStatus"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            app:eventStateIcon="@{event.state}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/event_remind_time_iv"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:src="@drawable/ic_one_day_event_remind_time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/event_remind_time_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    app:layout_constraintBottom_toBottomOf="@id/event_remind_time_iv"
+                    app:layout_constraintStart_toEndOf="@id/event_remind_time_iv"
+                    app:layout_constraintTop_toTopOf="@+id/event_remind_time_iv"
+                    android:text="14:00" />
+
+                <TextView
+                    android:id="@+id/event_overview_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/event_remind_time_iv"
+                    android:text="这是一条代办项目" />
+
+                <TextView
+                    android:id="@+id/event_note_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceBody1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/event_overview_tv"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="这是一条代办项目的备注选项,你可以在这里记录一些完成项目得过程,或者准备一份清单,或者指定一些步骤计划。"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
 </layout>

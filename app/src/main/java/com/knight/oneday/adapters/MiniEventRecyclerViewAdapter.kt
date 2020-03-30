@@ -36,6 +36,7 @@ class MiniEventRecyclerViewAdapter :
         fun bind(item: Event) {
             binding.apply {
                 event = item
+                eventCard.progress = 1F
                 executePendingBindings()
             }
         }

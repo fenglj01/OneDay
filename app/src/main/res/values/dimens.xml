@@ -27,5 +27,6 @@
 
     <dimen name="chip_icon_diameter">32dp</dimen>
     <dimen name="dp_4">4dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
 
 </resources>
