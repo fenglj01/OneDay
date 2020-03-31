@@ -54,6 +54,11 @@
         <item name="cornerSize">@dimen/one_day_large_component_corner_radius</item>
     </style>
 
+    <style name="ShapeAppearance.MyTheme.MediumComponent.TextInputLayout" parent="ShapeAppearance.MyTheme.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/one_day_small_component_corner_radius_8</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.MyTheme.MediumComponent.Marked" parent="">
         <item name="cornerSizeTopLeft">@dimen/one_day_small_component_corner_radius</item>
     </style>
@@ -61,5 +66,6 @@
     <dimen name="one_day_small_component_corner_radius">24dp</dimen>
     <dimen name="one_day_medium_component_corner_radius">0dp</dimen>
     <dimen name="one_day_large_component_corner_radius">12dp</dimen>
+    <dimen name="one_day_small_component_corner_radius_8">8dp</dimen>
 
 </resources>

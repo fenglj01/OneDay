@@ -218,3 +218,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     基于想要做一个带有清单或者步骤 插入图片 或者插入视频 插入音频得操作 在考虑富文本编辑器 功能不用太复杂
     一个合适得Demo https://github.com/wasabeef/richeditor-android
                  https://github.com/mthli/Knife
+3-31
+----------
+    创建界面以及创建的功能 (今天需要完善好)
+        review : 光标和选中状态的颜色 TextInputLayout中直接用的ColorPrimary 目前没有找到更改的方法
+
+    再考虑弄一下配色 现在黑白的配色方案 会带来不少的问题

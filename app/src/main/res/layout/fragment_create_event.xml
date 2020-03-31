@@ -1,14 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".CreateEventFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/create_event_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="?android:colorBackground"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingHorizontal="@dimen/dp_4"
+        android:paddingTop="@dimen/dp_8"
+        app:paddingTopSystemWindowInsets="@{true}"
+        tools:context=".CreateEventFragment">
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_16">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/dp_16" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/dp_16" />
+
+                <ImageButton
+                    android:id="@+id/close_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/actionBarItemBackground"
+                    android:contentDescription="@string/create_event_close_desc"
+                    android:padding="@dimen/dp_12"
+                    android:tint="@color/color_on_surface_emphasis_disabled"
+                    app:layout_constraintStart_toStartOf="@+id/left"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_one_day_close" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_title"
+                    android:textAppearance="@style/TextAppearance.MyTheme.Body1"
+                    app:layout_constraintBottom_toBottomOf="@+id/close_iv"
+                    app:layout_constraintStart_toEndOf="@id/close_iv"
+                    app:layout_constraintTop_toTopOf="@+id/close_iv" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/event_overview_input"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Overlay"
+                    app:shapeAppearance="@style/ShapeAppearance.MyTheme.MediumComponent.TextInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:hint="@string/event_overview_hint"
+                    app:layout_constraintEnd_toEndOf="@id/right"
+                    app:layout_constraintStart_toStartOf="@id/left"
+                    app:layout_constraintTop_toBottomOf="@id/close_iv">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/event_overview_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

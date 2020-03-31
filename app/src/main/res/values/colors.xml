@@ -50,4 +50,7 @@
     <color name="reply_black_900_alpha_020">#33000000</color>
     <color name="reply_black_900_alpha_087">#de000000</color>
     <color name="reply_black_900_alpha_060">#99000000</color>
+
+    <color name="green_0c9869">#0C9869</color>
+    <color name="amber_f3c282">#5081FE</color>
 </resources>
