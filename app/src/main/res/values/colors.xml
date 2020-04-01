@@ -53,4 +53,19 @@
 
     <color name="green_0c9869">#0C9869</color>
     <color name="amber_f3c282">#5081FE</color>
+    
+    <color name="yanagicha">#919451</color>
+    <color name="nea">#88C069</color>
+    <color name="oitake">#698171</color>
+    <color name="chitosemidori">#45614A</color>
+    <color name="aotake">#088A6E</color>
+    <color name="veludo">#196952</color>
+    <color name="ominaeshi">#DBD141</color>
+
+    <color name="light_primary">#212121</color>
+    <color name="light_primary_variant">#424242</color>
+
+    <color name="light_secondary">#D32F2F</color>
+    <color name="light_secondary_variant">#B71C1C</color>
+
 </resources>
