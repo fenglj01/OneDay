@@ -50,15 +50,17 @@
                     android:contentDescription="@string/create_event_close_desc"
                     android:padding="@dimen/dp_12"
                     android:tint="@color/color_on_surface_emphasis_disabled"
-                    app:layout_constraintStart_toStartOf="@+id/left"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_one_day_close" />
 
                 <TextView
-                    android:id="@+id/title"
+                    android:id="@+id/event_date_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/create_title"
+                    android:drawableEnd="@drawable/ic_one_day_date"
+                    android:gravity="center_vertical"
+                    android:text="@string/create_date"
                     android:textAppearance="@style/TextAppearance.MyTheme.Body1"
                     app:layout_constraintBottom_toBottomOf="@+id/close_iv"
                     app:layout_constraintStart_toEndOf="@id/close_iv"

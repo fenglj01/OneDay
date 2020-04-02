@@ -34,4 +34,9 @@
         <item name="hintTextColor">?attr/colorOnSurface</item>
         <item name="boxStrokeColor">@color/color_edit_text</item>
     </style>
+
+    <style name="ThemeOverlay.MaterialComponents.MaterialCalendar.Overlay" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/green_one_day</item>
+    </style>
+
 </resources>

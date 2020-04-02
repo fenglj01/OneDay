@@ -7,19 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import androidx.navigation.fragment.findNavController
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
+import com.knight.oneday.utilities.getMaterialDatePickerBuilder
+import com.knight.oneday.utilities.singleClick
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateEventFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CreateEventFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -47,6 +45,21 @@ class CreateEventFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initDropMenu()
+        initListener()
+    }
+
+    private fun initListener() {
+        binding.apply {
+            closeIv.singleClick {
+                findNavController().navigateUp()
+            }
+            eventDateTv.singleClick {
+                it.getMaterialDatePickerBuilder()
+                    .setTitleText("选择日期")
+                    .build()
+                    .show(parentFragmentManager,"")
+            }
+        }
     }
 
     /**
@@ -58,23 +71,4 @@ class CreateEventFragment : Fragment() {
         (binding.eventTagAtv as? AutoCompleteTextView)?.setAdapter(adapter)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CreateEventFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CreateEventFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
