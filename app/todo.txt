@@ -224,3 +224,17 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         review : 光标和选中状态的颜色 TextInputLayout中直接用的ColorPrimary 目前没有找到更改的方法
 
     再考虑弄一下配色 现在黑白的配色方案 会带来不少的问题
+
+4-2
+----------
+    前面几天有点懈怠了，主要因为和小董吵架感到莫名得失落，鲁吉成那儿也是老油条了。道理都想得很明白了，万事只有靠自己不断悟道
+只是有一点阶段性得沉寂。接下来继续好好完善OneDay，做一个有产品理念的程序员。
+
+    修改了TextInputLayout 会选取colorPrimary 做为光标和下划线得颜色。
+    tips:
+        1. TextInputLayout 和 TextInputEditText 得属性需要分开去编写 各管各的
+        2. 对光标 textCursorDrawable可以对其进行控制
+        3. colorControlActivated 对光标得工资没有生效
+    To-Do:
+        1. 长按后弹出的选择颜色为colorPrimary []
+
