@@ -3,7 +3,6 @@ package com.knight.oneday.nav
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.knight.oneday.R
-import com.knight.oneday.data.EventTag
 import com.knight.oneday.utilities.getString
 
 object NavigationModel {
@@ -44,12 +43,15 @@ object NavigationModel {
 
     private val _navigationList: MutableLiveData<List<NavigationModelItem>> = MutableLiveData()
 
+
     val navigationList: LiveData<List<NavigationModelItem>>
         get() = _navigationList
 
     init {
         postListUpdate()
     }
+
+    fun getNavTagString() = navigationTags.map { it.eventTag }
 
     fun setNavigationMenuItemChecked(id: Int): Boolean {
         var updated = false

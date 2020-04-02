@@ -83,6 +83,27 @@
                         android:textCursorDrawable="@drawable/cursor_edit" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/event_tag_input"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu.Overlay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:hint="@string/event_tag_hint"
+                    app:layout_constraintEnd_toEndOf="@id/right"
+                    app:layout_constraintStart_toStartOf="@id/left"
+                    app:layout_constraintTop_toBottomOf="@id/event_overview_input"
+                    app:shapeAppearance="@style/ShapeAppearance.MyTheme.MediumComponent.TextInputLayout">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/event_tag_atv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:maxEms="2"
+                        android:textCursorDrawable="@drawable/cursor_edit" />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
