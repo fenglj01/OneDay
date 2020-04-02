@@ -71,6 +71,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_16"
                     android:hint="@string/event_overview_hint"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="11"
                     app:layout_constraintEnd_toEndOf="@id/right"
                     app:layout_constraintStart_toStartOf="@id/left"
                     app:layout_constraintTop_toBottomOf="@id/close_iv"
@@ -104,6 +106,28 @@
                         android:textCursorDrawable="@drawable/cursor_edit" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/event_note_input"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Overlay"
+                    android:layout_width="0dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:gravity="top"
+                    android:hint="@string/hint_input_event_note"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="200"
+                    app:layout_constraintEnd_toEndOf="@id/right"
+                    app:layout_constraintStart_toStartOf="@id/left"
+                    app:layout_constraintTop_toBottomOf="@id/event_tag_input"
+                    app:shapeAppearance="@style/ShapeAppearance.MyTheme.MediumComponent.TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="top"
+                        android:textCursorDrawable="@drawable/cursor_edit" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

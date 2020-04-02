@@ -239,4 +239,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         1. 长按后弹出的选择颜色为colorPrimary []
         2. 下拉输入框 末尾的按钮 颜色在点击后会变为colorPrimary []
 
+    color上 可以通过color selector来完成很多操作
+
+
 
