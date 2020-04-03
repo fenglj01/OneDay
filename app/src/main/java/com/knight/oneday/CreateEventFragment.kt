@@ -55,7 +55,6 @@ class CreateEventFragment : Fragment() {
             }
             eventDateTv.singleClick {
                 it.getMaterialDatePickerBuilder()
-                    .setTitleText("选择日期")
                     .build()
                     .show(parentFragmentManager,"")
             }
