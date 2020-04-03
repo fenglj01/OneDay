@@ -1,5 +1,8 @@
 package com.knight.oneday.utilities
 
+import android.annotation.SuppressLint
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -47,3 +50,9 @@ object TimeUtils {
 }
 
 data class TimeInterval(val startTime: Calendar, val endTime: Calendar)
+
+@SuppressLint("SimpleDateFormat")
+fun Long.timeMillsFormat(): String {
+    val format = SimpleDateFormat("yyyy年M月d日")
+    return format.format(this)
+}

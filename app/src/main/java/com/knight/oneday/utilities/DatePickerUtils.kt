@@ -30,7 +30,7 @@ fun View.getMaterialDatePickerBuilder(
     validationChoice: Int = CALENDAR_VALIDATION_TODAY_FORWARD
 ): MaterialDatePicker.Builder<*> {
     // 当前时间
-    val todayMills = MaterialDatePicker.todayInUtcMilliseconds()
+    val todayMills = System.currentTimeMillis()
     return if (selectionMode == SELECTION_MODEL_DATE) {
         val builder = MaterialDatePicker.Builder.datePicker()
         builder.setTitleText(selectionTitle)

@@ -7,11 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
+import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.getMaterialDatePickerBuilder
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.viewmodels.CreateEventViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +29,16 @@ class CreateEventFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var binding: FragmentCreateEventBinding
+
+    private val createViewModel: CreateEventViewModel by viewModels {
+        InjectorUtils.createEventViewModelFactory(
+            requireContext()
+        )
+    }
+
+    private val datePicker: MaterialDatePicker<*> by lazy {
+        binding.root.getMaterialDatePickerBuilder().build()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +54,14 @@ class CreateEventFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCreateEventBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.viewModel = createViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initDropMenu()
         initListener()
     }
@@ -54,10 +72,12 @@ class CreateEventFragment : Fragment() {
                 findNavController().navigateUp()
             }
             eventDateTv.singleClick {
-                it.getMaterialDatePickerBuilder()
-                    .build()
-                    .show(parentFragmentManager,"")
+                datePicker.show(parentFragmentManager, "")
             }
+        }
+        datePicker.addOnPositiveButtonClickListener {
+            binding.eventDateTv.text = datePicker.headerText
+            datePicker.selection
         }
     }
 

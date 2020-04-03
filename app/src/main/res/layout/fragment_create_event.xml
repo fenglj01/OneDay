@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.knight.oneday.viewmodels.CreateEventViewModel" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -60,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_one_day_date"
                     android:gravity="center_vertical"
-                    android:text="@string/create_date"
+                    android:text="@{viewModel.todayStr}"
                     android:textAppearance="@style/TextAppearance.MyTheme.Body1"
                     app:layout_constraintBottom_toBottomOf="@+id/close_iv"
                     app:layout_constraintStart_toEndOf="@id/close_iv"
