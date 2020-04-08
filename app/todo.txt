@@ -246,6 +246,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     2.实现转场动画
     3.实现创建功能
     4.编辑到发送按钮的动画
-
-
+4-8
+----------
+    1.Dribbble 上居然有好的动画开源酷
+    2.Ramotion github上发布了很多不错的动效 准备引入到我的项目中来
+    3.考虑把OneDay cut 化
 
