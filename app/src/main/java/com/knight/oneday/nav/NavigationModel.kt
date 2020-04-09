@@ -38,7 +38,11 @@ object NavigationModel {
         NavigationModelItem.NavEventTag(getString(R.string.tag_life)),
         NavigationModelItem.NavEventTag(getString(R.string.tag_work)),
         NavigationModelItem.NavEventTag(getString(R.string.tag_entertainment)),
-        NavigationModelItem.NavEventTag(getString(R.string.tag_health))
+        NavigationModelItem.NavEventTag(getString(R.string.tag_health)),
+        NavigationModelItem.NavEventTag("xx"),
+        NavigationModelItem.NavEventTag("xx"),
+        NavigationModelItem.NavEventTag("xx"),
+        NavigationModelItem.NavEventTag("xx")
     )
 
     private val _navigationList: MutableLiveData<List<NavigationModelItem>> = MutableLiveData()
@@ -52,6 +56,8 @@ object NavigationModel {
     }
 
     fun getNavTagString() = navigationTags.map { it.eventTag }
+
+    fun getNavTagItems() = navigationTags
 
     fun setNavigationMenuItemChecked(id: Int): Boolean {
         var updated = false

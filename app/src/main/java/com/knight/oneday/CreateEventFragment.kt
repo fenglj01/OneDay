@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.transition.MaterialContainerTransform
+import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.InjectorUtils
@@ -53,7 +54,6 @@ class CreateEventFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initDropMenu()
         initListener()
         startTransitions()
@@ -78,9 +78,17 @@ class CreateEventFragment : Fragment() {
      * 下拉按钮 (输入内容后可以新建保存)
      */
     private fun initDropMenu() {
-        val items = NavigationModel.getNavTagString()
+        /*val items = NavigationModel.getNavTagString()
         val adapter = ArrayAdapter(requireContext(), R.layout.list_text_item, items)
-        (binding.eventTagAtv as? AutoCompleteTextView)?.setAdapter(adapter)
+        *//*(binding.eventTagAtv as? AutoCompleteTextView)?.setAdapter(adapter)*/
+        val tagItems = NavigationModel.getNavTagItems()
+        binding.eventTagPickerList.setAdapter(
+            TagPickerAdapter(
+                requireContext(),
+                R.layout.event_tag_cell_list_item_layout,
+                tagItems
+            )
+        )
     }
 
     private fun prepareTransitions() {

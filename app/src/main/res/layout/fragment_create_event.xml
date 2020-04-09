@@ -11,7 +11,7 @@
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:id="@+id/create_event_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -92,7 +92,28 @@
                         android:textCursorDrawable="@drawable/cursor_edit" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <com.ramotion.directselect.DSListView
+                    android:id="@+id/event_tag_picker_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white_50"
+                    android:visibility="invisible"
+                    app:picker_box_view="@id/event_tag_picker"
+                    app:selector_background="@drawable/tag_picker_bg_list_selector"
+                    app:scale_animations="true"
+                    app:scale_animations_factor="1.15"
+                    app:scale_animations_pivot_center="true"
+                    app:selected_index="2" />
+
+                <com.knight.oneday.views.EventTagPickerBox
+                    android:id="@+id/event_tag_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tag_picker_box_background"
+                    app:layout_constraintEnd_toEndOf="@id/right"
+                    app:layout_constraintStart_toStartOf="@id/left"
+                    app:layout_constraintTop_toBottomOf="@id/event_overview_input" />
+                <!--<com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/event_tag_input"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu.Overlay"
                     android:layout_width="0dp"
@@ -111,7 +132,7 @@
                         android:inputType="none"
                         android:maxEms="2"
                         android:textCursorDrawable="@drawable/cursor_edit" />
-                </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/event_note_input"
@@ -125,7 +146,7 @@
                     app:counterMaxLength="200"
                     app:layout_constraintEnd_toEndOf="@id/right"
                     app:layout_constraintStart_toStartOf="@id/left"
-                    app:layout_constraintTop_toBottomOf="@id/event_tag_input"
+                    app:layout_constraintTop_toBottomOf="@id/event_tag_picker"
                     app:shapeAppearance="@style/ShapeAppearance.MyTheme.MediumComponent.TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -139,5 +160,5 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-    </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
 </layout>

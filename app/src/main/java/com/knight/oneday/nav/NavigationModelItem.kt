@@ -3,6 +3,7 @@ package com.knight.oneday.nav
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.DiffUtil
+import com.knight.oneday.R
 import com.knight.oneday.data.EventTag
 import com.knight.oneday.data.EventTagDiff
 
@@ -24,7 +25,8 @@ sealed class NavigationModelItem {
     data class NavDivider(val title: String) : NavigationModelItem()
 
     // 事件分类
-    data class NavEventTag(val eventTag: EventTag) : NavigationModelItem()
+    data class NavEventTag(val eventTag: EventTag, @DrawableRes var icon: Int = R.drawable.ic_one_day_tag) :
+        NavigationModelItem()
 
     // 相同区分
     object NavModeItemDiff : DiffUtil.ItemCallback<NavigationModelItem>() {
