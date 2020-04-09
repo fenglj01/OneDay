@@ -77,6 +77,8 @@ dependencies {
     // Dynamic Feature Module Support
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
 
+    implementation "com.ramotion.directselect:direct-select:$directSelectVersion"
+
     // Testing Navigation
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     implementation "androidx.preference:preference-ktx:$preference_version"
