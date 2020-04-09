@@ -10,13 +10,11 @@ import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
-import com.google.android.material.animation.AnimationUtils.lerp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.knight.oneday.R
 import com.knight.oneday.databinding.FragmentBottomNavDrawerBinding
-import com.knight.oneday.utilities.lerp
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.themeColor
 import com.knight.oneday.views.themeInterpolator
@@ -207,7 +205,7 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
             addUpdateListener { sandwichProgress = animatedValue as Float }
             interpolator = sandwichInterp
             duration = (abs(newProgress - initialProgress) *
-                    resources.getInteger(R.integer.reply_motion_duration_medium)).toLong()
+                    resources.getInteger(R.integer.one_day_motion_duration_medium)).toLong()
         }
         sandwichAnim?.start()
     }

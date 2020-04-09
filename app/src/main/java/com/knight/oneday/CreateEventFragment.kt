@@ -1,6 +1,7 @@
 package com.knight.oneday
 
 import android.os.Bundle
+import android.transition.Slide
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,22 +12,16 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.getMaterialDatePickerBuilder
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.CreateEventViewModel
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.knight.oneday.views.themeInterpolator
 
 class CreateEventFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     private lateinit var binding: FragmentCreateEventBinding
 
@@ -42,10 +37,7 @@ class CreateEventFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        prepareTransitions()
     }
 
     override fun onCreateView(
@@ -64,6 +56,7 @@ class CreateEventFragment : Fragment() {
 
         initDropMenu()
         initListener()
+        startTransitions()
     }
 
     private fun initListener() {
@@ -88,6 +81,28 @@ class CreateEventFragment : Fragment() {
         val items = NavigationModel.getNavTagString()
         val adapter = ArrayAdapter(requireContext(), R.layout.list_text_item, items)
         (binding.eventTagAtv as? AutoCompleteTextView)?.setAdapter(adapter)
+    }
+
+    private fun prepareTransitions() {
+        postponeEnterTransition()
+    }
+
+    private fun startTransitions() {
+        binding.executePendingBindings()
+
+        enterTransition = MaterialContainerTransform(requireContext()).apply {
+            startView = requireActivity().findViewById(R.id.fab)
+            endView = binding.createEventCardView
+            duration = resources.getInteger(R.integer.one_day_motion_default_large).toLong()
+            interpolator = requireContext().themeInterpolator(R.attr.motionInterpolatorPersistent)
+        }
+
+        returnTransition = Slide().apply {
+            duration = resources.getInteger(R.integer.one_day_motion_duration_medium).toLong()
+            interpolator = requireContext().themeInterpolator(R.attr.motionInterpolatorOutgoing)
+        }
+
+        startPostponedEnterTransition()
     }
 
 }
