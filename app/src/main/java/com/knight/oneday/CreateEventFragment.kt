@@ -49,12 +49,13 @@ class CreateEventFragment : Fragment() {
         binding = FragmentCreateEventBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = createViewModel
+        initDropMenu()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initDropMenu()
+        //initDropMenu()
         initListener()
         startTransitions()
     }
