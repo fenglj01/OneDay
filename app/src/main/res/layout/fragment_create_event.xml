@@ -18,11 +18,11 @@
         android:background="?android:colorBackground"
         android:clipToPadding="false"
         android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:paddingHorizontal="@dimen/dp_4"
         android:paddingTop="@dimen/dp_8"
         app:paddingTopSystemWindowInsets="@{true}"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
         tools:context=".CreateEventFragment">
 
         <com.google.android.material.card.MaterialCardView
@@ -101,11 +101,11 @@
                     android:background="@color/white_50"
                     android:visibility="invisible"
                     app:picker_box_view="@id/event_tag_picker"
-                    app:selector_background="@drawable/tag_picker_bg_list_selector"
                     app:scale_animations="true"
                     app:scale_animations_factor="1.15"
                     app:scale_animations_pivot_center="true"
-                    app:selected_index="1" />
+                    app:selected_index="1"
+                    app:selector_background="@drawable/tag_picker_bg_list_selector" />
 
                 <com.knight.oneday.views.EventTagPickerBox
                     android:id="@+id/event_tag_picker"
