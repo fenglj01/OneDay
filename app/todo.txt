@@ -266,3 +266,37 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 1. 首次进入选择tag 如果不点击日期选择 或者触发一下其它情况的话 没有办法正常显示
     一开始以为是焦掉的问题 后面发现不是
 2. 发现弹出picker后 输入框 还能获取到焦掉 是真的扯蛋
+
+4-10
+----------
+    1.解决创建选择bug
+    2.优化选择器的配色
+    3.考虑弄一下多颜色的分类icon
+在选择器更换为Java代码后还是不能达到效果。代码上与Kotlin和Java无关
+之后在新起的一个Fragment中 也不能正常的展示 还是得触发了Dialog后才能触发
+排除
+    1. Kotlin 和 Java代码的不一样
+    2. Fragment 中 触发相关
+大概找到问题所在了
+    当使用了事务进行Fragment的跳转后 就出现这个问题 也就是直接在Fragment中使用没问题 replace就会出现问题
+    最终找到了问题所在
+    在初始化的时候 需要触发 onWindowFocusChange 的方法 在其中作相关处理操作 比如默认选中项这些
+    如果是直接在第一个Fragment中直接引用DSListView 那么因为焦点从系统切换到APP中来 那么会达到效果，但是如果从第一个Fragment
+    跳转到第二个Fragment中 onWindowFocusChange 并未触发
+
+    因为是单Activity应用 所以 onWindowFocusChange 只会在应用进入时呗触发一次 之后就不会再触发了 而DSListView 主要
+    问题就是在 onWindowFocusChange 进行相关的初始化 其它地方呢我又不能很好的获取到PickerBox的高度位置大小
+
+
+大致的解决方案
+    1. 在init手动重置一下onWindowFocusChange 但是会出现计算高度有误的情况 不能正确显示 和滑动 (方案不可行)
+
+    这个控件可能只是一个Demo控件 没有考虑的十分周全 里面相关的计算都已经做好了 可能需要自己再扩展添加一下
+
+最终的解决方案
+    考虑重写
+
+
+4-11
+----------
+    首页列表的展开收起效果

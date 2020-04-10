@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -94,6 +95,7 @@
                         android:textCursorDrawable="@drawable/cursor_edit" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+
                 <com.ramotion.directselect.DSListView
                     android:id="@+id/event_tag_picker_list"
                     android:layout_width="match_parent"
@@ -107,7 +109,7 @@
                     app:selected_index="1"
                     app:selector_background="@drawable/tag_picker_bg_list_selector" />
 
-                <com.knight.oneday.views.EventTagPickerBox
+                <com.knight.oneday.views.EventTagPickerBoxJava
                     android:id="@+id/event_tag_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

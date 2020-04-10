@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.adapters.TagPickerAdapter
+import com.knight.oneday.adapters.TagPickerAdapterJava
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.InjectorUtils
@@ -78,17 +79,15 @@ class CreateEventFragment : Fragment() {
      * 下拉按钮 (输入内容后可以新建保存)
      */
     private fun initDropMenu() {
-        /*val items = NavigationModel.getNavTagString()
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_text_item, items)
-        *//*(binding.eventTagAtv as? AutoCompleteTextView)?.setAdapter(adapter)*/
         val tagItems = NavigationModel.getNavTagItems()
         binding.eventTagPickerList.setAdapter(
-            TagPickerAdapter(
+            TagPickerAdapterJava(
                 requireContext(),
                 R.layout.event_tag_cell_list_item_layout,
                 tagItems
             )
         )
+        binding.eventTagPickerList.selectedIndex = 2
     }
 
     private fun prepareTransitions() {

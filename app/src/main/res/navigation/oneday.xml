@@ -52,6 +52,8 @@
         <action
             android:id="@+id/action_miniFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
+        <action android:id="@+id/action_miniFragment_to_customFragment"
+            app:destination="@id/customFragment"/>
     </fragment>
     <fragment
         android:id="@+id/standardFragment"
