@@ -289,13 +289,16 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
 
 大致的解决方案
-    1. 在init手动重置一下onWindowFocusChange 但是会出现计算高度有误的情况 不能正确显示 和滑动 (方案不可行)
+    1. 在init手动重置一下 onWindowFocusChange 但是会出现计算高度有误的情况 不能正确显示 和滑动 (方案不可行)
 
     这个控件可能只是一个Demo控件 没有考虑的十分周全 里面相关的计算都已经做好了 可能需要自己再扩展添加一下
 
 最终的解决方案
     考虑重写
 
+    最快速的见效方案 再OnDraw中进行一下初始化 (但是默认选择项没有显示出来其它都是正常的)
+    这里最直接的原因是因为 Activity 的生命周期问题  onWindowFocusChange 甚至是在onDraw以后才触发 但是它的触发规律
+    在Fragment 或者说单Activity中是不能起到很好的作用的。
 
 4-11
 ----------
