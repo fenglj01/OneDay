@@ -1,2 +1,2 @@
 rootProject.name='OneDay'
-include ':app'
+include ':app', ':direct-select'
