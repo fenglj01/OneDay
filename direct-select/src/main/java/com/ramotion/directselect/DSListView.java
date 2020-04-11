@@ -3,6 +3,7 @@ package com.ramotion.directselect;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
@@ -138,10 +139,7 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
 
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasWindowFocus) {
-        super.onWindowFocusChanged(hasWindowFocus);
-
+    private void initPickerList() {
         // Init listView here, because we need to do some calculations when listView already has height
         if (pickerInitialized || null == adapter)
             return;
@@ -207,6 +205,18 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
     }
 
     @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        initPickerList();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        initPickerList();
+    }
+
+    @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (null == this.pickerBox && this.pickerBoxResId > 0)
@@ -214,7 +224,8 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
     }
 
     private void hideListView() {
-        if (!readyToHide || animationInProgress || scrollInProgress || !listViewIsShown || adapter == null) return;
+        if (!readyToHide || animationInProgress || scrollInProgress || !listViewIsShown || adapter == null)
+            return;
 
         readyToHide = false;
         animationInProgress = true;
