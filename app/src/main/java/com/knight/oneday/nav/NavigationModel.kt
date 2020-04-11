@@ -35,14 +35,11 @@ object NavigationModel {
     )
 
     private val navigationTags = mutableListOf(
+        NavigationModelItem.NavEventTag(getString(R.string.tag_no_tag)),
         NavigationModelItem.NavEventTag(getString(R.string.tag_life)),
         NavigationModelItem.NavEventTag(getString(R.string.tag_work)),
         NavigationModelItem.NavEventTag(getString(R.string.tag_entertainment)),
-        NavigationModelItem.NavEventTag(getString(R.string.tag_health)),
-        NavigationModelItem.NavEventTag("xx"),
-        NavigationModelItem.NavEventTag("xx"),
-        NavigationModelItem.NavEventTag("xx"),
-        NavigationModelItem.NavEventTag("xx")
+        NavigationModelItem.NavEventTag(getString(R.string.tag_health))
     )
 
     private val _navigationList: MutableLiveData<List<NavigationModelItem>> = MutableLiveData()

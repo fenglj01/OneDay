@@ -29,5 +29,6 @@
     <dimen name="dp_4">4dp</dimen>
     <dimen name="dp_2">2dp</dimen>
     <dimen name="dp_12">12dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
 
 </resources>

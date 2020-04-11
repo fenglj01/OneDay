@@ -300,6 +300,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     这里最直接的原因是因为 Activity 的生命周期问题  onWindowFocusChange 甚至是在onDraw以后才触发 但是它的触发规律
     在Fragment 或者说单Activity中是不能起到很好的作用的。
 
-4-11
+4-11 12
 ----------
-    首页列表的展开收起效果
+    1. 解决了DSListView的初始化问题 但是在pickeBox的初始化联动上面并没有做到 这可能会影响我后期 想对默认tag选择项的
+实现上带来一些问题 不过现在默认让它选择的是第一个吧
+    2. 修改其配色方案问题
+        2.1 修改空间颜色时 因为加了透明度的原因 会导致layer-list的显示出现穿透

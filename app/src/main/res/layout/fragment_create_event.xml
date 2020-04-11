@@ -100,7 +100,7 @@
                     android:id="@+id/event_tag_picker_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white_50"
+                    android:background="?attr/colorSurface"
                     android:visibility="invisible"
                     app:picker_box_view="@id/event_tag_picker"
                     app:scale_animations="true"
@@ -113,30 +113,12 @@
                     android:id="@+id/event_tag_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
                     android:background="@drawable/tag_picker_box_background"
                     app:layout_constraintEnd_toEndOf="@id/right"
                     app:layout_constraintStart_toStartOf="@id/left"
                     app:layout_constraintTop_toBottomOf="@id/event_overview_input" />
-                <!--<com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/event_tag_input"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu.Overlay"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_16"
-                    android:hint="@string/event_tag_hint"
-                    app:layout_constraintEnd_toEndOf="@id/right"
-                    app:layout_constraintStart_toStartOf="@id/left"
-                    app:layout_constraintTop_toBottomOf="@id/event_overview_input"
-                    app:shapeAppearance="@style/ShapeAppearance.MyTheme.MediumComponent.TextInputLayout">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/event_tag_atv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:maxEms="2"
-                        android:textCursorDrawable="@drawable/cursor_edit" />
-                </com.google.android.material.textfield.TextInputLayout>-->
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/event_note_input"

@@ -87,7 +87,7 @@ class CreateEventFragment : Fragment() {
                 tagItems
             )
         )
-        binding.eventTagPickerList.selectedIndex = 2
+        binding.eventTagPickerList.selectedIndex = 0
     }
 
     private fun prepareTransitions() {

@@ -1,5 +1,6 @@
 package com.knight.oneday
 
+import android.annotation.SuppressLint
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             setShowMotionSpecResource(R.animator.fab_show)
             setHideMotionSpecResource(R.animator.fab_hide)
             singleClick {
-                navController.navigate(R.id.action_miniFragment_to_customFragment)
+                navController.navigate(R.id.action_miniFragment_to_createEventFragment)
             }
         }
         bottomNavDrawer.apply {
@@ -109,6 +110,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     /**
      * 监听主题切换状态
      */
+    @SuppressLint("WrongConstant")
     private fun observeUiMode() {
         (OneDayApp.instance() as OneDayApp).themePreference.uiModeLive.observe(this) { uiMode ->
             when (uiMode) {
