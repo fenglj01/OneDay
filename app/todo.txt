@@ -312,10 +312,10 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         1.1 edtTextView 优化 √
         1.2 选择tag icon 优化 √ 比较满意
         1.3 选择tag 背景 优化 √
-        1.4 编辑的动态按钮制作
-        1.5 封装内容编辑器
-        1.6 封装重要程度选择器
-        1.7 保证Tag 选择时 键盘不回触发弹出 也就是EditText 不回获取到焦点 √
+        1.4 编辑的动态按钮制作 √
+            在实现上面 参看了之前的动画icon的制作 使用了imageState 制作了animate-selector 来完成这个样的效果,比自
+            定义View更加高级和有效,考虑还是做一下封装把点击事件和editText的文字监听做到里面去
+        1.5 保证Tag 选择时 键盘不回触发弹出 也就是EditText 不回获取到焦点 √
             增加了onShow Hide 的回调
             ★★★
             一开始考虑使用遍历子控件的设置focusAble 和 clickAble来做 能达到目的 但是对DSListView 依然有多点触控带来
@@ -326,3 +326,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     3. 考虑富文本方案 问题
 
     自由派这个网站做得感觉比较不错
+4-14
+-----------
+    1. 封装SendAnimImageButton
+    2. 封装内容编辑器
+    3. 封装重要程度选择器
+    4. codeReview 一下

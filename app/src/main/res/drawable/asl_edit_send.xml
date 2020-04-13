@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/edit"
+        android:drawable="@drawable/ic_one_day_edit"
+        android:state_activated="false" />
+
+    <item
+        android:id="@+id/send"
+        android:drawable="@drawable/ic_one_day_send"
+        android:state_activated="true" />
+
+    <transition
+        android:drawable="@drawable/avd_edit_to_send"
+        android:fromId="@id/edit"
+        android:toId="@id/send" />
+
+    <transition
+        android:drawable="@drawable/avd_send_to_edit"
+        android:fromId="@id/send"
+        android:toId="@id/edit" />
+
+</animated-selector>

@@ -100,7 +100,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="@dimen/dp_12"
-                    android:src="@drawable/ic_one_day_send"
+                    android:src="@drawable/asl_edit_send"
                     android:tint="?attr/colorSecondary"
                     app:layout_constraintBottom_toBottomOf="@id/event_overview_edt"
                     app:layout_constraintEnd_toEndOf="@id/right"
