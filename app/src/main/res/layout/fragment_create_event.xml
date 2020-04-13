@@ -74,27 +74,49 @@
                     app:layout_constraintStart_toEndOf="@id/close_iv"
                     app:layout_constraintTop_toTopOf="@+id/close_iv" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/event_overview_input"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Overlay"
+
+                <EditText
+                    android:id="@+id/event_overview_edt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_16"
+                    android:background="@android:color/transparent"
                     android:hint="@string/event_overview_hint"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="11"
-                    app:layout_constraintEnd_toEndOf="@id/right"
+                    android:maxLength="11"
+                    android:minHeight="@dimen/dp_48"
+                    android:paddingHorizontal="@dimen/dp_8"
+                    android:paddingVertical="@dimen/dp_8"
+                    android:layout_marginEnd="@dimen/dp_8"
+                    app:layout_constraintEnd_toStartOf="@id/event_send_edit_ib"
                     app:layout_constraintStart_toStartOf="@id/left"
-                    app:layout_constraintTop_toBottomOf="@id/close_iv"
-                    app:shapeAppearance="@style/ShapeAppearance.MyTheme.MediumComponent.TextInputLayout">
+                    app:layout_constraintTop_toBottomOf="@id/close_iv" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/event_overview_edt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textCursorDrawable="@drawable/cursor_edit" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/event_send_edit_ib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/actionBarItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/dp_12"
+                    app:layout_constraintBottom_toBottomOf="@id/event_overview_edt"
+                    app:layout_constraintEnd_toEndOf="@id/right"
+                    app:layout_constraintStart_toEndOf="@id/event_overview_edt"
+                    app:layout_constraintTop_toTopOf="@id/event_overview_edt"
+                    android:tint="?attr/colorSecondary"
+                    android:src="@drawable/ic_one_day_send"/>
 
+                <ImageView
+                    android:id="@+id/subject_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/event_send_edit_ib"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginHorizontal="@dimen/dp_16"
+                    android:background="@drawable/divider"
+                    app:backgroundTint="@color/color_on_surface_divider" />
 
                 <com.ramotion.directselect.DSListView
                     android:id="@+id/event_tag_picker_list"
@@ -114,10 +136,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_16"
-                    android:background="@drawable/tag_picker_box_background"
                     app:layout_constraintEnd_toEndOf="@id/right"
                     app:layout_constraintStart_toStartOf="@id/left"
-                    app:layout_constraintTop_toBottomOf="@id/event_overview_input" />
+                    app:layout_constraintTop_toBottomOf="@id/subject_divider" />
+
+                <ImageView
+                    android:id="@+id/tag_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/event_tag_picker"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginHorizontal="@dimen/dp_16"
+                    android:background="@drawable/divider"
+                    app:backgroundTint="@color/color_on_surface_divider" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -132,7 +165,7 @@
                     app:counterMaxLength="200"
                     app:layout_constraintEnd_toEndOf="@id/right"
                     app:layout_constraintStart_toStartOf="@id/left"
-                    app:layout_constraintTop_toBottomOf="@id/event_tag_picker"
+                    app:layout_constraintTop_toBottomOf="@id/tag_divider"
                     app:shapeAppearance="@style/ShapeAppearance.MyTheme.MediumComponent.TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -140,6 +173,8 @@
                         android:layout_height="match_parent"
                         android:gravity="top"
                         android:textCursorDrawable="@drawable/cursor_edit" />
+
+
 
                 </com.google.android.material.textfield.TextInputLayout>
 
