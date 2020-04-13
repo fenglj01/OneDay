@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -61,6 +62,7 @@ class CreateEventFragment : Fragment() {
     private fun initListener() {
         binding.apply {
             closeIv.singleClick {
+                hideSoftInput()
                 findNavController().navigateUp()
             }
             eventDateTv.singleClick {
@@ -90,7 +92,7 @@ class CreateEventFragment : Fragment() {
             setStatusChangedListener(object : DSListView.OnDSListViewStatusChangedListener {
                 override fun onShow() {
                     setContentSplitMotionEventEnable(true)
-                    hideSoftInputByDSListOnShow()
+                    hideSoftInput()
                 }
 
                 override fun onHide() {
@@ -106,7 +108,8 @@ class CreateEventFragment : Fragment() {
         binding.eventCreateContent.isMotionEventSplittingEnabled = enable
     }
 
-    private fun hideSoftInputByDSListOnShow() {
+
+    private fun hideSoftInput() {
         getInputManagerService().hideSoftInputFromWindow(
             binding.eventCreateContent.windowToken,
             HIDE_SOFT_INPUT_TAG

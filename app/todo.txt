@@ -321,6 +321,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
             一开始考虑使用遍历子控件的设置focusAble 和 clickAble来做 能达到目的 但是对DSListView 依然有多点触控带来
             的麻烦
             最后灵活的控制了 splitMotionEventEnable 来达到最佳的效果
+        1.8 close 按钮 触发隐藏软键盘 √
     2. 步骤的添加方案
     3. 考虑富文本方案 问题
 
