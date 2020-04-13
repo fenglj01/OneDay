@@ -309,20 +309,19 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 4-13
 ----------
     1. 创建界面优化
-        1.1 edtTextView 优化 1
+        1.1 edtTextView 优化 √
         1.2 选择tag icon 优化 (dyy 正在做)
-        1.3 选择tag 背景 优化 1
+        1.3 选择tag 背景 优化 √
         1.4 编辑的动态按钮制作
         1.5 封装内容编辑器
         1.6 封装重要程度选择器
-        1.7 保证Tag 选择时 键盘不回触发弹出 也就是EditText 不回获取到焦点 1
+        1.7 保证Tag 选择时 键盘不回触发弹出 也就是EditText 不回获取到焦点 √
             增加了onShow Hide 的回调
             ★★★
             一开始考虑使用遍历子控件的设置focusAble 和 clickAble来做 能达到目的 但是对DSListView 依然有多点触控带来
             的麻烦
             最后灵活的控制了 splitMotionEventEnable 来达到最佳的效果
-    2. 编辑 完成按钮动画
-    3. 步骤的添加方案
-    4. 考虑富文本方案 问题
+    2. 步骤的添加方案
+    3. 考虑富文本方案 问题
 
     自由派这个网站做得感觉比较不错
