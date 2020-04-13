@@ -26,23 +26,36 @@
             type="com.knight.oneday.nav.NavBottomAdapter.NavigationAdapterListener" />
     </data>
 
-    <TextView
-        android:id="@+id/nav_item_title"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/navigation_drawer_menu_item_height"
-        android:background="?attr/selectableItemBackground"
-        android:drawablePadding="@dimen/dp_32"
-        android:ellipsize="end"
-        android:gravity="center_vertical|start"
-        android:lines="1"
-        android:onClick="@{() -> navListener.onNavEventTagClicked(navEventTag)}"
-        android:paddingLeft="@dimen/dp_32"
-        android:paddingRight="@dimen/dp_32"
-        android:text="@{navEventTag.eventTag}"
-        android:textAppearance="?attr/textAppearanceSubtitle1"
-        android:textColor="@color/color_on_primary_surface_emphasis_medium"
-        app:drawableStart="@{navEventTag.icon}"
-        app:drawableTint="@color/color_on_primary_surface_emphasis_medium"
-        tools:text="Pine Elementary" />
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/nav_item_icon"
+            android:layout_width="@dimen/chip_icon_diameter"
+            android:layout_height="@dimen/chip_icon_diameter"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp_6"
+            android:layout_marginStart="@dimen/dp_28"
+            app:srcDrawable="@{navEventTag.icon}" />
+
+        <TextView
+            android:id="@+id/nav_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/nav_item_icon"
+            android:ellipsize="end"
+            android:gravity="center_vertical|start"
+            android:lines="1"
+            android:onClick="@{() -> navListener.onNavEventTagClicked(navEventTag)}"
+            android:paddingLeft="@dimen/dp_32"
+            android:paddingRight="@dimen/dp_32"
+            android:text="@{navEventTag.eventTag}"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textColor="@color/color_on_primary_surface_emphasis_medium"
+            tools:text="Pine Elementary" />
+    </RelativeLayout>
+
 
 </layout>

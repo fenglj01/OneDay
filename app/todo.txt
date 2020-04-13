@@ -310,7 +310,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 ----------
     1. 创建界面优化
         1.1 edtTextView 优化 √
-        1.2 选择tag icon 优化 (dyy 正在做)
+        1.2 选择tag icon 优化 √ 比较满意
         1.3 选择tag 背景 优化 √
         1.4 编辑的动态按钮制作
         1.5 封装内容编辑器
