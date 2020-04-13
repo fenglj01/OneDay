@@ -44,10 +44,10 @@ class CreateEventFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentCreateEventBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = createViewModel
+
         return binding.root
     }
 
@@ -64,7 +64,7 @@ class CreateEventFragment : Fragment() {
                 findNavController().navigateUp()
             }
             eventDateTv.singleClick {
-                datePicker.show(parentFragmentManager, "")
+                datePicker.show(parentFragmentManager, DATE_PICKER_TAG)
             }
         }
         datePicker.addOnPositiveButtonClickListener {
@@ -73,9 +73,6 @@ class CreateEventFragment : Fragment() {
         }
     }
 
-    /**
-     * 下拉按钮 (输入内容后可以新建保存)
-     */
     private fun initDropMenu() {
         val tagItems = NavigationModel.getNavTagItems()
         with(binding.eventTagPickerList) {
@@ -140,6 +137,7 @@ class CreateEventFragment : Fragment() {
 
     companion object {
         const val HIDE_SOFT_INPUT_TAG = 0
+        const val DATE_PICKER_TAG = "create_event_date_picker"
     }
 
 }
