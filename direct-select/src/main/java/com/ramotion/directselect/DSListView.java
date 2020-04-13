@@ -75,6 +75,9 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
     private int selectorBgColor = Color.parseColor("#116b2b66");
     private int selectorBgDrawable;
 
+    // Show Hide Listener
+    private OnDSListViewStatusChangedListener statusChangedListener;
+
     public DSListView(Context context) {
         this(context, null);
     }
@@ -226,7 +229,7 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
     private void hideListView() {
         if (!readyToHide || animationInProgress || scrollInProgress || !listViewIsShown || adapter == null)
             return;
-
+        if (this.statusChangedListener != null) statusChangedListener.onHide();
         readyToHide = false;
         animationInProgress = true;
         listView.setEnabled(false);
@@ -262,6 +265,7 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
 
     private void showListView() {
         if (animationInProgress || scrollInProgress || listViewIsShown) return;
+        if (this.statusChangedListener != null) statusChangedListener.onShow();
         listView.setEnabled(true);
         animationInProgress = true;
 
@@ -472,6 +476,16 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
             }
 
         }
+    }
+
+    public void setStatusChangedListener(OnDSListViewStatusChangedListener statusChangedListener) {
+        this.statusChangedListener = statusChangedListener;
+    }
+
+    public interface OnDSListViewStatusChangedListener {
+        void onShow();
+
+        void onHide();
     }
 
 }

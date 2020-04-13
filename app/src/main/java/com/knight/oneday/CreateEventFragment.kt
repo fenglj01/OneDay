@@ -2,6 +2,7 @@ package com.knight.oneday
 
 import android.os.Bundle
 import android.transition.Slide
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import com.knight.oneday.utilities.getMaterialDatePickerBuilder
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.CreateEventViewModel
 import com.knight.oneday.views.themeInterpolator
+import com.ramotion.directselect.DSListView
 
 class CreateEventFragment : Fragment() {
 
@@ -80,14 +82,25 @@ class CreateEventFragment : Fragment() {
      */
     private fun initDropMenu() {
         val tagItems = NavigationModel.getNavTagItems()
-        binding.eventTagPickerList.setAdapter(
-            TagPickerAdapterJava(
-                requireContext(),
-                R.layout.event_tag_cell_list_item_layout,
-                tagItems
+        with(binding.eventTagPickerList) {
+            setAdapter(
+                TagPickerAdapterJava(
+                    requireContext(),
+                    R.layout.event_tag_cell_list_item_layout,
+                    tagItems
+                )
             )
-        )
-        binding.eventTagPickerList.selectedIndex = 0
+            selectedIndex = 0
+            setStatusChangedListener(object : DSListView.OnDSListViewStatusChangedListener {
+                override fun onShow() {
+                    Log.d("TAG_LIST", "show")
+                }
+
+                override fun onHide() {
+                    Log.d("TAG_LIST", "hide")
+                }
+            })
+        }
     }
 
     private fun prepareTransitions() {
