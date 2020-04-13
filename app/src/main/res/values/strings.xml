@@ -49,7 +49,7 @@
     <string name="create_title">创建</string>
     <string name="event_overview_hint">事件名</string>
     <string name="event_tag_hint">分类</string>
-    <string name="hint_input_event_note">备注</string>
+    <string name="hint_input_event_note">备注…</string>
     <string name="create_date">日期</string>
     <string name="selection_date">选择日期</string>
     <string name="tag_no_tag">无类别</string>

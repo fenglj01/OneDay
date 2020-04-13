@@ -2,23 +2,19 @@ package com.knight.oneday
 
 import android.os.Bundle
 import android.transition.Slide
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.transition.MaterialContainerTransform
-import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.adapters.TagPickerAdapterJava
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.InjectorUtils
+import com.knight.oneday.utilities.getInputManagerService
 import com.knight.oneday.utilities.getMaterialDatePickerBuilder
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.CreateEventViewModel
@@ -83,6 +79,7 @@ class CreateEventFragment : Fragment() {
     private fun initDropMenu() {
         val tagItems = NavigationModel.getNavTagItems()
         with(binding.eventTagPickerList) {
+
             setAdapter(
                 TagPickerAdapterJava(
                     requireContext(),
@@ -90,17 +87,33 @@ class CreateEventFragment : Fragment() {
                     tagItems
                 )
             )
+
             selectedIndex = 0
+
             setStatusChangedListener(object : DSListView.OnDSListViewStatusChangedListener {
                 override fun onShow() {
-                    Log.d("TAG_LIST", "show")
+                    setContentSplitMotionEventEnable(true)
+                    hideSoftInputByDSListOnShow()
                 }
 
                 override fun onHide() {
-                    Log.d("TAG_LIST", "hide")
+                    setContentSplitMotionEventEnable(false)
                 }
             })
         }
+    }
+
+    private fun setContentSplitMotionEventEnable(isShowDSListView: Boolean) {
+        val enable = !isShowDSListView
+        // 灵活的处理整个布局的多点触控问题
+        binding.eventCreateContent.isMotionEventSplittingEnabled = enable
+    }
+
+    private fun hideSoftInputByDSListOnShow() {
+        getInputManagerService().hideSoftInputFromWindow(
+            binding.eventCreateContent.windowToken,
+            HIDE_SOFT_INPUT_TAG
+        )
     }
 
     private fun prepareTransitions() {
@@ -123,6 +136,10 @@ class CreateEventFragment : Fragment() {
         }
 
         startPostponedEnterTransition()
+    }
+
+    companion object {
+        const val HIDE_SOFT_INPUT_TAG = 0
     }
 
 }
