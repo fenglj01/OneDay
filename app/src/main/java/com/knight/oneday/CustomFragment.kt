@@ -5,13 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import com.knight.oneday.adapters.TagPickerAdapterJava
-import com.knight.oneday.nav.NavigationModel
-import com.knight.oneday.nav.NavigationModelItem
-import com.knight.oneday.views.EventTagPickerBoxJava
-import com.ramotion.directselect.DSListView
-import kotlinx.android.synthetic.main.fragment_custom.*
 
 /**
  * A simple [Fragment] subclass.

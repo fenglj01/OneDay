@@ -132,7 +132,7 @@
                     app:selected_index="1"
                     app:selector_background="@drawable/tag_picker_bg_list_selector" />
 
-                <com.knight.oneday.views.EventTagPickerBoxJava
+                <com.knight.oneday.views.EventTagPickerBox
                     android:id="@+id/event_tag_picker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

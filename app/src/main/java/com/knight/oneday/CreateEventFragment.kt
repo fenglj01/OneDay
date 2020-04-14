@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
-import com.knight.oneday.adapters.TagPickerAdapterJava
+import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.InjectorUtils
@@ -106,7 +106,7 @@ class CreateEventFragment : Fragment() {
         with(binding.eventTagPickerList) {
 
             setAdapter(
-                TagPickerAdapterJava(
+                TagPickerAdapter(
                     requireContext(),
                     R.layout.event_tag_cell_list_item_layout,
                     tagItems
