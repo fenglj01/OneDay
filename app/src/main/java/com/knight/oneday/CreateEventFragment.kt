@@ -13,6 +13,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.adapters.TagPickerAdapterJava
 import com.knight.oneday.databinding.FragmentCreateEventBinding
@@ -22,6 +23,8 @@ import com.knight.oneday.utilities.getInputManagerService
 import com.knight.oneday.utilities.getMaterialDatePickerBuilder
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.viewmodels.CreateEventViewModel
+import com.knight.oneday.views.OnButtonClickListener
+import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
 
@@ -50,6 +53,7 @@ class CreateEventFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentCreateEventBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = createViewModel
@@ -66,23 +70,31 @@ class CreateEventFragment : Fragment() {
 
     private fun initListener() {
         binding.apply {
+
             closeIv.singleClick {
                 hideSoftInput()
                 findNavController().navigateUp()
             }
+
             eventDateTv.singleClick {
                 datePicker.show(parentFragmentManager, DATE_PICKER_TAG)
             }
-            eventOverviewEdt.addTextChangedListener { editAble ->
-                editAble?.run {
-                    eventSendEditIb.setImageState(
-                        if (length > 1) intArrayOf(android.R.attr.state_activated) else intArrayOf(
-                            -android.R.attr.state_activated
-                        ), true
-                    )
+
+            eventSendEditIb.setTriggerConditionByEditText(eventOverviewEdt) { editContentLength ->
+                editContentLength > 1
+            }
+
+            eventSendEditIb.onButtonClickListener = object : OnButtonClickListener {
+
+                override fun onStateOnForwardClick() {
+                    showSnackBar(eventSendEditIb, R.string.event_overview_length_hint)
+                }
+
+                override fun onStateOnReserveClick() {
                 }
             }
         }
+
         datePicker.addOnPositiveButtonClickListener {
             binding.eventDateTv.text = datePicker.headerText
             datePicker.selection

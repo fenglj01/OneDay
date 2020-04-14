@@ -328,7 +328,18 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     自由派这个网站做得感觉比较不错
 4-14
 -----------
-    1. 封装SendAnimImageButton
+    1. 封装AvdDrawableImageButton
+        1.  forwardAvd （统筹到了asl中）
+        2.  reverseAvd （统筹到了asl中）
+        3.  aslDrawable 动画icon drawable
+        4.  OnStateChangeListener 状态切换监听
+                onStateOnTrue
+                onStateOnFalse
+        5.  OnClickListener 点击监听
+                onClick(state:Boolean)
+        6.  triggerCondition 触发条件
+            Pair <View,lambdaCondition>
+
     2. 封装内容编辑器
     3. 封装重要程度选择器
     4. codeReview 一下
