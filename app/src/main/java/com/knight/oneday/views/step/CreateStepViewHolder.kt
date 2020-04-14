@@ -15,7 +15,7 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
 
     class AddStepViewHolder(
         private val binding: CreateStepAddItemBinding,
-        private val createStepAdapterListener: CreateStepAdapterListener
+        private val createStepAdapterListener: CreateStepAdapter.CreateStepAdapterListener
     ) : CreateStepViewHolder<CreateStepItem.AddStepIconItem>(binding.root) {
         override fun bind(stepItem: CreateStepItem.AddStepIconItem) {
 
@@ -24,7 +24,7 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
 
     class AddStepContentViewHolder(
         private val binding: CreateStepListItemBinding,
-        private val createStepAdapterListener: CreateStepAdapterListener
+        private val createStepAdapterListener: CreateStepAdapter.CreateStepAdapterListener
     ) : CreateStepViewHolder<CreateStepItem.AddStepContentItem>(binding.root) {
         override fun bind(stepItem: CreateStepItem.AddStepContentItem) {
 
@@ -32,9 +32,6 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
     }
 
 
-    interface CreateStepAdapterListener {
-        fun onAddStepIconClick()
-        fun onAddStepContentRemoveClick()
-    }
+
 
 }
