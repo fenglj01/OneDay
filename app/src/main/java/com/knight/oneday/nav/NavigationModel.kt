@@ -37,7 +37,7 @@ object NavigationModel {
     private val navigationTags = mutableListOf(
         NavigationModelItem.NavEventTag(
             getString(R.string.tag_no_tag),
-            R.drawable.ic_one_day_tag_no_tag
+            R.drawable.ic_one_day_tag_no_type
         ),
         NavigationModelItem.NavEventTag(
             getString(R.string.tag_life),
@@ -49,11 +49,11 @@ object NavigationModel {
         ),
         NavigationModelItem.NavEventTag(
             getString(R.string.tag_entertainment),
-            R.drawable.ic_one_day_tag_sport
+            R.drawable.ic_one_day_tag_leisure
         ),
         NavigationModelItem.NavEventTag(
             getString(R.string.tag_health),
-            R.drawable.ic_one_day_tag_health
+            R.drawable.ic_one_day_tag_sport
         )
     )
 

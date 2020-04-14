@@ -328,7 +328,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     自由派这个网站做得感觉比较不错
 4-14
 -----------
-    1. 封装AvdDrawableImageButton
+    1. 封装AvdDrawableImageButton √
         1.  forwardAvd （统筹到了asl中）
         2.  reverseAvd （统筹到了asl中）
         3.  aslDrawable 动画icon drawable
@@ -338,10 +338,13 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         5.  OnClickListener 点击监听
                 onClick(state:Boolean)
         6.  triggerCondition 触发条件
-            Pair <View,lambdaCondition>
 
     2. 封装内容编辑器
+        查看了网上一些富文本编辑器的做法，js居多，但是带来的问题也很多，而且自己目前对js掌握并不够好，所以pass掉了这个
+        做法，准备自己来封装一个极为简单的步骤、清单、编辑器 使用原生的控件来做 暂时不涉及图片登富文本的功能 后期慢慢加入
+        可以参看knife的做法 原理上edit + span
     3. 封装重要程度选择器
     4. codeReview 一下
+    5. 重新优化一下tagIcon
 
     状态还是越来越好了,刷一下commit
