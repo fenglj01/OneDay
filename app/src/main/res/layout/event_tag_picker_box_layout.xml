@@ -17,6 +17,6 @@
         android:layout_height="@dimen/dp_32"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_8"
         android:src="@drawable/ic_one_day_arrows" />
 </RelativeLayout>
