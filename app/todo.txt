@@ -345,8 +345,10 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         可以参看knife的做法 原理上edit + span
         如果协程一个编辑器 开发成本可能会提高很多
         考虑做成RecyclerView 一个一个的添加的做法(就按照这么做)
+            需要注意一个问题 如果使用RecyclerView + EditText来做 那么可能会出现焦点混乱带来得问题
     3. 封装重要程度选择器
-    4. codeReview 一下
-    5. 重新优化一下tagIcon
+    4. codeReview 一下 √
+    5. 重新优化一下tagIcon √
+    6. 考虑优化一下ImageState的判断条件
 
     状态还是越来越好了,刷一下commit
