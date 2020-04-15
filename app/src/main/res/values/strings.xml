@@ -54,4 +54,6 @@
     <string name="selection_date">选择日期</string>
     <string name="tag_no_tag">无类别</string>
     <string name="event_overview_length_hint">事件名至少2个字符</string>
+    <string name="create_step_hint">创建一些步骤</string>
+    <string name="create_step_next_hint">下一步</string>
 </resources>

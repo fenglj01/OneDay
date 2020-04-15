@@ -10,7 +10,9 @@ sealed class CreateStepItem {
 
     data class AddStepIconItem(val id: Int) : CreateStepItem()
 
-    data class AddStepContentItem(var content: String, var serialNumber: Int) : CreateStepItem()
+    data class AddStepContentItem(
+        val createStepContent: CreateStepContent
+    ) : CreateStepItem()
 
     object StepItemDiff : DiffUtil.ItemCallback<CreateStepItem>() {
         override fun areItemsTheSame(
@@ -19,7 +21,7 @@ sealed class CreateStepItem {
         ): Boolean {
             return when {
                 oldItem is AddStepIconItem && newItem is AddStepIconItem -> newItem.id == oldItem.id
-                newItem is AddStepContentItem && oldItem is AddStepContentItem -> newItem.content == oldItem.content
+                newItem is AddStepContentItem && oldItem is AddStepContentItem -> newItem.createStepContent.content == oldItem.createStepContent.content
                 else -> oldItem == newItem
             }
         }
@@ -30,3 +32,17 @@ sealed class CreateStepItem {
     }
 
 }
+
+data class CreateStepContent(
+    var content: String,
+    var serialNumber: Int,
+    var status: Int = ADD_STEP_CONTENT_STATUS_ADD
+)
+
+/*
+    定义三种状态: 添加/编辑/完成/添加下一个
+*/
+const val ADD_STEP_CONTENT_STATUS_ADD = 0
+const val ADD_STEP_CONTENT_STATUS_EDIT = 1
+const val ADD_STEP_CONTENT_STATUS_FINISH = 2
+const val ADD_STEP_CONTENT_STATUS_NEXT = 3

@@ -52,7 +52,7 @@ class CreateStepAdapter(private val listener: CreateStepAdapterListener) :
     }
 
     interface CreateStepAdapterListener {
-        fun onAddStepIconClick()
+        fun onAddStepClick()
         fun onAddStepContentRemoveClick()
     }
 }
