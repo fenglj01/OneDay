@@ -2,8 +2,8 @@ package com.knight.oneday.views.step
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.knight.oneday.databinding.CreateStepAddItemBinding
-import com.knight.oneday.databinding.CreateStepListItemBinding
+import com.knight.oneday.databinding.CreateStepAddContentItemBinding
+import com.knight.oneday.databinding.CreateStepAddIconItemBinding
 
 /**
  * Create by FLJ in 2020/4/14 15:08
@@ -14,7 +14,7 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
     abstract fun bind(stepItem: T)
 
     class AddStepViewHolder(
-        private val binding: CreateStepAddItemBinding,
+        private val binding: CreateStepAddIconItemBinding,
         private val createStepAdapterListener: CreateStepAdapter.CreateStepAdapterListener
     ) : CreateStepViewHolder<CreateStepItem.AddStepIconItem>(binding.root) {
         override fun bind(stepItem: CreateStepItem.AddStepIconItem) {
@@ -23,7 +23,7 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
     }
 
     class AddStepContentViewHolder(
-        private val binding: CreateStepListItemBinding,
+        private val binding: CreateStepAddContentItemBinding,
         private val createStepAdapterListener: CreateStepAdapter.CreateStepAdapterListener
     ) : CreateStepViewHolder<CreateStepItem.AddStepContentItem>(binding.root) {
         override fun bind(stepItem: CreateStepItem.AddStepContentItem) {
