@@ -11,7 +11,12 @@ import com.knight.oneday.R
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.views.getDrawableOrNull
+import com.knight.oneday.views.step.StepNumberView
 
+@BindingAdapter("bindStepNumber")
+fun StepNumberView.bindStepNumber(number: Int) {
+    stepNumber = number
+}
 
 @BindingAdapter("srcDrawable")
 fun ImageView.bindSrcDrawable(@DrawableRes drawableRes: Int? = null) {

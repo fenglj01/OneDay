@@ -1,5 +1,6 @@
 package com.knight.oneday.views.step
 
+import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.databinding.CreateStepAddContentItemBinding
@@ -30,7 +31,10 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
         private val createStepAdapterListener: CreateStepAdapter.CreateStepAdapterListener
     ) : CreateStepViewHolder<CreateStepItem.AddStepContentItem>(binding.root) {
         override fun bind(stepItem: CreateStepItem.AddStepContentItem) {
-
+            binding.run {
+                addContent = stepItem.createStepContent
+                executePendingBindings()
+            }
         }
     }
 

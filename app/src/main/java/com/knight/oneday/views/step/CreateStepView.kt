@@ -53,6 +53,12 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
 
     override fun onAddStepClick() {
         Log.d("TAG_CREATE", "addClick")
+        val insertIndex = createStepItems.size - 1
+        createStepItems.add(
+            insertIndex,
+            CreateStepItem.AddStepContentItem(CreateStepContent(serialNumber = insertIndex + 1))
+        )
+        adapter?.notifyItemInserted(insertIndex)
     }
 
     override fun onAddStepContentRemoveClick() {

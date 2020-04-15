@@ -34,8 +34,8 @@ sealed class CreateStepItem {
 }
 
 data class CreateStepContent(
-    var content: String,
-    var serialNumber: Int,
+    var content: String = "",
+    var serialNumber: Int = 0,
     var status: Int = ADD_STEP_CONTENT_STATUS_ADD
 )
 

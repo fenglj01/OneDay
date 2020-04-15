@@ -6,17 +6,29 @@
 
     <!--Emphasis values are used in combination with each "on" color to create three available -->
     <!--levels of emphasis for text and content.-->
-    <attr name="emphasisHighAlpha" format="float"/>
-    <attr name="emphasisMediumAlpha" format="float"/>
-    <attr name="emphasisDisabledAlpha" format="float"/>
+    <attr name="emphasisHighAlpha" format="float" />
+    <attr name="emphasisMediumAlpha" format="float" />
+    <attr name="emphasisDisabledAlpha" format="float" />
 
-    <attr name="motionInterpolatorPersistent" format="reference"/>
-    <attr name="motionInterpolatorIncoming" format="reference"/>
-    <attr name="motionInterpolatorOutgoing" format="reference"/>
+    <attr name="motionInterpolatorPersistent" format="reference" />
+    <attr name="motionInterpolatorIncoming" format="reference" />
+    <attr name="motionInterpolatorOutgoing" format="reference" />
 
     <!--Custom view themes/styles-->
     <attr name="bottomNavigationDrawerStyle" format="reference" />
     <attr name="bottomNavigationDrawerNavigationViewTheme" format="reference" />
 
-    <attr name="transitionShapeAppearance" format="reference"/>
+    <attr name="transitionShapeAppearance" format="reference" />
+
+    <declare-styleable name="CreateStepView">
+        <attr name="stepColorFinished" format="color" />
+        <attr name="stepTextColorFinished" format="color" />
+        <attr name="stepColorUnfinished" format="color" />
+        <attr name="stepTextColorUnfinished" format="color" />
+        <attr name="stepState" format="enum">
+            <enum name="unfinished" value="0" />
+            <enum name="finished" value="1" />
+        </attr>
+        <attr name="stepNumberInt" format="integer" />
+    </declare-styleable>
 </resources>
