@@ -13,8 +13,8 @@
         android:id="@+id/create_step_cont"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_48"
-        android:padding="@dimen/dp_8"
-        android:background="@android:color/transparent">
+        android:background="@android:color/transparent"
+        android:padding="@dimen/dp_8">
 
         <com.knight.oneday.views.step.StepNumberView
             android:id="@+id/step_view"
@@ -23,6 +23,33 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/step_content_edt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:background="@android:color/transparent"
+            android:hint="@string/step_overview_hint"
+            android:minHeight="@dimen/dp_48"
+            android:layout_marginStart="@dimen/dp_8"
+            app:layout_constraintEnd_toStartOf="@id/event_send_edit_ib"
+            app:layout_constraintStart_toEndOf="@id/step_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/event_send_edit_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/actionBarItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_one_day_close"
+            android:tint="?attr/colorControlNormal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/step_content_edt"
             app:layout_constraintTop_toTopOf="parent" />
 
 

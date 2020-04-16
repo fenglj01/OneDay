@@ -354,3 +354,11 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     6. 考虑优化一下ImageState的判断条件
 
     状态还是越来越好了,刷一下commit
+
+4-15
+------------
+    1. StepNumberView 的构建
+4-16
+------------
+    1. StepNumberView 优化 和 状态改变回调得实现
+    2. StepCreateView 的基本实现
