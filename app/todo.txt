@@ -376,3 +376,13 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
                 RecyclerView的滑动会导致底部的bar 弹出.... (通过监听页面目的地的切换 控制bottomAppBar的hideOnScroll来得到解决)
             加入限制后会导致比较多的问题
 
+4-17
+------------
+    考虑解决删除的问题
+4-18
+------------
+    完成创建事件
+4-19
+------------
+    考虑把首页列表item做成展开项
+
