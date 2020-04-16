@@ -53,7 +53,6 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
     fun getStepContentList() = stepContents.toList()
 
     override fun onAddStepClick() {
-        Log.d("TAG_CREATE", "addClick")
         if (checkPreviousIsEditFinished()) {
             val insertIndex = createStepItems.size - 1
             createStepItems.add(
@@ -66,8 +65,14 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
         }
     }
 
-    override fun onAddStepContentRemoveClick() {
+    override fun onAddStepContentRemoveClick(position: Int) {
+        createStepItems.removeAt(position)
+        adapter?.notifyItemRemoved(position)
+    }
 
+    override fun onAddStepContentRemove(position: Int) {
+        createStepItems.removeAt(position)
+        adapter?.notifyItemRemoved(position)
     }
 
     private fun checkPreviousIsEditFinished(): Boolean {

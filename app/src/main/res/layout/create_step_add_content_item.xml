@@ -35,12 +35,12 @@
             android:minHeight="@dimen/dp_48"
             android:layout_marginStart="@dimen/dp_8"
             android:lineHeight="@dimen/sp_18"
-            app:layout_constraintEnd_toStartOf="@id/event_send_edit_ib"
+            app:layout_constraintEnd_toStartOf="@id/step_remove"
             app:layout_constraintStart_toEndOf="@id/step_view"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/event_send_edit_ib"
+            android:id="@+id/step_remove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/actionBarItemBackground"
