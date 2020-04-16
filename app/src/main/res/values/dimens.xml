@@ -32,5 +32,6 @@
     <dimen name="dp_10">10dp</dimen>
     <dimen name="dp_6">6dp</dimen>
     <dimen name="dp_28">28dp</dimen>
+    <dimen name="dp_1">1dp</dimen>
 
 </resources>

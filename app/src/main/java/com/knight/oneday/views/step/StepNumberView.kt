@@ -12,6 +12,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.knight.oneday.R
 import com.knight.oneday.utilities.dp2px
+import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.utilities.sp
 
 /**
@@ -41,6 +42,8 @@ class StepNumberView : FrameLayout {
                 stepTextView.text = stepNumber.toString()
         }
 
+    var onStepStateChangedListener: OnStepStateChangedListener? = null
+
     private var state: Int = STEP_STATE_FINISHED
 
     constructor(context: Context) : this(context, null)
@@ -54,6 +57,7 @@ class StepNumberView : FrameLayout {
     ) {
         initAttr(attributeSet)
         inflater()
+        initListener()
     }
 
     private fun inflater() {
@@ -84,7 +88,7 @@ class StepNumberView : FrameLayout {
         )
         state = typeArray.getInt(
             R.styleable.CreateStepView_stepState,
-            STEP_STATE_UNFINISHED
+            STEP_STATE_FINISHED
         )
         stepNumber = typeArray.getInt(
             R.styleable.CreateStepView_stepNumberInt,
@@ -97,15 +101,28 @@ class StepNumberView : FrameLayout {
         state = if (state == STEP_STATE_UNFINISHED) STEP_STATE_FINISHED else STEP_STATE_UNFINISHED
         if (state == STEP_STATE_FINISHED) {
             stepView.setBackgroundResource(R.drawable.step_number_view_finished)
-           // stepTextView.setTextColor(finishedTextColor)
+            stepTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+            stepTextView.invalidate()
         } else {
             stepView.setBackgroundResource(R.drawable.step_number_view_unfinished)
-           // stepTextView.setTextColor(unfinishedTextColor)
+            stepTextView.paint.flags = 0
+            stepTextView.invalidate()
         }
     }
 
+    private fun initListener() {
+        singleClick(200L) {
+            turnState()
+            onStepStateChangedListener?.onStepStateChange(state)
+        }
+    }
+
+    interface OnStepStateChangedListener {
+        fun onStepStateChange(state: Int)
+    }
 
 }
 
 const val STEP_STATE_UNFINISHED = 0
 const val STEP_STATE_FINISHED = 1
+

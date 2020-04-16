@@ -5,7 +5,7 @@
     <solid android:color="?attr/colorSurface" />
 
     <stroke
-        android:width="@dimen/dp_2"
+        android:width="@dimen/dp_1"
         android:color="?attr/colorSecondary" />
 
 
