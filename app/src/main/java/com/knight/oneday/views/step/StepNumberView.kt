@@ -80,7 +80,7 @@ class StepNumberView : FrameLayout {
         )
         unfinishedTextColor = typeArray.getColor(
             R.styleable.CreateStepView_stepTextColorUnfinished,
-            Color.WHITE
+            context.resources.getColor(R.color.color_on_surface_emphasis_high)
         )
         state = typeArray.getInt(
             R.styleable.CreateStepView_stepState,
@@ -97,10 +97,10 @@ class StepNumberView : FrameLayout {
         state = if (state == STEP_STATE_UNFINISHED) STEP_STATE_FINISHED else STEP_STATE_UNFINISHED
         if (state == STEP_STATE_FINISHED) {
             stepView.setBackgroundResource(R.drawable.step_number_view_finished)
-            stepTextView.setTextColor(finishedTextColor)
+           // stepTextView.setTextColor(finishedTextColor)
         } else {
             stepView.setBackgroundResource(R.drawable.step_number_view_unfinished)
-            stepTextView.setTextColor(unfinishedTextColor)
+           // stepTextView.setTextColor(unfinishedTextColor)
         }
     }
 
