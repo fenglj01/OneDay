@@ -362,3 +362,8 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 ------------
     1. StepNumberView 优化 和 状态改变回调得实现
     2. StepCreateView 的基本实现
+        2.1 步骤的内容输入限制与否 步骤的个数是否要做限制
+        2.2 分割线
+        2.3 删除事件
+        2.4 滑动问题
+            因为内容的不做限制 导致键盘可能会遮挡当前的输入内容

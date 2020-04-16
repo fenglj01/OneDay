@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/create_step_cont"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_48"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:padding="@dimen/dp_8">
 
@@ -34,6 +34,7 @@
             android:hint="@string/step_overview_hint"
             android:minHeight="@dimen/dp_48"
             android:layout_marginStart="@dimen/dp_8"
+            android:lineHeight="@dimen/sp_18"
             app:layout_constraintEnd_toStartOf="@id/event_send_edit_ib"
             app:layout_constraintStart_toEndOf="@id/step_view"
             app:layout_constraintTop_toTopOf="parent" />
