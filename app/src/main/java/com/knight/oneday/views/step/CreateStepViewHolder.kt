@@ -1,7 +1,9 @@
 package com.knight.oneday.views.step
 
 import android.graphics.Color
+import android.text.Editable
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.databinding.CreateStepAddContentItemBinding
 import com.knight.oneday.databinding.CreateStepAddIconItemBinding
@@ -33,6 +35,14 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
         override fun bind(stepItem: CreateStepItem.AddStepContentItem) {
             binding.run {
                 addContent = stepItem.createStepContent
+                // 主要目的是修改其编辑状态 来达到创建下一步的判断
+                stepContentEdt.addTextChangedListener { text: Editable? ->
+                    text?.run {
+                        stepItem.createStepContent.status =
+                            if (length > 0) ADD_STEP_CONTENT_STATUS_EDIT
+                            else ADD_STEP_CONTENT_STATUS_ADD
+                    }
+                }
                 executePendingBindings()
             }
         }

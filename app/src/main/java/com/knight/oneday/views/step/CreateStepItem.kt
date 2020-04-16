@@ -45,4 +45,3 @@ data class CreateStepContent(
 const val ADD_STEP_CONTENT_STATUS_ADD = 0
 const val ADD_STEP_CONTENT_STATUS_EDIT = 1
 const val ADD_STEP_CONTENT_STATUS_FINISH = 2
-const val ADD_STEP_CONTENT_STATUS_NEXT = 3

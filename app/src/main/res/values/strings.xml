@@ -57,4 +57,5 @@
     <string name="create_step_hint">创建一些步骤</string>
     <string name="create_step_next_hint">下一步</string>
     <string name="step_overview_hint">步骤...</string>
+    <string name="plase_finished_previous_step">请先完成上一步创建</string>
 </resources>

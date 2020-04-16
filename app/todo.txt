@@ -367,3 +367,12 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         2.3 删除事件
         2.4 滑动问题
             因为内容的不做限制 导致键盘可能会遮挡当前的输入内容
+            考虑到PickerBox 中存在ListView 就不打算在外部使用嵌套ScrollView来完成这件事情了
+
+            考虑
+                在键盘弹出的地方把输入框也弹出 输入步骤的内容在输入框中完成 之后发送后再添加到列表中去 并且滚动到该项
+                去 RecyclerView 也就可以滑动
+            问题
+                RecyclerView的滑动会导致底部的bar 弹出.... (通过监听页面目的地的切换 控制bottomAppBar的hideOnScroll来得到解决)
+
+
