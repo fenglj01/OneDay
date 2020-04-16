@@ -19,7 +19,7 @@
             android:id="@+id/add_ib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_28"
             android:background="?attr/actionBarItemBackground"
             android:src="@drawable/ic_one_day_add"
             android:tint="?attr/colorSecondary"

@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
+import com.knight.oneday.utilities.dp2px
+import com.knight.oneday.views.SimpleItemDecoration
 import com.knight.oneday.views.showSnackBar
 
 /**
@@ -66,11 +68,28 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
     }
 
     override fun onAddStepContentRemoveClick(position: Int) {
-        createStepItems.removeAt(position)
-        adapter?.notifyItemRemoved(position)
+        checkHaveNextStep(position)
     }
 
     override fun onAddStepContentRemove(position: Int) {
+        checkHaveNextStep(position)
+    }
+
+    private fun checkHaveNextStep(position: Int) {
+        // 如果没有后续步骤 那么直接删除就可以了
+        if (createStepItems[position + 1] is CreateStepItem.AddStepIconItem) {
+            removeItemByPosition(position)
+        } else {
+            for (nextIndex in position + 1..createStepItems.size - 2) {
+                (createStepItems[nextIndex] as CreateStepItem.AddStepContentItem).createStepContent.serialNumber =
+                    nextIndex - 1
+            }
+            adapter?.notifyItemRangeChanged(position, createStepItems.size - position - 1)
+            removeItemByPosition(position)
+        }
+    }
+
+    private fun removeItemByPosition(position: Int) {
         createStepItems.removeAt(position)
         adapter?.notifyItemRemoved(position)
     }

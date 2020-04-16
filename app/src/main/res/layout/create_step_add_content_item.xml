@@ -14,13 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:padding="@dimen/dp_8">
+        android:paddingStart="@dimen/dp_16"
+        android:paddingEnd="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_8"
+        >
 
         <com.knight.oneday.views.step.StepNumberView
             android:id="@+id/step_view"
             bindStepNumber="@{addContent.serialNumber}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,12 +33,12 @@
             android:id="@+id/step_content_edt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginEnd="@dimen/dp_16"
             android:background="@android:color/transparent"
             android:hint="@string/step_overview_hint"
-            android:minHeight="@dimen/dp_48"
-            android:layout_marginStart="@dimen/dp_8"
             android:lineHeight="@dimen/sp_18"
+            android:minHeight="@dimen/dp_48"
             app:layout_constraintEnd_toStartOf="@id/step_remove"
             app:layout_constraintStart_toEndOf="@id/step_view"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,6 +50,7 @@
             android:background="?attr/actionBarItemBackground"
             android:clickable="true"
             android:focusable="true"
+            android:layout_marginEnd="@dimen/dp_12"
             android:src="@drawable/ic_one_day_close"
             android:tint="?attr/colorControlNormal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,6 +58,15 @@
             app:layout_constraintStart_toEndOf="@id/step_content_edt"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/item_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/divider"
+            app:backgroundTint="@color/color_on_surface_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -374,5 +374,5 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
                 去 RecyclerView 也就可以滑动
             问题
                 RecyclerView的滑动会导致底部的bar 弹出.... (通过监听页面目的地的切换 控制bottomAppBar的hideOnScroll来得到解决)
-
+            加入限制后会导致比较多的问题
 
