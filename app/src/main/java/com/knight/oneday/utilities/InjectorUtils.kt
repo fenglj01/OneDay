@@ -24,7 +24,7 @@ object InjectorUtils {
     }
 
     fun createEventViewModelFactory(context: Context): CreateEventViewModelFactory {
-        return CreateEventViewModelFactory(getEventRepository(context))
+        return CreateEventViewModelFactory(getEventRepository(context), getStepRepository(context))
     }
 
     private fun getEventRepository(context: Context): EventRepository =
