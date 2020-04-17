@@ -38,11 +38,14 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
     ) : CreateStepViewHolder<CreateStepItem.AddStepContentItem>(binding.root) {
         override fun bind(stepItem: CreateStepItem.AddStepContentItem) {
             binding.run {
+
                 addContent = stepItem.createStepContent
+
                 // 清理一下TextWatcher
                 if (stepContentEdt.tag is TextWatcher) {
                     stepContentEdt.removeTextChangedListener(stepContentEdt.tag as TextWatcher)
                 }
+
                 // 主要目的是修改其编辑状态 来达到创建下一步的判断 当删减为0时 触发弹出删除框
                 val textWatcher = object : TextChangeListener() {
                     override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -58,13 +61,16 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
                         }
                     }
                 }
+
                 stepContentEdt.setText(stepItem.createStepContent.content)
                 stepContentEdt.addTextChangedListener(textWatcher)
                 stepContentEdt.tag = textWatcher
+
                 stepRemove.singleClick {
                     Log.d("TAG_CreateView", "adapterPosition $adapterPosition")
                     createStepAdapterListener.onAddStepContentRemoveClick(adapterPosition)
                 }
+
                 executePendingBindings()
             }
         }

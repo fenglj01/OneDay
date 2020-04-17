@@ -40,8 +40,7 @@ data class CreateStepContent(
 )
 
 /*
-    定义三种状态: 添加/编辑/完成/添加下一个
+    定义三种状态: 添加/编辑
 */
 const val ADD_STEP_CONTENT_STATUS_ADD = 0
 const val ADD_STEP_CONTENT_STATUS_EDIT = 1
-const val ADD_STEP_CONTENT_STATUS_FINISH = 2

@@ -18,31 +18,15 @@ import com.knight.oneday.views.showSnackBar
  */
 class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener {
 
-    /*
-        当前状态,初始/拥有,edit icon的显示状态会根据状态的不一样有不同的显示
-     */
-    private var state = STATE_INIT
-
-    /* 步骤content集合 */
-    private val stepContents = mutableListOf<String>()
 
     private val createStepItems = mutableListOf<CreateStepItem>()
-
-    private lateinit var addStepHint: String
-    private lateinit var nextStepHint: String
 
     constructor(context: Context) : this(context, null)
 
     constructor(context: Context, set: AttributeSet?) : this(context, set, 0)
 
     constructor(context: Context, set: AttributeSet?, def: Int) : super(context, set, def) {
-        initRes()
         initAdapter()
-    }
-
-    private fun initRes() {
-        addStepHint = context.resources.getString(R.string.create_step_hint)
-        nextStepHint = context.resources.getString(R.string.create_step_next_hint)
     }
 
     private fun initAdapter() {
@@ -52,7 +36,7 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
         listAdapter.submitList(createStepItems)
     }
 
-    fun getStepContentList() = stepContents.toList()
+    fun getStepContentList() = createStepItems.toList()
 
     override fun onAddStepClick() {
         if (checkPreviousIsEditFinished()) {
@@ -76,7 +60,6 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
     }
 
     private fun checkHaveNextStep(position: Int) {
-        Log.d("TAG_CreateView", "checkHaveNextStep $position")
         // 先刪除该项
         removeItemByPosition(position)
         // 如果下一向不是末尾项
@@ -103,11 +86,5 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
             ((createStepItems[createStepItems.size - 2]) as CreateStepItem.AddStepContentItem).createStepContent.status
         return previousStatus != ADD_STEP_CONTENT_STATUS_ADD
     }
-
-    companion object {
-        const val STATE_INIT = 0
-        const val STATE_HOLD = 1
-    }
-
 
 }
