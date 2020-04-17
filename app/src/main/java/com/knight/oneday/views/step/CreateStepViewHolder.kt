@@ -73,7 +73,9 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
                 stepContentEdt.addTextChangedListener(textWatcher)
                 stepContentEdt.tag = textWatcher
 
-                setUpEditTextByState(stepItem.createStepContent.state)
+                val stepState = stepItem.createStepContent.state
+                setUpEditTextByState(stepState)
+                stepView.setState(stepState)
 
                 val stepStateChange = object : StepNumberView.OnStepStateChangedListener {
                     override fun onStepStateChange(state: Int) {

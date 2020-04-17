@@ -95,8 +95,12 @@ class StepNumberView : FrameLayout {
         typeArray.recycle()
     }
 
-    fun turnState() {
-        state = if (state == STEP_STATE_UNFINISHED) STEP_STATE_FINISHED else STEP_STATE_UNFINISHED
+    private fun turnState() {
+        setState(if (state == STEP_STATE_UNFINISHED) STEP_STATE_FINISHED else STEP_STATE_UNFINISHED)
+    }
+
+    fun setState(nowState: Int) {
+        state = nowState
         if (state == STEP_STATE_FINISHED) {
             stepView.setBackgroundResource(R.drawable.step_number_view_finished)
             stepTextView.strikeText()
