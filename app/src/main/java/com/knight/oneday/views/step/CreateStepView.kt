@@ -36,7 +36,11 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
         listAdapter.submitList(createStepItems)
     }
 
-    fun getStepContentList() = createStepItems.toList()
+    fun getStepContentList() =
+        createStepItems.asSequence()
+            .filter { it is CreateStepItem.AddStepContentItem }
+            .map { (it as CreateStepItem.AddStepContentItem).createStepContent }
+            .toList()
 
     override fun onAddStepClick() {
         if (checkPreviousIsEditFinished()) {

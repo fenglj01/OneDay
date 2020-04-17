@@ -154,6 +154,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/event_tag_picker" />
 
                 <com.knight.oneday.views.step.CreateStepView
+                    android:id="@+id/create_step_view"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/dp_16"

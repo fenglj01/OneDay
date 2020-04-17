@@ -33,7 +33,7 @@ interface EventDao {
     fun getEventsWithSteps(): LiveData<List<EventAndEventSteps>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(event: Event)
+    suspend fun insert(event: Event): Long
 
     @Query("DELETE FROM $TABLE_NAME_EVENT")
     suspend fun deleteAll()

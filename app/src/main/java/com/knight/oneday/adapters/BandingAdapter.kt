@@ -151,3 +151,8 @@ fun View.requestApplyInsetsWhenAttached() {
     }
 }
 
+@BindingAdapter("bindStepsOverView")
+fun TextView.bindStepsOverView(){
+
+}
+

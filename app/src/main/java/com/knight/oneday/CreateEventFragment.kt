@@ -7,16 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
-import com.knight.oneday.utilities.InjectorUtils
-import com.knight.oneday.utilities.getInputManagerService
-import com.knight.oneday.utilities.getMaterialDatePickerBuilder
-import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.CreateEventViewModel
 import com.knight.oneday.views.OnButtonClickListener
 import com.knight.oneday.views.showSnackBar
@@ -84,14 +82,26 @@ class CreateEventFragment : Fragment() {
                 }
 
                 override fun onStateOnReserveClick() {
+                    createViewModel.eventContent = eventOverviewEdt.text.toString()
+                    createViewModel.submitSteps(binding.createStepView.getStepContentList())
+                    createViewModel.createEvent()
                 }
             }
         }
 
         datePicker.addOnPositiveButtonClickListener {
             binding.eventDateTv.text = datePicker.headerText
-            datePicker.selection
+            createViewModel.eventRemindDate = datePicker.selection as Long
         }
+
+        createViewModel.viewModelStatus.observe(viewLifecycleOwner, Observer {viewModelStatus->
+            when(viewModelStatus){
+                VIEW_MODEL_STATUS_ON_FAIL -> showSnackBar(binding.createEventCardView,R.string.create_event_fail)
+                VIEW_MODEL_STATUS_ON_SUCCESS -> findNavController().navigateUp()
+                else -> {}
+            }
+        })
+
     }
 
     private fun initDropMenu() {

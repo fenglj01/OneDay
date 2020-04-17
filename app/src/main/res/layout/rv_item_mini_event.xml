@@ -64,7 +64,7 @@
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/event_remind_time_iv"
-                    android:text="这是一条代办项目" />
+                    android:text="@{event.content}" />
 
                 <TextView
                     android:id="@+id/event_note_tv"

@@ -383,10 +383,13 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         首先在ViewHolder中bind中定义position 是局部成成员变量 是不会随着notify而有所改变的 所以会导致删除乱项
         其次在ViewHolder中对EditText设置tag 并且合适的地方刷新 和重置一下 达到避免删除 和刷新后数据的错乱效果
         同步完成状态
+    完成创建事件
+        完成基本功能
 
 4-18
 ------------
     完成创建事件
+        数据的接口还需要优化
 4-19
 ------------
     考虑把首页列表item做成展开项
