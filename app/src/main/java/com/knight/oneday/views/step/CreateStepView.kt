@@ -76,18 +76,19 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
     }
 
     private fun checkHaveNextStep(position: Int) {
-        // 如果没有后续步骤 那么直接删除就可以了
-        if (createStepItems[position + 1] is CreateStepItem.AddStepIconItem) {
-            removeItemByPosition(position)
-        } else {
-            for (nextIndex in position + 1..createStepItems.size - 2) {
+        Log.d("TAG_CreateView", "checkHaveNextStep $position")
+        // 先刪除该项
+        removeItemByPosition(position)
+        // 如果下一向是末尾项
+        if (position + 1 == createStepItems.size - 1) {
+            for (nextIndex in position until createStepItems.size - 1) {
                 (createStepItems[nextIndex] as CreateStepItem.AddStepContentItem).createStepContent.serialNumber =
-                    nextIndex - 1
+                    nextIndex + 1
+                adapter?.notifyItemChanged(nextIndex)
             }
-            adapter?.notifyItemRangeChanged(position, createStepItems.size - position - 1)
-            removeItemByPosition(position)
         }
     }
+
 
     private fun removeItemByPosition(position: Int) {
         createStepItems.removeAt(position)

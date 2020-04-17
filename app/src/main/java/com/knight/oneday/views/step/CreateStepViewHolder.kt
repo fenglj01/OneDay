@@ -2,6 +2,7 @@ package com.knight.oneday.views.step
 
 import android.graphics.Color
 import android.text.Editable
+import android.util.Log
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
@@ -15,13 +16,13 @@ import com.knight.oneday.utilities.singleClick
  */
 sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView.ViewHolder(view) {
 
-    abstract fun bind(stepItem: T, position: Int)
+    abstract fun bind(stepItem: T)
 
     class AddStepViewHolder(
         private val binding: CreateStepAddIconItemBinding,
         private val createStepAdapterListener: CreateStepAdapter.CreateStepAdapterListener
     ) : CreateStepViewHolder<CreateStepItem.AddStepIconItem>(binding.root) {
-        override fun bind(stepItem: CreateStepItem.AddStepIconItem, position: Int) {
+        override fun bind(stepItem: CreateStepItem.AddStepIconItem) {
             binding.run {
                 addClick = createStepAdapterListener
                 executePendingBindings()
@@ -33,7 +34,7 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
         private val binding: CreateStepAddContentItemBinding,
         private val createStepAdapterListener: CreateStepAdapter.CreateStepAdapterListener
     ) : CreateStepViewHolder<CreateStepItem.AddStepContentItem>(binding.root) {
-        override fun bind(stepItem: CreateStepItem.AddStepContentItem, position: Int) {
+        override fun bind(stepItem: CreateStepItem.AddStepContentItem) {
             binding.run {
                 addContent = stepItem.createStepContent
                 // 主要目的是修改其编辑状态 来达到创建下一步的判断 当删减为0时 触发弹出删除框
@@ -43,11 +44,12 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
                             if (length > 0) ADD_STEP_CONTENT_STATUS_EDIT
                             else ADD_STEP_CONTENT_STATUS_ADD
                         // 回调告知可以删除这个步骤了
-                        if (length == 0) createStepAdapterListener.onAddStepContentRemove(position)
+                        if (length == 0) createStepAdapterListener.onAddStepContentRemove(adapterPosition)
                     }
                 }
                 stepRemove.singleClick {
-                    createStepAdapterListener.onAddStepContentRemoveClick(position)
+                    Log.d("TAG_CreateView", "adapterPosition $adapterPosition")
+                    createStepAdapterListener.onAddStepContentRemoveClick(adapterPosition)
                 }
                 executePendingBindings()
             }

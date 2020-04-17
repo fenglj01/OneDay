@@ -40,7 +40,7 @@ class CreateStepAdapter(private val listener: CreateStepAdapterListener) :
     }
 
     override fun onBindViewHolder(holder: CreateStepViewHolder<CreateStepItem>, position: Int) {
-        holder.bind(getItem(position), position)
+        holder.bind(getItem(position))
     }
 
     override fun getItemViewType(position: Int): Int {
