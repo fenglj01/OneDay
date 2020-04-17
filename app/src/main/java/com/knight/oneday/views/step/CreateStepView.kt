@@ -72,15 +72,15 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
     }
 
     override fun onAddStepContentRemove(position: Int) {
-        checkHaveNextStep(position)
+        // checkHaveNextStep(position)
     }
 
     private fun checkHaveNextStep(position: Int) {
         Log.d("TAG_CreateView", "checkHaveNextStep $position")
         // 先刪除该项
         removeItemByPosition(position)
-        // 如果下一向是末尾项
-        if (position + 1 == createStepItems.size - 1) {
+        // 如果下一向不是末尾项
+        if (position + 1 != createStepItems.size) {
             for (nextIndex in position until createStepItems.size - 1) {
                 (createStepItems[nextIndex] as CreateStepItem.AddStepContentItem).createStepContent.serialNumber =
                     nextIndex + 1
