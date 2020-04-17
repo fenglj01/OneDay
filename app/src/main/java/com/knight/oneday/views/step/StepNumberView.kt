@@ -11,9 +11,7 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatTextView
 import com.knight.oneday.R
-import com.knight.oneday.utilities.dp2px
-import com.knight.oneday.utilities.singleClick
-import com.knight.oneday.utilities.sp
+import com.knight.oneday.utilities.*
 
 /**
  * Create by FLJ in 2020/4/15 13:44
@@ -101,12 +99,10 @@ class StepNumberView : FrameLayout {
         state = if (state == STEP_STATE_UNFINISHED) STEP_STATE_FINISHED else STEP_STATE_UNFINISHED
         if (state == STEP_STATE_FINISHED) {
             stepView.setBackgroundResource(R.drawable.step_number_view_finished)
-            stepTextView.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-            stepTextView.invalidate()
+            stepTextView.strikeText()
         } else {
             stepView.setBackgroundResource(R.drawable.step_number_view_unfinished)
-            stepTextView.paint.flags = 0
-            stepTextView.invalidate()
+            stepTextView.clearStrikeText()
         }
     }
 
@@ -115,6 +111,10 @@ class StepNumberView : FrameLayout {
             turnState()
             onStepStateChangedListener?.onStepStateChange(state)
         }
+    }
+
+    fun clearOnStepStateChangedListener() {
+        onStepStateChangedListener = null
     }
 
     interface OnStepStateChangedListener {

@@ -1,19 +1,14 @@
 package com.knight.oneday
 
-import android.graphics.drawable.AnimatedImageDrawable
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.os.Bundle
 import android.transition.Slide
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.databinding.FragmentCreateEventBinding
@@ -31,8 +26,6 @@ import com.ramotion.directselect.DSListView
 class CreateEventFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateEventBinding
-
-    private val imageState = intArrayOf(android.R.attr.state_activated)
 
     private val createViewModel: CreateEventViewModel by viewModels {
         InjectorUtils.createEventViewModelFactory(

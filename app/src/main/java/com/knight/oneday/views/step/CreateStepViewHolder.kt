@@ -5,12 +5,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.adapters.TextViewBindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.databinding.CreateStepAddContentItemBinding
 import com.knight.oneday.databinding.CreateStepAddIconItemBinding
+import com.knight.oneday.utilities.clearStrikeText
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.utilities.strikeText
 
 /**
  * Create by FLJ in 2020/4/14 15:08
@@ -45,6 +48,10 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
                 if (stepContentEdt.tag is TextWatcher) {
                     stepContentEdt.removeTextChangedListener(stepContentEdt.tag as TextWatcher)
                 }
+                // 清理一下stateChanged
+                if (stepView.tag is StepNumberView.OnStepStateChangedListener) {
+                    stepView.clearOnStepStateChangedListener()
+                }
 
                 // 主要目的是修改其编辑状态 来达到创建下一步的判断 当删减为0时 触发弹出删除框
                 val textWatcher = object : TextChangeListener() {
@@ -66,15 +73,33 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
                 stepContentEdt.addTextChangedListener(textWatcher)
                 stepContentEdt.tag = textWatcher
 
+                setUpEditTextByState(stepItem.createStepContent.state)
+
+                val stepStateChange = object : StepNumberView.OnStepStateChangedListener {
+                    override fun onStepStateChange(state: Int) {
+                        stepItem.createStepContent.state = state
+                        setUpEditTextByState(state)
+                    }
+                }
+                stepView.onStepStateChangedListener = stepStateChange
+                stepView.tag = stepStateChange
+
                 stepRemove.singleClick {
-                    Log.d("TAG_CreateView", "adapterPosition $adapterPosition")
                     createStepAdapterListener.onAddStepContentRemoveClick(adapterPosition)
                 }
-
                 executePendingBindings()
             }
         }
+
+        private fun setUpEditTextByState(state: Int) {
+            if (state == STEP_STATE_FINISHED) {
+                binding.stepContentEdt.strikeText()
+            } else {
+                binding.stepContentEdt.clearStrikeText()
+            }
+        }
     }
+
 
     abstract class TextChangeListener : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
