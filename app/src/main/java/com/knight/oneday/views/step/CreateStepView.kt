@@ -72,7 +72,7 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
     }
 
     override fun onAddStepContentRemove(position: Int) {
-        // checkHaveNextStep(position)
+        checkHaveNextStep(position)
     }
 
     private fun checkHaveNextStep(position: Int) {
