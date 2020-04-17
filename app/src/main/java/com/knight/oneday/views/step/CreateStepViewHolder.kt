@@ -2,9 +2,11 @@ package com.knight.oneday.views.step
 
 import android.graphics.Color
 import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.core.widget.addTextChangedListener
+import androidx.databinding.adapters.TextViewBindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.databinding.CreateStepAddContentItemBinding
 import com.knight.oneday.databinding.CreateStepAddIconItemBinding
@@ -37,16 +39,27 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
         override fun bind(stepItem: CreateStepItem.AddStepContentItem) {
             binding.run {
                 addContent = stepItem.createStepContent
+                if (stepContentEdt.tag is TextWatcher) {
+                    stepContentEdt.removeTextChangedListener(stepContentEdt.tag as TextWatcher)
+                }
+                stepContentEdt.setText(stepItem.createStepContent.content)
                 // 主要目的是修改其编辑状态 来达到创建下一步的判断 当删减为0时 触发弹出删除框
-                stepContentEdt.addTextChangedListener { text: Editable? ->
-                    text?.run {
-                        stepItem.createStepContent.status =
-                            if (length > 0) ADD_STEP_CONTENT_STATUS_EDIT
-                            else ADD_STEP_CONTENT_STATUS_ADD
-                        // 回调告知可以删除这个步骤了
-                        if (length == 0) createStepAdapterListener.onAddStepContentRemove(adapterPosition)
+                val textWatcher = object : TextChangeListener() {
+                    override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        text?.run {
+                            stepItem.createStepContent.status =
+                                if (length > 0) ADD_STEP_CONTENT_STATUS_EDIT
+                                else ADD_STEP_CONTENT_STATUS_ADD
+                            stepItem.createStepContent.content = toString()
+                            // 回调告知可以删除这个步骤了
+                            if (length == 0) createStepAdapterListener.onAddStepContentRemove(
+                                adapterPosition
+                            )
+                        }
                     }
                 }
+                stepContentEdt.addTextChangedListener(textWatcher)
+                stepContentEdt.tag = textWatcher
                 stepRemove.singleClick {
                     Log.d("TAG_CreateView", "adapterPosition $adapterPosition")
                     createStepAdapterListener.onAddStepContentRemoveClick(adapterPosition)
@@ -56,5 +69,12 @@ sealed class CreateStepViewHolder<T : CreateStepItem>(view: View) : RecyclerView
         }
     }
 
+    abstract class TextChangeListener : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+    }
 
 }
