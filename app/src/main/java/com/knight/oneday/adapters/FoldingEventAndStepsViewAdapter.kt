@@ -27,6 +27,8 @@ class FoldingEventAndStepsViewAdapter :
 
     private var onFoldingItemClickListener: OnFoldingItemClickListener? = null
 
+    private val unfoldedIndexes = hashSetOf<Int>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
         binding = EventCellLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return EventCellViewHolder(binding)
@@ -41,6 +43,14 @@ class FoldingEventAndStepsViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: EventAndEventSteps) {
+
+            /* 根据当前展开的项 合理的展示折叠Item */
+            if (unfoldedIndexes.contains(adapterPosition)) {
+                binding.foldingCell.unfold(true)
+            } else {
+                binding.foldingCell.fold(true)
+            }
+
             binding.apply {
                 eventAndSteps = item
                 /*// 决定了 突出得圆角(打算用来做已完成得处理)
@@ -54,12 +64,34 @@ class FoldingEventAndStepsViewAdapter :
                 }
                 // 点击事件
                 binding.includeOverview.overviewCard.singleClick {
-                    Log.d("TAG", "click")
                     binding.foldingCell.toggle(false)
+                    registerToggle(position = adapterPosition)
+                }
+                binding.includeContent.contentCard.singleClick {
+                    binding.foldingCell.toggle(false)
+                    registerToggle(position = adapterPosition)
                 }
                 executePendingBindings()
             }
         }
+    }
+
+    /*
+        根据状态的切换 同步到记录中来 达到切换的效果
+    */
+    private fun registerToggle(position: Int) {
+        if (unfoldedIndexes.contains(position))
+            registerFold(position)
+        else
+            registerUnFold(position)
+    }
+
+    private fun registerFold(position: Int) {
+        unfoldedIndexes.remove(position)
+    }
+
+    private fun registerUnFold(position: Int) {
+        unfoldedIndexes.add(position)
     }
 
     interface OnFoldingItemClickListener {
