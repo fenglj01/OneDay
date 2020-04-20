@@ -23,61 +23,6 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
 
     var todayStr = TimeUtils.getTodayMonthAndDayStr()
 
-    val eventList = repository.getAllEvent()
-    // 可变
-    private val _addEventContent = MutableLiveData("")
-    private val _addEventType = MutableLiveData(EventType.MINI_NORMAL)
-    // 只读(对外部而言,这一切都是不可修改的，这是一种思想)
-    var addContent: LiveData<String> = _addEventContent
-    var addEventType: LiveData<EventType> = _addEventType
-
-
-    fun addEvent() {
-        if (_addEventContent.value.isNullOrEmpty()) return
-        launchOnIO(tryBlock = {
-            repository.createEvent(
-                Event(
-                    content = _addEventContent.value!!,
-                    type = _addEventType.value!!
-                )
-            )
-            clearAddEventData()
-        })
-    }
-
-    fun changeEventState(eventId: Long) {
-        val event = eventList.value?.first { it.eventId == eventId }
-        event?.run {
-            launchOnUI(
-                tryBlock = {
-                    val eventState =
-                        if (isFinished()) EventState.UNFINISHED else EventState.FINISHED
-                    repository.updateEventState(
-                        eventState,
-                        eventId
-                    )
-                    state = eventState
-                }
-            )
-        }
-    }
-
-    fun changeEventType() {
-        _addEventType.value =
-            if (_addEventType.value?.miniIsImportant() != false) EventType.MINI_NORMAL else EventType.MINI_IMPORTANT
-    }
-
-    fun changeContent(content: String) {
-        _addEventContent.value = content
-    }
-
-    /**
-     * 重置添加内容
-     */
-    fun clearAddEventData() {
-        _addEventType.postValue(EventType.MINI_NORMAL)
-        _addEventContent.postValue("")
-    }
-
+    val eventList = repository.getEventsWithSteps()
 
 }

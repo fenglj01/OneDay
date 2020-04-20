@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="event"
-            type="com.knight.oneday.data.Event" />
+            name="eventAndSteps"
+            type="com.knight.oneday.data.EventAndEventSteps" />
 
         <variable
             name="topic"
@@ -50,32 +50,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_4"
+                    android:text="14:00"
                     android:textAppearance="?attr/textAppearanceBody2"
                     app:layout_constraintBottom_toBottomOf="@id/event_remind_time_iv"
                     app:layout_constraintStart_toEndOf="@id/event_remind_time_iv"
-                    app:layout_constraintTop_toTopOf="@+id/event_remind_time_iv"
-                    android:text="14:00" />
+                    app:layout_constraintTop_toTopOf="@+id/event_remind_time_iv" />
 
                 <TextView
                     android:id="@+id/event_overview_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
+                    android:text="@{eventAndSteps.event.content}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/event_remind_time_iv"
-                    android:text="@{event.content}" />
+                    app:layout_constraintTop_toBottomOf="@+id/event_remind_time_iv" />
 
                 <TextView
                     android:id="@+id/event_note_tv"
+                    bindStepsOverView="@{eventAndSteps.eventSteps}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
                     android:textAppearance="?attr/textAppearanceBody1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/event_overview_tv"
-                    android:layout_marginTop="@dimen/dp_8"
-                    android:text="这是一条代办项目的备注选项,你可以在这里记录一些完成项目得过程,或者准备一份清单,或者指定一些步骤计划。"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/event_overview_tv" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>

@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import com.knight.oneday.R
+import com.knight.oneday.data.Step
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.views.getDrawableOrNull
@@ -152,7 +153,14 @@ fun View.requestApplyInsetsWhenAttached() {
 }
 
 @BindingAdapter("bindStepsOverView")
-fun TextView.bindStepsOverView(){
-
+fun TextView.bindStepsOverView(steps: List<Step>) {
+    val size = steps.size
+    if (size == 0) {
+        visibility = View.GONE
+    } else {
+        visibility = View.VISIBLE
+        val nowStep = steps.first { it.state == EventState.UNFINISHED }
+        text = "一共 $size 步 当前第 ${nowStep.serialNumber} 步: ${nowStep.content}"
+    }
 }
 

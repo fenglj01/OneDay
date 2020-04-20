@@ -393,6 +393,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 4-20
 ------------
     展示步骤
+        1. 将LiveData<Event> 更换为LiveData<EventWithSteps> 查出步骤的同时也查出响应的步骤来
     考虑把首页列表item做成展开项
         收起时: 多少步 当前在哪步
         展开时: 具体的步骤
