@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="eventAndSteps"
+            type="com.knight.oneday.data.EventAndEventSteps" />
+    </data>
+
+    <com.ramotion.foldingcell.FoldingCell
+        android:id="@+id/folding_cell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:additionalFlipsCount="2"
+        app:animationDuration="1300"
+        app:cameraHeight="30">
+
+        <include
+            android:id="@+id/include_content"
+            layout="@layout/event_cell_content_layout" />
+
+        <include
+            android:id="@+id/include_overview"
+            layout="@layout/event_cell_overview_layout" />
+
+    </com.ramotion.foldingcell.FoldingCell>
+</layout>

@@ -32,7 +32,7 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) :
             database.stepDao().insertAll(guideArray.mapIndexed { index, content ->
                 Step(
                     content = content,
-                    serialNumber = index,
+                    serialNumber = index + 1,
                     eventId = 1
                 )
             })

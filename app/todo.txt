@@ -398,6 +398,13 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         收起时: 多少步 当前在哪步
         展开时: 具体的步骤
 
+Need Better
+
+    1. 提醒时间可以加入小时
+    2. 数据库分页
+    3. 时间比对问题
+    4. Event 和 Step 的设计优化
+
 可以写的文章
     1. 动态按钮
     2. MD

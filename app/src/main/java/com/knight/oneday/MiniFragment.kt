@@ -5,6 +5,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import com.knight.oneday.adapters.FoldingEventAndStepsViewAdapter
 import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
@@ -22,8 +23,8 @@ class MiniFragment : Fragment() {
             requireContext()
         )
     }
-    private val adapter: MiniEventRecyclerViewAdapter by lazy { MiniEventRecyclerViewAdapter() }
-
+//    private val adapter: MiniEventRecyclerViewAdapter by lazy { MiniEventRecyclerViewAdapter() }
+    private val adapter: FoldingEventAndStepsViewAdapter by lazy { FoldingEventAndStepsViewAdapter() }
     private lateinit var binding: FragmentMiniBinding
 
     override fun onCreateView(
