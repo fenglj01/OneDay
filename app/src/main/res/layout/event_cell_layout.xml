@@ -13,9 +13,10 @@
         android:id="@+id/folding_cell"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_4"
         app:additionalFlipsCount="2"
         app:animationDuration="1300"
-        app:backSideColor="@color/green_one_day"
+        app:backSideColor="@color/bg_side"
         app:cameraHeight="30">
 
         <include

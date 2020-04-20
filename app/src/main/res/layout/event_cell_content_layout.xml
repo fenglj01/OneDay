@@ -17,16 +17,49 @@
         android:id="@+id/content_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        android:layout_marginHorizontal="@dimen/dp_4"
         android:visibility="gone">
 
-        <TextView
+        <View
+            android:id="@+id/content_tool"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:text="@string/app_name"
+            android:layout_height="@dimen/dp_32"
+            android:background="?attr/colorSecondary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/content_remind_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_4"
+            android:text="12:00"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintBottom_toBottomOf="@id/content_tool"
+            app:layout_constraintEnd_toEndOf="@id/content_tool"
+            app:layout_constraintStart_toStartOf="@id/content_tool"
+            app:layout_constraintTop_toTopOf="@id/content_tool" />
+
+        <TextView
+            android:id="@+id/content_event_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_16"
+            android:text="这是一条代办事项"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+            app:layout_constraintEnd_toEndOf="@id/content_tool"
+            app:layout_constraintStart_toStartOf="@id/content_tool"
+            app:layout_constraintTop_toBottomOf="@id/content_tool" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content_step_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="300dp"
+            android:minHeight="300dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/content_event_name_tv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -25,6 +25,8 @@
     <color name="black_one_day_900_alpha_087">#de000000</color>
     <color name="black_one_day_900_alpha_060">#99000000</color>
 
+    <color name="bg_side">#a7ffeb</color>
+
     <color name="purple_200">#bb86fc</color> <!--Color primary (dark)-->
     <color name="purple_500">#6200ee</color> <!--Color primary (light)-->
     <color name="purple_600">#4b01d0</color> <!--Color primary variant (dark)-->
