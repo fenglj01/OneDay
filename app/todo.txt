@@ -397,6 +397,8 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     考虑把首页列表item做成展开项
         收起时: 多少步 当前在哪步
         展开时: 具体的步骤
+        2. 为了更高的UI效果 在cell_content中只显示固定条目 点击编辑按钮后 跳转到编辑界面去 (后期再具体确定下来)
+            固定高度是不可能的 因为步骤个数本就不是固定的
 
 Need Better
 

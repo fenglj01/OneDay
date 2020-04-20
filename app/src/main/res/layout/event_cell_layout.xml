@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         app:additionalFlipsCount="2"
         app:animationDuration="1300"
+        app:backSideColor="@color/green_one_day"
         app:cameraHeight="30">
 
         <include
