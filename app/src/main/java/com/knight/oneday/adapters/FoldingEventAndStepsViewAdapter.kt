@@ -13,6 +13,7 @@ import com.knight.oneday.databinding.RvItemMiniEventBinding
 import com.knight.oneday.utilities.singleClick
 import com.ramotion.foldingcell.FoldingCell
 import kotlinx.android.synthetic.main.rv_item_mini_event.view.*
+import java.lang.Exception
 
 /**
  * @author knight
@@ -28,9 +29,8 @@ class FoldingEventAndStepsViewAdapter :
 
     private val unfoldedIndexes = hashSetOf<Int>()
 
-    private val unfoldedViews = hashSetOf<FoldingCell>()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
+        Log.d("TAG","onCreateViewHolder")
         return EventCellViewHolder(
             EventCellLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -43,6 +43,7 @@ class FoldingEventAndStepsViewAdapter :
     override fun onBindViewHolder(holder: EventCellViewHolder, position: Int) {
         val event = getItem(position)
         holder.bind(event)
+        Log.d("TAG","onBindViewHolder")
     }
 
     inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :
@@ -68,7 +69,6 @@ class FoldingEventAndStepsViewAdapter :
                     // 拥有步骤的情况下 才有必要展开折叠的部分
                     if (item.haveSteps()) {
                         binding.foldingCell.toggle(false)
-                        unfoldedViews.add(binding.foldingCell)
                         registerToggle(position = adapterPosition)
                     } else {
                         onFoldingItemClickListener?.onOverviewItemClick()
@@ -77,19 +77,17 @@ class FoldingEventAndStepsViewAdapter :
                 }
                 binding.includeContent.contentCard.singleClick {
                     binding.foldingCell.toggle(false)
-                    unfoldedViews.remove(binding.foldingCell)
                     registerToggle(position = adapterPosition)
                 }
-               /* *//* 根据当前展开的项 合理的展示折叠Item *//*
-                if (unfoldedIndexes.contains(adapterPosition)) {
-                    binding.foldingCell.fold(true)
-                } else {
-                    binding.foldingCell.fold(true)
-                }*/
-                if(unfoldedViews.contains(binding.foldingCell)){
-                    binding.foldingCell.unfold(true)
-                }else{
-                    binding.foldingCell.fold(true)
+               /* *//* 根据当前展开的项 合理的展示折叠Item */
+                try {
+                    if (unfoldedIndexes.contains(adapterPosition)) {
+                        binding.foldingCell.unfold(true)
+                    } else {
+                        binding.foldingCell.fold(true)
+                    }
+                }catch (e:Exception){
+
                 }
                 executePendingBindings()
             }

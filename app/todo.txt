@@ -418,6 +418,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
     专注度也太低了！！！！！！！！！！！！！！！！！！！ 草泥马的
 
+    ListAdapter DiffUtils 理解不透彻 带来了许多问题
 
 
 Need Better

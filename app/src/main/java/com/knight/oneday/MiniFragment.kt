@@ -24,7 +24,7 @@ class MiniFragment : Fragment() {
             requireContext()
         )
     }
-//    private val adapter: MiniEventRecyclerViewAdapter by lazy { MiniEventRecyclerViewAdapter() }
+
     private val adapter: FoldingEventAndStepsViewAdapter by lazy { FoldingEventAndStepsViewAdapter() }
     private lateinit var binding: FragmentMiniBinding
 
@@ -53,7 +53,7 @@ class MiniFragment : Fragment() {
     private fun subscribeUi() {
         miniVm.eventList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-            Log.d("TAG","submit")
+            Log.d("TAG", "submit")
         }
     }
 
