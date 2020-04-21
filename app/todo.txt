@@ -407,6 +407,8 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     优化代码
     考虑步骤rv带来的一些问题 以及 必须是两倍 以及布局摆放的合理性
 
+    还需要考虑一个问题 当Step recyclerView为动态的以后 折叠的效果
+
 Need Better
 
     1. 提醒时间可以加入小时

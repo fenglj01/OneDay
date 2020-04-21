@@ -43,7 +43,6 @@ class FoldingEventAndStepsViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: EventAndEventSteps) {
-
             /* 根据当前展开的项 合理的展示折叠Item */
             if (unfoldedIndexes.contains(adapterPosition)) {
                 binding.foldingCell.unfold(true)
@@ -53,7 +52,7 @@ class FoldingEventAndStepsViewAdapter :
 
             binding.apply {
                 eventAndSteps = item
-                /*// 决定了 突出得圆角(打算用来做已完成得处理)
+                /*// 决定了 突出得圆角(打算用来做已完成得处理 这个效果有待商榷)
                 eventCard.progress = 1F*/
                 // 设置预览部分
                 with(includeOverview) {
@@ -62,10 +61,20 @@ class FoldingEventAndStepsViewAdapter :
                     overviewStepContent.bindStepsOverView(item.eventSteps)
                     overviewCard.progress = 1F
                 }
-                // 点击事件
+                // 设置内容部分
+                with(includeContent) {
+                    content = item
+                }
+                // 预览视图下点击事件
                 binding.includeOverview.overviewCard.singleClick {
-                    binding.foldingCell.toggle(false)
-                    registerToggle(position = adapterPosition)
+                    // 拥有步骤的情况下 才有必要展开折叠的部分
+                    if (item.haveSteps()) {
+                        binding.foldingCell.toggle(false)
+                        registerToggle(position = adapterPosition)
+                    } else {
+                        onFoldingItemClickListener?.onOverviewItemClick()
+                    }
+
                 }
                 binding.includeContent.contentCard.singleClick {
                     binding.foldingCell.toggle(false)

@@ -19,4 +19,6 @@ data class EventAndEventSteps(
     override fun toString(): String {
         return "event:${event.eventId}-${event.content} \n steps :$eventSteps"
     }
+
+    fun haveSteps(): Boolean = eventSteps.isNotEmpty()
 }
