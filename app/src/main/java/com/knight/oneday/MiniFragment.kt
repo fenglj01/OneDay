@@ -1,6 +1,7 @@
 package com.knight.oneday
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -52,6 +53,7 @@ class MiniFragment : Fragment() {
     private fun subscribeUi() {
         miniVm.eventList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            Log.d("TAG","submit")
         }
     }
 

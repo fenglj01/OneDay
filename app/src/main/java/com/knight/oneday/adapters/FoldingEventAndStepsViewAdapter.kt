@@ -11,6 +11,7 @@ import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventCellLayoutBinding
 import com.knight.oneday.databinding.RvItemMiniEventBinding
 import com.knight.oneday.utilities.singleClick
+import com.ramotion.foldingcell.FoldingCell
 import kotlinx.android.synthetic.main.rv_item_mini_event.view.*
 
 /**
@@ -23,15 +24,20 @@ class FoldingEventAndStepsViewAdapter :
         EventAndStepsDiffCallback()
     ) {
 
-    private lateinit var binding: EventCellLayoutBinding
-
     private var onFoldingItemClickListener: OnFoldingItemClickListener? = null
 
     private val unfoldedIndexes = hashSetOf<Int>()
 
+    private val unfoldedViews = hashSetOf<FoldingCell>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
-        binding = EventCellLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return EventCellViewHolder(binding)
+        return EventCellViewHolder(
+            EventCellLayoutBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: EventCellViewHolder, position: Int) {
@@ -43,17 +49,9 @@ class FoldingEventAndStepsViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: EventAndEventSteps) {
-            /* 根据当前展开的项 合理的展示折叠Item */
-            if (unfoldedIndexes.contains(adapterPosition)) {
-                binding.foldingCell.unfold(true)
-            } else {
-                binding.foldingCell.fold(true)
-            }
 
             binding.apply {
                 eventAndSteps = item
-                /*// 决定了 突出得圆角(打算用来做已完成得处理 这个效果有待商榷)
-                eventCard.progress = 1F*/
                 // 设置预览部分
                 with(includeOverview) {
                     eventContent = item.event.content
@@ -70,6 +68,7 @@ class FoldingEventAndStepsViewAdapter :
                     // 拥有步骤的情况下 才有必要展开折叠的部分
                     if (item.haveSteps()) {
                         binding.foldingCell.toggle(false)
+                        unfoldedViews.add(binding.foldingCell)
                         registerToggle(position = adapterPosition)
                     } else {
                         onFoldingItemClickListener?.onOverviewItemClick()
@@ -78,12 +77,25 @@ class FoldingEventAndStepsViewAdapter :
                 }
                 binding.includeContent.contentCard.singleClick {
                     binding.foldingCell.toggle(false)
+                    unfoldedViews.remove(binding.foldingCell)
                     registerToggle(position = adapterPosition)
+                }
+               /* *//* 根据当前展开的项 合理的展示折叠Item *//*
+                if (unfoldedIndexes.contains(adapterPosition)) {
+                    binding.foldingCell.fold(true)
+                } else {
+                    binding.foldingCell.fold(true)
+                }*/
+                if(unfoldedViews.contains(binding.foldingCell)){
+                    binding.foldingCell.unfold(true)
+                }else{
+                    binding.foldingCell.fold(true)
                 }
                 executePendingBindings()
             }
         }
     }
+
 
     /*
         根据状态的切换 同步到记录中来 达到切换的效果
