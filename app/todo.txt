@@ -409,6 +409,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
     还需要考虑一个问题 当Step recyclerView为动态的以后 折叠的效果
 
+    1. 折叠崩溃Bug
+    2. 再弄一个步骤View 带有动画效果 这样体验会更好一点
+
 Need Better
 
     1. 提醒时间可以加入小时

@@ -17,7 +17,6 @@
         android:id="@+id/content_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_4"
         android:layout_marginVertical="@dimen/dp_2"
         android:paddingBottom="@dimen/dp_8"
         android:background="?attr/colorSurface"
@@ -119,12 +118,12 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dp_16"
             android:layout_marginTop="@dimen/dp_8"
+            android:elevation="@dimen/dp_4"
             android:text="@string/finish"
+            android:textAppearance="?attr/textAppearanceButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_driver2"
-
-            />
+            app:layout_constraintTop_toBottomOf="@id/content_driver2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
