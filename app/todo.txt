@@ -424,6 +424,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         PageListAdapter
     关于这个记录问题展开状态的问题 以及添加一个条目后 刷新到相关地方去 也要想办法解决一下了
 
+    折叠View 也有bug 还是得自己来调 有点操蛋啊
+
+
 
 Need Better
 
