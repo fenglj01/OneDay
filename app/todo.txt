@@ -420,6 +420,10 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
     ListAdapter DiffUtils 理解不透彻 带来了许多问题
 
+    关于列表要做的东西还是很多的
+        PageListAdapter
+    关于这个记录问题展开状态的问题 以及添加一个条目后 刷新到相关地方去 也要想办法解决一下了
+
 
 Need Better
 
