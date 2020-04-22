@@ -60,8 +60,10 @@
         <item name="svLineHeight">1dp</item>
         <item name="svLineLength">28dp</item>
         <item name="svLineMargin">4dp</item>
-        <item name="svSelectedRadius">15dp</item>
+        <item name="svSelectedRadius">18dp</item>
         <item name="svSelected">false</item>
+        <item name="svSelectedColor">?attr/colorSecondary</item>
+        <item name="svSelectedStrokeWidth">2dp</item>
     </style>
 
 </resources>

@@ -71,6 +71,8 @@
         <attr name="svLineHeight" format="dimension" />
         <attr name="svLineMargin" format="dimension" />
         <attr name="svSelected" format="boolean" />
+        <attr name="svSelectedColor" format="color" />
+        <attr name="svSelectedStrokeWidth" format="dimension"/>
 
     </declare-styleable>
 </resources>

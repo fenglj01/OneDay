@@ -56,6 +56,8 @@ class StepView @JvmOverloads constructor(
     var lineMargin: Int = 0
     @Dimension
     var lineLength: Int = 0
+    @Dimension
+    var selectedStrokeWidth: Int = 0
     @ColorInt
     var finishedCircleColor: Int = Color.WHITE
     @ColorInt
@@ -78,6 +80,8 @@ class StepView @JvmOverloads constructor(
     var executingMarkColor: Int = Color.BLUE
     @ColorInt
     var executingLineColor: Int = Color.BLUE
+    @ColorInt
+    var selectedColor: Int = 0
     var stepNumber = 1
 
     private lateinit var textPaint: Paint
@@ -127,6 +131,9 @@ class StepView @JvmOverloads constructor(
             lineMargin = getDimensionPixelSize(R.styleable.StepView_svLineMargin, 0)
             selectedRadius = getDimensionPixelSize(R.styleable.StepView_svSelectedRadius, 0)
             stepSelected = getBoolean(R.styleable.StepView_svSelected, false)
+            selectedColor = getColor(R.styleable.StepView_svSelectedColor, 0)
+            selectedStrokeWidth =
+                getDimensionPixelSize(R.styleable.StepView_svSelectedStrokeWidth, 0)
             recycle()
         }
 
@@ -160,7 +167,7 @@ class StepView @JvmOverloads constructor(
         val mCircleWidth = paddingStart + paddingEnd + 2 * selectedRadius
         val mLineNeedWidth = 2 * lineMargin + lineLength
         val mWidth = mCircleWidth + mLineNeedWidth
-        val mHeight = paddingTop + paddingBottom + 2 * selectedRadius
+        val mHeight = paddingTop + paddingBottom + 2 * selectedRadius + 2 * selectedStrokeWidth
 
         setMeasuredDimension(mWidth, mHeight)
 
@@ -201,6 +208,17 @@ class StepView @JvmOverloads constructor(
             circleRadius.toFloat(),
             paint
         )
+        if (stepSelected) {
+            paint.style = Paint.Style.STROKE
+            paint.strokeWidth = selectedStrokeWidth.toFloat()
+            paint.color = selectedColor
+            drawCircle(
+                cx.toFloat(),
+                cy.toFloat(),
+                selectedRadius.toFloat(),
+                paint
+            )
+        }
     }
 
     private fun Canvas.drawStepText() {
@@ -212,6 +230,7 @@ class StepView @JvmOverloads constructor(
 
     private fun prepareLineColor() {
         paint.apply {
+            paint.style = Paint.Style.FILL
             color = when (stepStatus) {
                 STEP_STATUS_UNFINISHED -> unfinishedLineColor
                 STEP_STATUS_FINISHED -> finishedLineColor
@@ -222,6 +241,7 @@ class StepView @JvmOverloads constructor(
 
     private fun prepareCircleColor() {
         paint.apply {
+            paint.style = Paint.Style.FILL
             color = when (stepStatus) {
                 STEP_STATUS_UNFINISHED -> unfinishedCircleColor
                 STEP_STATUS_FINISHED -> finishedCircleColor
