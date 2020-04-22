@@ -46,7 +46,9 @@
             <enum name="dotted" value="1" />
         </attr>
 
-        <attr name="svCircleRadius" format="dimension"/>
+        <attr name="svCircleRadius" format="dimension" />
+
+        <attr name="svSelectedRadius" format="dimension" />
 
         <attr name="svFinishedCircleColor" format="color" />
         <attr name="svFinishedTextColor" format="color" />
@@ -64,6 +66,11 @@
 
         <attr name="svStepNumber" format="integer" />
         <attr name="svStepNumberTextSize" format="dimension" />
+
+        <attr name="svLineLength" format="dimension" />
+        <attr name="svLineHeight" format="dimension" />
+        <attr name="svLineMargin" format="dimension" />
+        <attr name="svSelected" format="boolean" />
 
     </declare-styleable>
 </resources>

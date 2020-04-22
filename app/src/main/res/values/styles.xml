@@ -57,6 +57,11 @@
         <item name="svExecutingTextColor">?attr/colorOnSecondary</item>
         <item name="svStepNumber">0</item>
         <item name="svStepNumberTextSize">14sp</item>
+        <item name="svLineHeight">1dp</item>
+        <item name="svLineLength">12dp</item>
+        <item name="svLineMargin">4dp</item>
+        <item name="svSelectedRadius">15dp</item>
+        <item name="svSelected">false</item>
     </style>
 
 </resources>

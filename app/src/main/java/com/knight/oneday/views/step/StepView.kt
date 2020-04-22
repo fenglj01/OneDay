@@ -3,12 +3,15 @@ package com.knight.oneday.views.step
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.annotation.IntDef
 import com.knight.oneday.R
+import java.lang.RuntimeException
 
 /**
  * Create by FLJ in 2020/4/22 9:22
@@ -42,9 +45,17 @@ class StepView @JvmOverloads constructor(
     var lineType: Int = LINE_TYPE_SOLID
     var animationDuration: Int = 0
     @Dimension
+    var selectedRadius: Int = 0
+    @Dimension
     var circleRadius: Int = 0
     @Dimension(unit = Dimension.SP)
     var stepNumberTextSize: Float = 0F
+    @Dimension
+    var lineHeight: Int = 0
+    @Dimension
+    var lineMargin: Int = 0
+    @Dimension
+    var lineLength: Int = 0
     @ColorInt
     var finishedCircleColor: Int = Color.WHITE
     @ColorInt
@@ -69,18 +80,30 @@ class StepView @JvmOverloads constructor(
     var executingLineColor: Int = Color.BLUE
     var stepNumber = 1
 
+    private lateinit var textPaint: Paint
+    private lateinit var paint: Paint
+    private lateinit var textBounds: Rect
+
+    private var stepSelected: Boolean = false
+        set(value) {
+            field = value
+            invalidate()
+        }
 
     init {
         initAttrs()
+        initUtils()
     }
 
     private fun initAttrs() {
+
         val typeArray = context!!.obtainStyledAttributes(
             attrs,
             R.styleable.StepView,
             defStyleAttr,
             R.style.StepView
         )
+
         typeArray.apply {
             stepStatus = getInteger(R.styleable.StepView_svStatus, 0)
             lineType = getInteger(R.styleable.StepView_svLineType, 0)
@@ -99,16 +122,100 @@ class StepView @JvmOverloads constructor(
             executingTextColor = getColor(R.styleable.StepView_svExecutingTextColor, 0)
             stepNumberTextSize = getDimension(R.styleable.StepView_svStepNumberTextSize, 0F)
             stepNumber = getInteger(R.styleable.StepView_svStepNumber, 0)
+            lineHeight = getDimensionPixelSize(R.styleable.StepView_svLineHeight, 0)
+            lineLength = getDimensionPixelSize(R.styleable.StepView_svLineLength, 0)
+            lineMargin = getDimensionPixelSize(R.styleable.StepView_svLineMargin, 0)
+            selectedRadius = getDimensionPixelSize(R.styleable.StepView_svSelectedRadius, 0)
+            stepSelected = getBoolean(R.styleable.StepView_svSelected, false)
             recycle()
         }
+
+    }
+
+    private fun initUtils() {
+        textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        textBounds = Rect()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        /* 控制分割线的宽度不要草果半径 */
+        if (lineHeight > circleRadius) {
+            throw RuntimeException("lineHeight > 2 * circleRadius")
+        }
+        /* 选择外圆环的半径 需要比内容的半径要大 */
+        if (selectedRadius < circleRadius) {
+            throw  RuntimeException("selectedRadius must be > circleRadius")
+        }
+
+        val needLine = stepNumber != 1
+        val mCircleWidth = paddingStart + paddingEnd + 2 * selectedRadius
+        val mLineNeedWidth = lineMargin + lineLength
+        val mWidth = if (needLine) mCircleWidth + mLineNeedWidth else mCircleWidth
+        val mHeight = paddingTop + paddingBottom + 2 * selectedRadius
+
+        setMeasuredDimension(mWidth, mHeight)
+
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        canvas?.run {
+            drawStepCircle()
+            drawStepLine()
+            drawStepText()
+        }
+    }
+
+    private fun Canvas.drawStepLine() {
+        if (stepNumber == 0) return
+        prepareLineColor()
+        paint.strokeWidth = lineHeight.toFloat()
+    }
+
+    private fun Canvas.drawStepCircle() {
+        prepareCircleColor()
+    }
+
+    private fun Canvas.drawStepText() {
+        prepareTextColor()
+    }
+
+    private fun prepareLineColor() {
+        paint.apply {
+            color = when (stepStatus) {
+                STEP_STATUS_UNFINISHED -> unfinishedLineColor
+                STEP_STATUS_FINISHED -> finishedLineColor
+                else -> executingLineColor
+            }
+        }
+    }
+
+    private fun prepareCircleColor() {
+        paint.apply {
+            color = when (stepStatus) {
+                STEP_STATUS_UNFINISHED -> unfinishedCircleColor
+                STEP_STATUS_FINISHED -> finishedCircleColor
+                else -> executingCircleColor
+            }
+        }
+    }
+
+    private fun prepareTextColor() {
+        textPaint.apply {
+            color = when (stepStatus) {
+                STEP_STATUS_UNFINISHED -> unfinishedTextColor
+                STEP_STATUS_FINISHED -> finishedTextColor
+                else -> executingTextColor
+            }
+        }
+    }
+
+
+    /* 选中状态切换 */
+    fun toggleSelected() {
+        stepSelected = !stepSelected
     }
 
 }
