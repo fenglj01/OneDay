@@ -1,6 +1,7 @@
 package com.knight.oneday.views.step
 
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
@@ -100,6 +101,14 @@ class StepView @JvmOverloads constructor(
             stepNumber = getInteger(R.styleable.StepView_svStepNumber, 0)
             recycle()
         }
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    }
+
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
     }
 
 }

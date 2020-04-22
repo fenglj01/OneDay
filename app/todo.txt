@@ -436,6 +436,14 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
         StepView
 
+            圆形+Line 如果为第一个步骤 那么不需要绘制后面的线
+
+            当点击完成一个后 要通知下一个 而下一个根据自己的状态会有所改变
+
+            StepView 只用负责绘制步骤这个View 其它什么也不用做
+
+            在RecyclerView中再进行更为复杂的操作 控制下一步 控制显示状态等
+
 
 
 Need Better
