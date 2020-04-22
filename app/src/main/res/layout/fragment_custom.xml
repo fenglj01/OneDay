@@ -14,6 +14,7 @@
         android:orientation="horizontal">
 
         <com.knight.oneday.views.step.StepView
+            android:id="@+id/svOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:svSelected="true"
@@ -29,7 +30,8 @@
         <com.knight.oneday.views.step.StepView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:svStepNumber="3" />
+            app:svStatus="finished"
+            app:svStepNumber="10" />
 
     </LinearLayout>
 
