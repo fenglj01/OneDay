@@ -24,23 +24,7 @@ class CustomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       /* val tagItems = NavigationModel.getNavTagItems()
-        contentView.findViewById<DSListView<NavigationModelItem.NavEventTag>>(R.id.event_tag_picker_list)
-            .setAdapter(
-                TagPickerAdapterJava(
-                    requireContext(),
-                    R.layout.event_tag_cell_list_item_layout,
-                    tagItems
-                )
-            )
-        contentView.findViewById<FrameLayout>(R.id.content).invalidate()*/
-
     }
 
-
-    override fun onResume() {
-        super.onResume()
-
-    }
 
 }

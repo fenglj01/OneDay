@@ -134,8 +134,15 @@ class StepView @JvmOverloads constructor(
 
     private fun initUtils() {
         textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        textPaint.textSize = stepNumberTextSize
         paint = Paint(Paint.ANTI_ALIAS_FLAG)
         textBounds = Rect()
+        textPaint.getTextBounds(
+            stepNumber.toString(),
+            0,
+            stepNumber.toString().length,
+            textBounds
+        )
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -161,6 +168,7 @@ class StepView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        if (width == 0 || height == 0) return
         canvas?.run {
             drawStepCircle()
             drawStepLine()
@@ -172,14 +180,34 @@ class StepView @JvmOverloads constructor(
         if (stepNumber == 0) return
         prepareLineColor()
         paint.strokeWidth = lineHeight.toFloat()
+        val startX = paddingStart + 2 * selectedRadius + lineMargin
+        val startY = height / 2
+        drawLine(
+            startX.toFloat(),
+            startY.toFloat(),
+            (startX + lineLength).toFloat(),
+            startY.toFloat(),
+            paint
+        )
     }
 
     private fun Canvas.drawStepCircle() {
         prepareCircleColor()
+        val cx = (width - lineMargin - lineLength) / 2
+        val cy = height / 2
+        drawCircle(
+            cx.toFloat(),
+            cy.toFloat(),
+            circleRadius.toFloat(),
+            paint
+        )
     }
 
     private fun Canvas.drawStepText() {
         prepareTextColor()
+        val textX = paddingStart + selectedRadius - textBounds.width() / 2
+        val textY = paddingTop + selectedRadius - textBounds.height() / 2 - textBounds.bottom
+        drawText(stepNumber.toString(), textX.toFloat(), textY.toFloat(), textPaint)
     }
 
     private fun prepareLineColor() {
@@ -216,6 +244,18 @@ class StepView @JvmOverloads constructor(
     /* 选中状态切换 */
     fun toggleSelected() {
         stepSelected = !stepSelected
+    }
+
+    fun finishStep() {
+
+    }
+
+    fun unFinishStep() {
+
+    }
+
+    fun executeStep() {
+
     }
 
 }

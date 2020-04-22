@@ -444,6 +444,11 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
             在RecyclerView中再进行更为复杂的操作 控制下一步 控制显示状态等
 
+            1. 先让整个View能画出来
+            2. 让ViewSelected的时候 有动画
+            3. 让切换状态的时候 有动画
+            4. 增加一些监听回调
+
 
 
 Need Better
