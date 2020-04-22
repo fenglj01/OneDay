@@ -158,8 +158,8 @@ class StepView @JvmOverloads constructor(
 
         val needLine = stepNumber != 1
         val mCircleWidth = paddingStart + paddingEnd + 2 * selectedRadius
-        val mLineNeedWidth = lineMargin + lineLength
-        val mWidth = if (needLine) mCircleWidth + mLineNeedWidth else mCircleWidth
+        val mLineNeedWidth = 2 * lineMargin + lineLength
+        val mWidth = mCircleWidth + mLineNeedWidth
         val mHeight = paddingTop + paddingBottom + 2 * selectedRadius
 
         setMeasuredDimension(mWidth, mHeight)
@@ -177,10 +177,10 @@ class StepView @JvmOverloads constructor(
     }
 
     private fun Canvas.drawStepLine() {
-        if (stepNumber == 0) return
+        if (stepNumber == 1) return
         prepareLineColor()
         paint.strokeWidth = lineHeight.toFloat()
-        val startX = paddingStart + 2 * selectedRadius + lineMargin
+        val startX = paddingStart
         val startY = height / 2
         drawLine(
             startX.toFloat(),
@@ -193,7 +193,7 @@ class StepView @JvmOverloads constructor(
 
     private fun Canvas.drawStepCircle() {
         prepareCircleColor()
-        val cx = (width - lineMargin - lineLength) / 2
+        val cx = paddingStart + lineLength + lineMargin + selectedRadius
         val cy = height / 2
         drawCircle(
             cx.toFloat(),
@@ -205,8 +205,8 @@ class StepView @JvmOverloads constructor(
 
     private fun Canvas.drawStepText() {
         prepareTextColor()
-        val textX = paddingStart + selectedRadius - textBounds.width() / 2
-        val textY = paddingTop + selectedRadius - textBounds.height() / 2 - textBounds.bottom
+        val textX = paddingStart + lineLength + lineMargin + selectedRadius - textBounds.width() / 2
+        val textY = height / 2 + textBounds.height() / 2 - textBounds.bottom
         drawText(stepNumber.toString(), textX.toFloat(), textY.toFloat(), textPaint)
     }
 
