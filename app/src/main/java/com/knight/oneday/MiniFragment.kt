@@ -11,6 +11,7 @@ import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
+import com.knight.oneday.views.step.StepView
 
 /**
  * @author knight

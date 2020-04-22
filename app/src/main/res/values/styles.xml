@@ -39,4 +39,24 @@
         <item name="colorPrimary">@color/green_one_day</item>
     </style>
 
+    <style name="StepView">
+        <item name="svStatus">unfinished</item>
+        <item name="svAnimationDuration">200</item>
+        <item name="svLineType">solid</item>
+        <item name="svCircleRadius">14dp</item>
+        <item name="svFinishedCircleColor">?attr/colorSecondary</item>
+        <item name="svFinishedTextColor">?attr/colorOnSecondary</item>
+        <item name="svFinishedMarkColor">?attr/colorOnSecondary</item>
+        <item name="svFinishedLineColor">?attr/colorOnSecondary</item>
+        <item name="svUnfinishedCircleColor">?attr/colorSurface</item>
+        <item name="svUnfinishedTextColor">?attr/colorOnSurface</item>
+        <item name="svUnfinishedLineColor">?attr/colorOnSurface</item>
+        <item name="svExecutingCircleColor">?attr/colorOnSecondary</item>
+        <item name="svExecutingLineColor">?attr/colorOnSecondary</item>
+        <item name="svExecutingMarkColor">?attr/colorOnSecondary</item>
+        <item name="svExecutingTextColor">?attr/colorOnSecondary</item>
+        <item name="svStepNumber">0</item>
+        <item name="svStepNumberTextSize">14sp</item>
+    </style>
+
 </resources>

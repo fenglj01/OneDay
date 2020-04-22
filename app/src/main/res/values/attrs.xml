@@ -39,12 +39,14 @@
             <enum name="executing" value="2" />
         </attr>
 
-        <attr name="animationDuration" format="integer" />
+        <attr name="svAnimationDuration" format="integer" />
 
-        <attr name="lineType" format="enum">
+        <attr name="svLineType" format="enum">
             <enum name="solid" value="0" />
             <enum name="dotted" value="1" />
         </attr>
+
+        <attr name="svCircleRadius" format="dimension"/>
 
         <attr name="svFinishedCircleColor" format="color" />
         <attr name="svFinishedTextColor" format="color" />
@@ -61,7 +63,7 @@
         <attr name="svExecutingLineColor" format="color" />
 
         <attr name="svStepNumber" format="integer" />
-        <attr name="svStepNumberSize" format="dimension" />
+        <attr name="svStepNumberTextSize" format="dimension" />
 
     </declare-styleable>
 </resources>
