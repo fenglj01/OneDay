@@ -425,6 +425,16 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     关于这个记录问题展开状态的问题 以及添加一个条目后 刷新到相关地方去 也要想办法解决一下了
 
     折叠View 也有bug 还是得自己来调 有点操蛋啊
+4-22
+--------------
+    1. 要专注起来
+    2. 先做了步骤的展示
+        2.1 步骤View 带有动画
+        2.2 步骤点击事件和预览的回馈
+        2.3 封装一个RecyclerView 来做为整个预览View
+        2.4 在包装一个RecyclerView和TextView 作为预览
+
+        StepView
 
 
 

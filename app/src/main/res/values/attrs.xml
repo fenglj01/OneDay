@@ -31,4 +31,37 @@
         </attr>
         <attr name="stepNumberInt" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="StepView">
+        <attr name="svStatus" format="enum">
+            <enum name="unfinished" value="0" />
+            <enum name="finished" value="1" />
+            <enum name="executing" value="2" />
+        </attr>
+
+        <attr name="animationDuration" format="integer" />
+
+        <attr name="lineType" format="enum">
+            <enum name="solid" value="0" />
+            <enum name="dotted" value="1" />
+        </attr>
+
+        <attr name="svFinishedCircleColor" format="color" />
+        <attr name="svFinishedTextColor" format="color" />
+        <attr name="svFinishedMarkColor" format="color" />
+        <attr name="svFinishedLineColor" format="color" />
+
+        <attr name="svUnfinishedCircleColor" format="color" />
+        <attr name="svUnfinishedTextColor" format="color" />
+        <attr name="svUnfinishedLineColor" format="color" />
+
+        <attr name="svExecutingCircleColor" format="color" />
+        <attr name="svExecutingTextColor" format="color" />
+        <attr name="svExecutingMarkColor" format="color" />
+        <attr name="svExecutingLineColor" format="color" />
+
+        <attr name="svStepNumber" format="integer" />
+        <attr name="svStepNumberSize" format="dimension" />
+
+    </declare-styleable>
 </resources>
