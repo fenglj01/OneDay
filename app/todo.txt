@@ -451,7 +451,12 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
                 类似radioButton 的动画 √
                 动画: 背景先扩大到selectedRadius 然后回到circleRadius √
             3. 让切换状态的时候 有动画
-
+                unFinished -> finished
+                unFinished -> executing
+                executing -> finished
+                executing -> unFinished
+                finished -> unFinished
+                finished -> executing
             4. 增加一些监听回调
 
 
