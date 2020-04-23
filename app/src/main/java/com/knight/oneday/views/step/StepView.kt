@@ -1,15 +1,19 @@
 package com.knight.oneday.views.step
 
+import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.annotation.IntDef
+import androidx.core.animation.addListener
 import com.knight.oneday.R
 import java.lang.RuntimeException
 
@@ -48,6 +52,10 @@ class StepView @JvmOverloads constructor(
     var selectedRadius: Int = 0
     @Dimension
     var circleRadius: Int = 0
+        set(value) {
+            field = value
+            invalidate()
+        }
     @Dimension(unit = Dimension.SP)
     var stepNumberTextSize: Float = 0F
     @Dimension
@@ -87,6 +95,9 @@ class StepView @JvmOverloads constructor(
     private lateinit var textPaint: Paint
     private lateinit var paint: Paint
     private lateinit var textBounds: Rect
+    /* 关于选中、取消的动画 */
+    private lateinit var selectedAnimator: ObjectAnimator
+    private lateinit var unSelectedAnimator: ObjectAnimator
 
     private var stepSelected: Boolean = false
         set(value) {
@@ -223,8 +234,11 @@ class StepView @JvmOverloads constructor(
 
     private fun Canvas.drawStepText() {
         prepareTextColor()
-        val textX = paddingStart + lineLength + lineMargin + selectedRadius - textBounds.width() / 2
+        val textX = paddingStart + lineLength + lineMargin + selectedRadius - textPaint.measureText(
+            stepNumber.toString()
+        ) / 2
         val textY = height / 2 + textBounds.height() / 2 - textBounds.bottom
+
         drawText(stepNumber.toString(), textX.toFloat(), textY.toFloat(), textPaint)
     }
 
@@ -263,7 +277,32 @@ class StepView @JvmOverloads constructor(
 
     /* 选中状态切换 */
     fun toggleSelected() {
-        stepSelected = !stepSelected
+        if (!::selectedAnimator.isInitialized || !::unSelectedAnimator.isInitialized) {
+            initSelectedAnimator()
+        }
+        if (!stepSelected) {
+            selectedAnimator.start()
+        } else {
+            unSelectedAnimator.start()
+        }
+    }
+
+    @SuppressLint("ObjectAnimatorBinding")
+    private fun initSelectedAnimator() {
+        val sr = selectedRadius
+        var cr = circleRadius
+        selectedAnimator = ObjectAnimator.ofInt(this, "circleRadius", cr, sr, cr)
+        selectedAnimator.duration = animationDuration.toLong()
+        unSelectedAnimator = ObjectAnimator.ofInt(this, "circleRadius", sr, cr)
+        unSelectedAnimator.duration = animationDuration.toLong()
+        selectedAnimator.addListener(onEnd = {
+            stepSelected = !stepSelected
+        })
+        unSelectedAnimator.addListener(
+            onEnd = {
+                stepSelected = !stepSelected
+            }
+        )
     }
 
     fun finishStep() {

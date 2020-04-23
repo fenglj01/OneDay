@@ -27,7 +27,7 @@ class CustomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        svOne.singleClick {
+        svOne.singleClick(200L) {
             it.toggleSelected()
         }
     }
