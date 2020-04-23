@@ -211,11 +211,11 @@ class StepView @JvmOverloads constructor(
 
     private fun Canvas.drawStepCircle() {
         prepareCircleColor()
-        val cx = paddingStart + lineLength + lineMargin + selectedRadius
-        val cy = height / 2
+        val cx = (paddingStart + lineLength + lineMargin + selectedRadius).toFloat()
+        val cy = (height / 2).toFloat()
         drawCircle(
-            cx.toFloat(),
-            cy.toFloat(),
+            cx,
+            cy,
             circleRadius.toFloat(),
             paint
         )
@@ -224,8 +224,8 @@ class StepView @JvmOverloads constructor(
             paint.strokeWidth = selectedStrokeWidth.toFloat()
             paint.color = selectedColor
             drawCircle(
-                cx.toFloat(),
-                cy.toFloat(),
+                cx,
+                cy,
                 selectedRadius.toFloat(),
                 paint
             )
@@ -237,9 +237,9 @@ class StepView @JvmOverloads constructor(
         val textX = paddingStart + lineLength + lineMargin + selectedRadius - textPaint.measureText(
             stepNumber.toString()
         ) / 2
-        val textY = height / 2 + textBounds.height() / 2 - textBounds.bottom
+        val textY = (height / 2 + textBounds.height() / 2 - textBounds.bottom).toFloat()
 
-        drawText(stepNumber.toString(), textX.toFloat(), textY.toFloat(), textPaint)
+        drawText(stepNumber.toString(), textX, textY, textPaint)
     }
 
     private fun prepareLineColor() {
@@ -295,11 +295,13 @@ class StepView @JvmOverloads constructor(
         selectedAnimator.duration = animationDuration.toLong()
         unSelectedAnimator = ObjectAnimator.ofInt(this, "circleRadius", sr, cr)
         unSelectedAnimator.duration = animationDuration.toLong()
-        selectedAnimator.addListener(onEnd = {
-            stepSelected = !stepSelected
-        })
-        unSelectedAnimator.addListener(
+        selectedAnimator.addListener(
             onEnd = {
+                stepSelected = !stepSelected
+            }
+        )
+        unSelectedAnimator.addListener(
+            onStart = {
                 stepSelected = !stepSelected
             }
         )

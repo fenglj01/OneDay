@@ -447,10 +447,11 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
             1. 先让整个View能画出来 √
                 stepNumber 居中上有问题 √
                 对其上使用bounds 获取的宽度 会导致不一样 所以最后采用了paint.measureText 来搞定宽度
-            2. 让ViewSelected的时候 有动画
-                类似radioButton 的动画
-                动画: 背景先扩大到selectedRadius 然后回到circleRadius
+            2. 让ViewSelected的时候 有动画 √
+                类似radioButton 的动画 √
+                动画: 背景先扩大到selectedRadius 然后回到circleRadius √
             3. 让切换状态的时候 有动画
+
             4. 增加一些监听回调
 
 

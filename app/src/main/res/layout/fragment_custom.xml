@@ -23,7 +23,7 @@
         <com.knight.oneday.views.step.StepView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:svStatus="finished"
+            app:svStatus="unfinished"
             app:svStepNumber="2" />
 
         <com.knight.oneday.views.step.StepView
