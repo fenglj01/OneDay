@@ -91,6 +91,7 @@ class StepView @JvmOverloads constructor(
     @ColorInt
     var selectedColor: Int = 0
     var stepNumber = 1
+    var lineAnimatorLength: Int = 0
 
     private lateinit var textPaint: Paint
     private lateinit var paint: Paint
@@ -98,6 +99,8 @@ class StepView @JvmOverloads constructor(
     /* 关于选中、取消的动画 */
     private lateinit var selectedAnimator: ObjectAnimator
     private lateinit var unSelectedAnimator: ObjectAnimator
+    /* 状态切换动画 */
+    private lateinit var stateChangeAnimator: ObjectAnimator
 
     private var stepSelected: Boolean = false
         set(value) {
@@ -108,6 +111,7 @@ class StepView @JvmOverloads constructor(
     init {
         initAttrs()
         initUtils()
+        initAnimator()
     }
 
     private fun initAttrs() {
@@ -277,9 +281,7 @@ class StepView @JvmOverloads constructor(
 
     /* 选中状态切换 */
     fun toggleSelected() {
-        if (!::selectedAnimator.isInitialized || !::unSelectedAnimator.isInitialized) {
-            initSelectedAnimator()
-        }
+
         if (!stepSelected) {
             selectedAnimator.start()
         } else {
@@ -288,13 +290,21 @@ class StepView @JvmOverloads constructor(
     }
 
     @SuppressLint("ObjectAnimatorBinding")
-    private fun initSelectedAnimator() {
+    private fun initAnimator() {
         val sr = selectedRadius
         var cr = circleRadius
+
         selectedAnimator = ObjectAnimator.ofInt(this, "circleRadius", cr, sr, cr)
         selectedAnimator.duration = animationDuration.toLong()
         unSelectedAnimator = ObjectAnimator.ofInt(this, "circleRadius", sr, cr)
         unSelectedAnimator.duration = animationDuration.toLong()
+        stateChangeAnimator = ObjectAnimator.ofInt(this, "circleRadius", cr, sr, cr)
+        stateChangeAnimator.addUpdateListener {
+
+        }
+        selectedAnimator.addUpdateListener {
+            Log.d("TAG_STEP_VIEW", "fraction ${it.animatedFraction} value ${it.animatedValue}")
+        }
         selectedAnimator.addListener(
             onEnd = {
                 stepSelected = !stepSelected

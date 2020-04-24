@@ -457,6 +457,13 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
                 executing -> unFinished
                 finished -> unFinished
                 finished -> executing
+
+                分析过后 也就是 finished unfinished executing 三种动画
+
+                状态切换都是 先放大 后缩小 然后出现对应的内容
+
+                大概思路就是在更改半径的同时 更改line的长度 并且绘制
+
             4. 增加一些监听回调
 
 
