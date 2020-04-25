@@ -463,6 +463,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
                 状态切换都是 先放大 后缩小 然后出现对应的内容
 
                 大概思路就是在更改半径的同时 更改line的长度 并且绘制
+                绘制的时候只需要判断 是否是完成 对Line而言 只有完成与否两个状态
+                drawLine时 要绘制backLine 还是绘制currentLine 并且控制方向
+
 
             4. 增加一些监听回调
 
@@ -479,4 +482,8 @@ Need Better
     1. 动态按钮
     2. MD
     3. JetPack
-
+写完OneDay之后的打算
+    1. 完成Android基本知识的巩固
+    2. 完成Java Kotlin 基本知识的巩固
+    3. 完成Flutter的学习
+    4. 开始找新的工作

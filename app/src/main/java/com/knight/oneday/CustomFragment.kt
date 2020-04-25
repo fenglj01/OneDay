@@ -6,6 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.views.step.STEP_STATE_FINISHED
+import com.knight.oneday.views.step.STEP_STATE_UNFINISHED
+import com.knight.oneday.views.step.StepView.Companion.STEP_STATUS_EXECUTING
+import com.knight.oneday.views.step.StepView.Companion.STEP_STATUS_FINISHED
+import com.knight.oneday.views.step.StepView.Companion.STEP_STATUS_UNFINISHED
 import kotlinx.android.synthetic.main.fragment_custom.*
 
 /**
@@ -29,6 +34,16 @@ class CustomFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         svOne.singleClick(200L) {
             it.toggleSelected()
+
+        }
+        svTwo.singleClick {
+            it.changeStepStatus(
+                when (it.stepStatus) {
+                    STEP_STATUS_UNFINISHED -> STEP_STATUS_EXECUTING
+                    STEP_STATUS_EXECUTING -> STEP_STATUS_FINISHED
+                    else -> STEP_STATE_UNFINISHED
+                }
+            )
         }
     }
 

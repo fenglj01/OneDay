@@ -101,6 +101,7 @@ class StepView @JvmOverloads constructor(
     private lateinit var unSelectedAnimator: ObjectAnimator
     /* 状态切换动画 */
     private lateinit var stateChangeAnimator: ObjectAnimator
+    private var toStatus: Int = STEP_STATUS_UNFINISHED
 
     private var stepSelected: Boolean = false
         set(value) {
@@ -149,6 +150,7 @@ class StepView @JvmOverloads constructor(
             selectedColor = getColor(R.styleable.StepView_svSelectedColor, 0)
             selectedStrokeWidth =
                 getDimensionPixelSize(R.styleable.StepView_svSelectedStrokeWidth, 0)
+            toStatus = stepStatus
             recycle()
         }
 
@@ -202,15 +204,30 @@ class StepView @JvmOverloads constructor(
         if (stepNumber == 1) return
         prepareLineColor()
         paint.strokeWidth = lineHeight.toFloat()
-        val startX = paddingStart
-        val startY = height / 2
+        val startX = paddingStart.toFloat()
+        val startY = (height / 2).toFloat()
         drawLine(
-            startX.toFloat(),
-            startY.toFloat(),
-            (startX + lineLength).toFloat(),
-            startY.toFloat(),
+            startX,
+            startY,
+            (startX + lineLength),
+            startY,
             paint
         )
+        /* 如果是在状态切换中 */
+        if (isStatusChange()) {
+            prepareLineColorByStateChange()
+            val startSX =
+                (if (toStatus != STEP_STATUS_UNFINISHED) paddingStart else paddingStart + lineLength).toFloat()
+            val endX =
+                if (toStatus != STEP_STATUS_UNFINISHED) startX + lineAnimatorLength else (paddingStart + lineLength - lineAnimatorLength).toFloat()
+            drawLine(
+                startSX,
+                startY,
+                endX,
+                startY,
+                paint
+            )
+        }
     }
 
     private fun Canvas.drawStepCircle() {
@@ -257,6 +274,17 @@ class StepView @JvmOverloads constructor(
         }
     }
 
+    private fun prepareLineColorByStateChange() {
+        paint.apply {
+            paint.style = Paint.Style.FILL
+            color = when (toStatus) {
+                STEP_STATUS_UNFINISHED -> unfinishedLineColor
+                STEP_STATUS_FINISHED -> finishedLineColor
+                else -> executingLineColor
+            }
+        }
+    }
+
     private fun prepareCircleColor() {
         paint.apply {
             paint.style = Paint.Style.FILL
@@ -268,6 +296,7 @@ class StepView @JvmOverloads constructor(
         }
     }
 
+
     private fun prepareTextColor() {
         textPaint.apply {
             color = when (stepStatus) {
@@ -278,10 +307,8 @@ class StepView @JvmOverloads constructor(
         }
     }
 
-
     /* 选中状态切换 */
     fun toggleSelected() {
-
         if (!stepSelected) {
             selectedAnimator.start()
         } else {
@@ -299,12 +326,16 @@ class StepView @JvmOverloads constructor(
         unSelectedAnimator = ObjectAnimator.ofInt(this, "circleRadius", sr, cr)
         unSelectedAnimator.duration = animationDuration.toLong()
         stateChangeAnimator = ObjectAnimator.ofInt(this, "circleRadius", cr, sr, cr)
-        stateChangeAnimator.addUpdateListener {
 
+        stateChangeAnimator.addUpdateListener { animator ->
+            // 根据圆的动画 同步到line上来
+            lineAnimatorLength = (animator.animatedFraction * lineLength).toInt()
         }
-        selectedAnimator.addUpdateListener {
-            Log.d("TAG_STEP_VIEW", "fraction ${it.animatedFraction} value ${it.animatedValue}")
-        }
+        stateChangeAnimator.addListener(
+            onEnd = {
+                this.stepStatus = toStatus
+            }
+        )
         selectedAnimator.addListener(
             onEnd = {
                 stepSelected = !stepSelected
@@ -317,16 +348,16 @@ class StepView @JvmOverloads constructor(
         )
     }
 
-    fun finishStep() {
-
+    /**
+     * 修改StepView状态
+     * @param toStatus 要准转变到的状态
+     * */
+    fun changeStepStatus(toStatus: Int) {
+        stateChangeAnimator.start()
+        this.toStatus = toStatus
     }
 
-    fun unFinishStep() {
-
-    }
-
-    fun executeStep() {
-
-    }
+    /* 判断是否是状态切换 */
+    fun isStatusChange(): Boolean = this.stepStatus != this.toStatus
 
 }

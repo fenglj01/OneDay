@@ -21,6 +21,7 @@
             app:svStepNumber="1" />
 
         <com.knight.oneday.views.step.StepView
+            android:id="@+id/svTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:svStatus="unfinished"
