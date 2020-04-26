@@ -2,14 +2,17 @@ package com.knight.oneday.views.step
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.Step
 import com.knight.oneday.data.StepDiffUtil
 import com.knight.oneday.databinding.StepListViewItemBinding
+import com.knight.oneday.utilities.singleClick
 
 /**
  * Create by FLJ in 2020/4/26 10:02
@@ -20,9 +23,7 @@ class StepListView @JvmOverloads constructor(
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
     private val stepList: MutableList<Step> = mutableListOf()
-    val stepListAdapter = StepListAdapter()
-
-    var stepListListener: StepListListener? = null
+    private lateinit var stepListAdapter: StepListAdapter
 
     init {
         initAdapter()
@@ -36,11 +37,13 @@ class StepListView @JvmOverloads constructor(
 
     private fun initAdapter() {
         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        stepListAdapter = StepListAdapter()
         adapter = stepListAdapter
         stepListAdapter.submitList(stepList)
     }
 
-    inner class StepListAdapter : ListAdapter<Step, StepListViewHolder>(StepDiffUtil) {
+
+    class StepListAdapter() : ListAdapter<Step, StepListViewHolder>(StepDiffUtil) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepListViewHolder {
             var binding = StepListViewItemBinding.inflate(
@@ -48,7 +51,6 @@ class StepListView @JvmOverloads constructor(
                 parent,
                 false
             )
-
             return StepListViewHolder(binding)
         }
 
@@ -62,26 +64,24 @@ class StepListView @JvmOverloads constructor(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(step: Step) {
-            /*binding.stepListItem.stepViewListener = object : StepView.StepViewListener {
+            binding.stepListItem.setOnClickListener {
+                (it as StepView).toggleSelected()
+            }
+            binding.stepListItem.stepViewListener = object : StepView.StepViewListener {
                 override fun onStatusChangeListener(fromStatus: Int, toStatus: Int) {
 
                 }
 
                 override fun onSelectedStateChangeListener(isSelected: Boolean) {
-
+                    if (isSelected) {
+                    }
                 }
-            }*/
+            }
         }
     }
 
-    interface StepListListener {
-
-        fun onStepSelected(step: Step)
-
-        fun onStepFinished(step: Step, position: Int)
-
-        fun onStepCancelFinished(step: Step, position: Int)
-
+    interface SelectedStepChangeListener {
+        fun onSelectedStepChanged(selectedPosition: Int)
     }
 
 }

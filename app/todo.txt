@@ -469,6 +469,17 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         3. 上下步骤的联动效果
         4. 自动移动功能
 
+    问题陷入回调地狱
+        stepView -> stepListView -> stepAdapter -> miniFragment -> viewModel
+
+        viewModel　一层一层的传递　
+
+        怎样达到一个输入的目的呢
+
+            1. 在列表里面就不要设计修改了 只展示 去到详情页再做修改
+
+            2. 设计上出了大问题 
+
 
 Need Better
 

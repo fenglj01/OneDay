@@ -318,6 +318,12 @@ class StepView @JvmOverloads constructor(
         }
     }
 
+    fun cancelSelected() {
+        if (stepSelected) {
+            unSelectedAnimator.start()
+        }
+    }
+
     @SuppressLint("ObjectAnimatorBinding")
     private fun initAnimator() {
         val sr = selectedRadius
