@@ -13,6 +13,7 @@ import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.views.getDrawableOrNull
 import com.knight.oneday.views.step.StepNumberView
+import com.knight.oneday.views.step.StepView
 
 @BindingAdapter("bindStepNumber")
 fun StepNumberView.bindStepNumber(number: Int) {
