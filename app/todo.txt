@@ -450,14 +450,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
             2. 让ViewSelected的时候 有动画 √
                 类似radioButton 的动画 √
                 动画: 背景先扩大到selectedRadius 然后回到circleRadius √
-            3. 让切换状态的时候 有动画
-                unFinished -> finished
-                unFinished -> executing
-                executing -> finished
-                executing -> unFinished
-                finished -> unFinished
-                finished -> executing
-
+            3. 让切换状态的时候 有动画 √
                 分析过后 也就是 finished unfinished executing 三种动画
 
                 状态切换都是 先放大 后缩小 然后出现对应的内容
@@ -465,9 +458,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
                 大概思路就是在更改半径的同时 更改line的长度 并且绘制
                 绘制的时候只需要判断 是否是完成 对Line而言 只有完成与否两个状态
                 drawLine时 要绘制backLine 还是绘制currentLine 并且控制方向
-
-
             4. 增加一些监听回调
+                1. 选择状态切换
+                2. 自身状态切换
 
 
 

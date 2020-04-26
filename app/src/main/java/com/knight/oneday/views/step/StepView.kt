@@ -103,6 +103,8 @@ class StepView @JvmOverloads constructor(
     private lateinit var stateChangeAnimator: ObjectAnimator
     private var toStatus: Int = STEP_STATUS_UNFINISHED
 
+    var stepViewListener: StepViewListener? = null
+
     private var stepSelected: Boolean = false
         set(value) {
             field = value
@@ -333,17 +335,20 @@ class StepView @JvmOverloads constructor(
         }
         stateChangeAnimator.addListener(
             onEnd = {
+                stepViewListener?.onStatusChangeListener(stepStatus, toStatus)
                 this.stepStatus = toStatus
             }
         )
         selectedAnimator.addListener(
             onEnd = {
                 stepSelected = !stepSelected
+                stepViewListener?.onSelectedStateChangeListener(stepSelected)
             }
         )
         unSelectedAnimator.addListener(
             onStart = {
                 stepSelected = !stepSelected
+                stepViewListener?.onSelectedStateChangeListener(stepSelected)
             }
         )
     }
@@ -360,4 +365,14 @@ class StepView @JvmOverloads constructor(
     /* 判断是否是状态切换 */
     fun isStatusChange(): Boolean = this.stepStatus != this.toStatus
 
+    /**
+     * 监听回调 自身状态 自身选择状态切换监听
+     */
+    interface StepViewListener {
+
+        fun onStatusChangeListener(fromStatus: Int, toStatus: Int)
+
+        fun onSelectedStateChangeListener(isSelected: Boolean)
+
+    }
 }
