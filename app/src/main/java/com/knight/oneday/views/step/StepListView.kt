@@ -25,6 +25,8 @@ class StepListView @JvmOverloads constructor(
     private val stepList: MutableList<Step> = mutableListOf()
     private lateinit var stepListAdapter: StepListAdapter
 
+    private var selectedStepView: StepView? = null
+
     init {
         initAdapter()
     }
@@ -43,7 +45,7 @@ class StepListView @JvmOverloads constructor(
     }
 
 
-    class StepListAdapter() : ListAdapter<Step, StepListViewHolder>(StepDiffUtil) {
+    inner class StepListAdapter() : ListAdapter<Step, StepListViewHolder>(StepDiffUtil) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepListViewHolder {
             var binding = StepListViewItemBinding.inflate(
@@ -60,7 +62,7 @@ class StepListView @JvmOverloads constructor(
         }
     }
 
-    class StepListViewHolder(val binding: StepListViewItemBinding) :
+    inner class StepListViewHolder(val binding: StepListViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(step: Step) {
@@ -74,6 +76,10 @@ class StepListView @JvmOverloads constructor(
 
                 override fun onSelectedStateChangeListener(isSelected: Boolean) {
                     if (isSelected) {
+                        if (selectedStepView != binding.stepListItem) {
+                            selectedStepView?.cancelSelected()
+                            selectedStepView = binding.stepListItem
+                        }
                     }
                 }
             }
