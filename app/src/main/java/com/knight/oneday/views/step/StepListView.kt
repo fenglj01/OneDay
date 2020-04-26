@@ -48,10 +48,12 @@ class StepListView @JvmOverloads constructor(
                 parent,
                 false
             )
+
             return StepListViewHolder(binding)
         }
 
         override fun onBindViewHolder(holder: StepListViewHolder, position: Int) {
+            holder.binding.step = getItem(position)
             holder.bind(getItem(position))
         }
     }

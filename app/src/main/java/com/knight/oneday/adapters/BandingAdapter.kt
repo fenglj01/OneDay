@@ -12,6 +12,8 @@ import com.knight.oneday.data.Step
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.views.getDrawableOrNull
+import com.knight.oneday.views.step.STEP_STATE_FINISHED
+import com.knight.oneday.views.step.STEP_STATE_UNFINISHED
 import com.knight.oneday.views.step.StepNumberView
 import com.knight.oneday.views.step.StepView
 
@@ -163,5 +165,12 @@ fun TextView.bindStepsOverView(steps: List<Step>) {
         val nowStep = steps.first { it.state == EventState.UNFINISHED }
         text = "一共 $size 步 当前第 ${nowStep.serialNumber} 步: ${nowStep.content}"
     }
+}
+
+@BindingAdapter("bindStepItem")
+fun StepView.bindStepItem(step: Step) {
+    stepNumber = step.serialNumber
+    stepStatus = if(step.state == EventState.UNFINISHED) STEP_STATE_UNFINISHED else STEP_STATE_FINISHED
+
 }
 

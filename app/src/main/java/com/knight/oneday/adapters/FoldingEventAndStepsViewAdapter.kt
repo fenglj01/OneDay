@@ -30,7 +30,7 @@ class FoldingEventAndStepsViewAdapter :
     private val unfoldedIndexes = hashSetOf<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
-        Log.d("TAG","onCreateViewHolder")
+        Log.d("TAG", "onCreateViewHolder")
         return EventCellViewHolder(
             EventCellLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -43,7 +43,7 @@ class FoldingEventAndStepsViewAdapter :
     override fun onBindViewHolder(holder: EventCellViewHolder, position: Int) {
         val event = getItem(position)
         holder.bind(event)
-        Log.d("TAG","onBindViewHolder")
+        Log.d("TAG", "onBindViewHolder")
     }
 
     inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :
@@ -63,6 +63,7 @@ class FoldingEventAndStepsViewAdapter :
                 // 设置内容部分
                 with(includeContent) {
                     content = item
+                    contentStepRv.setStepList(item.eventSteps)
                 }
                 // 预览视图下点击事件
                 binding.includeOverview.overviewCard.singleClick {
@@ -79,14 +80,14 @@ class FoldingEventAndStepsViewAdapter :
                     binding.foldingCell.toggle(false)
                     registerToggle(position = adapterPosition)
                 }
-               /* *//* 根据当前展开的项 合理的展示折叠Item */
+                /* *//* 根据当前展开的项 合理的展示折叠Item */
                 try {
                     if (unfoldedIndexes.contains(adapterPosition)) {
                         binding.foldingCell.unfold(true)
                     } else {
                         binding.foldingCell.fold(true)
                     }
-                }catch (e:Exception){
+                } catch (e: Exception) {
 
                 }
                 executePendingBindings()

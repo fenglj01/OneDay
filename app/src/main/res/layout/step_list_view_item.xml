@@ -14,6 +14,6 @@
         android:id="@+id/step_list_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:svStatus="@{step.state}"
-        app:svStepNumber="@{step.serialNumber}" />
+        bindStepItem="@{step}"
+        />
 </layout>
