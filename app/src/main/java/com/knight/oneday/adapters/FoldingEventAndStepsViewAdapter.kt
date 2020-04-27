@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.EventAndEventSteps
+import com.knight.oneday.data.Step
 import com.knight.oneday.databinding.EventCellLayoutBinding
 import com.knight.oneday.databinding.RvItemMiniEventBinding
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.views.step.StepListView
 import com.ramotion.foldingcell.FoldingCell
 import kotlinx.android.synthetic.main.rv_item_mini_event.view.*
 import java.lang.Exception
@@ -64,6 +66,12 @@ class FoldingEventAndStepsViewAdapter :
                 with(includeContent) {
                     content = item
                     contentStepRv.setStepList(item.eventSteps)
+                    contentStepRv.selectedStepChangeListener =
+                        object : StepListView.SelectedStepChangeListener {
+                            override fun onSelectedStepChanged(step: Step) {
+                                contentPreviewStepTv.text = step.content
+                            }
+                        }
                 }
                 // 预览视图下点击事件
                 binding.includeOverview.overviewCard.singleClick {

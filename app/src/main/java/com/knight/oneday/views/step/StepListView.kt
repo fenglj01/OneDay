@@ -27,6 +27,8 @@ class StepListView @JvmOverloads constructor(
 
     private var selectedStepView: StepView? = null
 
+    var selectedStepChangeListener: SelectedStepChangeListener? = null
+
     init {
         initAdapter()
     }
@@ -78,6 +80,7 @@ class StepListView @JvmOverloads constructor(
                     if (isSelected) {
                         if (selectedStepView != binding.stepListItem) {
                             selectedStepView?.cancelSelected()
+                            selectedStepChangeListener?.onSelectedStepChanged(step)
                             selectedStepView = binding.stepListItem
                         }
                     }
@@ -87,7 +90,7 @@ class StepListView @JvmOverloads constructor(
     }
 
     interface SelectedStepChangeListener {
-        fun onSelectedStepChanged(selectedPosition: Int)
+        fun onSelectedStepChanged(step: Step)
     }
 
 }
