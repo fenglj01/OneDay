@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.knight.oneday.R
 import com.knight.oneday.data.Step
+import com.knight.oneday.utilities.EventState
+import com.knight.oneday.utilities.getString
 
 /**
  * Create by FLJ in 2020/4/27 10:15
@@ -20,6 +22,7 @@ class StepListControlView : ConstraintLayout {
     private val overViewStepTextView: TextView
     private val previewStepTextView: TextView
     private val stepList: MutableList<Step>
+    private var firstUnfinishedNumber: Int = 1
 
     constructor(context: Context?) : this(context, null)
 
@@ -36,16 +39,27 @@ class StepListControlView : ConstraintLayout {
         stepListView = contentView.findViewById(R.id.step_list_view)
         overViewStepTextView = contentView.findViewById(R.id.overview_step_tv)
         previewStepTextView = contentView.findViewById(R.id.preview_step_tv)
+        stepListView.selectedStepChangeListener = object : StepListView.SelectedStepChangeListener {
+            override fun onSelectedStepChanged(step: Step) {
+                previewStepTextView.text = step.content
+            }
+        }
     }
 
     fun setUpStepList(list: List<Step>) {
         stepList.clear()
         stepList.addAll(list)
         stepListView.setStepList(stepList)
-        stepListView.selectedStepChangeListener = object : StepListView.SelectedStepChangeListener {
-            override fun onSelectedStepChanged(step: Step) {
-
-            }
+        try {
+            val firstUnfinishedStep = stepList.first { it.state == EventState.UNFINISHED }
+            firstUnfinishedNumber = firstUnfinishedStep.serialNumber
+            overViewStepTextView.text = getString(R.string.over_view_step).format(
+                stepList.size,
+                firstUnfinishedNumber
+            )
+            previewStepTextView.text = firstUnfinishedStep.content
+        } catch (e: Exception) {
+            /* 没有未完成的项目 */
         }
     }
 
