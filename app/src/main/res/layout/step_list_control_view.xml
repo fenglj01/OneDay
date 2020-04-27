@@ -17,8 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dp_16"
-        android:layout_marginVertical="@dimen/dp_8"
-        android:text="一共五步，当前第三步"
+        android:layout_marginVertical="@dimen/dp_16"
         android:textAppearance="?attr/textAppearanceCaption"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/step_list_view" />
@@ -29,7 +28,6 @@
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/dp_16"
         android:paddingVertical="@dimen/dp_16"
-        android:text="这是第三步的文本"
         android:textAppearance="?attr/textAppearanceBody2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -246,7 +246,7 @@ class StepView @JvmOverloads constructor(
         if (stepSelected) {
             paint.style = Paint.Style.STROKE
             paint.strokeWidth = selectedStrokeWidth.toFloat()
-            paint.color = selectedColor
+            /*paint.color = selectedColor*/
             drawCircle(
                 cx,
                 cy,

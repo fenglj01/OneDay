@@ -48,7 +48,7 @@
         <item name="svFinishedTextColor">?attr/colorOnSecondary</item>
         <item name="svFinishedMarkColor">?attr/colorOnSecondary</item>
         <item name="svFinishedLineColor">?attr/colorSecondary</item>
-        <item name="svUnfinishedCircleColor">?attr/colorSurface</item>
+        <item name="svUnfinishedCircleColor">#7FC2C4</item>
         <item name="svUnfinishedTextColor">?attr/colorOnSurface</item>
         <item name="svUnfinishedLineColor">?attr/colorOnSurface</item>
         <item name="svExecutingCircleColor">?attr/colorError</item>

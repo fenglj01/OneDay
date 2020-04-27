@@ -63,5 +63,4 @@ class StepListControlView : ConstraintLayout {
         }
     }
 
-
 }

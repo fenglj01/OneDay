@@ -72,9 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_driver"
-
-            />
+            app:layout_constraintTop_toBottomOf="@id/content_driver" />
 
         <ImageView
             android:id="@+id/content_driver2"

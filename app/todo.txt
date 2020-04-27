@@ -478,7 +478,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
             1. 在列表里面就不要设计修改了 只展示 去到详情页再做修改 (其实还是可以考虑在StepListView中来完善)
 
-            2. 设计上出了大问题 (暂时不能避免这种情况)
+            2. 设计上出了大问题 (暂时不能避免这种情况) √
 
             3. 点击位置需要处理一下 √
 
@@ -486,9 +486,11 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
 4-28
 ---------
-    1. StepListControlView 预览和操作 整合起来
+    1. StepListControlView 预览和操作 整合起来 √
     2. Ui 效果调整
+        视图配色的调整
     3. 因为Step在数据库中并没有设计正在执行机制 现在这个预览里面会存在 但是会相对显得不知道怎么完善的好
+    4. 折叠View的Bug 有点大
 
 Need Better
 
