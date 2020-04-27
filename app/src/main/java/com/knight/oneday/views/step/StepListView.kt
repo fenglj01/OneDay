@@ -68,9 +68,6 @@ class StepListView @JvmOverloads constructor(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(step: Step) {
-            binding.stepListItem.setOnClickListener {
-                (it as StepView).toggleSelected()
-            }
             binding.stepListItem.stepViewListener = object : StepView.StepViewListener {
                 override fun onStatusChangeListener(fromStatus: Int, toStatus: Int) {
 

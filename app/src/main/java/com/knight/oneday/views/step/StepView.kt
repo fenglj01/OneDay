@@ -9,6 +9,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
@@ -357,6 +358,23 @@ class StepView @JvmOverloads constructor(
                 stepViewListener?.onSelectedStateChangeListener(stepSelected)
             }
         )
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        event?.run {
+            val eventXRange =
+                (width - paddingStart - lineLength).toFloat()..width.toFloat()
+            val eventYRange = (0F..height.toFloat())
+            if (action == MotionEvent.ACTION_DOWN) {
+                if (x in eventXRange && y in eventYRange) {
+                    toggleSelected()
+                    return true
+                }
+            }
+        }
+        return super.onTouchEvent(event)
     }
 
     /**
