@@ -18,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dp_2"
-        android:paddingBottom="@dimen/dp_8"
         android:background="?attr/colorSurface"
+        android:paddingBottom="@dimen/dp_8"
         android:visibility="gone">
 
         <View
@@ -50,7 +50,6 @@
             android:paddingVertical="@dimen/dp_24"
             android:text="@{content.event.content}"
             android:textAppearance="?attr/textAppearanceHeadline5"
-            app:layout_constraintBottom_toTopOf="@id/content_step_rv"
             app:layout_constraintEnd_toEndOf="@id/content_tool"
             app:layout_constraintStart_toStartOf="@id/content_tool"
             app:layout_constraintTop_toBottomOf="@id/content_tool" />
@@ -67,38 +66,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/content_event_name_tv" />
 
-        <com.knight.oneday.views.step.StepListView
-            android:id="@+id/content_step_rv"
+        <com.knight.oneday.views.step.StepListControlView
+            android:id="@+id/content_step_list_control"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/dp_16"
-            android:paddingBottom="@dimen/dp_16"
-            android:overScrollMode="never"
+            android:layout_marginTop="@dimen/dp_8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_driver" />
+            app:layout_constraintTop_toBottomOf="@id/content_driver"
 
-        <TextView
-            android:id="@+id/content_overview_step_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/dp_16"
-            android:paddingVertical="@dimen/dp_8"
-            android:text="一共五步，当前第三步"
-            android:textAppearance="?attr/textAppearanceCaption"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_step_rv" />
-
-        <TextView
-            android:id="@+id/content_preview_step_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/dp_16"
-            android:paddingVertical="@dimen/dp_16"
-            android:text="这是第三步的文本"
-            android:textAppearance="?attr/textAppearanceBody2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_overview_step_tv" />
+            />
 
         <ImageView
             android:id="@+id/content_driver2"
@@ -110,7 +86,7 @@
             app:backgroundTint="@color/color_on_surface_divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/content_preview_step_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/content_step_list_control" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/content_finish_btn"

@@ -65,13 +65,7 @@ class FoldingEventAndStepsViewAdapter :
                 // 设置内容部分
                 with(includeContent) {
                     content = item
-                    contentStepRv.setStepList(item.eventSteps)
-                    contentStepRv.selectedStepChangeListener =
-                        object : StepListView.SelectedStepChangeListener {
-                            override fun onSelectedStepChanged(step: Step) {
-                                contentPreviewStepTv.text = step.content
-                            }
-                        }
+                    contentStepListControl.setUpStepList(item.eventSteps)
                 }
                 // 预览视图下点击事件
                 binding.includeOverview.overviewCard.singleClick {
