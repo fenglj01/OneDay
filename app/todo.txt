@@ -492,6 +492,11 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
     3. 因为Step在数据库中并没有设计正在执行机制 现在这个预览里面会存在 但是会相对显得不知道怎么完善的好
     4. 折叠View的Bug 有点大
         准备修改动一下FoldingCell控件
+        发现是跟版本上有些不兼容
+
+        分析
+            viewHeights 正常
+            初步估计是backView的问题 明天从backColor查走
 
 Need Better
 

@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -59,7 +60,7 @@ public class FoldingCell extends RelativeLayout {
         super(context, attrs, defStyleAttr);
 
         TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.FoldingCell);
-        if (styledAttrs!=null){
+        if (styledAttrs != null) {
             final int count = styledAttrs.getIndexCount();
             for (int i = 0; i < count; ++i) {
                 int attr = styledAttrs.getIndex(i);
@@ -145,6 +146,7 @@ public class FoldingCell extends RelativeLayout {
             this.addView(foldingLayout);
             // calculate heights of animation parts
             ArrayList<Integer> heights = calculateHeightsForAnimationParts(titleView.getHeight(), contentView.getHeight(), mAdditionalFlipsCount);
+            Log.d("TAG_TEST", heights.toString());
             // create list with animation parts for animation
             ArrayList<FoldingCellView> foldingCellElements = prepareViewsForAnimation(heights, bitmapFromTitleView, bitmapFromContentView);
             // start unfold animation with end listener
