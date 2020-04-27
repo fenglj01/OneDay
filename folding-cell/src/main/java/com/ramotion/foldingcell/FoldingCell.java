@@ -259,6 +259,7 @@ public class FoldingCell extends RelativeLayout {
             int partHeight = viewHeights.get(i);
             Bitmap partBitmap = Bitmap.createBitmap(partWidth, partHeight, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(partBitmap);
+            // TODO 查一下这两个东西是在做什么
             Rect srcRect = new Rect(0, yOffset, partWidth, yOffset + partHeight);
             Rect destRect = new Rect(0, 0, partWidth, partHeight);
             canvas.drawBitmap(contentViewBitmap, srcRect, destRect, null);
