@@ -43,7 +43,7 @@
         <item name="svStatus">unfinished</item>
         <item name="svAnimationDuration">200</item>
         <item name="svLineType">solid</item>
-        <item name="svCircleRadius">14dp</item>
+        <item name="svCircleRadius">12dp</item>
         <item name="svFinishedCircleColor">?attr/colorSecondary</item>
         <item name="svFinishedTextColor">?attr/colorOnSecondary</item>
         <item name="svFinishedMarkColor">?attr/colorOnSecondary</item>
@@ -58,9 +58,9 @@
         <item name="svStepNumber">0</item>
         <item name="svStepNumberTextSize">14sp</item>
         <item name="svLineHeight">1dp</item>
-        <item name="svLineLength">48dp</item>
+        <item name="svLineLength">32dp</item>
         <item name="svLineMargin">4dp</item>
-        <item name="svSelectedRadius">18dp</item>
+        <item name="svSelectedRadius">16dp</item>
         <item name="svSelected">false</item>
         <item name="svSelectedColor">?attr/colorSecondary</item>
         <item name="svSelectedStrokeWidth">2dp</item>

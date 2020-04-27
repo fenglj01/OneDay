@@ -1,5 +1,6 @@
 package com.knight.oneday.adapters
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup

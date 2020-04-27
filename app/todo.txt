@@ -491,6 +491,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         视图配色的调整
     3. 因为Step在数据库中并没有设计正在执行机制 现在这个预览里面会存在 但是会相对显得不知道怎么完善的好
     4. 折叠View的Bug 有点大
+        准备修改动一下FoldingCell控件
 
 Need Better
 
