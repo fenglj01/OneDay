@@ -6,12 +6,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import com.knight.oneday.adapters.FoldingEventAndStepsViewAdapter
-import com.knight.oneday.adapters.MiniEventRecyclerViewAdapter
+import com.knight.oneday.adapters.ExpandableHomeItemAdapter
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
-import com.knight.oneday.views.step.StepView
 
 /**
  * @author knight
@@ -26,7 +24,7 @@ class MiniFragment : Fragment() {
         )
     }
 
-    private val adapter: FoldingEventAndStepsViewAdapter by lazy { FoldingEventAndStepsViewAdapter() }
+    private val adapter: ExpandableHomeItemAdapter by lazy { ExpandableHomeItemAdapter() }
     private lateinit var binding: FragmentMiniBinding
 
     override fun onCreateView(

@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.IntDef
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.addListener
 import com.knight.oneday.R
 import java.lang.RuntimeException
@@ -16,7 +17,7 @@ import kotlin.math.roundToInt
  * Create by FLJ in 2020/4/28 13:49
  * 仅仅是作为下面可展开部分
  */
-class ExpandableLayout : FrameLayout, Expandable {
+class ExpandableLayout : ConstraintLayout, Expandable {
 
     private var animDuration: Long = 1000L
     // 展开进度
@@ -71,7 +72,7 @@ class ExpandableLayout : FrameLayout, Expandable {
                 false
             )
         ) EXPANDED else COLLAPSED
-        // 保证时差在0 -1 之间
+        // 保证视差在0 -1 之间
         parallax = 1f.coerceAtMost(
             0f.coerceAtLeast(
                 typeArray.getInt(
