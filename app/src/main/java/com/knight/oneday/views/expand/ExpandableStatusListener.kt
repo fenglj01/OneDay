@@ -13,8 +13,6 @@ interface ExpandableStatusListener {
 
     fun onAnimatorEnd()
 
-    fun onAnimatorUpdate(animator: Animator)
-
     fun onPreExpand()
 
     fun onExpanded()
@@ -32,7 +30,6 @@ interface ExpandableStatusListener {
 class ExpandableStatusListenerAdapter(
     private val onAnimatorStart: (() -> Unit)? = null,
     private val onAnimatorEnd: (() -> Unit)? = null,
-    private val onAnimatorUpdate: ((Animator) -> Unit)? = null,
     private val onPreExpand: (() -> Unit)? = null,
     private val onExpanded: (() -> Unit)? = null,
     private val onPreCollapse: (() -> Unit)? = null,
@@ -44,10 +41,6 @@ class ExpandableStatusListenerAdapter(
 
     override fun onAnimatorEnd() {
         onAnimatorEnd?.invoke()
-    }
-
-    override fun onAnimatorUpdate(animator: Animator) {
-        onAnimatorUpdate?.invoke(animator)
     }
 
     override fun onPreExpand() {

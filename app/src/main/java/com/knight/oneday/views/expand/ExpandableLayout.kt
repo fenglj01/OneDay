@@ -1,12 +1,15 @@
 package com.knight.oneday.views.expand
 
+import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.IntDef
+import androidx.core.animation.addListener
 import com.knight.oneday.R
+import java.lang.RuntimeException
 import kotlin.math.roundToInt
 
 /**
@@ -29,11 +32,21 @@ class ExpandableLayout : FrameLayout, Expandable {
 
     private var listeners: MutableList<ExpandableStatusListener> = mutableListOf()
 
+    private lateinit var animator: ValueAnimator
+
     companion object {
+        /* View状态 */
         const val EXPANDED = 0
         const val EXPANDING = 1
         const val COLLAPSED = 3
         const val COLLAPSING = 4
+        /* 分发类型 */
+        const val DISPATCH_EXPANDED = 0
+        const val DISPATCH_PRE_EXPAND = 1
+        const val DISPATCH_COLLAPSED = 2
+        const val DISPATCH_PRE_COLLAPSE = 3
+        const val DISPATCH_ANIM_START = 4
+        const val DISPATCH_ANIM_END = 5
     }
 
     constructor(context: Context) : this(context, null)
@@ -93,6 +106,7 @@ class ExpandableLayout : FrameLayout, Expandable {
     }
 
     override fun expand() {
+        dispatchStatus(DISPATCH_PRE_EXPAND)
         if (withAnimator) {
             setExpansionFractionByAnimate(true)
         } else {
@@ -101,6 +115,7 @@ class ExpandableLayout : FrameLayout, Expandable {
     }
 
     override fun collapse() {
+        dispatchStatus(DISPATCH_PRE_COLLAPSE)
         if (withAnimator) {
             setExpansionFractionByAnimate(false)
         } else {
@@ -122,15 +137,30 @@ class ExpandableLayout : FrameLayout, Expandable {
     }
 
     private fun animateHeight(targetExpansion: Float) {
-        val animator = ValueAnimator.ofFloat(expansionFraction, targetExpansion.toFloat())
-        animator.apply {
+        if (!::animator.isInitialized) {
+            initAnimator(targetExpansion)
+        }
+        animator.setFloatValues(expansionFraction, targetExpansion)
+        animator.start()
+    }
+
+    private fun initAnimator(targetExpansion: Float) {
+        animator = ValueAnimator.ofFloat(expansionFraction, targetExpansion).apply {
             duration = animDuration
             addUpdateListener {
                 setExpansionFraction(it.animatedValue as Float)
             }
-            start()
+            this.addListener(
+                onStart = {
+                    dispatchStatus(DISPATCH_ANIM_START)
+                },
+                onEnd = {
+                    dispatchStatus(DISPATCH_ANIM_END)
+                }
+            )
         }
     }
+
 
     private fun setExpansionFraction(expansion: Float) {
         if (expansionFraction == expansion) return
@@ -146,4 +176,17 @@ class ExpandableLayout : FrameLayout, Expandable {
         requestLayout()
     }
 
+    override fun dispatchStatus(status: Int) {
+        listeners.forEach { listener ->
+            when (status) {
+                DISPATCH_COLLAPSED -> listener.onCollapsed()
+                DISPATCH_PRE_COLLAPSE -> listener.onPreCollapse()
+                DISPATCH_PRE_EXPAND -> listener.onPreExpand()
+                DISPATCH_EXPANDED -> listener.onExpanded()
+                DISPATCH_ANIM_START -> listener.onAnimatorStart()
+                DISPATCH_ANIM_END -> listener.onAnimatorEnd()
+                else -> throw  RuntimeException("un know dispatch status: $status")
+            }
+        }
+    }
 }
