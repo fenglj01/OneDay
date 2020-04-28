@@ -32,18 +32,8 @@ class CustomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        svOne.singleClick(200L) {
-            it.toggleSelected()
-
-        }
-        svTwo.singleClick {
-            it.changeStepStatus(
-                when (it.stepStatus) {
-                    STEP_STATUS_UNFINISHED -> STEP_STATUS_EXECUTING
-                    STEP_STATUS_EXECUTING -> STEP_STATUS_FINISHED
-                    else -> STEP_STATE_UNFINISHED
-                }
-            )
+        tv.singleClick {
+            el.toggle(false)
         }
     }
 

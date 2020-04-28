@@ -8,11 +8,11 @@ interface Expandable {
 
     fun isExpanded(): Boolean
 
-    fun expand()
+    fun expand(withAnimator: Boolean)
 
-    fun collapse()
+    fun collapse(withAnimator: Boolean)
 
-    fun toggle()
+    fun toggle(withAnimator: Boolean)
 
     fun addExpandableStatusListener(expandableStatusListener: ExpandableStatusListener)
 
