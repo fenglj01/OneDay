@@ -80,7 +80,7 @@ class ExpandableLayout : FrameLayout, Expandable {
         // 计算子控件的移动位置 保证能够随着展开而相对平滑的出现
         if (parallax > 0) {
             val parallaxDelta = expansionDelta * parallax
-            for (index in 0..childCount) {
+            for (index in 0 until childCount) {
                 val child = getChildAt(index)
                 child.translationY = -parallaxDelta
             }
