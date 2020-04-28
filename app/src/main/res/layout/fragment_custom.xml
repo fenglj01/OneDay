@@ -19,9 +19,11 @@
 
     <com.knight.oneday.views.expand.ExpandableLayout
         android:id="@+id/el"
-        app:el_expanded="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:el_expanded="true"
+        app:el_withAnimator="true">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="200dp"

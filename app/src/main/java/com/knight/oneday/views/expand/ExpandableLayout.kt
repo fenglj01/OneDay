@@ -1,5 +1,6 @@
 package com.knight.oneday.views.expand
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -14,7 +15,7 @@ import kotlin.math.roundToInt
  */
 class ExpandableLayout : FrameLayout, Expandable {
 
-    private var duration: Long = 1000L
+    private var animDuration: Long = 1000L
     // 展开进度
     private var expansionFraction: Float = 0F
     @ExpandState
@@ -25,6 +26,8 @@ class ExpandableLayout : FrameLayout, Expandable {
     @Retention(AnnotationRetention.SOURCE)
     @IntDef(EXPANDED, EXPANDING, COLLAPSED, COLLAPSING)
     annotation class ExpandState
+
+    private var listeners: MutableList<ExpandableStatusListener> = mutableListOf()
 
     companion object {
         const val EXPANDED = 0
@@ -90,11 +93,19 @@ class ExpandableLayout : FrameLayout, Expandable {
     }
 
     override fun expand() {
-        setExpansionFraction(expansion = 1F)
+        if (withAnimator) {
+            setExpansionFractionByAnimate(true)
+        } else {
+            setExpansionFraction(expansion = 1F)
+        }
     }
 
     override fun collapse() {
-        setExpansionFraction(0F)
+        if (withAnimator) {
+            setExpansionFractionByAnimate(false)
+        } else {
+            setExpansionFraction(expansion = 0F)
+        }
     }
 
     override fun toggle() {
@@ -102,6 +113,23 @@ class ExpandableLayout : FrameLayout, Expandable {
     }
 
     override fun addExpandableStatusListener(expandableStatusListener: ExpandableStatusListener) {
+        listeners.add(expandableStatusListener)
+    }
+
+    private fun setExpansionFractionByAnimate(isExpand: Boolean) {
+        val targetExpansionFraction = if (isExpand) 1F else 0F
+        animateHeight(targetExpansionFraction)
+    }
+
+    private fun animateHeight(targetExpansion: Float) {
+        val animator = ValueAnimator.ofFloat(expansionFraction, targetExpansion.toFloat())
+        animator.apply {
+            duration = animDuration
+            addUpdateListener {
+                setExpansionFraction(it.animatedValue as Float)
+            }
+            start()
+        }
     }
 
     private fun setExpansionFraction(expansion: Float) {
@@ -118,7 +146,4 @@ class ExpandableLayout : FrameLayout, Expandable {
         requestLayout()
     }
 
-    private fun changeVisibility() {
-        visibility = if (state == COLLAPSED) View.GONE else View.VISIBLE
-    }
 }
