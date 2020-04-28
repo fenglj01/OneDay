@@ -147,6 +147,7 @@ class ExpandableLayout : FrameLayout, Expandable {
     private fun initAnimator(targetExpansion: Float) {
         animator = ValueAnimator.ofFloat(expansionFraction, targetExpansion).apply {
             duration = animDuration
+            interpolator = FastOutSlowInInterpolator()
             addUpdateListener {
                 setExpansionFraction(it.animatedValue as Float)
             }
