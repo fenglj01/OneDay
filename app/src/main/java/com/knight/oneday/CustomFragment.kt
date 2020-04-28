@@ -33,7 +33,7 @@ class CustomFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         tv.singleClick {
-            el.toggle(false)
+            el.toggle()
         }
     }
 

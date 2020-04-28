@@ -20,6 +20,7 @@ class ExpandableLayout : FrameLayout, Expandable {
     @ExpandState
     private var state: Int = EXPANDED
     private var parallax: Float = 0F
+    private var withAnimator: Boolean = false
 
     @Retention(AnnotationRetention.SOURCE)
     @IntDef(EXPANDED, EXPANDING, COLLAPSED, COLLAPSING)
@@ -63,6 +64,7 @@ class ExpandableLayout : FrameLayout, Expandable {
                 ).toFloat()
             )
         )
+        withAnimator = typeArray.getBoolean(R.styleable.ExpandableLayout_el_withAnimator, false)
         expansionFraction = if (state == EXPANDED) 1F else 0F
         typeArray.recycle()
     }
@@ -87,16 +89,16 @@ class ExpandableLayout : FrameLayout, Expandable {
         return state == EXPANDED
     }
 
-    override fun expand(withAnimator: Boolean) {
+    override fun expand() {
         setExpansionFraction(expansion = 1F)
     }
 
-    override fun collapse(withAnimator: Boolean) {
+    override fun collapse() {
         setExpansionFraction(0F)
     }
 
-    override fun toggle(withAnimator: Boolean) {
-        if (isExpanded()) collapse(withAnimator) else expand(withAnimator)
+    override fun toggle() {
+        if (isExpanded()) collapse() else expand()
     }
 
     override fun addExpandableStatusListener(expandableStatusListener: ExpandableStatusListener) {
