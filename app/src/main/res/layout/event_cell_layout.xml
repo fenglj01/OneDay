@@ -23,9 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorSurface"
-            app:el_withAnimator="true"
+            app:el_expanded="false"
             app:el_parallax="1"
-            app:el_expanded="false">
+            app:el_withAnimator="true">
 
             <include
                 android:id="@+id/include_content"
