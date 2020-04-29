@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventCellLayoutBinding
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.views.expand.ExpandableStatusListenerAdapter
 
 /**
  * @author knight
@@ -21,7 +22,6 @@ class ExpandableHomeItemAdapter :
     ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
-        Log.d("TAG", "onCreateViewHolder")
         return EventCellViewHolder(
             EventCellLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
@@ -34,7 +34,6 @@ class ExpandableHomeItemAdapter :
     override fun onBindViewHolder(holder: EventCellViewHolder, position: Int) {
         val event = getItem(position)
         holder.bind(event)
-        Log.d("TAG", "onBindViewHolder")
     }
 
     inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :

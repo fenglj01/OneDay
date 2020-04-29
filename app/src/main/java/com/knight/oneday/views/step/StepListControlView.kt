@@ -19,7 +19,6 @@ class StepListControlView : ConstraintLayout {
 
     private val contentView: View
     private val stepListView: StepListView
-    private val overViewStepTextView: TextView
     private val previewStepTextView: TextView
     private val stepList: MutableList<Step>
     private var firstUnfinishedNumber: Int = 1
@@ -37,7 +36,6 @@ class StepListControlView : ConstraintLayout {
             LayoutInflater.from(context).inflate(R.layout.step_list_control_view, this, true)
         stepList = mutableListOf()
         stepListView = contentView.findViewById(R.id.step_list_view)
-        overViewStepTextView = contentView.findViewById(R.id.overview_step_tv)
         previewStepTextView = contentView.findViewById(R.id.preview_step_tv)
         stepListView.selectedStepChangeListener = object : StepListView.SelectedStepChangeListener {
             override fun onSelectedStepChanged(step: Step) {
@@ -53,10 +51,6 @@ class StepListControlView : ConstraintLayout {
         try {
             val firstUnfinishedStep = stepList.first { it.state == EventState.UNFINISHED }
             firstUnfinishedNumber = firstUnfinishedStep.serialNumber
-            overViewStepTextView.text = getString(R.string.over_view_step).format(
-                stepList.size,
-                firstUnfinishedNumber
-            )
             previewStepTextView.text = firstUnfinishedStep.content
         } catch (e: Exception) {
             /* 没有未完成的项目 */

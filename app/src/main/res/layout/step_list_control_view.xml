@@ -12,15 +12,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/overview_step_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_16"
-        android:layout_marginVertical="@dimen/dp_16"
-        android:textAppearance="?attr/textAppearanceCaption"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/step_list_view" />
 
     <TextView
         android:id="@+id/preview_step_tv"
@@ -31,6 +22,6 @@
         android:textAppearance="?attr/textAppearanceBody2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/overview_step_tv" />
+        app:layout_constraintTop_toBottomOf="@id/step_list_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
