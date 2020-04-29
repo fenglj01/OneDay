@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventCellLayoutBinding
+import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.expand.ExpandableStatusListenerAdapter
 
@@ -57,6 +58,22 @@ class ExpandableHomeItemAdapter :
                 with(includeContent) {
                     content = item
                     contentStepListControl.setUpStepList(item.eventSteps)
+                    expandOverview.addExpandableStatusListener(ExpandableStatusListenerAdapter(
+                        onExpanded = {
+
+                        },
+                        onCollapsed = {
+
+                        },
+                        onFraction = { fraction, isExpanding ->
+                            val f = if (isExpanding) fraction else 1F - fraction
+                            val z = dp2px(dp = 8F) * f
+                            Log.d("TAG_TEST", "$z $fraction")
+                            includeOverview.overviewContent.translationZ = z
+                            expandOverview.translationZ = z
+                        }
+
+                    ))
                 }
                 executePendingBindings()
             }

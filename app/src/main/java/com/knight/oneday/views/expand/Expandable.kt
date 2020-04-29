@@ -18,6 +18,6 @@ interface Expandable {
 
     fun addExpandableStatusListener(expandableStatusListener: ExpandableStatusListener)
 
-    fun dispatchStatus(status: Int)
+    fun dispatchStatus(status: Int, fraction: Float = 0F)
 
 }

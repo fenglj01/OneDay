@@ -9,10 +9,6 @@ import android.animation.ObjectAnimator
  */
 interface ExpandableStatusListener {
 
-    fun onAnimatorStart()
-
-    fun onAnimatorEnd()
-
     fun onPreExpand()
 
     fun onExpanded()
@@ -21,6 +17,8 @@ interface ExpandableStatusListener {
 
     fun onCollapsed()
 
+    fun onFraction(fraction: Float, isExpanding: Boolean)
+
 }
 
 /**
@@ -28,20 +26,12 @@ interface ExpandableStatusListener {
  * 适配 方便只需要监听某一部份的时候
  */
 class ExpandableStatusListenerAdapter(
-    private val onAnimatorStart: (() -> Unit)? = null,
-    private val onAnimatorEnd: (() -> Unit)? = null,
     private val onPreExpand: (() -> Unit)? = null,
     private val onExpanded: (() -> Unit)? = null,
+    private val onFraction: ((Float, Boolean) -> Unit)? = null,
     private val onPreCollapse: (() -> Unit)? = null,
     private val onCollapsed: (() -> Unit)? = null
 ) : ExpandableStatusListener {
-    override fun onAnimatorStart() {
-        onAnimatorStart?.invoke()
-    }
-
-    override fun onAnimatorEnd() {
-        onAnimatorEnd?.invoke()
-    }
 
     override fun onPreExpand() {
         onPreExpand?.invoke()
@@ -57,5 +47,9 @@ class ExpandableStatusListenerAdapter(
 
     override fun onCollapsed() {
         onCollapsed?.invoke()
+    }
+
+    override fun onFraction(fraction: Float, isExpanding: Boolean) {
+        onFraction?.invoke(fraction, isExpanding)
     }
 }

@@ -1,11 +1,10 @@
 package com.knight.oneday.views.expand
 
-import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
-import android.widget.FrameLayout
 import androidx.annotation.IntDef
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.addListener
@@ -46,8 +45,7 @@ class ExpandableLayout : ConstraintLayout, Expandable {
         const val DISPATCH_PRE_EXPAND = 1
         const val DISPATCH_COLLAPSED = 2
         const val DISPATCH_PRE_COLLAPSE = 3
-        const val DISPATCH_ANIM_START = 4
-        const val DISPATCH_ANIM_END = 5
+        const val DISPATCH_ON_FRACTION = 4
     }
 
     constructor(context: Context) : this(context, null)
@@ -151,18 +149,21 @@ class ExpandableLayout : ConstraintLayout, Expandable {
             interpolator = FastOutSlowInInterpolator()
             addUpdateListener {
                 setExpansionFraction(it.animatedValue as Float)
+                // 动画更新中
+                if (onFraction())
+                    dispatchStatus(
+                        DISPATCH_ON_FRACTION,
+                        it.animatedFraction
+                    )
             }
-            this.addListener(
-                onStart = {
-                    dispatchStatus(DISPATCH_ANIM_START)
-                },
-                onEnd = {
-                    dispatchStatus(DISPATCH_ANIM_END)
-                }
-            )
+            // 动画结束时回调
+            addListener(onEnd = {
+                dispatchStatus(if (state == EXPANDED) DISPATCH_EXPANDED else DISPATCH_COLLAPSED)
+            })
         }
     }
 
+    private fun onFraction(): Boolean = state == EXPANDING || state == COLLAPSING
 
     private fun setExpansionFraction(expansion: Float) {
         if (expansionFraction == expansion) return
@@ -178,15 +179,15 @@ class ExpandableLayout : ConstraintLayout, Expandable {
         requestLayout()
     }
 
-    override fun dispatchStatus(status: Int) {
+    override fun dispatchStatus(status: Int, fraction: Float) {
+        Log.d("TAG_LISTENER", "dispatchStatus $status")
         listeners.forEach { listener ->
             when (status) {
                 DISPATCH_COLLAPSED -> listener.onCollapsed()
                 DISPATCH_PRE_COLLAPSE -> listener.onPreCollapse()
                 DISPATCH_PRE_EXPAND -> listener.onPreExpand()
                 DISPATCH_EXPANDED -> listener.onExpanded()
-                DISPATCH_ANIM_START -> listener.onAnimatorStart()
-                DISPATCH_ANIM_END -> listener.onAnimatorEnd()
+                DISPATCH_ON_FRACTION -> listener.onFraction(fraction, state == EXPANDING)
                 else -> throw  RuntimeException("un know dispatch status: $status")
             }
         }

@@ -20,6 +20,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.knight.oneday.OneDayApp
 
 /**
  * @author knight
@@ -115,7 +116,7 @@ val Int.sp: Int
         Resources.getSystem().displayMetrics
     ).toInt()
 
-fun dp2px(context: Context, dp: Float): Float = dp * context.resources.displayMetrics.density
+fun dp2px(context: Context = OneDayApp.instance(), dp: Float): Float = dp * context.resources.displayMetrics.density
 
 fun px2dp(context: Context, px: Float): Float = px / context.resources.displayMetrics.density
 
