@@ -123,6 +123,7 @@ class ExpandableLayout : ConstraintLayout, Expandable {
     }
 
     override fun toggle() {
+        if (onFraction()) return
         if (isExpanded()) collapse() else expand()
     }
 

@@ -47,10 +47,11 @@ class ExpandableHomeItemAdapter :
                 // 设置预览部分
                 with(includeOverview) {
                     eventContent = item.event.content
-                    remindTime = "12:00"
+                    remindTime = "14:00"
                     overviewStepContent.bindStepsOverView(item.eventSteps)
                     overviewCard.progress = 1F
-                    overviewCard.singleClick {
+                    expandOverview.addExpandableStatusListener(expandButton)
+                    expandButton.singleClick {
                         expandOverview.toggle()
                     }
                 }
@@ -68,7 +69,6 @@ class ExpandableHomeItemAdapter :
                         onFraction = { fraction, isExpanding ->
                             val f = if (isExpanding) fraction else 1F - fraction
                             val z = dp2px(dp = 8F) * f
-                            Log.d("TAG_TEST", "$z $fraction")
                             includeOverview.overviewContent.translationZ = z
                             expandOverview.translationZ = z
                         }
