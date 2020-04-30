@@ -21,6 +21,8 @@ class ExpandableHomeItemAdapter :
     ListAdapter<EventAndEventSteps, ExpandableHomeItemAdapter.EventCellViewHolder>(
         EventAndStepsDiffCallback()
     ) {
+    /* 暂时采用了记录变量的方式 */
+    private var currentExpanded: ExpandableLayout? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
         return EventCellViewHolder(
@@ -60,6 +62,10 @@ class ExpandableHomeItemAdapter :
                     contentStepListControl.setUpStepList(item.eventSteps)
                     expandOverview.addExpandableStatusListener(ExpandableStatusListenerLambdaAdapter(
                         onPreExpand = {
+                            if (expandOverview != currentExpanded) {
+                                currentExpanded?.toggle()
+                                currentExpanded = expandOverview
+                            }
                         },
                         onExpanded = {
                         },
