@@ -63,7 +63,7 @@ class ExpandableHomeItemAdapter :
                     expandOverview.addExpandableStatusListener(ExpandableStatusListenerLambdaAdapter(
                         onPreExpand = {
                             if (expandOverview != currentExpanded) {
-                                currentExpanded?.toggle()
+                                currentExpanded?.collapse()
                                 currentExpanded = expandOverview
                             }
                         },
