@@ -499,7 +499,7 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
             初步估计是backView的问题 明天从backColor查走
     决定手撸一个折叠View
 
-4-29
+4-29 30
 ----------
     1. 折叠View细节优化
         1.1 第一次展开时stepView 没有加载出来
@@ -507,7 +507,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
         1.3 同步展开收起按钮 
         1.4 Recycler分割线问题 √
         1.5 加入选中 取消时的高度阴影变化 √
-        1.6 黑暗模式的阴影问题
+        1.6 黑暗模式的阴影问题 (暂时不好解决 默认得阴影颜色是无法修改的 只能从自定义阴影色来做)
+        1.7 黑暗模式下的展开View的背景色问题
+        1.8 codeReview 一下
 
 
 Need Better
