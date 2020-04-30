@@ -19,6 +19,7 @@
     <attr name="bottomNavigationDrawerNavigationViewTheme" format="reference" />
 
     <attr name="transitionShapeAppearance" format="reference" />
+    <attr name="expandedColor" format="color"/>
 
     <declare-styleable name="CreateStepView">
         <attr name="stepColorFinished" format="color" />

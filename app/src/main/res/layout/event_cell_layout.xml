@@ -22,7 +22,7 @@
             android:id="@+id/expand_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorSurface"
+            android:background="?attr/expandedColor"
             app:el_expanded="false"
             app:el_parallax="1"
             app:el_withAnimator="true">

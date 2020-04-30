@@ -24,6 +24,7 @@
     <color name="black_one_day_900_alpha_020">#33000000</color>
     <color name="black_one_day_900_alpha_087">#de000000</color>
     <color name="black_one_day_900_alpha_060">#99000000</color>
+    <color name="color_1e1e1e">#1e1e1e</color>
 
     <color name="bg_side">#f4f0ff</color>
 
@@ -55,7 +56,7 @@
 
     <color name="green_0c9869">#0C9869</color>
     <color name="amber_f3c282">#5081FE</color>
-    
+
     <color name="yanagicha">#919451</color>
     <color name="nea">#88C069</color>
     <color name="oitake">#698171</color>
