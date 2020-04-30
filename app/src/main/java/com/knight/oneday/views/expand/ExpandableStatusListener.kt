@@ -25,7 +25,7 @@ interface ExpandableStatusListener {
  * Create by FLJ in 2020/4/28 10:35
  * 适配 方便只需要监听某一部份的时候
  */
-open class ExpandableStatusListenerAdapter(
+class ExpandableStatusListenerLambdaAdapter(
     private val onPreExpand: (() -> Unit)? = null,
     private val onExpanded: (() -> Unit)? = null,
     private val onFraction: ((Float, Boolean) -> Unit)? = null,
@@ -51,5 +51,22 @@ open class ExpandableStatusListenerAdapter(
 
     override fun onFraction(fraction: Float, isExpanding: Boolean) {
         onFraction?.invoke(fraction, isExpanding)
+    }
+}
+
+interface ExpandableStatusListenerAdapter : ExpandableStatusListener {
+    override fun onPreExpand() {
+    }
+
+    override fun onExpanded() {
+    }
+
+    override fun onPreCollapse() {
+    }
+
+    override fun onCollapsed() {
+    }
+
+    override fun onFraction(fraction: Float, isExpanding: Boolean) {
     }
 }

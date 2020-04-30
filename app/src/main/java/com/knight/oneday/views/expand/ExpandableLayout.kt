@@ -127,6 +127,10 @@ class ExpandableLayout : ConstraintLayout, Expandable {
         if (isExpanded()) collapse() else expand()
     }
 
+    fun toggleNoAnimator(isExpand: Boolean) {
+        if (isExpand) setExpansionFraction(1F) else setExpansionFraction(0F)
+    }
+
     override fun addExpandableStatusListener(expandableStatusListener: ExpandableStatusListener) {
         listeners.add(expandableStatusListener)
     }
@@ -181,7 +185,6 @@ class ExpandableLayout : ConstraintLayout, Expandable {
     }
 
     override fun dispatchStatus(status: Int, fraction: Float) {
-        Log.d("TAG_LISTENER", "dispatchStatus $status")
         listeners.forEach { listener ->
             when (status) {
                 DISPATCH_COLLAPSED -> listener.onCollapsed()

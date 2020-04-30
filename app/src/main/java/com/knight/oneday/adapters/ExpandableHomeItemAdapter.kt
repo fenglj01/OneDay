@@ -1,6 +1,5 @@
 package com.knight.oneday.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +9,8 @@ import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventCellLayoutBinding
 import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.singleClick
-import com.knight.oneday.views.expand.ExpandableStatusListenerAdapter
+import com.knight.oneday.views.expand.ExpandableLayout
+import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
 
 /**
  * @author knight
@@ -39,7 +39,6 @@ class ExpandableHomeItemAdapter :
 
     inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(item: EventAndEventSteps) {
 
             binding.apply {
@@ -59,12 +58,12 @@ class ExpandableHomeItemAdapter :
                 with(includeContent) {
                     content = item
                     contentStepListControl.setUpStepList(item.eventSteps)
-                    expandOverview.addExpandableStatusListener(ExpandableStatusListenerAdapter(
+                    expandOverview.addExpandableStatusListener(ExpandableStatusListenerLambdaAdapter(
+                        onPreExpand = {
+                        },
                         onExpanded = {
-
                         },
                         onCollapsed = {
-
                         },
                         onFraction = { fraction, isExpanding ->
                             val f = if (isExpanding) fraction else 1F - fraction
@@ -80,14 +79,6 @@ class ExpandableHomeItemAdapter :
         }
     }
 
-
-    interface OnFoldingItemClickListener {
-
-        fun onOverviewItemClick()
-
-        fun onContentItemClick()
-
-    }
 
 }
 

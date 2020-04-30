@@ -12,23 +12,10 @@ import androidx.appcompat.widget.AppCompatImageButton
  */
 class ExpandStatusButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : AppCompatImageButton(context, attrs, defStyleAttr), ExpandableStatusListener {
-
-    override fun onPreExpand() {
-
-    }
-
-    override fun onExpanded() {
-    }
-
-    override fun onPreCollapse() {
-
-    }
-
-    override fun onCollapsed() {
-    }
+) : AppCompatImageButton(context, attrs, defStyleAttr), ExpandableStatusListenerAdapter {
 
     override fun onFraction(fraction: Float, isExpanding: Boolean) {
         rotation = if (isExpanding) 180F * fraction else 180f * (1 - fraction)
     }
+
 }
