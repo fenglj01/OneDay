@@ -61,4 +61,5 @@
     <string name="create_event_fail">创建事件失败</string>
     <string name="finish">完成</string>
     <string name="over_view_step">一共 %1$d 步，当前第 %2$d 步</string>
+    <string name="choice_date_time"><![CDATA[日期&时间]]></string>
 </resources>

@@ -56,3 +56,7 @@ fun Long.timeMillsFormat(): String {
     val format = SimpleDateFormat("yyyy年M月d日")
     return format.format(this)
 }
+val ymFormat = SimpleDateFormat("M-yyyy")
+fun Long.yearAndMonthFormat(): String {
+    return ymFormat.format(this)
+}
