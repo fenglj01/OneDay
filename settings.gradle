@@ -1,2 +1,2 @@
 rootProject.name='OneDay'
-include ':app', ':direct-select', ':folding-cell'
+include ':app', ':direct-select', ':folding-cell', ':calendarview'

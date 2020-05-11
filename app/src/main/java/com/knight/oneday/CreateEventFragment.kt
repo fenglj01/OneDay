@@ -16,6 +16,7 @@ import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.CreateEventViewModel
+import com.knight.oneday.views.DateTimeChoiceDialogFragment
 import com.knight.oneday.views.OnButtonClickListener
 import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.themeInterpolator
@@ -68,7 +69,8 @@ class CreateEventFragment : Fragment() {
             }
 
             eventDateTv.singleClick {
-                datePicker.show(parentFragmentManager, DATE_PICKER_TAG)
+                //                datePicker.show(parentFragmentManager, DATE_PICKER_TAG)
+                DateTimeChoiceDialogFragment().show(parentFragmentManager, DATE_PICKER_TAG)
             }
 
             eventSendEditIb.setTriggerConditionByEditText(eventOverviewEdt) { editContentLength ->
@@ -94,11 +96,15 @@ class CreateEventFragment : Fragment() {
             createViewModel.eventRemindDate = datePicker.selection as Long
         }
 
-        createViewModel.viewModelStatus.observe(viewLifecycleOwner, Observer {viewModelStatus->
-            when(viewModelStatus){
-                VIEW_MODEL_STATUS_ON_FAIL -> showSnackBar(binding.createEventCardView,R.string.create_event_fail)
+        createViewModel.viewModelStatus.observe(viewLifecycleOwner, Observer { viewModelStatus ->
+            when (viewModelStatus) {
+                VIEW_MODEL_STATUS_ON_FAIL -> showSnackBar(
+                    binding.createEventCardView,
+                    R.string.create_event_fail
+                )
                 VIEW_MODEL_STATUS_ON_SUCCESS -> findNavController().navigateUp()
-                else -> {}
+                else -> {
+                }
             }
         })
 
