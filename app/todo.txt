@@ -515,6 +515,9 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
             使用了ListAdapter 这里没有触发更新 所以收起上稍微显得有点乏力 如果通过内部类在adapter中去记录一个之前
             选择的项目 又觉得比较low
 
+5-11
+    中间五一因为有其它事情要做,所以听了更新有段时间,记录一下,之后计划和完成向将移入到幕布中去完成
+
 
 Need Better
 
