@@ -34,6 +34,7 @@ class HorizontalHourView @JvmOverloads constructor(
     @TimeType
     private var timeType = TIME_TYPE_12
     private var needParallax: Boolean = true
+    private lateinit var timeStringArray: Array<String>
 
     companion object {
         const val TIME_TYPE_12 = 0
@@ -63,6 +64,8 @@ class HorizontalHourView @JvmOverloads constructor(
                 getDimension(R.styleable.HorizontalHourView_hhvUnSelectedTextSize, 0F)
             timeType = getInteger(R.styleable.HorizontalHourView_hhvTimeType, TIME_TYPE_12)
             needParallax = getBoolean(R.styleable.HorizontalHourView_hhvNeedParallax, true)
+            timeStringArray =
+                resources.getStringArray(if (timeType == TIME_TYPE_12) R.array.time_type_12 else R.array.time_type_24)
         }
         typeArray.recycle()
     }
