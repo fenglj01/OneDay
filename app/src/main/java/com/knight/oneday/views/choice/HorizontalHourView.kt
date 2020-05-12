@@ -5,11 +5,13 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.annotation.IntDef
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
 
@@ -83,10 +85,29 @@ class HorizontalHourView @JvmOverloads constructor(
     }
 
     private fun initRecyclerView() {
+        rvHour.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+    }
+
+    inner class HourAdapter : RecyclerView.Adapter<HourViewHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourViewHolder {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.hour_view, parent, false)
+            return HourViewHolder(view)
+        }
+
+        override fun getItemCount(): Int = timeStringArray.size
+
+        override fun onBindViewHolder(holder: HourViewHolder, position: Int) {
+
+        }
+
+    }
+
+    inner class HourViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     }
 
 }
 
-data class TimeBean(val am: String, val pm: String)
 
