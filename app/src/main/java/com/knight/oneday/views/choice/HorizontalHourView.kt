@@ -3,6 +3,7 @@ package com.knight.oneday.views.choice
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,6 +46,8 @@ class HorizontalHourView @JvmOverloads constructor(
     private lateinit var contentView: View
     private lateinit var arrowIv: AppCompatImageView
     private lateinit var rvHour: RecyclerView
+    private var selectedX = 0
+    private var hourItemWidth = 0
 
 
     companion object {
@@ -62,6 +65,9 @@ class HorizontalHourView @JvmOverloads constructor(
         contentView =
             LayoutInflater.from(context).inflate(R.layout.horizontal_time_view, this, true)
         arrowIv = contentView.findViewById(R.id.time_arrow)
+        val locationArrow = intArrayOf(0, 0)
+        arrowIv.getLocationOnScreen(locationArrow)
+        selectedX = locationArrow[0]
         rvHour = contentView.findViewById(R.id.rv_hours)
         val typeArray = context!!.obtainStyledAttributes(
             attrs,
@@ -91,6 +97,20 @@ class HorizontalHourView @JvmOverloads constructor(
         rvHour.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
+                if (newState == 0) {
+                    timeStringArray.forEachIndexed { index, _ ->
+                        val vh =
+                            recyclerView.findViewHolderForAdapterPosition(index) as? HourViewHolder
+                        val location = intArrayOf(0, 0)
+                        vh?.hourText?.getLocationOnScreen(location)
+                        Log.d(
+                            "TAG_HOUR",
+                            "${location[0]}"
+                        )
+                        // if(location[0])
+                    }
+                }
+
             }
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -103,6 +123,7 @@ class HorizontalHourView @JvmOverloads constructor(
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourViewHolder {
             val view =
                 LayoutInflater.from(parent.context).inflate(R.layout.hour_view, parent, false)
+            hourItemWidth = view.width
             return HourViewHolder(view)
         }
 
@@ -122,15 +143,6 @@ class HorizontalHourView @JvmOverloads constructor(
 
     }
 
-    class HourRvScrollListener : RecyclerView.OnScrollListener() {
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-            super.onScrollStateChanged(recyclerView, newState)
-        }
-
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            super.onScrolled(recyclerView, dx, dy)
-        }
-    }
 
 }
 
