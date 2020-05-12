@@ -97,24 +97,38 @@ class HorizontalHourView @JvmOverloads constructor(
         rvHour.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                if (newState == 0) {
+                /*if (newState == 0) {
                     timeStringArray.forEachIndexed { index, _ ->
                         val vh =
                             recyclerView.findViewHolderForAdapterPosition(index) as? HourViewHolder
                         val location = intArrayOf(0, 0)
                         vh?.hourText?.getLocationOnScreen(location)
-                        Log.d(
+                       *//* Log.d(
                             "TAG_HOUR",
                             "${location[0]}"
-                        )
+                        )*//*
                         // if(location[0])
                     }
+                }*/
+                when(newState){
+                    RecyclerView.SCROLL_STATE_IDLE ->{
+                        // 当滑动完成时 在这里判断选中了谁
+                    }
+                    RecyclerView.SCROLL_STATE_SETTLING ->{
+                        // 当用户抬手后自行滑动时
+                    }
+                    RecyclerView.SCROLL_STATE_DRAGGING ->{
+                        // 当用户在拖动的时候 判断当前的位置让 时间显示根据当前的位置
+                    }
+
                 }
 
             }
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+                Log.d("TAG_HOUR","$dx")
+                // 在这里当滑动距离越来越小的时候 回调让时间慢慢恢复
             }
         })
     }
