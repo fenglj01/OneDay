@@ -70,9 +70,9 @@
         <item name="hhvNeedParallax">true</item>
         <item name="hhvSelectedTextColor">?attr/colorSecondary</item>
         <item name="hhvUnSelectedColor">?attr/colorOnSurface</item>
-        <item name="hhvSelectedTextSize">@dimen/sp_16</item>
-        <item name="hhvUnSelectedTextSize">@dimen/sp_12</item>
-        <item name="hhvTimeType">twenty_four</item>
+        <item name="hhvSelectedTextSize">@dimen/sp_12</item>
+        <item name="hhvUnSelectedTextSize">@dimen/sp_8</item>
+        <item name="hhvTimeType">twelve</item>
         <item name="hhvArrowRes">@drawable/ic_keyboard_arrow_down_black_24dp</item>
     </style>
 

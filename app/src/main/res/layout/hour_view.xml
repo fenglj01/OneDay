@@ -2,4 +2,6 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/hour_tv"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/dp_24"
+    android:paddingVertical="@dimen/dp_4" />

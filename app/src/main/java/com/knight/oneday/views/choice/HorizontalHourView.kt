@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.annotation.IntDef
@@ -85,8 +86,17 @@ class HorizontalHourView @JvmOverloads constructor(
     }
 
     private fun initRecyclerView() {
-        rvHour.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rvHour.layoutManager = LoopLayoutManager(1, RecyclerView.HORIZONTAL)
+        rvHour.adapter = HourAdapter()
+        rvHour.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
 
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
     }
 
     inner class HourAdapter : RecyclerView.Adapter<HourViewHolder>() {
@@ -99,13 +109,27 @@ class HorizontalHourView @JvmOverloads constructor(
         override fun getItemCount(): Int = timeStringArray.size
 
         override fun onBindViewHolder(holder: HourViewHolder, position: Int) {
-
+            holder.hourText.text = timeStringArray[position]
+            holder.hourText.textSize = unSelectedTextSize
+            holder.hourText.setTextColor(unSelectedColor)
         }
 
     }
 
-    inner class HourViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class HourViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
+        val hourText = view.findViewById<TextView>(R.id.hour_tv)
+
+    }
+
+    class HourRvScrollListener : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+        }
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+        }
     }
 
 }

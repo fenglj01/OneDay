@@ -46,15 +46,14 @@
         android:id="@+id/choice_hint_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_16"
+        android:paddingStart="@dimen/dp_8"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/color_on_surface_emphasis_disabled"
-        android:textStyle="bold"
         android:textSize="@dimen/sp_16"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/date_time_tv"
-        app:layout_constraintTop_toBottomOf="@id/divider"
-        android:paddingStart="@dimen/dp_8"
-        android:layout_marginTop="@dimen/dp_16"
-        />
+        app:layout_constraintTop_toBottomOf="@id/divider" />
 
     <com.haibin.calendarview.CalendarLayout
         android:layout_width="match_parent"
@@ -79,6 +78,10 @@
             app:selected_theme_color="?attr/colorSecondary"
             app:week_background="?attr/colorSurface"
             app:week_text_color="?attr/colorOnSurface" />
+
+        <com.knight.oneday.views.choice.HorizontalHourView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </com.haibin.calendarview.CalendarLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
