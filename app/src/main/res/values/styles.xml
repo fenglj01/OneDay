@@ -66,10 +66,20 @@
         <item name="svSelectedStrokeWidth">2dp</item>
     </style>
 
+    <style name="HorizontalHourView">
+        <item name="hhvNeedParallax">true</item>
+        <item name="hhvSelectedTextColor">?attr/colorSecondary</item>
+        <item name="hhvUnSelectedColor">?attr/colorOnSurface</item>
+        <item name="hhvSelectedTextSize">@dimen/sp_16</item>
+        <item name="hhvUnSelectedTextSize">@dimen/sp_12</item>
+        <item name="hhvTimeType">twenty_four</item>
+    </style>
+
 
     <style name="BaseBottomDialog">
         <item name="android:windowEnterAnimation">@anim/dialog_push_in</item>
         <item name="android:windowExitAnimation">@anim/dialog_push_out</item>
     </style>
 
+    <dimen name="sp_12">12sp</dimen>
 </resources>

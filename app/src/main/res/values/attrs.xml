@@ -19,7 +19,7 @@
     <attr name="bottomNavigationDrawerNavigationViewTheme" format="reference" />
 
     <attr name="transitionShapeAppearance" format="reference" />
-    <attr name="expandedColor" format="color"/>
+    <attr name="expandedColor" format="color" />
 
     <declare-styleable name="CreateStepView">
         <attr name="stepColorFinished" format="color" />
@@ -82,5 +82,17 @@
         <attr name="el_expanded" format="boolean" />
         <attr name="el_parallax" format="integer" />
         <attr name="el_withAnimator" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalHourView">
+        <attr name="hhvTimeType" format="enum">
+            <enum name="twelve" value="0" />
+            <enum name="twenty_four" value="1" />
+        </attr>
+        <attr name="hhvSelectedTextColor" format="color" />
+        <attr name="hhvUnSelectedColor" format="color" />
+        <attr name="hhvSelectedTextSize" format="dimension" />
+        <attr name="hhvUnSelectedTextSize" format="dimension" />
+        <attr name="hhvNeedParallax" format="boolean" />
     </declare-styleable>
 </resources>
