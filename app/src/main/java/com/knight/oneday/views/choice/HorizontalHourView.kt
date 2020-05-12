@@ -3,9 +3,13 @@ package com.knight.oneday.views.choice
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.annotation.IntDef
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
 
@@ -16,7 +20,7 @@ import com.knight.oneday.R
  */
 class HorizontalHourView @JvmOverloads constructor(
     context: Context, private val attrs: AttributeSet? = null, private val defStyleAttr: Int = 0
-) : RecyclerView(context, attrs, defStyleAttr) {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     @ColorInt
     private var selectedColor: Int = Color.WHITE
@@ -35,6 +39,10 @@ class HorizontalHourView @JvmOverloads constructor(
     private var timeType = TIME_TYPE_12
     private var needParallax: Boolean = true
     private lateinit var timeStringArray: Array<String>
+    private lateinit var contentView: View
+    private lateinit var arrowIv: AppCompatImageView
+    private lateinit var rvHour: RecyclerView
+
 
     companion object {
         const val TIME_TYPE_12 = 0
@@ -48,6 +56,10 @@ class HorizontalHourView @JvmOverloads constructor(
     }
 
     private fun initAttr() {
+        contentView =
+            LayoutInflater.from(context).inflate(R.layout.horizontal_time_view, this, true)
+        arrowIv = contentView.findViewById(R.id.time_arrow)
+        rvHour = contentView.findViewById(R.id.rv_hours)
         val typeArray = context!!.obtainStyledAttributes(
             attrs,
             R.styleable.HorizontalHourView,

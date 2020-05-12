@@ -94,5 +94,6 @@
         <attr name="hhvSelectedTextSize" format="dimension" />
         <attr name="hhvUnSelectedTextSize" format="dimension" />
         <attr name="hhvNeedParallax" format="boolean" />
+        <attr name="hhvArrowRes" format="reference" />
     </declare-styleable>
 </resources>
