@@ -59,6 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dp_16"
+        android:paddingBottom="@dimen/dp_16"
         app:layout_constraintTop_toBottomOf="@id/choice_hint_tv">
 
         <com.haibin.calendarview.CalendarView
@@ -79,9 +80,25 @@
             app:week_background="?attr/colorSurface"
             app:week_text_color="?attr/colorOnSurface" />
 
-        <com.knight.oneday.views.choice.HorizontalHourView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+            android:tint="?attr/colorOnSurface"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <com.knight.oneday.views.choice.WheelView
+            android:id="@+id/hour_wheel_view"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            app:dividerColor="#00ffffff"
+            app:wheelDividerSize="50dp"
+            app:wheelItemCount="4"
+            app:wheelItemSize="50dp"
+            app:wheelOrientation="horizontal" />
     </com.haibin.calendarview.CalendarLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

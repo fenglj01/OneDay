@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.TimePicker
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
 import androidx.annotation.IntDef
@@ -19,7 +20,7 @@ import com.knight.oneday.R
 
 /**
  * Create by FLJ in 2020/5/12 9:44
- * 水平小时选择器
+ * 水平小时选择器(目前的实现方案并不尽善尽美 最佳的实现方案应该是 Camare)
  * am pm 24Hours
  */
 class HorizontalHourView @JvmOverloads constructor(
@@ -46,9 +47,8 @@ class HorizontalHourView @JvmOverloads constructor(
     private lateinit var contentView: View
     private lateinit var arrowIv: AppCompatImageView
     private lateinit var rvHour: RecyclerView
-    private var selectedX = 0
-    private var hourItemWidth = 0
 
+    private var selectedRange = intArrayOf()
 
     companion object {
         const val TIME_TYPE_12 = 0
@@ -67,7 +67,6 @@ class HorizontalHourView @JvmOverloads constructor(
         arrowIv = contentView.findViewById(R.id.time_arrow)
         val locationArrow = intArrayOf(0, 0)
         arrowIv.getLocationOnScreen(locationArrow)
-        selectedX = locationArrow[0]
         rvHour = contentView.findViewById(R.id.rv_hours)
         val typeArray = context!!.obtainStyledAttributes(
             attrs,
@@ -110,14 +109,14 @@ class HorizontalHourView @JvmOverloads constructor(
                         // if(location[0])
                     }
                 }*/
-                when(newState){
-                    RecyclerView.SCROLL_STATE_IDLE ->{
+                when (newState) {
+                    RecyclerView.SCROLL_STATE_IDLE -> {
                         // 当滑动完成时 在这里判断选中了谁
                     }
-                    RecyclerView.SCROLL_STATE_SETTLING ->{
+                    RecyclerView.SCROLL_STATE_SETTLING -> {
                         // 当用户抬手后自行滑动时
                     }
-                    RecyclerView.SCROLL_STATE_DRAGGING ->{
+                    RecyclerView.SCROLL_STATE_DRAGGING -> {
                         // 当用户在拖动的时候 判断当前的位置让 时间显示根据当前的位置
                     }
 
@@ -127,7 +126,7 @@ class HorizontalHourView @JvmOverloads constructor(
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                Log.d("TAG_HOUR","$dx")
+                Log.d("TAG_HOUR", "$dx")
                 // 在这里当滑动距离越来越小的时候 回调让时间慢慢恢复
             }
         })
@@ -137,7 +136,6 @@ class HorizontalHourView @JvmOverloads constructor(
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HourViewHolder {
             val view =
                 LayoutInflater.from(parent.context).inflate(R.layout.hour_view, parent, false)
-            hourItemWidth = view.width
             return HourViewHolder(view)
         }
 
