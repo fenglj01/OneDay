@@ -120,6 +120,10 @@ public class WheelRecyclerView extends RecyclerView {
         centerY = (t + b) * 0.5f;
     }
 
+    public void setCurrentItem(int position) {
+        layoutManager.scrollToPositionWithOffset(position, 0);
+    }
+
     @Override
     public boolean drawChild(Canvas canvas, View child, long drawingTime) {
         canvas.save();

@@ -108,6 +108,10 @@ public class WheelView extends ViewGroup {
         });
     }
 
+    public void setCurrentItem(int position) {
+        mRecyclerView.setCurrentItem(position);
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (getChildCount() <= 0) {
@@ -169,7 +173,7 @@ public class WheelView extends ViewGroup {
         int left, top;
         if (orientation == WHEEL_HORIZONTAL) {//水平布局时,最好固定高度,垂直布局时最好固定宽度
             int centerWidth = (getWidth() - getPaddingLeft() - getPaddingRight() - childWidth) >> 1;
-            Log.i("you", "centerWidth "+centerWidth);
+            Log.i("you", "centerWidth " + centerWidth);
             left = getPaddingLeft() + centerWidth;
             top = getPaddingTop();
         } else {

@@ -21,7 +21,7 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
     override fun initView() {
         choice_hint_tv.text = System.currentTimeMillis().yearAndMonthFormat()
         hour_wheel_view.setAdapter(WheelStringAdapter(resources.getStringArray(R.array.time_type_12).toList()))
-
+        hour_wheel_view.setCurrentItem(4)
     }
 
     override fun initEvent() {
