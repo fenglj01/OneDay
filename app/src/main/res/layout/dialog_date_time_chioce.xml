@@ -127,9 +127,9 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             app:dividerColor="#00ffffff"
-            app:wheelDividerSize="50dp"
+            app:wheelDividerSize="60dp"
             app:wheelItemCount="4"
-            app:wheelItemSize="50dp"
+            app:wheelItemSize="60dp"
             app:wheelOrientation="horizontal" />
     </com.haibin.calendarview.CalendarLayout>
 
