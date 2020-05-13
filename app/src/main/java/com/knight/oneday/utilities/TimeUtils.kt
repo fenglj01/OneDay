@@ -60,3 +60,7 @@ val ymFormat = SimpleDateFormat("M-yyyy")
 fun Long.yearAndMonthFormat(): String {
     return ymFormat.format(this)
 }
+
+fun nowDayOfMonth():String{
+    return "${Calendar.getInstance().get(Calendar.DAY_OF_MONTH)}"
+}

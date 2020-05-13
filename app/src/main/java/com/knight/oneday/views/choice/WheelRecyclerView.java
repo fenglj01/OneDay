@@ -261,7 +261,7 @@ public class WheelRecyclerView extends RecyclerView {
 
             //如果需要画渐变阴影,取消注释的代码
 
-            float rectTop = firstY - wheelRadio;
+            /*float rectTop = firstY - wheelRadio;
             float rectBottom = secondY + wheelRadio;
             if (topOrLeftGradient == null) {
                 topOrLeftGradient = new LinearGradient(0, firstY, 0, rectTop, CENTER_COLOR, EDGE_COLOR, Shader.TileMode.MIRROR);
@@ -272,7 +272,7 @@ public class WheelRecyclerView extends RecyclerView {
                 rightOrBottomPaint.setShader(rightOrBottomGradient);
             }
             c.drawRect(getLeft(), rectTop, getRight(), firstY, topOrLeftPaint);
-            c.drawRect(getLeft(), secondY, getRight(), rectBottom, rightOrBottomPaint);
+            c.drawRect(getLeft(), secondY, getRight(), rectBottom, rightOrBottomPaint);*/
         } else {
             float dividerOff = (getWidth() - dividerSize) / 2.0f;
             float firstX = getLeft() + dividerOff;
@@ -281,7 +281,7 @@ public class WheelRecyclerView extends RecyclerView {
             c.drawLine(secondX, getTop(), secondX, getBottom(), dividerPaint);
 
             //如果需要画渐变阴影,取消注释的代码
-            float rectLeft = firstX - wheelRadio;
+            /*float rectLeft = firstX - wheelRadio;
             float rectRight = secondX + wheelRadio;
             if (topOrLeftGradient == null) {
                 topOrLeftGradient = new LinearGradient(firstX, 0, rectLeft, 0, CENTER_COLOR, EDGE_COLOR, Shader.TileMode.MIRROR);
@@ -292,7 +292,7 @@ public class WheelRecyclerView extends RecyclerView {
                 rightOrBottomPaint.setShader(rightOrBottomGradient);
             }
             c.drawRect(rectLeft, getTop(), firstX, getBottom(), topOrLeftPaint);
-            c.drawRect(secondX, getTop(), rectRight, getBottom(), rightOrBottomPaint);
+            c.drawRect(secondX, getTop(), rectRight, getBottom(), rightOrBottomPaint);*/
         }
     }
 
