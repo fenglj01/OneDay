@@ -23,6 +23,7 @@ import com.knight.oneday.R
  * 水平小时选择器(目前的实现方案并不尽善尽美 最佳的实现方案应该是 Camare)
  * am pm 24Hours
  */
+@Deprecated("没有使用这种方式完成 最佳应该是结合到recyclerView和camera")
 class HorizontalHourView @JvmOverloads constructor(
     context: Context, private val attrs: AttributeSet? = null, private val defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
