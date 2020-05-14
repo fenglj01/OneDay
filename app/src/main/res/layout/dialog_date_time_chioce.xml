@@ -131,6 +131,10 @@
             app:wheelItemCount="4"
             app:wheelItemSize="60dp"
             app:wheelOrientation="horizontal" />
+
+        <com.knight.oneday.views.choice.AmPmChoiceView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </com.haibin.calendarview.CalendarLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
