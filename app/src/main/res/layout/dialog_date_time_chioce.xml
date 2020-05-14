@@ -92,7 +92,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/dp_16"
-        android:paddingBottom="@dimen/dp_16"
         app:layout_constraintTop_toBottomOf="@id/choice_hint_tv">
 
         <com.haibin.calendarview.CalendarView

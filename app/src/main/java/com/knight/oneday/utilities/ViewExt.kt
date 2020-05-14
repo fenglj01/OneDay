@@ -116,9 +116,16 @@ val Int.sp: Int
         Resources.getSystem().displayMetrics
     ).toInt()
 
-fun dp2px(context: Context = OneDayApp.instance(), dp: Float): Float = dp * context.resources.displayMetrics.density
+fun dp2px(context: Context = OneDayApp.instance(), dp: Float): Float =
+    dp * context.resources.displayMetrics.density
 
 fun px2dp(context: Context, px: Float): Float = px / context.resources.displayMetrics.density
+
+fun sp2px(context: Context = OneDayApp.instance(), sp: Float): Float =
+    sp * context.resources.displayMetrics.scaledDensity + 0.5f
+
+fun px2sp(context: Context = OneDayApp.instance(), px: Float): Float =
+    px / context.resources.displayMetrics.scaledDensity + 0.5f
 
 
 fun TextView.strikeText() {
