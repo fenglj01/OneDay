@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import kotlinx.android.synthetic.main.fragment_preferences.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +21,7 @@ private const val ARG_PARAM2 = "param2"
  * 设置界面
  */
 class SettingFragment : PreferenceFragmentCompat() {
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
         val themePreference: ListPreference? = findPreference(THEME_KEY)
@@ -40,6 +42,12 @@ class SettingFragment : PreferenceFragmentCompat() {
                     else -> getString(R.string.def)
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setting_toolbar.title = getString(R.string.menu_setting)
+
     }
 
     companion object {

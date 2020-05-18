@@ -64,9 +64,9 @@
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.MyTheme.LargeComponent
         </item>
         <!--Component styles-->
-       <!-- <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert
-        </item>
-        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>-->
+        <!-- <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert
+         </item>
+         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>-->
         <!-- Custom -->
         <item name="colorPrimarySurfaceVariant">?attr/colorPrimaryVariant</item>
 
@@ -78,6 +78,8 @@
         <item name="motionInterpolatorIncoming">@android:interpolator/decelerate_cubic</item>
         <item name="motionInterpolatorOutgoing">@android:interpolator/accelerate_cubic</item>
 
+        <item name="preferenceTheme">@style/Theme.MyApp.PreferenceThemeOverlay</item>
+
     </style>
 
     <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -85,13 +87,21 @@
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <!--<item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>-->
         <item name="android:windowBackground">?android:colorBackground</item>
-        <item name="bottomAppBarStyle">@style/Widget.MaterialComponents.BottomAppBar.PrimarySurface</item>
+        <item name="bottomAppBarStyle">
+            @style/Widget.MaterialComponents.BottomAppBar.PrimarySurface
+        </item>
         <item name="bottomSheetStyle">@style/Widget.MaterialComponents.BottomSheet.Modal</item>
         <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button</item>
         <item name="navigationViewStyle">@style/Widget.Reply.NavigationView</item>
         <item name="chipStyle">@style/Widget.Reply.Chip.Entry</item>
         <item name="materialCardViewStyle">@style/Widget.MaterialComponents.CardView</item>
         <item name="expandedColor">@color/white_50</item>
-        <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar.Overlay</item>
+        <item name="materialCalendarTheme">
+            @style/ThemeOverlay.MaterialComponents.MaterialCalendar.Overlay
+        </item>
+    </style>
+
+    <style name="Theme.MyApp.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
+        <item name="android:layout">@layout/fragment_preferences</item>
     </style>
 </resources>
