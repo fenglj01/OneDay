@@ -85,5 +85,6 @@ dependencies {
     implementation project(path: ':direct-select')
     implementation project(path: ':folding-cell')
     implementation 'com.haibin:calendarview:3.6.9'
+    implementation 'com.facebook.stetho:stetho:1.5.1'
 
 }

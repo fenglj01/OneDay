@@ -3,6 +3,7 @@ package com.knight.oneday
 import android.app.Application
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.facebook.stetho.Stetho
 import com.knight.oneday.utilities.ThemePreference
 
 class OneDayApp : Application() {
@@ -20,6 +21,8 @@ class OneDayApp : Application() {
         instance = this
         themePreference =
             ThemePreference(PreferenceManager.getDefaultSharedPreferences(this))
+        Stetho.initializeWithDefaults(this)
+
     }
 
 
