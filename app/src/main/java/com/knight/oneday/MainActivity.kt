@@ -12,6 +12,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.preference.ListPreference
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             addOnSlideAction(HalfClockwiseRotateSlideAction(binding.bottomAppBarChevron))
             addOnSlideAction(AlphaSlideAction(binding.bottomAppBarTitle, true))
             // fab 跟随navDrawer来确定是否显示
-            addOnStateChangedAction(ShowHideFabStateAction(binding.fab))
+            addOnStateChangedAction(ShowHideFabStateAction(binding.fab, navController))
             // 更改主题切换按钮
             addOnStateChangedAction(ChangeUiModeMenuStateAction { showUiMode ->
                 changeBottomMenu(showUiMode)
@@ -137,6 +138,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             }
             R.id.createEventFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
+                hideBottomAppBarAndFab()
+            }
+            R.id.settingFragment -> {
+                bottomNavDrawer.close()
                 hideBottomAppBarAndFab()
             }
         }

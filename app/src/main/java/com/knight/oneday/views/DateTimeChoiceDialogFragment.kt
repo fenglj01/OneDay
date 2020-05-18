@@ -14,6 +14,9 @@ import kotlinx.android.synthetic.main.dialog_date_time_chioce.*
  */
 class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
 
+    var onDateTimeChoiceFinish: OnDateTimeChoiceFinish? = null
+    private var choiceCalendar: Calendar? = null
+
     override fun dialogId(): Int = R.layout.dialog_date_time_chioce
 
     override fun initView() {
@@ -30,13 +33,21 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
         calendar_view.setOnCalendarSelectListener(object : CalendarView.OnCalendarSelectListener {
             override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
                 choice_hint_tv.text = calendar?.timeInMillis?.yearAndMonthFormat()
+                choiceCalendar = calendar
             }
 
             override fun onCalendarOutOfRange(calendar: Calendar?) {
             }
         })
+        done_tv.singleClick {
+            dialog?.dismiss()
+        }
     }
 
     override fun initData() {
+    }
+
+    interface OnDateTimeChoiceFinish {
+        fun onDateTimeChoiceFinish(calendar: Calendar)
     }
 }

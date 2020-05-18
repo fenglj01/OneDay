@@ -1,9 +1,12 @@
 package com.knight.oneday.nav
 
 import android.view.View
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.knight.oneday.R
 
 /**
  * Create by FLJ in 2020/3/26 13:21
@@ -17,13 +20,19 @@ interface OnStateChangedAction {
  * 根据navDrawer得变化 修改fab得状态
  */
 class ShowHideFabStateAction(
-    private val fab: FloatingActionButton
+    private val fab: FloatingActionButton,
+    private val navController: NavController
 ) : OnStateChangedAction {
     override fun onStateChanged(sheet: View, newState: Int) {
-        if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-            fab.show()
-        } else {
-            fab.hide()
+        when (navController.currentDestination?.id) {
+            R.id.settingFragment -> fab.hide()
+            else ->{
+                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                    fab.show()
+                } else {
+                    fab.hide()
+                }
+            }
         }
     }
 }

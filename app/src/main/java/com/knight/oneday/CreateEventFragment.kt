@@ -25,6 +25,7 @@ import com.ramotion.directselect.DSListView
 class CreateEventFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateEventBinding
+    private val dateDialog :DateTimeChoiceDialogFragment by lazy { DateTimeChoiceDialogFragment() }
 
     private val createViewModel: CreateEventViewModel by viewModels {
         InjectorUtils.createEventViewModelFactory(

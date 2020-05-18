@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.shape.MaterialShapeDrawable
@@ -222,7 +223,11 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     }
 
     override fun onNavMenuItemClicked(item: NavigationModelItem.NavMenuItem) {
-
+        when (item.id) {
+            3 -> {
+                findNavController().navigate(R.id.action_miniFragment_to_settingFragment)
+            }
+        }
     }
 
     override fun onNavEventTagClicked(folder: NavigationModelItem.NavEventTag) {
