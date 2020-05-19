@@ -14,14 +14,14 @@
             app:key="create_allow_expired"
             app:title="@string/create_allow_expired" />
 
-        <ListPreference
+        <!--<ListPreference
             app:defaultValue="@string/value_today"
             app:entries="@array/entities_create_day_mode"
             app:entryValues="@array/values_create_day_mode"
             app:iconSpaceReserved="false"
             app:key="create_day_mode"
             app:title="@string/create_day_mode"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true" />-->
 
         <ListPreference
             app:defaultValue="@string/time_system_12h"
