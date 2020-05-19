@@ -12,8 +12,9 @@
         android:layout_height="?android:actionBarSize"
         android:background="?attr/colorSurface"
         android:fitsSystemWindows="true"
+        android:foregroundTint="?attr/colorOnSurface"
         app:navigationIcon="@drawable/icon_back"
-        app:titleTextColor="?attr/colorSecondary" />
+        app:titleTextColor="?attr/colorOnSurface" />
 
     <FrameLayout
         android:id="@android:id/list_container"
