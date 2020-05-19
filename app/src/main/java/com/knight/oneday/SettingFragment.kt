@@ -20,12 +20,6 @@ import androidx.preference.PreferenceFragmentCompat
 import com.knight.oneday.generated.callback.OnClickListener
 import com.knight.oneday.views.showSnackBar
 import kotlinx.android.synthetic.main.fragment_preferences.*
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 /**
  * 设置界面
  */
