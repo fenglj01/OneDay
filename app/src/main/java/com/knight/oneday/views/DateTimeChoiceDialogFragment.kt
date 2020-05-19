@@ -41,6 +41,7 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
         })
         done_tv.singleClick {
             dialog?.dismiss()
+            onDateTimeChoiceFinish?.onDateTimeChoiceFinish(choiceCalendar)
         }
     }
 
@@ -48,6 +49,6 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
     }
 
     interface OnDateTimeChoiceFinish {
-        fun onDateTimeChoiceFinish(calendar: Calendar)
+        fun onDateTimeChoiceFinish(calendar: Calendar?)
     }
 }
