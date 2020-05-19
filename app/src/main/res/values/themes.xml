@@ -66,8 +66,9 @@
         <!--Component styles-->
         <!-- <item name="materialAlertDialogTheme">@style/ThemeOverlay.MaterialComponents.Dialog.Alert
          </item>
-         <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>-->
+         -->
         <!-- Custom -->
+        <!--<item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>-->
         <item name="colorPrimarySurfaceVariant">?attr/colorPrimaryVariant</item>
 
         <item name="emphasisHighAlpha">0.87</item>
@@ -104,4 +105,6 @@
     <style name="Theme.MyApp.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
         <item name="android:layout">@layout/fragment_preferences</item>
     </style>
+
+
 </resources>
