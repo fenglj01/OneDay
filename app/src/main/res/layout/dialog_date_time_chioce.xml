@@ -104,7 +104,6 @@
             app:current_day_text_color="?attr/colorSecondary"
             app:current_month_text_color="?attr/colorOnSurface"
             app:layout_constraintTop_toBottomOf="@id/date_time_tv"
-            app:min_year="2004"
             app:month_view="com.knight.oneday.views.choice.OneDayMonthView"
             app:other_month_text_color="@color/color_on_surface_emphasis_disabled"
             app:selected_text_color="?attr/colorOnSecondary"
@@ -132,6 +131,7 @@
             app:wheelOrientation="horizontal" />
 
         <com.knight.oneday.views.choice.AmPmChoiceView
+            android:id="@+id/am_pm_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.haibin.calendarview.CalendarLayout>

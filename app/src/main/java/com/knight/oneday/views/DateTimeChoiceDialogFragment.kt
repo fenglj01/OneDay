@@ -1,5 +1,7 @@
 package com.knight.oneday.views
 
+import android.util.Log
+import android.view.View
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
 import com.knight.oneday.R
@@ -21,12 +23,43 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
 
     override fun initView() {
         choice_hint_tv.text = System.currentTimeMillis().yearAndMonthFormat()
-        hour_wheel_view.setAdapter(WheelStringAdapter(resources.getStringArray(R.array.time_type_12).toList()))
-        hour_wheel_view.setCurrentItem(4)
         tv_current_day.text = nowDayOfMonth()
         fl_current.singleClick {
             calendar_view.scrollToCurrent()
         }
+        prepareBySetting()
+    }
+
+    private fun prepareBySetting() {
+        // 设置日期根据设置的内容来
+        hour_wheel_view.setAdapter(
+            WheelStringAdapter(
+                resources.getStringArray(
+                    if (SettingPreferences.is12HMode())
+                        R.array.time_type_12
+                    else
+                        R.array.time_type_24
+                ).toList()
+            )
+        )
+        if (!SettingPreferences.createAllowExpired) {
+
+            calendar_view.run {
+                Log.d("calendar", "$curYear - $curMonth - $curDay")
+                setRange(
+                    curYear,
+                    curMonth,
+                    curDay,
+                    2021,
+                    curMonth,
+                    curDay
+                )
+                scrollToCurrent()
+            }
+        }
+        // 当前时间
+        hour_wheel_view.setCurrentItem(4)
+        am_pm_view.visibility = if (SettingPreferences.is12HMode()) View.VISIBLE else View.GONE
     }
 
     override fun initEvent() {

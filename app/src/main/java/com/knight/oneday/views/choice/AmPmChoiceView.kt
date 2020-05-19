@@ -48,7 +48,6 @@ class AmPmChoiceView @JvmOverloads constructor(
         choiceTextSize = px2sp(px = am.textSize)
         unChoiceTextSize = px2sp(px = pm.textSize)
         textSizeGap = choiceTextSize - unChoiceTextSize
-        Log.d("TAG_AM_PM", "$choiceTextSize $unChoiceTextSize $textSizeGap")
     }
 
     private fun initEvent() {
