@@ -64,4 +64,11 @@
     <string name="choice_date_time"><![CDATA[日期&时间]]></string>
     <string name="am">AM</string>
     <string name="pm">PM</string>
+    <string name="create">创建</string>
+    <string name="create_allow_expired">允许创建过期事件</string>
+    <string name="create_day_mode">默认创建日期</string>
+    <string name="value_today">today</string>
+    <string name="show">展示</string>
+    <string name="show_allow_finished">是否展示已完成事件</string>
+    <string name="show_allow_expired">是否展示已过期任务</string>
 </resources>

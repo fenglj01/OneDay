@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:showDividers="end">
-    <ListPreference
-        android:layout_width="match_parent"
-        android:layout_gravity="center"
-        app:entryValues="@array/theme_values"
-        app:key="theme"
-        app:title="@string/title_theme_preference"
-        app:useSimpleSummaryProvider="true" />
+    android:showDividers="middle">
+
+    <PreferenceCategory
+        app:icon="@drawable/ic_one_day_edit"
+        app:key="create_category"
+        app:title="@string/create">
+
+        <SwitchPreference
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="create_allow_expired"
+            app:title="@string/create_allow_expired" />
+
+        <ListPreference
+            app:defaultValue="@string/value_today"
+            app:entries="@array/entities_create_day_mode"
+            app:entryValues="@array/values_create_day_mode"
+            app:iconSpaceReserved="false"
+            app:key="create_day_mode"
+            app:useSimpleSummaryProvider="true"
+            app:title="@string/create_day_mode" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:icon="@drawable/ic_one_day_list"
+        app:key="list_category"
+        app:title="@string/show">
+
+        <SwitchPreference
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="show_allow_finished"
+            app:title="@string/show_allow_finished" />
+
+        <SwitchPreference
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="show_allow_expired"
+            app:title="@string/show_allow_expired" />
+
+    </PreferenceCategory>
+
 </androidx.preference.PreferenceScreen>

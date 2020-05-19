@@ -65,4 +65,15 @@
         <item>22:00</item>
         <item>13:00</item>
     </string-array>
+
+    <string-array name="entities_create_day_mode">
+        <item>昨日</item>
+        <item>当日</item>
+        <item>明日</item>
+    </string-array>
+    <string-array name="values_create_day_mode">
+        <item>yesterday</item>
+        <item>today</item>
+        <item>tomorrow</item>
+    </string-array>
 </resources>
