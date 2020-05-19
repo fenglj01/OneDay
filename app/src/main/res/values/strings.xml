@@ -71,4 +71,6 @@
     <string name="show">展示</string>
     <string name="show_allow_finished">是否展示已完成事件</string>
     <string name="show_allow_expired">是否展示已过期任务</string>
+    <string name="time_system">时间制度</string>
+    <string name="time_system_12h">12H</string>
 </resources>

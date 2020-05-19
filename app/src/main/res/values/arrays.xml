@@ -76,4 +76,12 @@
         <item>today</item>
         <item>tomorrow</item>
     </string-array>
+    <string-array name="entities_time_system">
+        <item>am|pm</item>
+        <item>24Hours</item>
+    </string-array>
+    <string-array name="values_time_system">
+        <item>12H</item>
+        <item>24H</item>
+    </string-array>
 </resources>

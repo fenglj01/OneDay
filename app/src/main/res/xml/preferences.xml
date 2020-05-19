@@ -20,8 +20,17 @@
             app:entryValues="@array/values_create_day_mode"
             app:iconSpaceReserved="false"
             app:key="create_day_mode"
-            app:useSimpleSummaryProvider="true"
-            app:title="@string/create_day_mode" />
+            app:title="@string/create_day_mode"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="@string/time_system_12h"
+            app:entries="@array/entities_time_system"
+            app:entryValues="@array/values_time_system"
+            app:iconSpaceReserved="false"
+            app:key="create_time_system"
+            app:title="@string/time_system"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 
