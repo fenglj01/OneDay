@@ -25,6 +25,6 @@ object SettingPreferences {
     val showAllowExpired: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_EXPIRED, false)
     val showAllowFinished: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_FINISHED, false)
 
-    fun is12HMode() = createTimeSystem == getString(R.string.value_today)
+    fun is12HMode() = createTimeSystem == getString(R.string.time_system_12h)
 
 }

@@ -71,7 +71,7 @@ class CreateEventFragment : Fragment() {
 
             eventDateTv.singleClick {
                 //                datePicker.show(parentFragmentManager, DATE_PICKER_TAG)
-                DateTimeChoiceDialogFragment().show(parentFragmentManager, DATE_PICKER_TAG)
+                dateDialog.show(parentFragmentManager, DATE_PICKER_TAG)
             }
 
             eventSendEditIb.setTriggerConditionByEditText(eventOverviewEdt) { editContentLength ->
