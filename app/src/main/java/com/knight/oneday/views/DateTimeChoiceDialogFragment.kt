@@ -18,46 +18,29 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
 
     var onDateTimeChoiceFinish: OnDateTimeChoiceFinish? = null
     private var choiceCalendar: Calendar? = null
+    private val hourList: List<String> by lazy { prepareHourListBySetting() }
+    private lateinit var timeNumber: IntArray
 
-    override fun dialogId(): Int = R.layout.dialog_date_time_chioce
+    override
+
+    fun dialogId(): Int = R.layout.dialog_date_time_chioce
 
     override fun initView() {
+        prepareBySetting()
         choice_hint_tv.text = System.currentTimeMillis().yearAndMonthFormat()
         tv_current_day.text = nowDayOfMonth()
         fl_current.singleClick {
             calendar_view.scrollToCurrent()
         }
-        prepareBySetting()
+        hour_wheel_view.setOnItemSelectedListener { hourIndex ->
+            timeNumber[hourIndex]
+        }
     }
 
     private fun prepareBySetting() {
         // 设置日期根据设置的内容来
-        hour_wheel_view.setAdapter(
-            WheelStringAdapter(
-                resources.getStringArray(
-                    if (SettingPreferences.is12HMode())
-                        R.array.time_type_12
-                    else
-                        R.array.time_type_24
-                ).toList()
-            )
-        )
-        if (!SettingPreferences.createAllowExpired) {
-
-            calendar_view.run {
-                Log.d("calendar", "$curYear - $curMonth - $curDay")
-                setRange(
-                    curYear,
-                    curMonth,
-                    curDay,
-                    curYear + 1,
-                    curMonth,
-                    curDay
-                )
-                scrollToCurrent()
-            }
-        }
-        // 当前时间
+        hour_wheel_view.setAdapter(WheelStringAdapter(hourList))
+        // 设置一个当前的默认时间
         hour_wheel_view.setCurrentItem(4)
         am_pm_view.visibility = if (SettingPreferences.is12HMode()) View.VISIBLE else View.GONE
     }
@@ -79,7 +62,19 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
     }
 
     override fun initData() {
+
     }
+
+    private fun prepareHourListBySetting(): List<String> {
+        timeNumber = resources.getIntArray(R.array.time_number)
+        return if (SettingPreferences.is12HMode()) {
+            timeNumber.asSequence().filter { it < 13 }.map { "$it:00" }.toList()
+        } else {
+            timeNumber.asSequence().map { "$it:00" }.toList()
+        }
+
+    }
+
 
     interface OnDateTimeChoiceFinish {
         fun onDateTimeChoiceFinish(calendar: Calendar?)

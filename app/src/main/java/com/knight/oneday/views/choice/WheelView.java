@@ -101,6 +101,7 @@ public class WheelView extends ViewGroup {
                 if (centerItemPosition == IDLE_POSITION) return;
                 selectedPosition = centerItemPosition;
                 if (selectedPosition != lastSelectedPosition) {
+
                     listener.onItemSelected(centerItemPosition);
                     lastSelectedPosition = selectedPosition;
                 }
