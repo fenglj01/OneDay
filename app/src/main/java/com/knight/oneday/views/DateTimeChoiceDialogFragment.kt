@@ -59,9 +59,10 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
         val defaultDate = CreateDate()
         defaultDate.apply {
             val hour = defaultDate[CreateDate.HOUR_OF_DAY]
-            timeHourIndex = timeNumber.indexOfFirst { it == if (hour > 12) hour - 12 else hour }
+            val isAM = hour <= 12
+            timeHourIndex = timeNumber.indexOfFirst { it == if (!isAM) hour - 12 else hour }
             hour_wheel_view.setCurrentItem(timeHourIndex)
-            am_pm_view.toggle(hour <= 12)
+            am_pm_view.toggle(isAM)
         }
         selectedCalendar = calendar_view.selectedCalendar
     }
