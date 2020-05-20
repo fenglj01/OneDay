@@ -2,6 +2,7 @@ package com.knight.oneday
 
 import android.os.Bundle
 import android.transition.Slide
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -25,7 +26,7 @@ import com.ramotion.directselect.DSListView
 class CreateEventFragment : Fragment() {
 
     private lateinit var binding: FragmentCreateEventBinding
-    private val dateDialog :DateTimeChoiceDialogFragment by lazy { DateTimeChoiceDialogFragment() }
+    private val dateDialog: DateTimeChoiceDialogFragment by lazy { DateTimeChoiceDialogFragment() }
 
     private val createViewModel: CreateEventViewModel by viewModels {
         InjectorUtils.createEventViewModelFactory(
@@ -33,9 +34,6 @@ class CreateEventFragment : Fragment() {
         )
     }
 
-    private val datePicker: MaterialDatePicker<*> by lazy {
-        binding.root.getMaterialDatePickerBuilder().build()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,10 +90,10 @@ class CreateEventFragment : Fragment() {
             }
         }
 
-        datePicker.addOnPositiveButtonClickListener {
-            binding.eventDateTv.text = datePicker.headerText
-            createViewModel.eventRemindDate = datePicker.selection as Long
-        }
+        dateDialog.choiceCalendar.observe(viewLifecycleOwner, Observer { createDate ->
+            // TODO 进行时间判断 根据是否显示过期事件来
+            Log.d("CreateFrag", "${createDate.time.format24H()}")
+        })
 
         createViewModel.viewModelStatus.observe(viewLifecycleOwner, Observer { viewModelStatus ->
             when (viewModelStatus) {
