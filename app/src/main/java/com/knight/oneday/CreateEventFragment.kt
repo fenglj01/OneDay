@@ -22,6 +22,7 @@ import com.knight.oneday.views.OnButtonClickListener
 import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
+import kotlinx.android.synthetic.main.dialog_date_time_chioce.*
 
 class CreateEventFragment : Fragment() {
 
@@ -91,7 +92,6 @@ class CreateEventFragment : Fragment() {
         }
 
         dateDialog.choiceCalendar.observe(viewLifecycleOwner, Observer { createDate ->
-            // TODO 进行时间判断 根据是否显示过期事件来
             Log.d("CreateFrag", "${createDate.time.format24H()}")
         })
 
