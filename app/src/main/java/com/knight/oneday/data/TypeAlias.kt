@@ -1,14 +1,5 @@
 package com.knight.oneday.data
 
-import com.knight.oneday.utilities.SettingPreferences
+import java.util.*
 
-typealias HourString = String
-
-fun HourString.toHourOfDay(isAm: Boolean = false): Int {
-    if (SettingPreferences.is12HMode()) {
-
-    } else {
-
-    }
-    return 0
-}
+typealias CreateDate = GregorianCalendar

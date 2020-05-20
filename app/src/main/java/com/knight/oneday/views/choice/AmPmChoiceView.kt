@@ -1,5 +1,6 @@
 package com.knight.oneday.views.choice
 
+import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.animation.addListener
 import com.knight.oneday.R
 import com.knight.oneday.utilities.px2sp
 import com.knight.oneday.utilities.singleClick
@@ -32,6 +34,7 @@ class AmPmChoiceView @JvmOverloads constructor(
     private var unChoiceTextSize: Float = 0F
     private var textSizeGap: Float = 0F
     private var isChoiceAm = true
+    var onChoiceFinish: OnChoiceFinish? = null
 
     init {
         initAttr()
@@ -48,6 +51,13 @@ class AmPmChoiceView @JvmOverloads constructor(
         choiceTextSize = px2sp(px = am.textSize)
         unChoiceTextSize = px2sp(px = pm.textSize)
         textSizeGap = choiceTextSize - unChoiceTextSize
+    }
+
+    fun toggle(isAm: Boolean) {
+        if (isAm == isChoiceAm) return
+        isChoiceAm = isAm
+        choiceAnimator.start()
+        unChoiceAnimator.start()
     }
 
     private fun initEvent() {
@@ -82,6 +92,9 @@ class AmPmChoiceView @JvmOverloads constructor(
                     am.textSize = choiceTextSize - textSizeGap * animator.animatedFraction
                 }
             }
+            addListener(onStart = {
+                onChoiceFinish?.onChoiceFinish(isChoiceAm)
+            })
         }
         unChoiceAnimator = ValueAnimator.ofInt(choiceColor, unChoiceColor).apply {
             duration = 200L

@@ -56,11 +56,32 @@ fun Long.timeMillsFormat(): String {
     val format = SimpleDateFormat("yyyy年M月d日")
     return format.format(this)
 }
+
 val ymFormat = SimpleDateFormat("M-yyyy")
 fun Long.yearAndMonthFormat(): String {
     return ymFormat.format(this)
 }
 
-fun nowDayOfMonth():String{
+fun nowDayOfMonth(): String {
     return "${Calendar.getInstance().get(Calendar.DAY_OF_MONTH)}"
+}
+
+fun Long.format12H(): String {
+    val format = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+    return format.format(this)
+}
+
+fun Long.format24H():String{
+    val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    return format.format(this)
+}
+
+fun Date.format12H(): String {
+    val format = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+    return format.format(this)
+}
+
+fun Date.format24H():String{
+    val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+    return format.format(this)
 }

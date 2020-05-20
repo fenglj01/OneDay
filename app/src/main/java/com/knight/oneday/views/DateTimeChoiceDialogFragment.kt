@@ -1,13 +1,15 @@
 package com.knight.oneday.views
 
 import android.util.Log
-import android.view.View
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
 import com.knight.oneday.R
+import com.knight.oneday.data.CreateDate
 import com.knight.oneday.utilities.*
+import com.knight.oneday.views.choice.AmPmChoiceView
 import com.knight.oneday.views.choice.WheelStringAdapter
-import com.knight.oneday.views.choice.WheelStringViewHolder
 import kotlinx.android.synthetic.main.dialog_date_time_chioce.*
 
 /**
@@ -16,45 +18,91 @@ import kotlinx.android.synthetic.main.dialog_date_time_chioce.*
  */
 class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
 
-    var onDateTimeChoiceFinish: OnDateTimeChoiceFinish? = null
-    private var choiceCalendar: Calendar? = null
-    private val hourList: List<String> by lazy { prepareHourListBySetting() }
+    private val hourList: List<String> by lazy { prepareHourList() }
     private lateinit var timeNumber: IntArray
+    private var timeHourIndex: Int = 4
+    private var isChoiceAm: Boolean = true
+    private var selectedCalendar: Calendar? = null
+    /*选择时间的LiveData*/
+    private val _choiceCalendar: MutableLiveData<CreateDate> = MutableLiveData()
+    val choiceCalendar: LiveData<CreateDate>
+        get() = _choiceCalendar
+
 
     override fun dialogId(): Int = R.layout.dialog_date_time_chioce
 
     override fun initView() {
-        prepareBySetting()
+
+        hour_wheel_view.setAdapter(WheelStringAdapter(hourList))
+        hour_wheel_view.setOnItemSelectedListener { hourIndex ->
+            timeHourIndex = hourIndex
+        }
+
         choice_hint_tv.text = System.currentTimeMillis().yearAndMonthFormat()
         tv_current_day.text = nowDayOfMonth()
+
         fl_current.singleClick {
             calendar_view.scrollToCurrent()
         }
-        hour_wheel_view.setOnItemSelectedListener { hourIndex ->
-            timeNumber[hourIndex]
+
+        am_pm_view.onChoiceFinish = object : AmPmChoiceView.OnChoiceFinish {
+            override fun onChoiceFinish(isAm: Boolean) {
+                isChoiceAm = isAm
+            }
         }
+
+        initDefaultChoice()
+
     }
 
-    private fun prepareBySetting() {
-        // 设置日期根据设置的内容来
-        hour_wheel_view.setAdapter(WheelStringAdapter(hourList))
-        // 设置一个当前的默认时间
-        hour_wheel_view.setCurrentItem(4)
+    private fun initDefaultChoice() {
+        val defaultDate = CreateDate()
+        defaultDate.apply {
+            val hour = defaultDate[CreateDate.HOUR_OF_DAY]
+            timeHourIndex = timeNumber.indexOfFirst { it == if (hour > 12) hour - 12 else hour }
+            hour_wheel_view.setCurrentItem(timeHourIndex)
+            am_pm_view.toggle(hour <= 12)
+        }
+        selectedCalendar = calendar_view.selectedCalendar
     }
 
     override fun initEvent() {
+
         calendar_view.setOnCalendarSelectListener(object : CalendarView.OnCalendarSelectListener {
             override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
                 choice_hint_tv.text = calendar?.timeInMillis?.yearAndMonthFormat()
-                choiceCalendar = calendar
+                selectedCalendar = calendar
             }
 
             override fun onCalendarOutOfRange(calendar: Calendar?) {
             }
         })
+
         done_tv.singleClick {
             dialog?.dismiss()
-            onDateTimeChoiceFinish?.onDateTimeChoiceFinish(choiceCalendar)
+            prepareCreateDate()
+        }
+
+    }
+
+    private fun prepareCreateDate() {
+        selectedCalendar?.let { date ->
+            val createDate = CreateDate().apply {
+                set(
+                    date.year,
+                    date.month,
+                    date.day
+                )
+                set(
+                    CreateDate.HOUR_OF_DAY,
+                    if (isChoiceAm) timeNumber[timeHourIndex] else timeNumber[timeHourIndex] + 12
+                )
+            }
+            Log.d(
+                "CreateTest",
+                "${createDate.time.format12H()} \n ${createDate.time.format24H()}"
+            )
+            _choiceCalendar.postValue(createDate)
         }
     }
 
@@ -62,13 +110,9 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
 
     }
 
-    private fun prepareHourListBySetting(): List<String> {
+    private fun prepareHourList(): List<String> {
         timeNumber = resources.getIntArray(R.array.time_number)
         return timeNumber.asSequence().map { "$it:00" }.toList()
     }
 
-
-    interface OnDateTimeChoiceFinish {
-        fun onDateTimeChoiceFinish(calendar: Calendar?)
-    }
 }
