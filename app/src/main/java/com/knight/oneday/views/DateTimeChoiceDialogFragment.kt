@@ -21,9 +21,7 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
     private val hourList: List<String> by lazy { prepareHourListBySetting() }
     private lateinit var timeNumber: IntArray
 
-    override
-
-    fun dialogId(): Int = R.layout.dialog_date_time_chioce
+    override fun dialogId(): Int = R.layout.dialog_date_time_chioce
 
     override fun initView() {
         prepareBySetting()
@@ -42,7 +40,6 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
         hour_wheel_view.setAdapter(WheelStringAdapter(hourList))
         // 设置一个当前的默认时间
         hour_wheel_view.setCurrentItem(4)
-        am_pm_view.visibility = if (SettingPreferences.is12HMode()) View.VISIBLE else View.GONE
     }
 
     override fun initEvent() {
@@ -67,12 +64,7 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
 
     private fun prepareHourListBySetting(): List<String> {
         timeNumber = resources.getIntArray(R.array.time_number)
-        return if (SettingPreferences.is12HMode()) {
-            timeNumber.asSequence().filter { it < 13 }.map { "$it:00" }.toList()
-        } else {
-            timeNumber.asSequence().map { "$it:00" }.toList()
-        }
-
+        return timeNumber.asSequence().map { "$it:00" }.toList()
     }
 
 

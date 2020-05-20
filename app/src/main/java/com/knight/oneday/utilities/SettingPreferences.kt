@@ -13,18 +13,9 @@ import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_ALLOW_
  */
 object SettingPreferences {
 
-    val createAllowExpired: Boolean by PreferenceAttrProxy(KEY_CREATE_ALLOW_EXPIRED, true)
-    val createTimeSystem: String by PreferenceAttrProxy(
-        KEY_CREATE_TIME_SYSTEM,
-        getString(R.string.time_system_12h)
-    )
-    val createDayMode: String by PreferenceAttrProxy(
-        KEY_CREATE_DAY_MODE,
-        getString(R.string.value_today)
-    )
     val showAllowExpired: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_EXPIRED, false)
     val showAllowFinished: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_FINISHED, false)
 
-    fun is12HMode() = createTimeSystem == getString(R.string.time_system_12h)
+    /*fun is12HMode() = createTimeSystem == getString(R.string.time_system_12h)*/
 
 }

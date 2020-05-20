@@ -4,37 +4,6 @@
     android:showDividers="middle">
 
     <PreferenceCategory
-        app:icon="@drawable/ic_one_day_edit"
-        app:key="create_category"
-        app:title="@string/create">
-
-        <SwitchPreference
-            app:defaultValue="true"
-            app:iconSpaceReserved="false"
-            app:key="create_allow_expired"
-            app:title="@string/create_allow_expired" />
-
-        <!--<ListPreference
-            app:defaultValue="@string/value_today"
-            app:entries="@array/entities_create_day_mode"
-            app:entryValues="@array/values_create_day_mode"
-            app:iconSpaceReserved="false"
-            app:key="create_day_mode"
-            app:title="@string/create_day_mode"
-            app:useSimpleSummaryProvider="true" />-->
-
-        <ListPreference
-            app:defaultValue="@string/time_system_12h"
-            app:entries="@array/entities_time_system"
-            app:entryValues="@array/values_time_system"
-            app:iconSpaceReserved="false"
-            app:key="create_time_system"
-            app:title="@string/time_system"
-            app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         app:icon="@drawable/ic_one_day_list"
         app:key="list_category"
         app:title="@string/show">
