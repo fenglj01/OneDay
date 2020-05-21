@@ -8,7 +8,15 @@ import com.google.android.material.snackbar.Snackbar
 fun Fragment.showSnackBar(
     view: View,
     @StringRes strId: Int,
-    duration: Int = Snackbar.LENGTH_SHORT
+    duration: Int = Snackbar.LENGTH_SHORT,
+    @StringRes actionText: Int? = null,
+    action: (() -> Unit)? = null
 ) {
-    Snackbar.make(view, strId, duration).show()
+    val sb = Snackbar.make(view, strId, duration)
+    actionText?.run {
+        sb.setAction(actionText) {
+            action?.invoke()
+        }
+    }
+    sb.show()
 }

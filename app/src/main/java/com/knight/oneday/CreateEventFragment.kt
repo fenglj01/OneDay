@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.adapters.TagPickerAdapter
+import com.knight.oneday.data.RemindDate
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.*
@@ -91,8 +93,20 @@ class CreateEventFragment : Fragment() {
             }
         }
 
-        dateDialog.choiceCalendar.observe(viewLifecycleOwner, Observer { createDate ->
-            Log.d("CreateFrag", "${createDate.time.format24H()}")
+        dateDialog.choiceCalendar.observe(viewLifecycleOwner, Observer { remindDate ->
+            Log.d("CreateFrag", "${remindDate.timeInMillis.format24H()}")
+            if (isShowRemindNotAllowExpiredEvent(remindDate)) {
+                showSnackBar(
+                    binding.root,
+                    R.string.now_not_show_expried_event,
+                    duration = Snackbar.LENGTH_LONG,
+                    actionText = R.string.dont_remind_agin,
+                    action = {
+                        /* 选择了不再提示后 就不再展示出来 */
+                        SettingPreferences.showRemindNotAllowExpired = false
+                    }
+                )
+            }
         })
 
         createViewModel.viewModelStatus.observe(viewLifecycleOwner, Observer { viewModelStatus ->
@@ -108,6 +122,13 @@ class CreateEventFragment : Fragment() {
         })
 
     }
+
+    /**
+     *  判断当前是否要展示给用户列表没有展示过期事件
+     *  @param remindDate 提示时间
+     * */
+    private fun isShowRemindNotAllowExpiredEvent(remindDate: RemindDate): Boolean =
+        remindDate.timeInMillis <= nowTimeMills() && SettingPreferences.showRemindNotAllowExpired && !SettingPreferences.showAllowExpired
 
     private fun initDropMenu() {
         val tagItems = NavigationModel.getNavTagItems()

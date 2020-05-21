@@ -16,12 +16,11 @@ import kotlin.reflect.KProperty
 class PreferenceAttrProxy<T>(val key: String, private val defaultValue: T) :
     ReadWriteProperty<Any?, T> {
 
-    companion object{
-        const val KEY_CREATE_ALLOW_EXPIRED = "create_allow_expired"
-        const val KEY_CREATE_DAY_MODE = "create_day_mode"
-        const val KEY_CREATE_TIME_SYSTEM = "create_time_system"
+    companion object {
+
         const val KEY_SHOW_ALLOW_EXPIRED = "show_allow_expired"
         const val KEY_SHOW_ALLOW_FINISHED = "show_allow_finished"
+        const val KEY_SHOW_SNACK_REMIND_NOT_SHOW_EXPIRED_EVENT = "remind_not_show_expired"
     }
 
     private val prefs: SharedPreferences by lazy {

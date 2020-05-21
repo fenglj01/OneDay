@@ -71,7 +71,7 @@ fun Long.format12H(): String {
     return format.format(this)
 }
 
-fun Long.format24H():String{
+fun Long.format24H(): String {
     val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     return format.format(this)
 }
@@ -81,7 +81,9 @@ fun Date.format12H(): String {
     return format.format(this)
 }
 
-fun Date.format24H():String{
+fun Date.format24H(): String {
     val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     return format.format(this)
 }
+
+fun nowTimeMills() = System.currentTimeMillis()

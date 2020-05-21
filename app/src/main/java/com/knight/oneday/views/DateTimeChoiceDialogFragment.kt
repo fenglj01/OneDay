@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
 import com.knight.oneday.R
-import com.knight.oneday.data.CreateDate
+import com.knight.oneday.data.RemindDate
 import com.knight.oneday.utilities.*
 import com.knight.oneday.views.choice.AmPmChoiceView
 import com.knight.oneday.views.choice.WheelStringAdapter
@@ -24,8 +24,8 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
     private var isChoiceAm: Boolean = true
     private var selectedCalendar: Calendar? = null
     /*选择时间的LiveData*/
-    private val _choiceCalendar: MutableLiveData<CreateDate> = MutableLiveData()
-    val choiceCalendar: LiveData<CreateDate>
+    private val _choiceCalendar: MutableLiveData<RemindDate> = MutableLiveData()
+    val choiceCalendar: LiveData<RemindDate>
         get() = _choiceCalendar
 
 
@@ -56,9 +56,9 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
     }
 
     private fun initDefaultChoice() {
-        val defaultDate = CreateDate()
+        val defaultDate = RemindDate()
         defaultDate.apply {
-            val hour = defaultDate[CreateDate.HOUR_OF_DAY]
+            val hour = defaultDate[RemindDate.HOUR_OF_DAY]
             val isAM = hour <= 12
             timeHourIndex = timeNumber.indexOfFirst { it == if (!isAM) hour - 12 else hour }
             hour_wheel_view.setCurrentItem(timeHourIndex)
@@ -88,22 +88,18 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
 
     private fun prepareCreateDate() {
         selectedCalendar?.let { date ->
-            val createDate = CreateDate().apply {
+            val remindDate = RemindDate().apply {
                 set(
                     date.year,
-                    date.month,
+                    date.month - 1,
                     date.day
                 )
                 set(
-                    CreateDate.HOUR_OF_DAY,
+                    RemindDate.HOUR_OF_DAY,
                     if (isChoiceAm) timeNumber[timeHourIndex] else timeNumber[timeHourIndex] + 12
                 )
             }
-            Log.d(
-                "CreateTest",
-                "${createDate.time.format12H()} \n ${createDate.time.format24H()}"
-            )
-            _choiceCalendar.postValue(createDate)
+            _choiceCalendar.postValue(remindDate)
         }
     }
 

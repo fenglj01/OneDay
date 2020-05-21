@@ -73,4 +73,6 @@
     <string name="show_allow_expired">是否展示已过期任务</string>
     <string name="time_system">时间制度</string>
     <string name="time_system_12h">12H</string>
+    <string name="now_not_show_expried_event">当前设置不展示过期任务,你可以设置中选择展示过期任务。</string>
+    <string name="dont_remind_agin">不再提示</string>
 </resources>
