@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_one_day_date"
                     android:gravity="center_vertical"
-                    android:text="@{viewModel.todayStr}"
+                    android:text="@{viewModel.remindYearMonthDay}"
                     android:textAppearance="@style/TextAppearance.MyTheme.Body1"
                     app:layout_constraintBottom_toBottomOf="@+id/close_iv"
                     app:layout_constraintStart_toEndOf="@id/close_iv"

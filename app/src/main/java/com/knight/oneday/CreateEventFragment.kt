@@ -25,6 +25,7 @@ import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
 import kotlinx.android.synthetic.main.dialog_date_time_chioce.*
+import kotlinx.android.synthetic.main.fragment_create_event.*
 
 class CreateEventFragment : Fragment() {
 
@@ -71,7 +72,6 @@ class CreateEventFragment : Fragment() {
             }
 
             eventDateTv.singleClick {
-                //                datePicker.show(parentFragmentManager, DATE_PICKER_TAG)
                 dateDialog.show(parentFragmentManager, DATE_PICKER_TAG)
             }
 
@@ -107,6 +107,8 @@ class CreateEventFragment : Fragment() {
                     }
                 )
             }
+            event_date_tv.text = remindDate.timeInMillis.formatYearMonthDay()
+            createViewModel.eventRemindDate = remindDate.timeInMillis
         })
 
         createViewModel.viewModelStatus.observe(viewLifecycleOwner, Observer { viewModelStatus ->
