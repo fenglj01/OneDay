@@ -94,7 +94,7 @@ class CreateEventFragment : Fragment() {
         }
 
         dateDialog.choiceCalendar.observe(viewLifecycleOwner, Observer { remindDate ->
-            Log.d("CreateFrag", "${remindDate.timeInMillis.format24H()}")
+            Log.d("CreateFrag", "${remindDate.timeInMillis.format24Hex()}")
             if (isShowRemindNotAllowExpiredEvent(remindDate)) {
                 showSnackBar(
                     binding.root,
@@ -128,7 +128,7 @@ class CreateEventFragment : Fragment() {
      *  @param remindDate 提示时间
      * */
     private fun isShowRemindNotAllowExpiredEvent(remindDate: RemindDate): Boolean =
-        remindDate.timeInMillis <= nowTimeMills() && SettingPreferences.showRemindNotAllowExpired && !SettingPreferences.showAllowExpired
+        remindDate.timeInMillis <= currentTimeMills() && SettingPreferences.showRemindNotAllowExpired && !SettingPreferences.showAllowExpired
 
     private fun initDropMenu() {
         val tagItems = NavigationModel.getNavTagItems()

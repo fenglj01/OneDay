@@ -8,8 +8,6 @@ import com.knight.oneday.data.EventRepository
 import com.knight.oneday.data.Step
 import com.knight.oneday.data.StepRepository
 import com.knight.oneday.utilities.EventType
-import com.knight.oneday.utilities.TimeInterval
-import com.knight.oneday.utilities.TimeUtils
 import kotlinx.coroutines.launch
 
 /**
@@ -20,20 +18,5 @@ class DayEventAndStepViewModel(
     private val eventRepository: EventRepository,
     private val stepRepository: StepRepository
 ) : ViewModel() {
-
-    val timeInterval: TimeInterval = TimeUtils.getTodayTimeInterval()
-
-    val events =
-        eventRepository.getAllEvent()
-    val steps =
-        stepRepository.getStepsByEventId(1)
-    
-    val eventsWithSteps =
-        eventRepository.getEventsWithSteps()
-
-    fun addEvent() {
-        viewModelScope.launch {
-        }
-    }
 
 }

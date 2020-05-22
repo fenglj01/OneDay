@@ -9,7 +9,6 @@ import com.knight.oneday.data.AppDatabase
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.Step
 import com.knight.oneday.utilities.EventType
-import com.knight.oneday.utilities.TimeUtils
 import kotlinx.coroutines.coroutineScope
 import java.lang.Exception
 

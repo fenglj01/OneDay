@@ -10,7 +10,6 @@ import com.knight.oneday.data.EventRepository
 import com.knight.oneday.data.isFinished
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
-import com.knight.oneday.utilities.TimeUtils
 import com.knight.oneday.utilities.miniIsImportant
 import kotlinx.coroutines.launch
 
@@ -20,8 +19,6 @@ import kotlinx.coroutines.launch
  * 极简风格的ViewModel
  */
 class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
-
-    var todayStr = TimeUtils.getTodayMonthAndDayStr()
 
     val eventList = repository.getEventsWithSteps()
 

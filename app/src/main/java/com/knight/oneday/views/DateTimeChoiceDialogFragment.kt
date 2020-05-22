@@ -38,8 +38,8 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
             timeHourIndex = hourIndex
         }
 
-        choice_hint_tv.text = System.currentTimeMillis().yearAndMonthFormat()
-        tv_current_day.text = nowDayOfMonth()
+        choice_hint_tv.text = currentYearMonth()
+        tv_current_day.text = currentDayOfMonth().toString()
 
         fl_current.singleClick {
             calendar_view.scrollToCurrent()
@@ -71,7 +71,7 @@ class DateTimeChoiceDialogFragment : BaseBottomDialogFragment() {
 
         calendar_view.setOnCalendarSelectListener(object : CalendarView.OnCalendarSelectListener {
             override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
-                choice_hint_tv.text = calendar?.timeInMillis?.yearAndMonthFormat()
+                choice_hint_tv.text = calendar?.timeInMillis?.formatYearMonth()
                 selectedCalendar = calendar
             }
 

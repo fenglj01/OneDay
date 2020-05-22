@@ -20,8 +20,7 @@ class CreateEventViewModel(
     private val eventRes: EventRepository,
     private val stepRes: StepRepository
 ) : BaseViewModel() {
-    var remindTimeMills = System.currentTimeMillis()
-    var todayStr = remindTimeMills.timeMillsFormat()
+    var todayStr = currentYearMonthDay()
 
     var eventContent: String = ""
     var eventRemindDate: Long? = null
