@@ -76,6 +76,8 @@
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="@{eventContent}"
                     android:layout_marginStart="@dimen/dp_16"
+                    app:layout_goneMarginBottom="@dimen/dp_16"
+                    app:layout_constraintBottom_toTopOf="@+id/overview_step_content"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/overview_remind_time_iv" />
@@ -92,6 +94,7 @@
                     app:layout_constraintEnd_toStartOf="@id/expand_button"
                     android:layout_marginEnd="@dimen/dp_8"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/overview_event_content" />
 
                 <com.knight.oneday.views.expand.ExpandStatusButton
@@ -100,6 +103,7 @@
                     android:layout_height="wrap_content"
                     android:background="?attr/actionBarItemBackground"
                     android:padding="@dimen/dp_12"
+                    android:visibility="gone"
                     app:layout_constraintTop_toTopOf="@id/overview_step_content"
                     android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
                     app:layout_constraintBottom_toBottomOf="@id/overview_step_content"

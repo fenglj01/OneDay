@@ -1,6 +1,7 @@
 package com.knight.oneday.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -49,11 +50,18 @@ class ExpandableHomeItemAdapter :
                 with(includeOverview) {
                     eventContent = item.event.content
                     remindTime = "14:00"
-                    overviewStepContent.bindStepsOverView(item.eventSteps)
                     overviewCard.progress = 1F
-                    expandOverview.addExpandableStatusListener(expandButton)
-                    expandButton.singleClick {
-                        expandOverview.toggle()
+                    if (item.eventSteps.isNotEmpty()) {
+                        expandOverview.addExpandableStatusListener(expandButton)
+                        overviewStepContent.bindStepsOverView(item.eventSteps)
+                        expandButton.singleClick {
+                            expandOverview.toggle()
+                        }
+                        expandButton.visibility = View.VISIBLE
+                        expandOverview.visibility = View.VISIBLE
+                    } else {
+                        expandButton.visibility = View.GONE
+                        expandOverview.visibility = View.GONE
                     }
                 }
                 // 设置内容部分
