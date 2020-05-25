@@ -9,9 +9,6 @@ import java.util.*
  */
 class EventRepository private constructor(private val eventDao: EventDao) {
 
-    fun getEventsByTimeInterval(startTime: Calendar, endTine: Calendar) =
-        eventDao.getEventByTimeInterval(startTime, endTine)
-
     fun getAllEvent() = eventDao.getAllEvent()
 
     fun getEventsWithSteps() = eventDao.getEventsWithSteps()

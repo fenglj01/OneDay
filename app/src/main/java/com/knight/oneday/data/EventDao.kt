@@ -14,9 +14,6 @@ import java.util.*
 @Dao
 interface EventDao {
 
-    @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE create_time BETWEEN :startTime AND :endTime")
-    fun getEventByTimeInterval(startTime: Calendar, endTime: Calendar): LiveData<List<Event>>
-
     @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE state = 0")
     fun getAllUnFinishedEvents(): LiveData<List<Event>>
 

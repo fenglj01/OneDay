@@ -27,7 +27,7 @@
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottom_app_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?actionBarSize"
             android:layout_gravity="bottom"
             app:fabAlignmentMode="center"
             app:fabCradleMargin="@dimen/bottom_app_bar_fab_cradle_margin"
@@ -37,7 +37,7 @@
             <LinearLayout
                 android:id="@+id/bottom_app_bar_content_container"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/min_touch_target_size"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/dp_8"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
