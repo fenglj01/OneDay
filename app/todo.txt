@@ -496,6 +496,8 @@ https://www.youtube.com/watch?v=Owkf8DhAOSo
 
         分析
             viewHeights 正常
+
+
             初步估计是backView的问题 明天从backColor查走
     决定手撸一个折叠View
 
