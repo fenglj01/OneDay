@@ -26,7 +26,7 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
 
     private val defaultExpandedItem = -1
     private var expandedItem: Int = defaultExpandedItem
-
+    var insertItem: Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
         return EventCellViewHolder(
@@ -48,11 +48,8 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
         currentList: MutableList<EventAndEventSteps>
     ) {
         super.onCurrentListChanged(previousList, currentList)
-        Log.d("ExpandAdapter", "${currentList.size} ${previousList.size}")
         if (currentList.size > previousList.size) {
-//            recyclerView.smoothScrollToPosition(0)
-            Log.d("ExpandAdapter", "goScrollTo")
-
+            insertItem = currentList.indexOfFirst { !previousList.contains(it) }
         }
     }
 

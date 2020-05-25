@@ -26,7 +26,7 @@ interface EventDao {
     @Update
     suspend fun updateEvent(event: Event)
 
-    @Query("SELECT * FROM $TABLE_NAME_EVENT ORDER BY create_time desc")
+    @Query("SELECT * FROM $TABLE_NAME_EVENT ORDER BY remind_time desc")
     fun getEventsWithSteps(): LiveData<List<EventAndEventSteps>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

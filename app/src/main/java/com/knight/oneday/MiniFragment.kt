@@ -50,8 +50,10 @@ class MiniFragment : Fragment() {
 
     private fun subscribeUi() {
         miniVm.eventList.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-            /*binding.rvEvent.smoothScrollToPosition(0)*/
+            adapter.submitList(it) {
+                if (adapter.insertItem >= 0)
+                    binding.rvEvent.smoothScrollToPosition(adapter.insertItem)
+            }
         }
     }
 
