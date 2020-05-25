@@ -21,6 +21,7 @@
         android:overScrollMode="never"
         android:paddingStart="@dimen/dp_8"
         android:paddingEnd="@dimen/dp_8"
+        android:paddingBottom="?actionBarSize"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:paddingBottomSystemWindowInsets="@{true}"
