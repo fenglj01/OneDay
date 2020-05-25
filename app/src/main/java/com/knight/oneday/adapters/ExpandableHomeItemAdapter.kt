@@ -1,5 +1,6 @@
 package com.knight.oneday.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,12 +19,14 @@ import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
  * create at 20-3-11 下午8:36
  * 首页可展开的ListAdapter
  */
-class ExpandableHomeItemAdapter :
+class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
     ListAdapter<EventAndEventSteps, ExpandableHomeItemAdapter.EventCellViewHolder>(
-        EventAndStepsDiffCallback()
+        EventAndStepsDiffCallback
     ) {
-    /* 暂时采用了记录变量的方式 */
-    private var currentExpanded: ExpandableLayout? = null
+
+    private val defaultExpandedItem = -1
+    private var expandedItem: Int = defaultExpandedItem
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
         return EventCellViewHolder(
@@ -40,12 +43,45 @@ class ExpandableHomeItemAdapter :
         holder.bind(event)
     }
 
+    /* override fun onCurrentListChanged(
+         previousList: MutableList<EventAndEventSteps>,
+         currentList: MutableList<EventAndEventSteps>
+     ) {
+         super.onCurrentListChanged(previousList, currentList)
+     }*/
+
     inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        @Deprecated("支持仅单个展开功能 (取消) 取消的原因submit后会导致失效")
+        private fun toggle(position: Int) {
+
+            val expandedItemViewHolder =
+                recyclerView.findViewHolderForAdapterPosition(expandedItem) as? EventCellViewHolder
+            expandedItemViewHolder?.run {
+                binding.expandOverview.collapse()
+                Log.d("SingleChoice", "$expandedItem collapse")
+            }
+
+            val clickItemViewHolder =
+                recyclerView.findViewHolderForAdapterPosition(position) as? EventCellViewHolder
+            expandedItem = if (position == expandedItem) {
+                defaultExpandedItem
+            } else {
+                Log.d("SingleChoice", "$position expand ${clickItemViewHolder == null}")
+                clickItemViewHolder?.binding?.expandOverview?.expand()
+                position
+            }
+        }
+
         fun bind(item: EventAndEventSteps) {
 
             binding.apply {
                 eventAndSteps = item
+                // 展开与否
+                val isExpanded = adapterPosition == expandedItem
+                binding.expandOverview.toggleNoAnimator(isExpanded)
+
                 // 设置预览部分
                 with(includeOverview) {
                     eventContent = item.event.content
@@ -69,23 +105,13 @@ class ExpandableHomeItemAdapter :
                     content = item
                     contentStepListControl.setUpStepList(item.eventSteps)
                     expandOverview.addExpandableStatusListener(ExpandableStatusListenerLambdaAdapter(
-                        onPreExpand = {
-                            if (expandOverview != currentExpanded) {
-                                currentExpanded?.collapse()
-                                currentExpanded = expandOverview
-                            }
-                        },
-                        onExpanded = {
-                        },
-                        onCollapsed = {
-                        },
+                        /*整个卡片的高度视差*/
                         onFraction = { fraction, isExpanding ->
                             val f = if (isExpanding) fraction else 1F - fraction
                             val z = dp2px(dp = 8F) * f
                             includeOverview.overviewContent.translationZ = z
                             expandOverview.translationZ = z
                         }
-
                     ))
                 }
                 executePendingBindings()
@@ -96,7 +122,7 @@ class ExpandableHomeItemAdapter :
 
 }
 
-private class EventAndStepsDiffCallback : DiffUtil.ItemCallback<EventAndEventSteps>() {
+object EventAndStepsDiffCallback : DiffUtil.ItemCallback<EventAndEventSteps>() {
     override fun areItemsTheSame(
         oldItem: EventAndEventSteps,
         newItem: EventAndEventSteps
@@ -108,9 +134,6 @@ private class EventAndStepsDiffCallback : DiffUtil.ItemCallback<EventAndEventSte
         oldItem: EventAndEventSteps,
         newItem: EventAndEventSteps
     ): Boolean {
-        return oldItem.event.content == newItem.event.content
-                && oldItem.event.state == newItem.event.state
-                && oldItem.event.type == newItem.event.type
-                && oldItem.event.eventId == newItem.event.eventId
+        return oldItem == newItem
     }
 }
