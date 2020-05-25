@@ -51,6 +51,7 @@ class MiniFragment : Fragment() {
     private fun subscribeUi() {
         miniVm.eventList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            /*binding.rvEvent.smoothScrollToPosition(0)*/
         }
     }
 

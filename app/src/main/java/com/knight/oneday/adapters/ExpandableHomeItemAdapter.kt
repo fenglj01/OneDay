@@ -43,12 +43,18 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
         holder.bind(event)
     }
 
-    /* override fun onCurrentListChanged(
-         previousList: MutableList<EventAndEventSteps>,
-         currentList: MutableList<EventAndEventSteps>
-     ) {
-         super.onCurrentListChanged(previousList, currentList)
-     }*/
+    override fun onCurrentListChanged(
+        previousList: MutableList<EventAndEventSteps>,
+        currentList: MutableList<EventAndEventSteps>
+    ) {
+        super.onCurrentListChanged(previousList, currentList)
+        Log.d("ExpandAdapter", "${currentList.size} ${previousList.size}")
+        if (currentList.size > previousList.size) {
+//            recyclerView.smoothScrollToPosition(0)
+            Log.d("ExpandAdapter", "goScrollTo")
+
+        }
+    }
 
     inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
