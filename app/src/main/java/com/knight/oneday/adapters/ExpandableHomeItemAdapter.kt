@@ -11,7 +11,6 @@ import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventCellLayoutBinding
 import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.singleClick
-import com.knight.oneday.views.expand.ExpandableLayout
 import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
 
 /**
@@ -26,7 +25,7 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
 
     private val defaultExpandedItem = -1
     private var expandedItem: Int = defaultExpandedItem
-    var insertItem: Int = -1
+    var currentChangedItemIndex: Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
         return EventCellViewHolder(
@@ -48,9 +47,27 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
         currentList: MutableList<EventAndEventSteps>
     ) {
         super.onCurrentListChanged(previousList, currentList)
-        if (currentList.size > previousList.size) {
-            insertItem = currentList.indexOfFirst { !previousList.contains(it) }
+        if (previousList.isNullOrEmpty()) return
+        when {
+            currentList.size > previousList.size -> {       // insert
+                currentChangedItemIndex = currentList.indexOfFirst { !previousList.contains(it) }
+            }
+            currentList.size < previousList.size -> {       // delete
+                currentChangedItemIndex = previousList.indexOfFirst { !currentList.contains(it) }
+            }
+            else -> {                                       // update or nothing
+                currentList.forEachIndexed { index, eventAndEventSteps ->
+                    if (previousList[index] != eventAndEventSteps) {
+                        currentChangedItemIndex = index
+                        return@forEachIndexed
+                    }
+                }
+            }
         }
+    }
+
+    fun refreshCurrentChangeItemIndex() {
+        currentChangedItemIndex = -1
     }
 
     inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :

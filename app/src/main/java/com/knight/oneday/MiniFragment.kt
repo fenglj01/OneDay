@@ -49,10 +49,13 @@ class MiniFragment : Fragment() {
     }
 
     private fun subscribeUi() {
-        miniVm.eventList.observe(viewLifecycleOwner) {
-            adapter.submitList(it) {
-                if (adapter.insertItem >= 0)
-                    binding.rvEvent.smoothScrollToPosition(adapter.insertItem)
+        miniVm.eventList.observe(viewLifecycleOwner) { listEvents ->
+            adapter.submitList(listEvents) {
+                /*用于currentListChange中计算出变化的位置后 进行滚动*/
+                if (adapter.currentChangedItemIndex in listEvents.indices) {
+                    binding.rvEvent.smoothScrollToPosition(adapter.currentChangedItemIndex)
+                    adapter.refreshCurrentChangeItemIndex()
+                }
             }
         }
     }
