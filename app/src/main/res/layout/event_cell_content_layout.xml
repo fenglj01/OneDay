@@ -24,6 +24,7 @@
 
         <com.knight.oneday.views.step.StepListControlView
             android:id="@+id/content_step_list_control"
+            bindStepList="@{content.eventSteps}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"

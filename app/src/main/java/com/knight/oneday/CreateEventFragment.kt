@@ -86,6 +86,7 @@ class CreateEventFragment : Fragment() {
                 }
 
                 override fun onStateOnReserveClick() {
+                    hideSoftInput()
                     createViewModel.eventContent = eventOverviewEdt.text.toString()
                     createViewModel.submitSteps(binding.createStepView.getStepContentList())
                     createViewModel.createEvent()
@@ -94,7 +95,6 @@ class CreateEventFragment : Fragment() {
         }
 
         dateDialog.choiceCalendar.observe(viewLifecycleOwner, Observer { remindDate ->
-            Log.d("CreateFrag", "${remindDate.timeInMillis.format24Hex()}")
             if (isShowRemindNotAllowExpiredEvent(remindDate)) {
                 showSnackBar(
                     binding.root,

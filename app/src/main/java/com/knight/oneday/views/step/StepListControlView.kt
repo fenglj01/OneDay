@@ -20,7 +20,6 @@ class StepListControlView : ConstraintLayout {
     private val contentView: View
     private val stepListView: StepListView
     private val previewStepTextView: TextView
-    private val stepList: MutableList<Step>
     private var firstUnfinishedNumber: Int = 1
 
     constructor(context: Context?) : this(context, null)
@@ -34,7 +33,6 @@ class StepListControlView : ConstraintLayout {
     ) {
         contentView =
             LayoutInflater.from(context).inflate(R.layout.step_list_control_view, this, true)
-        stepList = mutableListOf()
         stepListView = contentView.findViewById(R.id.step_list_view)
         previewStepTextView = contentView.findViewById(R.id.preview_step_tv)
         stepListView.selectedStepChangeListener = object : StepListView.SelectedStepChangeListener {
@@ -45,11 +43,9 @@ class StepListControlView : ConstraintLayout {
     }
 
     fun setUpStepList(list: List<Step>) {
-        stepList.clear()
-        stepList.addAll(list)
-        stepListView.setStepList(stepList)
+        stepListView.setStepList(list)
         try {
-            val firstUnfinishedStep = stepList.first { it.state == EventState.UNFINISHED }
+            val firstUnfinishedStep = list.first { it.state == EventState.UNFINISHED }
             firstUnfinishedNumber = firstUnfinishedStep.serialNumber
             previewStepTextView.text = firstUnfinishedStep.content
         } catch (e: Exception) {

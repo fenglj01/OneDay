@@ -101,7 +101,6 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                 // 设置内容部分
                 with(includeContent) {
                     content = item
-                    contentStepListControl.setUpStepList(item.eventSteps)
                     expandOverview.addExpandableStatusListener(ExpandableStatusListenerLambdaAdapter(
                         onExpanded = {
                             expandedItemList.add(adapterPosition)

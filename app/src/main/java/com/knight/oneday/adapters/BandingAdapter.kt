@@ -12,10 +12,7 @@ import com.knight.oneday.data.Step
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.views.getDrawableOrNull
-import com.knight.oneday.views.step.STEP_STATE_FINISHED
-import com.knight.oneday.views.step.STEP_STATE_UNFINISHED
-import com.knight.oneday.views.step.StepNumberView
-import com.knight.oneday.views.step.StepView
+import com.knight.oneday.views.step.*
 
 @BindingAdapter("bindStepNumber")
 fun StepNumberView.bindStepNumber(number: Int) {
@@ -170,7 +167,13 @@ fun TextView.bindStepsOverView(steps: List<Step>) {
 @BindingAdapter("bindStepItem")
 fun StepView.bindStepItem(step: Step) {
     stepNumber = step.serialNumber
-    stepStatus = if(step.state == EventState.UNFINISHED) STEP_STATE_UNFINISHED else STEP_STATE_FINISHED
+    stepStatus =
+        if (step.state == EventState.UNFINISHED) STEP_STATE_UNFINISHED else STEP_STATE_FINISHED
 
+}
+
+@BindingAdapter("bindStepList")
+fun StepListControlView.bindStepList(list: List<Step>) {
+    setUpStepList(list)
 }
 

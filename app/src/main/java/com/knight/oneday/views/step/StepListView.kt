@@ -22,7 +22,6 @@ class StepListView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
-    private val stepList: MutableList<Step> = mutableListOf()
     private lateinit var stepListAdapter: StepListAdapter
 
     private var selectedStepView: StepView? = null
@@ -34,20 +33,19 @@ class StepListView @JvmOverloads constructor(
     }
 
     fun setStepList(list: List<Step>) {
-        stepList.clear()
-        stepList.addAll(list)
-        stepListAdapter.submitList(stepList)
+        Log.d("Empty", "setStepList")
+        stepListAdapter.submitList(list)
     }
 
     private fun initAdapter() {
+        Log.d("Empty", "initAdapter")
         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         stepListAdapter = StepListAdapter()
         adapter = stepListAdapter
-        stepListAdapter.submitList(stepList)
     }
 
 
-    inner class StepListAdapter() : ListAdapter<Step, StepListViewHolder>(StepDiffUtil) {
+    inner class StepListAdapter : ListAdapter<Step, StepListViewHolder>(StepDiffUtil) {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StepListViewHolder {
             var binding = StepListViewItemBinding.inflate(
@@ -59,6 +57,7 @@ class StepListView @JvmOverloads constructor(
         }
 
         override fun onBindViewHolder(holder: StepListViewHolder, position: Int) {
+            Log.d("Empty","onBindViewHolder")
             holder.binding.step = getItem(position)
             holder.bind(getItem(position))
         }
