@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventCellLayoutBinding
 import com.knight.oneday.utilities.dp2px
+import com.knight.oneday.utilities.formatUi
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
 
@@ -83,7 +84,7 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                 // 设置预览部分
                 with(includeOverview) {
                     eventContent = item.event.content
-                    remindTime = "14:00"
+                    remindTime = item.event.reminderTime.formatUi()
                     overviewCard.progress = 1F
                     if (item.eventSteps.isNotEmpty()) {
                         expandOverview.addExpandableStatusListener(expandButton)

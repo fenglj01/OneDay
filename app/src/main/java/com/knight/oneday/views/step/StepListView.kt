@@ -57,7 +57,6 @@ class StepListView @JvmOverloads constructor(
         }
 
         override fun onBindViewHolder(holder: StepListViewHolder, position: Int) {
-            Log.d("Empty","onBindViewHolder")
             holder.binding.step = getItem(position)
             holder.bind(getItem(position))
         }
