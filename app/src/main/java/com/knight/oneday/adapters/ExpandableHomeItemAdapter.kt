@@ -23,9 +23,8 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
         EventAndStepsDiffCallback
     ) {
 
-    private val defaultExpandedItem = -1
-    private var expandedItem: Int = defaultExpandedItem
     var currentChangedItemIndex: Int = -1
+    private val expandedItemList: MutableSet<Int> = mutableSetOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
         return EventCellViewHolder(
@@ -73,33 +72,12 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
     inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        @Deprecated("支持仅单个展开功能 (取消) 取消的原因submit后会导致失效")
-        private fun toggle(position: Int) {
-
-            val expandedItemViewHolder =
-                recyclerView.findViewHolderForAdapterPosition(expandedItem) as? EventCellViewHolder
-            expandedItemViewHolder?.run {
-                binding.expandOverview.collapse()
-                Log.d("SingleChoice", "$expandedItem collapse")
-            }
-
-            val clickItemViewHolder =
-                recyclerView.findViewHolderForAdapterPosition(position) as? EventCellViewHolder
-            expandedItem = if (position == expandedItem) {
-                defaultExpandedItem
-            } else {
-                Log.d("SingleChoice", "$position expand ${clickItemViewHolder == null}")
-                clickItemViewHolder?.binding?.expandOverview?.expand()
-                position
-            }
-        }
-
         fun bind(item: EventAndEventSteps) {
 
             binding.apply {
                 eventAndSteps = item
                 // 展开与否
-                val isExpanded = adapterPosition == expandedItem
+                val isExpanded = expandedItemList.contains(adapterPosition)
                 binding.expandOverview.toggleNoAnimator(isExpanded)
 
                 // 设置预览部分
@@ -125,6 +103,12 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                     content = item
                     contentStepListControl.setUpStepList(item.eventSteps)
                     expandOverview.addExpandableStatusListener(ExpandableStatusListenerLambdaAdapter(
+                        onExpanded = {
+                            expandedItemList.add(adapterPosition)
+                        },
+                        onCollapsed = {
+                            expandedItemList.remove(adapterPosition)
+                        },
                         /*整个卡片的高度视差*/
                         onFraction = { fraction, isExpanding ->
                             val f = if (isExpanding) fraction else 1F - fraction
