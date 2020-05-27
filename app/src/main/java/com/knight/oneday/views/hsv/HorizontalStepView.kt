@@ -1,4 +1,4 @@
-package com.knight.oneday.views.step
+package com.knight.oneday.views.hsv
 
 import android.content.Context
 import android.util.AttributeSet
@@ -14,7 +14,8 @@ class HorizontalStepView @JvmOverloads constructor(
 ) : HorizontalScrollView(context, attrs, defStyleAttr) {
 
     /* 这里将attrs 传递下去 */
-    private val stepIndicator = StepIndicator(context, attrs)
+    private val stepIndicator =
+        StepIndicator(context, attrs)
 
     init {
         addView(stepIndicator)
@@ -22,10 +23,3 @@ class HorizontalStepView @JvmOverloads constructor(
 
 }
 
-class StepIndicator @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
-
-
-
-}
