@@ -27,8 +27,10 @@
             bindStepList="@{content.eventSteps}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/content_driver2"
@@ -40,7 +42,7 @@
             app:backgroundTint="@color/color_on_surface_divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/content_step_list_control" />
+            app:layout_constraintTop_toBottomOf="@id/content_step_list_control" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/content_finish_btn"
@@ -51,6 +53,7 @@
             android:elevation="@dimen/dp_4"
             android:text="@string/finish"
             android:textAppearance="?attr/textAppearanceButton"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/content_driver2" />
