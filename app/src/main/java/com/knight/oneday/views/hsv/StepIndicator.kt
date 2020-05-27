@@ -10,6 +10,7 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
+import com.knight.oneday.R
 import com.knight.oneday.utilities.px
 import com.knight.oneday.utilities.sp
 import kotlin.reflect.KProperty
@@ -23,6 +24,8 @@ class StepIndicator @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     companion object {
+        const val CIRCLE_TYPE_FILL = 0
+        const val CIRCLE_TYPE_FILL_STOKE = 1
         const val INVALID_STATUS_COUNT = -1
     }
 
@@ -78,6 +81,10 @@ class StepIndicator @JvmOverloads constructor(
         textPaint.textSize = contentTextSize
     }
 
+    var circleStyle: Int by OnLayoutProp(CIRCLE_TYPE_FILL) {
+        initCirclePaints()
+    }
+
     private var circleStokePaint: Paint? = null
     private var circleStokeFinishedPaint: Paint? = null
     private var circleStokeExecutingPaint: Paint? = null
@@ -93,14 +100,147 @@ class StepIndicator @JvmOverloads constructor(
 
     init {
 
+        val typeArray =
+            context.theme.obtainStyledAttributes(attrs, R.styleable.HorizontalStepView, 0, 0)
+        /* 参数初始化 */
+        with(typeArray) {
+            stepCount = getInt(R.styleable.HorizontalStepView_hsvStepCount, stepCount)
+            currentCount = getInt(
+                R.styleable.HorizontalStepView_hsvCurrentCount,
+                INVALID_STATUS_COUNT
+            )
+            circleRadius =
+                getDimension(R.styleable.HorizontalStepView_hsvCircleRadius, circleRadius)
+            finishedDrawable = getDrawable(R.styleable.HorizontalStepView_hsvFinishedDrawable)
+            executingDrawable = getDrawable(R.styleable.HorizontalStepView_hsvExecutingDrawable)
+            circleStokeWidth =
+                getDimension(R.styleable.HorizontalStepView_hsvCircleStokeWidth, circleStokeWidth)
+            circleFillColor =
+                getColor(R.styleable.HorizontalStepView_hsvCircleFillColor, circleFillColor)
+            circleFillFinishedColor = getColor(
+                R.styleable.HorizontalStepView_hsvCircleFillFinishedColor,
+                circleFillFinishedColor
+            )
+            circleFillExecutingColor = getColor(
+                R.styleable.HorizontalStepView_hsvCircleFillExecutingColor,
+                circleFillExecutingColor
+            )
+            circleStokeColor =
+                getColor(R.styleable.HorizontalStepView_hsvCircleStokeColor, circleStokeColor)
+            circleStokeFinishedColor = getColor(
+                R.styleable.HorizontalStepView_hsvCircleStokeFinishedColor,
+                circleStokeFinishedColor
+            )
+            circleStokeExecutingColor =
+                getColor(
+                    R.styleable.HorizontalStepView_hsvCircleStokeExecutingColor,
+                    circleStokeExecutingColor
+                )
+            lineLength = getDimension(R.styleable.HorizontalStepView_hsvLineLength, lineLength)
+            lineHeight = getDimension(R.styleable.HorizontalStepView_hsvLineHeight, lineHeight)
+            lineGap = getDimension(R.styleable.HorizontalStepView_hsvLineGap, lineGap)
+            lineColor = getColor(R.styleable.HorizontalStepView_hsvLineColor, lineColor)
+            lineFinishedColor =
+                getColor(R.styleable.HorizontalStepView_hsvLineFinishedColor, lineFinishedColor)
+            lineExecutingColor =
+                getColor(R.styleable.HorizontalStepView_hsvLineExecutingColor, lineExecutingColor)
+            contentTextColor =
+                getColor(R.styleable.HorizontalStepView_hsvTextColor, contentTextColor)
+            contentTextSize =
+                getDimension(R.styleable.HorizontalStepView_hsvTextSize, contentTextSize)
+            circleStyle = getInt(R.styleable.HorizontalStepView_hsvStyle, circleStyle)
+            recycle()
+        }
+
+        initCirclePaints()
+
+
     }
+
 
     /**
      * 初始化中心圆的画笔
      */
     private fun initCirclePaints() {
 
+        if (isShowingExecutingStatus()) {
+            if (circleFillExecutingPaint == null) {
+                circleFillExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                circleFillExecutingPaint?.apply {
+                    style = Paint.Style.FILL
+                    color = circleFillExecutingColor
+                }
+            }
+        }
+
+        if (isShowingUnFinishedStatus()) {
+            if (circleFillPaint == null) {
+                circleFillPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                circleFillPaint?.apply {
+                    style = Paint.Style.FILL
+                    color = circleFillColor
+                }
+            }
+        }
+
+        if (isShowingFinishedStatus()) {
+            if (circleFillFinishedPaint == null) {
+                circleFillFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                circleFillFinishedPaint?.apply {
+                    style = Paint.Style.FILL
+                    color = circleFillFinishedColor
+                }
+            }
+        }
+
+        /* 如果风格是描边加填充那么需要对其初始化 */
+        if (circleStyle == CIRCLE_TYPE_FILL_STOKE) {
+
+            if (isShowingFinishedStatus()) {
+                if (circleStokeFinishedPaint == null) {
+                    circleStokeFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                    circleStokeFinishedPaint?.apply {
+                        style = Paint.Style.STROKE
+                        color = circleStokeFinishedColor
+                        strokeWidth = circleStokeWidth
+                    }
+                }
+            }
+
+            if (isShowingExecutingStatus()) {
+                if (circleStokeExecutingPaint == null) {
+                    circleStokeExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                    circleStokeExecutingPaint?.apply {
+                        style = Paint.Style.STROKE
+                        color = circleStokeExecutingColor
+                        strokeWidth = circleStokeWidth
+                    }
+                }
+            }
+
+            if (isShowingUnFinishedStatus()) {
+                if (circleStokePaint == null) {
+                    circleStokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                    circleStokePaint?.apply {
+                        style = Paint.Style.STROKE
+                        color = circleStokeColor
+                        strokeWidth = circleStokeWidth
+                    }
+                }
+            }
+
+        }
+
     }
+
+    /* 是否有正在执行项需要展示 currentCount 在步骤数内说明有展示的 */
+    private fun isShowingExecutingStatus() = currentCount in 1..stepCount
+
+    /* 是否有未完成项目需要展示 currentCount 在步骤数内切不是最后一项代表 有展示的 */
+    private fun isShowingUnFinishedStatus() = currentCount in 0 until stepCount
+
+    /* 是否显示了已完成的项目 */
+    private fun isShowingFinishedStatus() = currentCount != INVALID_STATUS_COUNT
 
     /**
      * 初始化绘制的内容

@@ -142,5 +142,9 @@
         <attr name="hsvLineExecutingColor" format="color" />
         <attr name="hsvTextColor" format="color" />
         <attr name="hsvTextSize" format="dimension" />
+        <attr name="hsvStyle">
+            <flag name="fill" value="0" />
+            <flag name="fillStoke" value="1" />
+        </attr>
     </declare-styleable>
 </resources>
