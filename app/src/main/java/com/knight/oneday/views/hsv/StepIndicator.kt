@@ -6,6 +6,7 @@ import android.graphics.Paint
 import android.graphics.PointF
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
@@ -37,7 +38,7 @@ class StepIndicator @JvmOverloads constructor(
         initCirclePaints()
     }
     var circleRadius: Float by OnLayoutProp(16F.px)
-    /* drawable的修改需要触发重绘 绘制内容需要重新弄一下 */
+    /* drawable的修改需要触发重绘 */
     var finishedDrawable: Drawable? by OnValidateProp(null) {
         setDrawingData()
     }
@@ -54,13 +55,46 @@ class StepIndicator @JvmOverloads constructor(
     var circleStokeExecutingColor: Int by OnValidateProp(Color.BLACK)
     /* line */
     var lineLength: Float by OnLayoutProp(30F.px)
-    var lineHeight: Float by OnValidateProp(2F.px)
+    var lineHeight: Float by OnValidateProp(2F.px) {
+        linePaint.strokeWidth = lineHeight
+        lineFinishedPaint.strokeWidth = lineHeight
+        lineExecutingPaint.strokeWidth = lineHeight
+    }
     var lineGap: Float by OnLayoutProp(2F.px)
-    var lineColor: Int by OnValidateProp(Color.BLACK)
-    var lineFinishedColor: Int by OnValidateProp(Color.BLACK)
-    var lineExecutingColor: Int by OnValidateProp(Color.BLACK)
-    var textColor: Int by OnValidateProp(Color.WHITE)
-    var textSizeException: Float by OnValidateProp(12f.sp)
+    var lineColor: Int by OnValidateProp(Color.BLACK) {
+        linePaint.color = lineColor
+    }
+    var lineFinishedColor: Int by OnValidateProp(Color.BLACK) {
+        lineFinishedPaint.color = lineFinishedColor
+    }
+    var lineExecutingColor: Int by OnValidateProp(Color.BLACK) {
+        lineExecutingPaint.color = lineExecutingColor
+    }
+    /* text */
+    var contentTextColor: Int by OnValidateProp(Color.WHITE) {
+        textPaint.color = contentTextColor
+    }
+    var contentTextSize: Float by OnValidateProp(12f.sp) {
+        textPaint.textSize = contentTextSize
+    }
+
+    private var circleStokePaint: Paint? = null
+    private var circleStokeFinishedPaint: Paint? = null
+    private var circleStokeExecutingPaint: Paint? = null
+
+    private var circleFillPaint: Paint? = null
+    private var circleFillFinishedPaint: Paint? = null
+    private var circleFillExecutingPaint: Paint? = null
+
+    private lateinit var linePaint: Paint
+    private lateinit var lineFinishedPaint: Paint
+    private lateinit var lineExecutingPaint: Paint
+    private lateinit var textPaint: TextPaint
+
+    init {
+
+    }
+
     /**
      * 初始化中心圆的画笔
      */
