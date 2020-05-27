@@ -116,8 +116,12 @@ val Int.sp: Int
         Resources.getSystem().displayMetrics
     ).toInt()
 
+val Float.px: Float
+    get() = dp2px(dp = this)
+
 fun dp2px(context: Context = OneDayApp.instance(), dp: Float): Float =
     dp * context.resources.displayMetrics.density
+
 
 fun px2dp(context: Context, px: Float): Float = px / context.resources.displayMetrics.density
 
