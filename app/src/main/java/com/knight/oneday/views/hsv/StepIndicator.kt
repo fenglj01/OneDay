@@ -154,6 +154,31 @@ class StepIndicator @JvmOverloads constructor(
 
         initCirclePaints()
 
+        initLinePaints()
+    }
+
+    private fun initLinePaints() {
+
+        linePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        linePaint.apply {
+            style = Paint.Style.STROKE
+            color = lineColor
+            strokeWidth = lineHeight
+        }
+
+        lineFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        lineFinishedPaint.apply {
+            style = Paint.Style.STROKE
+            color = lineFinishedColor
+            strokeWidth = lineHeight
+        }
+
+        lineExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        lineExecutingPaint.apply {
+            style = Paint.Style.STROKE
+            color = lineExecutingColor
+            strokeWidth = lineHeight
+        }
 
     }
 
