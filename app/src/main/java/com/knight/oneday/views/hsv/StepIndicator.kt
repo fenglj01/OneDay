@@ -155,6 +155,8 @@ class StepIndicator @JvmOverloads constructor(
         initCirclePaints()
 
         initLinePaints()
+
+        propsInitializedOnce = true
     }
 
     private fun initLinePaints() {
@@ -272,6 +274,23 @@ class StepIndicator @JvmOverloads constructor(
      */
     private fun setDrawingData() {
 
+    }
+
+    override fun getSuggestedMinimumWidth(): Int {
+
+        if (stepCount == 0) return 0
+
+
+
+        return super.getSuggestedMinimumWidth()
+    }
+
+    override fun getSuggestedMinimumHeight(): Int {
+        return super.getSuggestedMinimumHeight()
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
 
