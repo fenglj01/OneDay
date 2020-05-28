@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
-import androidx.annotation.ColorInt
 import com.knight.oneday.R
 import com.knight.oneday.utilities.px
 import com.knight.oneday.utilities.sp
@@ -48,14 +47,14 @@ class StepIndicator @JvmOverloads constructor(
     var executingDrawable: Drawable? by OnValidateProp(null) {
         setDrawingData()
     }
-    var circleStokeWidth: Float by OnLayoutProp(2F.px)
+    var circleStrokeWidth: Float by OnLayoutProp(2F.px)
     /* circle colors */
     var circleFillColor: Int by OnValidateProp(Color.BLACK)
     var circleFillFinishedColor: Int by OnValidateProp(Color.BLACK)
     var circleFillExecutingColor: Int by OnValidateProp(Color.BLACK)
-    var circleStokeColor: Int by OnValidateProp(Color.BLACK)
-    var circleStokeFinishedColor: Int by OnValidateProp(Color.BLACK)
-    var circleStokeExecutingColor: Int by OnValidateProp(Color.BLACK)
+    var circleStrokeColor: Int by OnValidateProp(Color.BLACK)
+    var circleStrokeFinishedColor: Int by OnValidateProp(Color.BLACK)
+    var circleStrokeExecutingColor: Int by OnValidateProp(Color.BLACK)
     /* line */
     var lineLength: Float by OnLayoutProp(30F.px)
     var lineHeight: Float by OnValidateProp(2F.px) {
@@ -85,9 +84,9 @@ class StepIndicator @JvmOverloads constructor(
         initCirclePaints()
     }
 
-    private var circleStokePaint: Paint? = null
-    private var circleStokeFinishedPaint: Paint? = null
-    private var circleStokeExecutingPaint: Paint? = null
+    private var circleStrokePaint: Paint? = null
+    private var circleStrokeFinishedPaint: Paint? = null
+    private var circleStrokeExecutingPaint: Paint? = null
 
     private var circleFillPaint: Paint? = null
     private var circleFillFinishedPaint: Paint? = null
@@ -113,8 +112,8 @@ class StepIndicator @JvmOverloads constructor(
                 getDimension(R.styleable.HorizontalStepView_hsvCircleRadius, circleRadius)
             finishedDrawable = getDrawable(R.styleable.HorizontalStepView_hsvFinishedDrawable)
             executingDrawable = getDrawable(R.styleable.HorizontalStepView_hsvExecutingDrawable)
-            circleStokeWidth =
-                getDimension(R.styleable.HorizontalStepView_hsvCircleStokeWidth, circleStokeWidth)
+            circleStrokeWidth =
+                getDimension(R.styleable.HorizontalStepView_hsvCircleStokeWidth, circleStrokeWidth)
             circleFillColor =
                 getColor(R.styleable.HorizontalStepView_hsvCircleFillColor, circleFillColor)
             circleFillFinishedColor = getColor(
@@ -125,16 +124,16 @@ class StepIndicator @JvmOverloads constructor(
                 R.styleable.HorizontalStepView_hsvCircleFillExecutingColor,
                 circleFillExecutingColor
             )
-            circleStokeColor =
-                getColor(R.styleable.HorizontalStepView_hsvCircleStokeColor, circleStokeColor)
-            circleStokeFinishedColor = getColor(
+            circleStrokeColor =
+                getColor(R.styleable.HorizontalStepView_hsvCircleStokeColor, circleStrokeColor)
+            circleStrokeFinishedColor = getColor(
                 R.styleable.HorizontalStepView_hsvCircleStokeFinishedColor,
-                circleStokeFinishedColor
+                circleStrokeFinishedColor
             )
-            circleStokeExecutingColor =
+            circleStrokeExecutingColor =
                 getColor(
                     R.styleable.HorizontalStepView_hsvCircleStokeExecutingColor,
-                    circleStokeExecutingColor
+                    circleStrokeExecutingColor
                 )
             lineLength = getDimension(R.styleable.HorizontalStepView_hsvLineLength, lineLength)
             lineHeight = getDimension(R.styleable.HorizontalStepView_hsvLineHeight, lineHeight)
@@ -224,34 +223,34 @@ class StepIndicator @JvmOverloads constructor(
         if (circleStyle == CIRCLE_TYPE_FILL_STOKE) {
 
             if (isShowingFinishedStatus()) {
-                if (circleStokeFinishedPaint == null) {
-                    circleStokeFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                    circleStokeFinishedPaint?.apply {
+                if (circleStrokeFinishedPaint == null) {
+                    circleStrokeFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                    circleStrokeFinishedPaint?.apply {
                         style = Paint.Style.STROKE
-                        color = circleStokeFinishedColor
-                        strokeWidth = circleStokeWidth
+                        color = circleStrokeFinishedColor
+                        strokeWidth = circleStrokeWidth
                     }
                 }
             }
 
             if (isShowingExecutingStatus()) {
-                if (circleStokeExecutingPaint == null) {
-                    circleStokeExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                    circleStokeExecutingPaint?.apply {
+                if (circleStrokeExecutingPaint == null) {
+                    circleStrokeExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                    circleStrokeExecutingPaint?.apply {
                         style = Paint.Style.STROKE
-                        color = circleStokeExecutingColor
-                        strokeWidth = circleStokeWidth
+                        color = circleStrokeExecutingColor
+                        strokeWidth = circleStrokeWidth
                     }
                 }
             }
 
             if (isShowingUnFinishedStatus()) {
-                if (circleStokePaint == null) {
-                    circleStokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                    circleStokePaint?.apply {
+                if (circleStrokePaint == null) {
+                    circleStrokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                    circleStrokePaint?.apply {
                         style = Paint.Style.STROKE
-                        color = circleStokeColor
-                        strokeWidth = circleStokeWidth
+                        color = circleStrokeColor
+                        strokeWidth = circleStrokeWidth
                     }
                 }
             }
@@ -273,7 +272,13 @@ class StepIndicator @JvmOverloads constructor(
      * 初始化绘制的内容
      */
     private fun setDrawingData() {
+        val lastPoint = PointF()
+        lastPoint.x = paddingLeft.toFloat() + (circleStrokeWidth / 2)
+        lastPoint.y = paddingTop.toFloat() + (circleRadius + (circleStrokeWidth / 2))
+    }
 
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        setDrawingData()
     }
 
     override fun getSuggestedMinimumWidth(): Int {
@@ -282,7 +287,7 @@ class StepIndicator @JvmOverloads constructor(
 
         val lineLengthComputed = lineLength
         /* 所有步骤圆所需要的宽度 注意strokeWidth 绘制时只有一半 */
-        val totalCircleLength = stepCount * (2 * (circleRadius + circleStokeWidth / 2))
+        val totalCircleLength = stepCount * (2 * (circleRadius + circleStrokeWidth / 2))
         /* line的个数比圆少一个 */
         val totalLineLength = (stepCount - 1) * (lineLengthComputed + (lineGap * 2))
 
@@ -293,7 +298,7 @@ class StepIndicator @JvmOverloads constructor(
 
         if (stepCount == 0) return 0
 
-        val totalHeight = 2 * circleRadius + circleStokeWidth
+        val totalHeight = 2 * circleRadius + circleStrokeWidth
 
         return totalHeight.toInt()
     }
