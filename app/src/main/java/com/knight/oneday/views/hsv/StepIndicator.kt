@@ -275,6 +275,93 @@ class StepIndicator @JvmOverloads constructor(
         val lastPoint = PointF()
         lastPoint.x = paddingLeft.toFloat() + (circleStrokeWidth / 2)
         lastPoint.y = paddingTop.toFloat() + (circleRadius + (circleStrokeWidth / 2))
+
+        for (pos in 0 until stepCount) {
+            var circleStrokePaint: Paint?
+            var circleFillPaint: Paint?
+            var textPaint: Paint?
+            var linePaint: Paint?
+            var itemDrawable: Drawable?
+
+            var circleRadius = this.circleRadius
+
+            when {
+                /* 正在执行项目 绘制内容为 icon 圆 线*/
+                isShowingExecutingStatus() && pos == (currentCount - 1) -> {
+                    itemDrawable = this.executingDrawable
+                    circleFillPaint = this.circleFillExecutingPaint
+                    circleStrokePaint = this.circleStrokeExecutingPaint
+                    textPaint = null
+                    linePaint = this.lineExecutingPaint
+                }
+                /* 未完成项 绘制内容为 stepNumber 圆 线 */
+                isShowingUnFinishedStatus() && pos in (currentCount..stepCount) -> {
+                    itemDrawable = null
+                    circleFillPaint = this.circleFillPaint
+                    circleStrokePaint = this.circleStrokePaint
+                    textPaint = this.textPaint
+                    linePaint = this.linePaint
+                }
+                /* 完成项 绘制内容为icon 圆 线 */
+                else -> {
+                    itemDrawable = this.finishedDrawable
+                    circleFillPaint = this.circleFillFinishedPaint
+                    circleStrokePaint = this.circleStrokeFinishedPaint
+                    textPaint = null
+                    linePaint = this.lineFinishedPaint
+                }
+            }
+
+            /* 圆 */
+            val circleItem = CircleItem(
+                PointF(lastPoint.x + circleRadius, lastPoint.y),
+                circleRadius,
+                circleStrokePaint,
+                circleFillPaint
+            )
+            /* 计算下一个起始点 */
+            lastPoint.x += (circleRadius * 2F) + circleStrokeWidth / 2
+            /* 步骤分割线 */
+            var lineItem: LineItem? = null
+            /* 因为取不到最后一项 只用判断不是第一个就可以了*/
+            if (pos != 0) {
+                lastPoint.x += lineGap
+                lineItem = LineItem(
+                    PointF(lastPoint.x, lastPoint.y),
+                    PointF(lastPoint.x + lineLength, lastPoint.y),
+                    linePaint
+                )
+                /* 计算下一个圆得起点 */
+                lastPoint.x = lineItem.end.x + lineGap + (circleStrokeWidth / 2)
+            }
+
+            var drawableItem: DrawableItem? = null
+
+            /* icon */
+            itemDrawable?.run {
+                val w = intrinsicWidth
+                val h = intrinsicHeight
+                val xPos = circleItem.center.x.toInt()
+                val yPos = circleItem.center.y.toInt()
+                val drawableRect = Rect(
+                    xPos - w / 2,
+                    yPos - height / 2,
+                    xPos + w / 2,
+                    yPos + h / 2
+                )
+                drawableItem = DrawableItem(drawableRect, this)
+            }
+            /* 添加到集合中去 */
+            drawingData.add(
+                StepItem(
+                    lineItem, circleItem, ContentItem(
+                        number = pos + 1,
+                        drawableItem = drawableItem
+                    )
+                )
+            )
+
+        }
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -359,7 +446,7 @@ data class StepItem(
 )
 
 /* 步骤分割线 */
-data class LineItem(val start: Float, val end: Float, val paint: Paint)
+data class LineItem(val start: PointF, val end: PointF, val paint: Paint)
 
 /* 可绘制图片 在完成和正在执行的时候用图片进行绘制 */
 data class DrawableItem(val rect: Rect, val drawable: Drawable)
@@ -368,8 +455,8 @@ data class DrawableItem(val rect: Rect, val drawable: Drawable)
 data class CircleItem(
     val center: PointF,
     val radius: Float,
-    val stokePaint: Paint,
-    val fillPaint: Paint
+    val stokePaint: Paint?,
+    val fillPaint: Paint?
 )
 
 /* 步骤的核心内容 可能是步骤数字 也可能是图片 */
