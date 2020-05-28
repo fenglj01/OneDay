@@ -299,7 +299,13 @@ class StepIndicator @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        val desiredWidth = paddingLeft + paddingRight + suggestedMinimumWidth
+        val desiredHeight = paddingTop + paddingBottom + suggestedMinimumHeight
+
+        val measuredWidth = resolveSize(desiredWidth, widthMeasureSpec)
+        val measuredHeight = resolveSize(desiredHeight, heightMeasureSpec)
+
+        super.onMeasure(measuredWidth, measuredHeight)
     }
 
 
