@@ -277,12 +277,16 @@ class StepIndicator @JvmOverloads constructor(
     }
 
     override fun getSuggestedMinimumWidth(): Int {
-
+        /* 没有数据 */
         if (stepCount == 0) return 0
 
+        val lineLengthComputed = lineLength
+        /* 所有步骤圆所需要的宽度 注意strokeWidth 绘制时只有一半 */
+        val totalCircleLength = stepCount * (2 * (circleRadius + circleStokeWidth / 2))
+        /* line的个数比圆少一个 */
+        val totalLineLength = (stepCount - 1) * (lineLengthComputed + (lineGap * 2))
 
-
-        return super.getSuggestedMinimumWidth()
+        return (totalCircleLength + totalLineLength).toInt()
     }
 
     override fun getSuggestedMinimumHeight(): Int {
