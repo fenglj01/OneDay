@@ -290,7 +290,12 @@ class StepIndicator @JvmOverloads constructor(
     }
 
     override fun getSuggestedMinimumHeight(): Int {
-        return super.getSuggestedMinimumHeight()
+
+        if (stepCount == 0) return 0
+
+        val totalHeight = 2 * circleRadius + circleStokeWidth
+
+        return totalHeight.toInt()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
