@@ -1,10 +1,7 @@
 package com.knight.oneday.views.hsv
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.PointF
-import android.graphics.Rect
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
@@ -400,6 +397,35 @@ class StepIndicator @JvmOverloads constructor(
         super.onMeasure(measuredWidth, measuredHeight)
     }
 
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+        for (item in drawingData) {
+            /* 绘制圆环相关 */
+            item.circleItem.run {
+                if (fillPaint != null) {
+
+                }
+
+                if (strokePaint != null) {
+
+                }
+            }
+            /* 绘制文字或者icon */
+            item.contentItem.run {
+                if (drawableItem != null) {
+
+                } else {
+
+                }
+            }
+            /* 绘制线 */
+            item.lineItem?.run {
+
+            }
+
+        }
+    }
+
 
     /* 属性代理 可能会需要requestLayout的属性 */
     inner class OnLayoutProp<T>(private var field: T, private inline var func: () -> Unit = {}) {
@@ -455,7 +481,7 @@ data class DrawableItem(val rect: Rect, val drawable: Drawable)
 data class CircleItem(
     val center: PointF,
     val radius: Float,
-    val stokePaint: Paint?,
+    val strokePaint: Paint?,
     val fillPaint: Paint?
 )
 
