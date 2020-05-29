@@ -76,6 +76,30 @@
         <item name="hhvArrowRes">@drawable/ic_keyboard_arrow_down_black_24dp</item>
     </style>
 
+    <style name="HorizontalStepView">
+        <item name="hsvStepCount">5</item>
+        <item name="hsvCurrentCount">2</item>
+        <item name="hsvFinishedDrawable">@drawable/ic_done_black_18dp</item>
+        <item name="hsvExecutingDrawable">@drawable/ic_done_black_18dp</item>
+        <item name="hsvCircleRadius">24dp</item>
+        <item name="hsvCircleStokeWidth">2dp</item>
+        <item name="hsvCircleFillColor">#BEBEBE</item>
+        <item name="hsvCircleFillFinishedColor">?attr/colorSecondary</item>
+        <item name="hsvCircleFillExecutingColor">?attr/colorError</item>
+        <item name="hsvCircleStokeColor">#00ff00</item>
+        <item name="hsvCircleStokeFinishedColor">?attr/colorSecondaryVariant</item>
+        <item name="hsvCircleStokeExecutingColor">#00ff00</item>
+        <item name="hsvLineLength">30dp</item>
+        <item name="hsvLineHeight">2dp</item>
+        <item name="hsvLineGap">4dp</item>
+        <item name="hsvLineColor">#000000</item>
+        <item name="hsvLineFinishedColor">?attr/colorSecondary</item>
+        <item name="hsvLineExecutingColor">?attr/colorError</item>
+        <item name="hsvTextColor">?attr/colorOnSurface</item>
+        <item name="hsvTextSize">12sp</item>
+        <item name="hsvStyle">fillStoke</item>
+    </style>
+
 
     <style name="BaseBottomDialog">
         <item name="android:windowEnterAnimation">@anim/dialog_push_in</item>

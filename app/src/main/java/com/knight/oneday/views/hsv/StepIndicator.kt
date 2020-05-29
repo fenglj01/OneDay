@@ -97,7 +97,12 @@ class StepIndicator @JvmOverloads constructor(
     init {
 
         val typeArray =
-            context.theme.obtainStyledAttributes(attrs, R.styleable.HorizontalStepView, 0, 0)
+            context.theme.obtainStyledAttributes(
+                attrs,
+                R.styleable.HorizontalStepView,
+                defStyleAttr,
+                R.style.HorizontalStepView
+            )
         /* 参数初始化 */
         with(typeArray) {
             stepCount = getInt(R.styleable.HorizontalStepView_hsvStepCount, stepCount)
@@ -252,6 +257,11 @@ class StepIndicator @JvmOverloads constructor(
                 }
             }
 
+            textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
+            textPaint.apply {
+                textSize = contentTextSize
+                color = contentTextColor
+            }
         }
 
     }
@@ -276,7 +286,7 @@ class StepIndicator @JvmOverloads constructor(
         for (pos in 0 until stepCount) {
             var circleStrokePaint: Paint?
             var circleFillPaint: Paint?
-            var textPaint: Paint?
+            var textPaint: TextPaint?
             var linePaint: Paint?
             var itemDrawable: Drawable?
 
@@ -321,7 +331,7 @@ class StepIndicator @JvmOverloads constructor(
             /* 步骤分割线 */
             var lineItem: LineItem? = null
             /* 因为取不到最后一项 只用判断不是第一个就可以了*/
-            if (pos != 0) {
+            if (pos != stepCount - 1) {
                 lastPoint.x += lineGap
                 lineItem = LineItem(
                     PointF(lastPoint.x, lastPoint.y),
@@ -333,7 +343,7 @@ class StepIndicator @JvmOverloads constructor(
             }
 
             var drawableItem: DrawableItem? = null
-
+            var contentItem: ContentItem? = null
             /* icon */
             itemDrawable?.run {
                 val w = intrinsicWidth
@@ -347,15 +357,28 @@ class StepIndicator @JvmOverloads constructor(
                     yPos + h / 2
                 )
                 drawableItem = DrawableItem(drawableRect, this)
+                contentItem = ContentItem(
+                    number = pos + 1,
+                    drawableItem = drawableItem
+                )
+            } ?: run {
+                val numberText = (pos + 1).toString()
+                val numberRect = Rect()
+                textPaint?.getTextBounds(numberText, 0, numberText.length, numberRect)
+                val textX = circleItem.center.x - numberRect.width() / 2
+                val textY = circleItem.center.y + numberRect.height() / 2
+                contentItem = ContentItem(
+                    number = pos + 1,
+                    x = textX,
+                    y = textY,
+                    paint = textPaint
+                )
             }
+
+
             /* 添加到集合中去 */
             drawingData.add(
-                StepItem(
-                    lineItem, circleItem, ContentItem(
-                        number = pos + 1,
-                        drawableItem = drawableItem
-                    )
-                )
+                StepItem(lineItem, circleItem, contentItem)
             )
 
         }
@@ -403,24 +426,32 @@ class StepIndicator @JvmOverloads constructor(
             /* 绘制圆环相关 */
             item.circleItem.run {
                 if (fillPaint != null) {
-
+                    canvas?.drawCircle(center.x, center.y, radius, fillPaint)
                 }
 
                 if (strokePaint != null) {
-
+                    canvas?.drawCircle(center.x, center.y, radius, strokePaint)
                 }
             }
             /* 绘制文字或者icon */
-            item.contentItem.run {
+            item.contentItem?.run {
                 if (drawableItem != null) {
 
                 } else {
-
+                    paint?.let {
+                        canvas?.drawText(number.toString(), x, y, it)
+                    }
                 }
             }
             /* 绘制线 */
             item.lineItem?.run {
-
+                canvas?.drawLine(
+                    start.x,
+                    start.y,
+                    end.x,
+                    end.y,
+                    linePaint
+                )
             }
 
         }
@@ -468,7 +499,7 @@ class StepIndicator @JvmOverloads constructor(
 data class StepItem(
     val lineItem: LineItem?,
     val circleItem: CircleItem,
-    val contentItem: ContentItem
+    val contentItem: ContentItem?
 )
 
 /* 步骤分割线 */
@@ -490,5 +521,6 @@ data class ContentItem(
     val number: Int,
     val x: Float = 0.0F,
     val y: Float = 0.0F,
-    val drawableItem: DrawableItem? = null
+    val drawableItem: DrawableItem? = null,
+    val paint: TextPaint? = null
 )
