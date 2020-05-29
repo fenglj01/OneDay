@@ -5,6 +5,7 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import com.knight.oneday.R
 import com.knight.oneday.utilities.px
@@ -76,7 +77,7 @@ class StepIndicator @JvmOverloads constructor(
     var contentTextSize: Float by OnValidateProp(12f.sp) {
         textPaint.textSize = contentTextSize
     }
-
+    /* fill or fillStroke */
     var circleStyle: Int by OnLayoutProp(CIRCLE_TYPE_FILL) {
         initCirclePaints()
     }
@@ -352,7 +353,7 @@ class StepIndicator @JvmOverloads constructor(
                 val yPos = circleItem.center.y.toInt()
                 val drawableRect = Rect(
                     xPos - w / 2,
-                    yPos - height / 2,
+                    yPos - h / 2,
                     xPos + w / 2,
                     yPos + h / 2
                 )
@@ -414,6 +415,7 @@ class StepIndicator @JvmOverloads constructor(
         val desiredWidth = paddingLeft + paddingRight + suggestedMinimumWidth
         val desiredHeight = paddingTop + paddingBottom + suggestedMinimumHeight
 
+        Log.d("TagStepIndicator", "$paddingLeft $paddingRight")
         val measuredWidth = resolveSize(desiredWidth, widthMeasureSpec)
         val measuredHeight = resolveSize(desiredHeight, heightMeasureSpec)
 
@@ -436,7 +438,8 @@ class StepIndicator @JvmOverloads constructor(
             /* 绘制文字或者icon */
             item.contentItem?.run {
                 if (drawableItem != null) {
-
+                    drawableItem.drawable.bounds = drawableItem.rect
+                    drawableItem.drawable.draw(canvas!!)
                 } else {
                     paint?.let {
                         canvas?.drawText(number.toString(), x, y, it)

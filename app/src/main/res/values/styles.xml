@@ -77,11 +77,11 @@
     </style>
 
     <style name="HorizontalStepView">
-        <item name="hsvStepCount">5</item>
+        <item name="hsvStepCount">15</item>
         <item name="hsvCurrentCount">2</item>
         <item name="hsvFinishedDrawable">@drawable/ic_done_black_18dp</item>
         <item name="hsvExecutingDrawable">@drawable/ic_done_black_18dp</item>
-        <item name="hsvCircleRadius">24dp</item>
+        <item name="hsvCircleRadius">16dp</item>
         <item name="hsvCircleStokeWidth">2dp</item>
         <item name="hsvCircleFillColor">#BEBEBE</item>
         <item name="hsvCircleFillFinishedColor">?attr/colorSecondary</item>
