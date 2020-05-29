@@ -105,7 +105,7 @@
                     android:padding="@dimen/dp_12"
                     android:visibility="gone"
                     app:layout_constraintTop_toTopOf="@id/overview_step_content"
-                    android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+                    android:src="@drawable/ic_one_day_arrow_down"
                     app:layout_constraintBottom_toBottomOf="@id/overview_step_content"
                     app:layout_constraintEnd_toEndOf="parent" />
 

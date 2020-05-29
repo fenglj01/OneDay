@@ -22,15 +22,6 @@
         android:visibility="visible">
 
 
-        <com.knight.oneday.views.step.StepListControlView
-            android:id="@+id/content_step_list_control"
-            bindStepList="@{content.eventSteps}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.knight.oneday.views.hsv.HorizontalStepView
             android:id="@+id/hsv"
             android:layout_width="match_parent"
@@ -50,21 +41,8 @@
             app:backgroundTint="@color/color_on_surface_divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_step_list_control" />
+            app:layout_constraintTop_toBottomOf="@id/hsv" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/content_finish_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp_16"
-            android:layout_marginTop="@dimen/dp_8"
-            android:elevation="@dimen/dp_4"
-            android:text="@string/finish"
-            android:textAppearance="?attr/textAppearanceButton"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_driver2" />
 
     </merge>
 </layout>

@@ -73,14 +73,14 @@
         <item name="hhvSelectedTextSize">@dimen/sp_12</item>
         <item name="hhvUnSelectedTextSize">@dimen/sp_8</item>
         <item name="hhvTimeType">twelve</item>
-        <item name="hhvArrowRes">@drawable/ic_keyboard_arrow_down_black_24dp</item>
+        <item name="hhvArrowRes">@drawable/ic_one_day_arrow_down</item>
     </style>
 
     <style name="HorizontalStepView">
         <item name="hsvStepCount">15</item>
-        <item name="hsvCurrentCount">2</item>
+        <item name="hsvCurrentCount">5</item>
         <item name="hsvFinishedDrawable">@drawable/ic_done_black_18dp</item>
-        <item name="hsvExecutingDrawable">@drawable/ic_done_black_18dp</item>
+        <item name="hsvExecutingDrawable">@drawable/ic_flag_black_18dp</item>
         <item name="hsvCircleRadius">16dp</item>
         <item name="hsvCircleStokeWidth">2dp</item>
         <item name="hsvCircleFillColor">#BEBEBE</item>

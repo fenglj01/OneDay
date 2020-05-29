@@ -80,7 +80,6 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                 // 展开与否
                 val isExpanded = expandedItemList.contains(adapterPosition)
                 binding.expandOverview.toggleNoAnimator(isExpanded)
-
                 // 设置预览部分
                 with(includeOverview) {
                     eventContent = item.event.content

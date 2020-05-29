@@ -7,7 +7,10 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import com.knight.oneday.OneDayApp
 import com.knight.oneday.R
+import com.knight.oneday.utilities.SettingPreferences
+import com.knight.oneday.utilities.ThemePreference
 import com.knight.oneday.utilities.px
 import com.knight.oneday.utilities.sp
 import kotlin.reflect.KProperty
@@ -415,7 +418,6 @@ class StepIndicator @JvmOverloads constructor(
         val desiredWidth = paddingLeft + paddingRight + suggestedMinimumWidth
         val desiredHeight = paddingTop + paddingBottom + suggestedMinimumHeight
 
-        Log.d("TagStepIndicator", "$paddingLeft $paddingRight")
         val measuredWidth = resolveSize(desiredWidth, widthMeasureSpec)
         val measuredHeight = resolveSize(desiredHeight, heightMeasureSpec)
 
