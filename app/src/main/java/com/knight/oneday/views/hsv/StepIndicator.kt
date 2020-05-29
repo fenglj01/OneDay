@@ -6,13 +6,11 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
-import com.knight.oneday.OneDayApp
 import com.knight.oneday.R
-import com.knight.oneday.utilities.SettingPreferences
-import com.knight.oneday.utilities.ThemePreference
-import com.knight.oneday.utilities.px
-import com.knight.oneday.utilities.sp
+import com.knight.oneday.utilities.*
+import kotlin.math.abs
 import kotlin.reflect.KProperty
 
 /**
@@ -455,7 +453,7 @@ class StepIndicator @JvmOverloads constructor(
                     start.y,
                     end.x,
                     end.y,
-                    linePaint
+                    paint
                 )
             }
 
@@ -498,6 +496,42 @@ class StepIndicator @JvmOverloads constructor(
         }
 
     }
+
+    private var downMills: Long = 0L
+    private var downX = 0F
+    var onStepIndicatorClickListener: OnStepIndicatorClickListener? = null
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        event?.run {
+            when (action) {
+                MotionEvent.ACTION_DOWN -> {
+                    downMills = currentTimeMills()
+                    downX = event.x
+                }
+                MotionEvent.ACTION_UP -> {
+                    val timeGap = currentTimeMills() - downMills
+                    val downUpXGap = event.x - downX
+                    /* 按下抬起时间小于半秒 距离小于10 判断为单击事件 */
+                    if (timeGap < 500L && abs(downUpXGap) < 10) {
+                        val x = getStepNumberByTouchEvent(event.x)
+                        if (x != -1) onStepIndicatorClickListener?.onStepIndicatorClick(x)
+                    }
+                }
+            }
+        }
+        return true
+    }
+
+    private fun getStepNumberByTouchEvent(touchX: Float): Int {
+        return drawingData.indexOfFirst { stepItem ->
+            with(stepItem.circleItem) {
+                touchX in center.x - radius..center.x + radius
+            }
+        }
+    }
+}
+
+interface OnStepIndicatorClickListener {
+    fun onStepIndicatorClick(pos: Int)
 }
 
 /* 回执步骤内容的分别封装 */
