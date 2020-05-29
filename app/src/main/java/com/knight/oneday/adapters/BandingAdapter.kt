@@ -1,8 +1,10 @@
 package com.knight.oneday.adapters
 
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
+import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
@@ -12,6 +14,7 @@ import com.knight.oneday.data.Step
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.views.getDrawableOrNull
+import com.knight.oneday.views.hsv.HorizontalStepView
 import com.knight.oneday.views.step.*
 
 @BindingAdapter("bindStepNumber")
@@ -175,5 +178,10 @@ fun StepView.bindStepItem(step: Step) {
 @BindingAdapter("bindStepList")
 fun StepListControlView.bindStepList(list: List<Step>) {
     setUpStepList(list)
+}
+
+@BindingAdapter("bindStepIndicator")
+fun HorizontalStepView.bindStepIndicator(list: List<Step>) {
+    setUpStepIndicator(list.size, list.indexOfFirst { it.state == EventState.UNFINISHED } + 1)
 }
 

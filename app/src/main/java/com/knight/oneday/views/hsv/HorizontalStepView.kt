@@ -17,8 +17,19 @@ class HorizontalStepView @JvmOverloads constructor(
     private val stepIndicator =
         StepIndicator(context, attrs)
 
+    var onStepIndicatorClickListener: OnStepIndicatorClickListener? = null
+        set(value) {
+            field = value
+            stepIndicator.onStepIndicatorClickListener = field
+        }
+
     init {
         addView(stepIndicator)
+    }
+
+    fun setUpStepIndicator(stepCount: Int, currentCount: Int) {
+        stepIndicator.stepCount = stepCount
+        stepIndicator.currentCount = currentCount
     }
 
 }

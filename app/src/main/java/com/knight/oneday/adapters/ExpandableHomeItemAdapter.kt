@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventCellLayoutBinding
+import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.formatUi
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
+import com.knight.oneday.views.hsv.OnStepIndicatorClickListener
 
 /**
  * @author knight
@@ -101,6 +103,15 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                 // 设置内容部分
                 with(includeContent) {
                     content = item
+                    hsv.onStepIndicatorClickListener = object : OnStepIndicatorClickListener {
+                        override fun onStepIndicatorClick(pos: Int) {
+                            tvStep.text = item.eventSteps[pos].content
+                        }
+                    }
+                    val currentIndex =
+                        item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED }
+                    tvStep.text =
+                        if (currentIndex != -1) item.eventSteps[currentIndex].content else item.eventSteps.first().content
                     expandOverview.addExpandableStatusListener(ExpandableStatusListenerLambdaAdapter(
                         onExpanded = {
                             expandedItemList.add(adapterPosition)
