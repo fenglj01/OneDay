@@ -147,4 +147,14 @@
             <flag name="fillStoke" value="1" />
         </attr>
     </declare-styleable>
+
+    <attr name="stepColorFill" format="color" />
+    <attr name="stepColorStroke" format="color" />
+    <attr name="stepColorFinishedFill" format="color" />
+    <attr name="stepColorFinishedStroke" format="color" />
+    <attr name="stepColorExecutingFill" format="color" />
+    <attr name="stepColorExecutingStroke" format="color" />
+    <attr name="stepLineColor" format="color" />
+    <attr name="stepLineFinishedColor" format="color" />
+    <attr name="stepLineExecutingColor" format="color" />
 </resources>

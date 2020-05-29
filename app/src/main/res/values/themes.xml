@@ -81,6 +81,16 @@
 
         <item name="preferenceTheme">@style/Theme.MyApp.PreferenceThemeOverlay</item>
 
+        <!-- 步骤View 相关 -->
+        <item name="stepColorFill">#bebebe</item>
+        <item name="stepColorStroke">#8e8e8e</item>
+        <item name="stepColorFinishedFill">#1EB980</item>
+        <item name="stepColorFinishedStroke">#008853</item>
+        <item name="stepColorExecutingFill">#ad1357</item>
+        <item name="stepColorExecutingStroke">#78002e</item>
+        <item name="stepLineColor">#8e8e8e</item>
+        <item name="stepLineFinishedColor">#008853</item>
+        <item name="stepLineExecutingColor">#78002e</item>
     </style>
 
     <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">

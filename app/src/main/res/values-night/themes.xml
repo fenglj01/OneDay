@@ -21,5 +21,16 @@
         <item name="expandedColor">@color/color_1e1e1e</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="elevationOverlayEnabled">true</item>
+
+        <!-- 步骤View 相关 -->
+        <item name="stepColorFill">#8e8e8e</item>
+        <item name="stepColorStroke">#bebebe</item>
+        <item name="stepColorFinishedFill">#008853</item>
+        <item name="stepColorFinishedStroke">#1EB980</item>
+        <item name="stepColorExecutingFill">#78002e</item>
+        <item name="stepColorExecutingStroke">#ad1357</item>
+        <item name="stepLineColor">#bebebe</item>
+        <item name="stepLineFinishedColor">#008853</item>
+        <item name="stepLineExecutingColor">#78002e</item>
     </style>
 </resources>
