@@ -103,30 +103,34 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                 // 设置内容部分
                 with(includeContent) {
                     content = item
-                    hsv.onStepIndicatorClickListener = object : OnStepIndicatorClickListener {
-                        override fun onStepIndicatorClick(pos: Int) {
-                            tvStep.text = item.eventSteps[pos].content
+                    if (item.eventSteps.isNotEmpty()) {
+                        hsv.onStepIndicatorClickListener = object : OnStepIndicatorClickListener {
+                            override fun onStepIndicatorClick(pos: Int) {
+                                tvStep.text = item.eventSteps[pos].content
+                            }
                         }
+                        val currentIndex =
+                            item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED }
+                        tvStep.text =
+                            if (currentIndex != -1) item.eventSteps[currentIndex].content else item.eventSteps.first().content
+
+                        expandOverview.addExpandableStatusListener(
+                            ExpandableStatusListenerLambdaAdapter(
+                                onExpanded = {
+                                    expandedItemList.add(adapterPosition)
+                                },
+                                onCollapsed = {
+                                    expandedItemList.remove(adapterPosition)
+                                },
+                                /*整个卡片的高度视差*/
+                                onFraction = { fraction, isExpanding ->
+                                    val f = if (isExpanding) fraction else 1F - fraction
+                                    val z = dp2px(dp = 8F) * f
+                                    includeOverview.overviewContent.translationZ = z
+                                    expandOverview.translationZ = z
+                                }
+                            ))
                     }
-                    val currentIndex =
-                        item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED }
-                    tvStep.text =
-                        if (currentIndex != -1) item.eventSteps[currentIndex].content else item.eventSteps.first().content
-                    expandOverview.addExpandableStatusListener(ExpandableStatusListenerLambdaAdapter(
-                        onExpanded = {
-                            expandedItemList.add(adapterPosition)
-                        },
-                        onCollapsed = {
-                            expandedItemList.remove(adapterPosition)
-                        },
-                        /*整个卡片的高度视差*/
-                        onFraction = { fraction, isExpanding ->
-                            val f = if (isExpanding) fraction else 1F - fraction
-                            val z = dp2px(dp = 8F) * f
-                            includeOverview.overviewContent.translationZ = z
-                            expandOverview.translationZ = z
-                        }
-                    ))
                 }
                 executePendingBindings()
             }
