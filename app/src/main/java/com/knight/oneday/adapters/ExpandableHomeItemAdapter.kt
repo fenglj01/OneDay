@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.EventAndEventSteps
-import com.knight.oneday.databinding.EventCellLayoutBinding
 import com.knight.oneday.databinding.EventWithStepItemLayoutBinding
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.dp2px
