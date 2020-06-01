@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="eventAndSteps"
+            type="com.knight.oneday.data.EventAndEventSteps" />
+
+        <variable
+            name="remindTime"
+            type="String" />
+
+        <variable
+            name="eventContent"
+            type="String" />
+
+        <variable
+            name="stepOverview"
+            type="String" />
+
+        <variable
+            name="state"
+            type="Integer" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4"
+        android:background="?attr/colorSecondary">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/event_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardPreventCornerOverlap="false"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyTheme.MediumComponent.Marked">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.constraintlayout.widget.Group
+                        android:id="@+id/remind_time_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:constraint_referenced_ids="remind_time_iv,remind_time_tv" />
+
+                    <ImageView
+                        android:id="@+id/remind_time_iv"
+                        android:layout_width="@dimen/dp_24"
+                        android:layout_height="@dimen/dp_24"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:src="@drawable/ic_one_day_event_remind_time"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/remind_time_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_4"
+                        android:text="@{remindTime}"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        app:layout_constraintBottom_toBottomOf="@id/remind_time_iv"
+                        app:layout_constraintStart_toEndOf="@id/remind_time_iv"
+                        app:layout_constraintTop_toTopOf="@+id/remind_time_iv" />
+
+                    <TextView
+                        android:id="@+id/overview_event_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:text="@{eventContent}"
+                        android:textAppearance="?attr/textAppearanceHeadline5"
+                        app:layout_constraintBottom_toTopOf="@+id/step_overview_tv"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/remind_time_iv"
+                        app:layout_goneMarginBottom="@dimen/dp_16" />
+
+                    <TextView
+                        android:id="@+id/step_overview_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:layout_marginTop="@dimen/dp_8"
+                        android:layout_marginEnd="@dimen/dp_8"
+                        android:layout_marginBottom="@dimen/dp_16"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/expand_button"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/overview_event_content" />
+
+                    <com.knight.oneday.views.expand.ExpandStatusButton
+                        android:id="@+id/expand_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/actionBarItemBackground"
+                        android:padding="@dimen/dp_12"
+                        android:src="@drawable/ic_one_day_arrow_down"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@id/step_overview_tv"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/step_overview_tv" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.knight.oneday.views.expand.ExpandableLayout
+                    android:id="@+id/step_content_expand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/expandedColor"
+                    app:el_expanded="false"
+                    app:el_parallax="1"
+                    app:el_withAnimator="true">
+
+                    <include
+                        android:id="@+id/include_content"
+                        layout="@layout/event_cell_content_layout" />
+
+                </com.knight.oneday.views.expand.ExpandableLayout>
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </FrameLayout>
+</layout>

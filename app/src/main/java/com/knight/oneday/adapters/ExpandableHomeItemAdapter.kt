@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventCellLayoutBinding
+import com.knight.oneday.databinding.EventWithStepItemLayoutBinding
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.formatUi
@@ -31,7 +32,7 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
         return EventCellViewHolder(
-            EventCellLayoutBinding.inflate(
+            EventWithStepItemLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -72,7 +73,7 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
         currentChangedItemIndex = -1
     }
 
-    inner class EventCellViewHolder(private val binding: EventCellLayoutBinding) :
+    inner class EventCellViewHolder(private val binding: EventWithStepItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: EventAndEventSteps) {
@@ -81,25 +82,24 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                 eventAndSteps = item
                 // 展开与否
                 val isExpanded = expandedItemList.contains(adapterPosition)
-                binding.expandOverview.toggleNoAnimator(isExpanded)
+                stepContentExpand.toggleNoAnimator(isExpanded)
                 // 设置预览部分
-                with(includeOverview) {
-                    eventContent = item.event.content
-                    remindTime = item.event.reminderTime.formatUi()
-                    overviewCard.progress = 1F
-                    if (item.eventSteps.isNotEmpty()) {
-                        expandOverview.addExpandableStatusListener(expandButton)
-                        overviewStepContent.bindStepsOverView(item.eventSteps)
-                        expandButton.singleClick {
-                            expandOverview.toggle()
-                        }
-                        expandButton.visibility = View.VISIBLE
-                        expandOverview.visibility = View.VISIBLE
-                    } else {
-                        expandButton.visibility = View.GONE
-                        expandOverview.visibility = View.GONE
+                eventContent = item.event.content
+                remindTime = item.event.reminderTime.formatUi()
+                eventCard.progress = 1F
+                if (item.eventSteps.isNotEmpty()) {
+                    stepContentExpand.addExpandableStatusListener(expandButton)
+                    stepOverviewTv.bindStepsOverView(item.eventSteps)
+                    expandButton.singleClick {
+                        stepContentExpand.toggle()
                     }
+                    expandButton.visibility = View.VISIBLE
+                    stepContentExpand.visibility = View.VISIBLE
+                } else {
+                    expandButton.visibility = View.GONE
+                    stepContentExpand.visibility = View.GONE
                 }
+
                 // 设置内容部分
                 with(includeContent) {
                     content = item
@@ -114,7 +114,7 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                         tvStep.text =
                             if (currentIndex != -1) item.eventSteps[currentIndex].content else item.eventSteps.first().content
 
-                        expandOverview.addExpandableStatusListener(
+                        stepContentExpand.addExpandableStatusListener(
                             ExpandableStatusListenerLambdaAdapter(
                                 onExpanded = {
                                     expandedItemList.add(adapterPosition)
@@ -126,8 +126,7 @@ class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
                                 onFraction = { fraction, isExpanding ->
                                     val f = if (isExpanding) fraction else 1F - fraction
                                     val z = dp2px(dp = 8F) * f
-                                    includeOverview.overviewContent.translationZ = z
-                                    expandOverview.translationZ = z
+                                    eventCard.translationZ = z
                                 }
                             ))
                     }
