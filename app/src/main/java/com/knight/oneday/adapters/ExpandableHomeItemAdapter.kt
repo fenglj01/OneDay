@@ -103,6 +103,7 @@ class ExpandableHomeItemAdapter() :
                 with(includeContent) {
                     content = item
                     if (item.eventSteps.isNotEmpty()) {
+
                         hsv.onStepIndicatorClickListener = object : OnStepIndicatorClickListener {
                             override fun onStepIndicatorClick(pos: Int) {
                                 tvStep.text = item.eventSteps[pos].content
@@ -117,6 +118,8 @@ class ExpandableHomeItemAdapter() :
                             ExpandableStatusListenerLambdaAdapter(
                                 onExpanded = {
                                     expandedItemList.add(adapterPosition)
+                                    /* 滚动到当前项 */
+                                    hsv.smoothScrollToStep(item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED } + 1)
                                 },
                                 onCollapsed = {
                                     expandedItemList.remove(adapterPosition)

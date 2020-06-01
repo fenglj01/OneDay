@@ -2,6 +2,7 @@ package com.knight.oneday.views.hsv
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.HorizontalScrollView
 
@@ -30,6 +31,15 @@ class HorizontalStepView @JvmOverloads constructor(
     fun setUpStepIndicator(stepCount: Int, currentCount: Int) {
         stepIndicator.stepCount = stepCount
         stepIndicator.currentCount = currentCount
+    }
+
+    fun scrollToStep(stepCount: Int) {
+        scrollTo(stepIndicator.getXPositionByStep(stepCount), scrollY)
+
+    }
+
+    fun smoothScrollToStep(stepCount: Int) {
+        smoothScrollTo(stepIndicator.getXPositionByStep(stepCount), scrollY)
     }
 
 }

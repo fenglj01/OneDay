@@ -388,7 +388,7 @@ class StepIndicator @JvmOverloads constructor(
                 lastPoint.x = lineItem.end.x + lineGap + (circleStrokeWidth / 2)
             }
 
-            var drawableItem: DrawableItem? = null
+            var drawableItem: DrawableItem?
             var contentItem: ContentItem? = null
             /* icon */
             itemDrawable?.run {
@@ -584,6 +584,12 @@ class StepIndicator @JvmOverloads constructor(
                 touchX in center.x - radius..center.x + radius
             }
         }
+    }
+
+    /* 根据步骤获得X位置 */
+    fun getXPositionByStep(stepCount: Int): Int {
+        val dataPos = stepCount - 1
+        return if (dataPos in drawingData.indices) drawingData[dataPos].circleItem.center.x.toInt() else 0
     }
 }
 
