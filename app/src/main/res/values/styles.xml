@@ -77,8 +77,6 @@
     </style>
 
     <style name="HorizontalStepView">
-        <item name="hsvStepCount">15</item>
-        <item name="hsvCurrentCount">5</item>
         <item name="hsvFinishedDrawable">@drawable/ic_done_black_18dp</item>
         <item name="hsvExecutingDrawable">@drawable/ic_flag_black_18dp</item>
         <item name="hsvCircleRadius">16dp</item>
@@ -98,6 +96,10 @@
         <item name="hsvTextColor">?attr/colorOnSurface</item>
         <item name="hsvTextSize">12sp</item>
         <item name="hsvStyle">fillStoke</item>
+        <item name="hsvSelectedColor">?attr/colorOnSurface</item>
+        <item name="hsvSelectedRadius">12dp</item>
+        <item name="hsvSelectedStrokeWidth">1dp</item>
+        <item name="hsvSelectedStyle">dotted</item>
     </style>
 
 

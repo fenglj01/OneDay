@@ -1,11 +1,11 @@
 package com.knight.oneday.views.hsv
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.knight.oneday.R
@@ -25,6 +25,9 @@ class StepIndicator @JvmOverloads constructor(
         const val CIRCLE_TYPE_FILL = 0
         const val CIRCLE_TYPE_FILL_STOKE = 1
         const val INVALID_STATUS_COUNT = -1
+
+        const val SELECTED_STYLE_SOLID = 0
+        const val SELECTED_STYLE_DOTTED = 1
     }
 
     /* 属性是否都完成了一次初始化 注意:因为是绘制多个 所以有些属性会导致整个View大小变化 需要requestLayout 否则会导致限制不全的问题 */
@@ -36,6 +39,7 @@ class StepIndicator @JvmOverloads constructor(
     var stepCount: Int by OnLayoutProp(0)
     /* 当前的步骤数 如果在读取过attrs后更改这个属性 那么需要requestLayout */
     var currentCount: Int by OnLayoutProp(INVALID_STATUS_COUNT) {
+        if (selectedIndex == INVALID_STATUS_COUNT) selectedIndex = currentCount
         initCirclePaints()
     }
     var circleRadius: Float by OnLayoutProp(16F.px)
@@ -82,6 +86,15 @@ class StepIndicator @JvmOverloads constructor(
     var circleStyle: Int by OnLayoutProp(CIRCLE_TYPE_FILL) {
         initCirclePaints()
     }
+    /* 选择相关 */
+    var selectedIndex: Int by OnValidateProp(INVALID_STATUS_COUNT)
+    var selectedColor: Int by OnValidateProp(Color.BLACK) {
+        selectedPaint.color = selectedColor
+    }
+    var selectedRadius: Float by OnValidateProp(12F.px)
+    var selectedStrokeWidth: Float by OnValidateProp(2F.px)
+    var selectedStyle: Int by OnValidateProp(SELECTED_STYLE_SOLID)
+
 
     private var circleStrokePaint: Paint? = null
     private var circleStrokeFinishedPaint: Paint? = null
@@ -95,6 +108,8 @@ class StepIndicator @JvmOverloads constructor(
     private lateinit var lineFinishedPaint: Paint
     private lateinit var lineExecutingPaint: Paint
     private lateinit var textPaint: TextPaint
+
+    private lateinit var selectedPaint: Paint
 
     init {
 
@@ -152,6 +167,15 @@ class StepIndicator @JvmOverloads constructor(
             contentTextSize =
                 getDimension(R.styleable.HorizontalStepView_hsvTextSize, contentTextSize)
             circleStyle = getInt(R.styleable.HorizontalStepView_hsvStyle, circleStyle)
+            selectedIndex = getInt(R.styleable.HorizontalStepView_hsvSelectedIndex, currentCount)
+            selectedColor = getColor(R.styleable.HorizontalStepView_hsvSelectedColor, selectedColor)
+            selectedRadius =
+                getDimension(R.styleable.HorizontalStepView_hsvSelectedRadius, selectedRadius)
+            selectedStrokeWidth = getDimension(
+                R.styleable.HorizontalStepView_hsvSelectedStrokeWidth,
+                selectedStrokeWidth
+            )
+            selectedStyle = getInt(R.styleable.HorizontalStepView_hsvSelectedStyle, selectedColor)
             recycle()
         }
 
@@ -159,9 +183,28 @@ class StepIndicator @JvmOverloads constructor(
 
         initLinePaints()
 
+        initSelectedPaint()
+
         propsInitializedOnce = true
     }
 
+    private fun initSelectedPaint() {
+
+        selectedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+        selectedPaint.apply {
+            style = Paint.Style.STROKE
+            strokeWidth = selectedStrokeWidth
+            color = selectedColor
+            pathEffect = if (selectedStyle == SELECTED_STYLE_DOTTED) DashPathEffect(
+                floatArrayOf(16F, 6F), 0F
+            ) else null
+        }
+
+    }
+
+    /**
+     * 初始化分割线画笔
+     */
     private fun initLinePaints() {
 
         linePaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -259,11 +302,12 @@ class StepIndicator @JvmOverloads constructor(
                 }
             }
 
-            textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
-            textPaint.apply {
-                textSize = contentTextSize
-                color = contentTextColor
-            }
+        }
+        /* 文字 */
+        textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
+        textPaint.apply {
+            textSize = contentTextSize
+            color = contentTextColor
         }
 
     }
@@ -422,11 +466,13 @@ class StepIndicator @JvmOverloads constructor(
         super.onMeasure(measuredWidth, measuredHeight)
     }
 
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         for (item in drawingData) {
             /* 绘制圆环相关 */
             item.circleItem.run {
+
                 if (fillPaint != null) {
                     canvas?.drawCircle(center.x, center.y, radius, fillPaint)
                 }
@@ -444,6 +490,14 @@ class StepIndicator @JvmOverloads constructor(
                     paint?.let {
                         canvas?.drawText(number.toString(), x, y, it)
                     }
+                }
+                if (number == selectedIndex) {
+                    canvas?.drawCircle(
+                        item.circleItem.center.x,
+                        item.circleItem.center.y,
+                        selectedRadius,
+                        selectedPaint
+                    )
                 }
             }
             /* 绘制线 */
@@ -512,8 +566,11 @@ class StepIndicator @JvmOverloads constructor(
                     val downUpXGap = event.x - downX
                     /* 按下抬起时间小于半秒 距离小于10 判断为单击事件 */
                     if (timeGap < 500L && abs(downUpXGap) < 10) {
-                        val x = getStepNumberByTouchEvent(event.x)
-                        if (x != -1) onStepIndicatorClickListener?.onStepIndicatorClick(x)
+                        val index = getStepNumberByTouchEvent(event.x)
+                        if (index != -1 && index + 1 != selectedIndex) {
+                            onStepIndicatorClickListener?.onStepIndicatorClick(index)
+                            selectedIndex = index + 1
+                        }
                     }
                 }
             }

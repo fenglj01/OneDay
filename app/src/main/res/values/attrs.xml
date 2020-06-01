@@ -146,6 +146,14 @@
             <flag name="fill" value="0" />
             <flag name="fillStoke" value="1" />
         </attr>
+        <attr name="hsvSelectedColor" format="color" />
+        <attr name="hsvSelectedIndex" format="integer" />
+        <attr name="hsvSelectedStrokeWidth" format="dimension" />
+        <attr name="hsvSelectedRadius" format="dimension" />
+        <attr name="hsvSelectedStyle">
+            <flag name="solid" value="0" />
+            <flag name="dotted" value="1" />
+        </attr>
     </declare-styleable>
 
     <attr name="stepColorFill" format="color" />
