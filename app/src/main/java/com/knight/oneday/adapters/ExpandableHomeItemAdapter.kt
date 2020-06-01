@@ -21,7 +21,7 @@ import com.knight.oneday.views.hsv.OnStepIndicatorClickListener
  * create at 20-3-11 下午8:36
  * 首页可展开的ListAdapter
  */
-class ExpandableHomeItemAdapter(private val recyclerView: RecyclerView) :
+class ExpandableHomeItemAdapter() :
     ListAdapter<EventAndEventSteps, ExpandableHomeItemAdapter.EventCellViewHolder>(
         EventAndStepsDiffCallback
     ) {

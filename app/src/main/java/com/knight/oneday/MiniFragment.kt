@@ -24,7 +24,7 @@ class MiniFragment : Fragment() {
         )
     }
     private lateinit var binding: FragmentMiniBinding
-    private val adapter: ExpandableHomeItemAdapter by lazy { ExpandableHomeItemAdapter(binding.rvEvent) }
+    private val adapter: ExpandableHomeItemAdapter by lazy { ExpandableHomeItemAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
