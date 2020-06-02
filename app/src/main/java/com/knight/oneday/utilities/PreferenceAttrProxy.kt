@@ -21,6 +21,17 @@ class PreferenceAttrProxy<T>(val key: String, private val defaultValue: T) :
         const val KEY_SHOW_ALLOW_EXPIRED = "show_allow_expired"
         const val KEY_SHOW_ALLOW_FINISHED = "show_allow_finished"
         const val KEY_SHOW_SNACK_REMIND_NOT_SHOW_EXPIRED_EVENT = "remind_not_show_expired"
+
+        const val KEY_SHOW_LIST_SHOW_STRATEGY = "list_show_strategy"
+        const val KEY_SHOW_LIST_GROUP_PRIORITY = "list_group_priority"
+
+        const val VALUE_LIST_STRATEGY_TODAY = "today"
+        const val VALUE_LIST_STRATEGY_ALL = "all"
+
+        const val VALUE_LIST_GP_UNFINISHED = "unfinished"
+        const val VALUE_LIST_GP_FINISHED = "finished"
+        const val VALUE_LIST_GP_EXPIRED = "expired"
+
     }
 
     private val prefs: SharedPreferences by lazy {
