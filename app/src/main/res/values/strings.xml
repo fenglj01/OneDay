@@ -82,7 +82,10 @@
 
     <string name="default_value_today">today</string>
     <string name="default_value_unfinished">unfinished</string>
+    <string name="default_value_remind">remind</string>
     <string name="title_list_group_priority">列表优先展示</string>
     <string name="can_not_setting_false_show_expired">当前优先显示的是过期任务,请先修改优先展示</string>
     <string name="can_not_setting_false_show_finished">当前优先显示的是完成任务,请先修改优先展示</string>
+    <string name="title_list_order">排序优先</string>
+    <string name="show_list_order_is_desc">是否升序排序</string>
 </resources>

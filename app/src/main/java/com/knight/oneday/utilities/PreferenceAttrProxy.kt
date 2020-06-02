@@ -32,6 +32,12 @@ class PreferenceAttrProxy<T>(val key: String, private val defaultValue: T) :
         const val VALUE_LIST_GP_FINISHED = "finished"
         const val VALUE_LIST_GP_EXPIRED = "expired"
 
+        const val KEY_SHOW_LIST_ORDER_IS_DESC = "list_order_is_desc"
+        const val KEY_SHOW_LIST_ORDER_METHOD = "list_order"
+
+        const val VALUE_LIST_ORDER_REMIND = "remind"
+        const val VALUE_LIST_ORDER_CREATE = "create"
+
     }
 
     private val prefs: SharedPreferences by lazy {
