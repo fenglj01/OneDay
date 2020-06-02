@@ -6,6 +6,7 @@ import com.knight.oneday.utilities.SettingPreferences
 /**
  * Create by FLJ in 2020/6/2 14:02
  * 首页查询列表的策略
+ * 可能考虑 数据库语句 然后根据条件的不一样分别调用
  */
 sealed class SearchStrategy(
     var showExpired: Boolean = SettingPreferences.showAllowExpired,
