@@ -24,7 +24,6 @@ import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_ALLOW_
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_ALLOW_FINISHED
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_LIST_GROUP_PRIORITY
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_LIST_SHOW_STRATEGY
-import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.VALUE_LIST_GP_EXPIRED
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.VALUE_LIST_GP_FINISHED
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.VALUE_LIST_GP_UNFINISHED
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.VALUE_LIST_STRATEGY_ALL
@@ -65,28 +64,6 @@ class SettingFragment : BaseSettingFragment(), SharedPreferences.OnSharedPrefere
                 return true
             }
         }
-        /* 是否显示过期任务的限制 */
-        preferenceScreen.get<SwitchPreference>(KEY_SHOW_ALLOW_EXPIRED)?.onPreferenceChangeListener =
-            object : OnPreferenceChangeListener {
-                override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
-                    /* 如果当前是分组优先为 过期任务优先 且newValue为false 不显示过期任务那么不允许修改 并提示用户 */
-                    if (preference.sharedPreferences.getString(
-                            KEY_SHOW_LIST_GROUP_PRIORITY,
-                            VALUE_LIST_GP_UNFINISHED
-                        ) == VALUE_LIST_GP_EXPIRED
-                        && newValue is Boolean
-                        && newValue == false
-                    ) {
-                        showSnackBar(
-                            setting_toolbar,
-                            R.string.can_not_setting_false_show_expired,
-                            Snackbar.LENGTH_LONG
-                        )
-                        return false
-                    }
-                    return true
-                }
-            }
     }
 
     override fun onSharedPreferenceChanged(sp: SharedPreferences?, key: String?) {
@@ -102,10 +79,6 @@ class SettingFragment : BaseSettingFragment(), SharedPreferences.OnSharedPrefere
                 if (sp?.getString(key, VALUE_LIST_GP_UNFINISHED) == VALUE_LIST_GP_FINISHED) {
                     preferenceScreen.get<SwitchPreference>(KEY_SHOW_ALLOW_FINISHED)?.isChecked =
                         true
-                }
-                /* 当选择过期优先的时候 过期任务的显示就会默认打开 */
-                else if (sp?.getString(key, VALUE_LIST_GP_UNFINISHED) == VALUE_LIST_GP_EXPIRED) {
-                    preferenceScreen.get<SwitchPreference>(KEY_SHOW_ALLOW_EXPIRED)?.isChecked = true
                 }
             }
         }

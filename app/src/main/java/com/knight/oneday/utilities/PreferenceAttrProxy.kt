@@ -30,7 +30,6 @@ class PreferenceAttrProxy<T>(val key: String, private val defaultValue: T) :
 
         const val VALUE_LIST_GP_UNFINISHED = "unfinished"
         const val VALUE_LIST_GP_FINISHED = "finished"
-        const val VALUE_LIST_GP_EXPIRED = "expired"
 
         const val KEY_SHOW_LIST_ORDER_IS_DESC = "list_order_is_desc"
         const val KEY_SHOW_LIST_ORDER_METHOD = "list_order"
