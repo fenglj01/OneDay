@@ -1,5 +1,6 @@
 package com.knight.oneday.data.strategy
 
+import com.knight.oneday.data.EventRepository
 import com.knight.oneday.utilities.SettingPreferences
 
 /**
@@ -19,7 +20,7 @@ sealed class SearchStrategy(
 
 /* 分组优先 */
 enum class SearchPriority(pri: String) {
-    UNFINISHED("unfinished"), FINISHED("finished"), EXPIRED("expired")
+    UNFINISHED("unfinished"), FINISHED("finished")
 }
 
 /* 排序 */
@@ -31,8 +32,9 @@ enum class SearchOrder(order: String) {
  * Create by FLJ in 2020/6/2 14:09
  * 当日查询
  */
-class NowDaySearchStrategy : SearchStrategy() {
+class NowDaySearchStrategy(private val repository: EventRepository) : SearchStrategy() {
     override fun search() {
+
     }
 }
 
@@ -40,7 +42,7 @@ class NowDaySearchStrategy : SearchStrategy() {
  * Create by FLJ in 2020/6/2 14:10
  * 所有日期查询
  */
-class AllDaySearchStrategy() : SearchStrategy() {
+class AllDaySearchStrategy(private val repository: EventRepository) : SearchStrategy() {
     override fun search() {
 
     }
