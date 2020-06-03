@@ -13,6 +13,10 @@ class EventRepository private constructor(private val eventDao: EventDao) {
 
     fun getEventsWithSteps() = eventDao.getEventsWithSteps()
 
+    fun searchEventsWithStepsByAll() = eventDao.searchEventsByAll()
+
+    fun searchEventsWithStepsByUnFinished() = eventDao.searchEventsByAll()
+
     suspend fun updateEvent(event: Event) {
         eventDao.updateEvent(event)
     }
@@ -31,6 +35,7 @@ class EventRepository private constructor(private val eventDao: EventDao) {
     suspend fun removeEventById(id: Long) {
         eventDao.deleteById(id)
     }
+
 
     companion object {
         private var INSTANCE: EventRepository? = null

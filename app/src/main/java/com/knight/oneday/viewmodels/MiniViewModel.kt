@@ -1,6 +1,7 @@
 package com.knight.oneday.viewmodels
 
 import com.knight.oneday.data.EventRepository
+import com.knight.oneday.utilities.SettingPreferences
 
 /**
  * @author knight
@@ -9,6 +10,8 @@ import com.knight.oneday.data.EventRepository
  */
 class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
 
-    val eventList = repository.getEventsWithSteps()
+    val eventList =
+        if (SettingPreferences.showAllowFinished) repository.searchEventsWithStepsByAll()
+        else repository.searchEventsWithStepsByUnFinished()
 
 }

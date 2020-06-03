@@ -42,6 +42,6 @@ interface EventDao {
     fun searchEventsByAll(): LiveData<List<EventAndEventSteps>>
 
     @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE state =0 ORDER BY remind_time desc")
-    fun searchEventsByState(): LiveData<List<EventAndEventSteps>>
+    fun searchEventsByUnFinished(): LiveData<List<EventAndEventSteps>>
 
 }
