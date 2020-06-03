@@ -8,38 +8,6 @@
         app:key="list_category"
         app:title="@string/show">
 
-        <ListPreference
-            app:defaultValue="@string/default_value_today"
-            app:entries="@array/entities_list_show_strategy"
-            app:entryValues="@array/values_list_show_strategy"
-            app:iconSpaceReserved="false"
-            app:key="list_show_strategy"
-            app:title="@string/title_list_show_strategy"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:defaultValue="@string/default_value_unfinished"
-            app:entries="@array/entities_list_group_priority"
-            app:entryValues="@array/values_list_group_priority"
-            app:iconSpaceReserved="false"
-            app:key="list_group_priority"
-            app:title="@string/title_list_group_priority"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
-            app:defaultValue="@string/default_value_remind"
-            app:entries="@array/entities_list_order"
-            app:entryValues="@array/values_list_order"
-            app:iconSpaceReserved="false"
-            app:key="list_order"
-            app:title="@string/title_list_order"
-            app:useSimpleSummaryProvider="true" />
-
-        <SwitchPreference
-            app:defaultValue="true"
-            app:iconSpaceReserved="false"
-            app:key="list_order_is_desc"
-            app:title="@string/show_list_order_is_desc" />
 
         <SwitchPreference
             app:defaultValue="false"
@@ -47,11 +15,6 @@
             app:key="show_allow_finished"
             app:title="@string/show_allow_finished" />
 
-        <SwitchPreference
-            app:defaultValue="false"
-            app:iconSpaceReserved="false"
-            app:key="show_allow_expired"
-            app:title="@string/show_allow_expired" />
 
     </PreferenceCategory>
 

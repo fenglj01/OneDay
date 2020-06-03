@@ -130,7 +130,7 @@ class CreateEventFragment : Fragment() {
      *  @param remindDate 提示时间
      * */
     private fun isShowRemindNotAllowExpiredEvent(remindDate: RemindDate): Boolean =
-        remindDate.timeInMillis <= currentTimeMills() && SettingPreferences.showRemindNotAllowExpired && !SettingPreferences.showAllowExpired
+        remindDate.timeInMillis <= currentTimeMills() && SettingPreferences.showRemindNotAllowExpired
 
     private fun initDropMenu() {
         val tagItems = NavigationModel.getNavTagItems()
