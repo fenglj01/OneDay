@@ -38,5 +38,10 @@ interface EventDao {
     @Query("DELETE FROM $TABLE_NAME_EVENT WHERE id = :id")
     suspend fun deleteById(id: Long)
 
+    @Query("SELECT * FROM (SELECT * FROM $TABLE_NAME_EVENT ORDER BY state asc) ORDER BY remind_time desc")
+    suspend fun searchEventsByAll(): LiveData<List<EventAndEventSteps>>
+
+    @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE state =:eventState  ORDER BY remind_time desc")
+    suspend fun searchEventsByState(eventState: EventState = EventState.UNFINISHED): LiveData<List<EventAndEventSteps>>
 
 }
