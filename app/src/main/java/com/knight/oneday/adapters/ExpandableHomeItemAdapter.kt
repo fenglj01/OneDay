@@ -84,7 +84,7 @@ class ExpandableHomeItemAdapter() :
                 // 设置预览部分
                 eventContent = item.event.content
                 remindTime = item.event.dueDateTime.formatUi()
-                eventCard.progress = 1F
+                eventCard.progress = if (item.event.isDone) 1F else 0F
                 if (item.eventSteps.isNotEmpty()) {
                     stepContentExpand.addExpandableStatusListener(expandButton)
                     stepOverviewTv.bindStepsOverView(item.eventSteps)
