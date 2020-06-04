@@ -103,17 +103,18 @@ class ExpandableHomeItemAdapter() :
                 with(includeContent) {
                     content = item
                     if (item.eventSteps.isNotEmpty()) {
-
+                        /* 步骤指示器点击事件 */
                         hsv.onStepIndicatorClickListener = object : OnStepIndicatorClickListener {
                             override fun onStepIndicatorClick(pos: Int) {
                                 tvStep.text = item.eventSteps[pos].content
                             }
                         }
+                        /* 获取当前正在执行项的位置 */
                         val currentIndex =
                             item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED }
                         tvStep.text =
                             if (currentIndex != -1) item.eventSteps[currentIndex].content else item.eventSteps.first().content
-
+                        /* 展开内容的监听 */
                         stepContentExpand.addExpandableStatusListener(
                             ExpandableStatusListenerLambdaAdapter(
                                 onExpanded = {
