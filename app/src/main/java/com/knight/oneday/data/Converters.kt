@@ -4,6 +4,10 @@ import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.util.*
 
 /**
@@ -21,15 +25,6 @@ class Converters {
     @TypeConverter
     fun timeStampToCalendar(timeStamp: Long): Calendar =
         Calendar.getInstance().apply { timeInMillis = timeStamp }
-
-    /**
-     * 事件类型和数据库Int
-     */
-    @TypeConverter
-    fun eventTypeToInt(eventType: EventType): Int = eventType.ordinal
-
-    @TypeConverter
-    fun intToEventType(int: Int): EventType = EventType.values().first { it.ordinal == int }
 
     /**
      * 事件状态和数据库Int
