@@ -28,7 +28,6 @@ data class Step(
     val content: String,
     @ColumnInfo(name = "create_time") val createTime: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "completion_time") var completionTime: Calendar = createTime,
-    @ColumnInfo(name = "remind_time") var reminderTime: Calendar = createTime,
     @ColumnInfo(name = "serial_number") var serialNumber: Int = 0,
     @ColumnInfo(name = "event_id") val eventId: Long,
     var state: EventState = EventState.UNFINISHED

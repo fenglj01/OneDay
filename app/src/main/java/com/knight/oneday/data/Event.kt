@@ -16,10 +16,9 @@ data class Event(
     val content: String,
     @ColumnInfo(name = "create_time") val createTime: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "completion_time") var completionTime: Calendar = createTime,
-    @ColumnInfo(name = "remind_time") var reminderTime: Calendar = createTime,
+    @ColumnInfo(name = "due_date_time") var dueDateTime: Calendar = createTime,
     var type: EventType,
     var state: EventState = EventState.UNFINISHED
-    /*@ColumnInfo(name = "now_step_id") var nowStepId: Long? = null 当前步骤的方式 建议更换为查询的方式 具体怎么做后期再商量*/
 ) {
     /**
      * 主键的优化写法

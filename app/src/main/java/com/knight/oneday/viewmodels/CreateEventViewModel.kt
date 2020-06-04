@@ -2,7 +2,6 @@ package com.knight.oneday.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.EventRepository
 import com.knight.oneday.data.Step
@@ -59,7 +58,7 @@ class CreateEventViewModel(
         } else createTime
         return Event(
             content = eventContent,
-            reminderTime = remindTime,
+            dueDateTime = remindTime,
             type = EventType.MINI_NORMAL
         )
     }

@@ -1,6 +1,5 @@
 package com.knight.oneday.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,7 +83,7 @@ class ExpandableHomeItemAdapter() :
                 stepContentExpand.toggleNoAnimator(isExpanded)
                 // 设置预览部分
                 eventContent = item.event.content
-                remindTime = item.event.reminderTime.formatUi()
+                remindTime = item.event.dueDateTime.formatUi()
                 eventCard.progress = 1F
                 if (item.eventSteps.isNotEmpty()) {
                     stepContentExpand.addExpandableStatusListener(expandButton)
