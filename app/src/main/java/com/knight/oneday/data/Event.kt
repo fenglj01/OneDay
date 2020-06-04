@@ -17,8 +17,7 @@ data class Event(
     @ColumnInfo(name = "create_time") val createTime: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "completion_time") var completionTime: Calendar = createTime,
     @ColumnInfo(name = "due_date_time") var dueDateTime: Calendar = createTime,
-    var type: EventType,
-    var state: EventState = EventState.UNFINISHED
+    @ColumnInfo(name = "is_done") var isDone: Boolean = false
 ) {
     /**
      * 主键的优化写法
@@ -28,8 +27,6 @@ data class Event(
     var eventId: Long = 0
 
     override fun toString(): String {
-        return "$eventId - $content -$state"
+        return "$eventId - $content -$isDone"
     }
 }
-
-inline fun Event.isFinished(): Boolean = state == EventState.FINISHED

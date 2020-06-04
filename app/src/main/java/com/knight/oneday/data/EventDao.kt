@@ -14,14 +14,14 @@ import java.util.*
 @Dao
 interface EventDao {
 
-    @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE state = 0")
+    @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE is_done = 1")
     fun getAllUnFinishedEvents(): LiveData<List<Event>>
 
-    @Query("SELECT * FROM $TABLE_NAME_EVENT GROUP BY state,create_time ORDER BY due_date_time desc")
+    @Query("SELECT * FROM $TABLE_NAME_EVENT GROUP BY is_done,create_time ORDER BY due_date_time desc")
     fun getAllEvent(): LiveData<List<Event>>
 
-    @Query("UPDATE $TABLE_NAME_EVENT SET state =:eventState WHERE id =:id")
-    suspend fun updateEventState(eventState: EventState, id: Long)
+    /* @Query("UPDATE $TABLE_NAME_EVENT SET state =:eventState WHERE id =:id")
+     suspend fun updateEventState(eventState: EventState, id: Long)*/
 
     @Update
     suspend fun updateEvent(event: Event)
@@ -38,10 +38,10 @@ interface EventDao {
     @Query("DELETE FROM $TABLE_NAME_EVENT WHERE id = :id")
     suspend fun deleteById(id: Long)
 
-    @Query("SELECT * FROM (SELECT * FROM $TABLE_NAME_EVENT ORDER BY state asc) ORDER BY due_date_time desc")
+    @Query("SELECT * FROM (SELECT * FROM $TABLE_NAME_EVENT ORDER BY is_done asc) ORDER BY due_date_time desc")
     fun searchEventsByAll(): LiveData<List<EventAndEventSteps>>
 
-    @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE state =0 ORDER BY due_date_time desc")
+    @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE is_done =0 ORDER BY due_date_time desc")
     fun searchEventsByUnFinished(): LiveData<List<EventAndEventSteps>>
 
 }

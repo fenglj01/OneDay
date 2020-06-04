@@ -61,8 +61,7 @@ private class EventDiffCallback : DiffUtil.ItemCallback<EventAndEventSteps>() {
         newItem: EventAndEventSteps
     ): Boolean {
         return oldItem.event.content == newItem.event.content
-                && oldItem.event.state == newItem.event.state
-                && oldItem.event.type == newItem.event.type
+                && oldItem.event.isDone == newItem.event.isDone
                 && oldItem.event.eventId == newItem.event.eventId
     }
 }

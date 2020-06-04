@@ -23,8 +23,7 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) :
         try {
             val guideArray = applicationContext.resources.getStringArray(R.array.guide_content)
             val guideEvent = Event(
-                content = applicationContext.resources.getString(R.string.guide_event_content),
-                type = EventType.GUIDE
+                content = applicationContext.resources.getString(R.string.guide_event_content)
             )
             val database = AppDatabase.getDatabase(applicationContext)
             database.eventDao().insert(guideEvent)

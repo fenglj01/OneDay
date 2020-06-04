@@ -58,8 +58,7 @@ class CreateEventViewModel(
         } else createTime
         return Event(
             content = eventContent,
-            dueDateTime = remindTime,
-            type = EventType.MINI_NORMAL
+            dueDateTime = remindTime
         )
     }
 

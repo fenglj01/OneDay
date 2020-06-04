@@ -23,9 +23,6 @@ class EventRepository private constructor(private val eventDao: EventDao) {
 
     suspend fun createEvent(event: Event): Long = eventDao.insert(event)
 
-    suspend fun updateEventState(eventState: EventState, id: Long) {
-        eventDao.updateEventState(eventState, id)
-    }
 
 
     suspend fun removeAllEvent() {
