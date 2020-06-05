@@ -35,7 +35,7 @@ class SureDeleteDialog : DialogFragment() {
         val window = dialog?.window
         val params = window?.attributes
         params?.gravity = Gravity.CENTER
-        params?.width = (resources.displayMetrics.widthPixels * 0.9F).toInt()
+        params?.width = (resources.displayMetrics.widthPixels * 0.75F).toInt()
         window?.setBackgroundDrawableResource(android.R.color.transparent)
         window?.attributes = params
     }
