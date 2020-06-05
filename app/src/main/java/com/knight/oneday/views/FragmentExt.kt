@@ -20,3 +20,19 @@ fun Fragment.showSnackBar(
     }
     sb.show()
 }
+
+fun Fragment.showSnackBar(
+    view: View,
+    str: String,
+    duration: Int = Snackbar.LENGTH_SHORT,
+    @StringRes actionText: Int? = null,
+    action: (() -> Unit)? = null
+) {
+    val sb = Snackbar.make(view, str, duration)
+    actionText?.run {
+        sb.setAction(actionText) {
+            action?.invoke()
+        }
+    }
+    sb.show()
+}

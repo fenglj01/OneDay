@@ -88,6 +88,16 @@ class ExpandableHomeItemAdapter(
         fun bind(item: EventAndEventSteps) {
 
             binding.apply {
+
+                // 点击 长按事件
+                eventCard.singleClick {
+                    eventItemListener.onEventClicked(item.event)
+                }
+                eventCard.setOnLongClickListener {
+                    eventItemListener.onEventLongPressed(item.event)
+                    true
+                }
+
                 eventAndSteps = item
                 binding.root.isActivated = item.event.isDone
                 eventCard.progress = if (item.event.isDone) 1F else 0F
@@ -189,6 +199,8 @@ class ExpandableHomeItemAdapter(
 
     interface EventItemListener {
         fun onEventDoneChanged(event: Event, isDone: Boolean)
+        fun onEventLongPressed(event: Event)
+        fun onEventClicked(event: Event)
     }
 
 }
