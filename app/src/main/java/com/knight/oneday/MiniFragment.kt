@@ -13,6 +13,7 @@ import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
+import com.knight.oneday.views.SureDeleteDialog
 import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
 import java.time.LocalDateTime
@@ -83,7 +84,7 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener {
     }
 
     override fun onEventLongPressed(event: Event) {
-        showSnackBar(binding.rvEvent, event.content)
+        SureDeleteDialog().show(requireActivity().supportFragmentManager, "s")
     }
 
     override fun onEventClicked(event: Event) {
