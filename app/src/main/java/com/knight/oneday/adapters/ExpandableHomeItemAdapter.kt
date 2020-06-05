@@ -106,9 +106,11 @@ class ExpandableHomeItemAdapter(
                     }
                     expandButton.visibility = View.VISIBLE
                     stepContentExpand.visibility = View.VISIBLE
+                    stepOverviewTv.visibility = View.VISIBLE
                 } else {
                     expandButton.visibility = View.GONE
                     stepContentExpand.visibility = View.GONE
+                    stepOverviewTv.visibility = View.GONE
                 }
 
                 // 设置内容部分
@@ -145,7 +147,8 @@ class ExpandableHomeItemAdapter(
                                     val z = dp2px(dp = 8F) * f
                                     eventCard.translationZ = z
                                 }*/
-                            ))
+                            )
+                        )
                     }
                 }
                 executePendingBindings()
