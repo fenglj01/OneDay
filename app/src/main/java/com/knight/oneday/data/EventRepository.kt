@@ -9,20 +9,18 @@ import java.util.*
  */
 class EventRepository private constructor(private val eventDao: EventDao) {
 
-    fun getAllEvent() = eventDao.getAllEvent()
-
-    fun getEventsWithSteps() = eventDao.getEventsWithSteps()
+    suspend fun updateEventDoneStatus(eventId: Long, isDone: Boolean) =
+        eventDao.updateEventDoneStatus(if (isDone) 1 else 0, eventId)
 
     fun searchEventsWithStepsByAll() = eventDao.searchEventsByAll()
 
-    fun searchEventsWithStepsByUnFinished() = eventDao.searchEventsByAll()
+    fun searchEventsWithStepsByUnFinished() = eventDao.searchEventsByUnFinished()
 
     suspend fun updateEvent(event: Event) {
         eventDao.updateEvent(event)
     }
 
     suspend fun createEvent(event: Event): Long = eventDao.insert(event)
-
 
 
     suspend fun removeAllEvent() {

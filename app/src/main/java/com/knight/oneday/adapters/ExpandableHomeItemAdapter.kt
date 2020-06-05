@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.knight.oneday.data.Event
 import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.databinding.EventWithStepItemLayoutBinding
 import com.knight.oneday.utilities.EventState
@@ -14,13 +15,19 @@ import com.knight.oneday.utilities.formatUi
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
 import com.knight.oneday.views.hsv.OnStepIndicatorClickListener
+import com.knight.oneday.views.swipe.EventSwipeActionDrawable
+import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
+import kotlin.math.abs
 
 /**
  * @author knight
  * create at 20-3-11 下午8:36
  * 首页可展开的ListAdapter
  */
-class ExpandableHomeItemAdapter() :
+class ExpandableHomeItemAdapter(
+    val eventItemListener: EventItemListener,
+    val recyclerView: RecyclerView
+) :
     ListAdapter<EventAndEventSteps, ExpandableHomeItemAdapter.EventCellViewHolder>(
         EventAndStepsDiffCallback
     ) {
@@ -72,19 +79,25 @@ class ExpandableHomeItemAdapter() :
     }
 
     inner class EventCellViewHolder(private val binding: EventWithStepItemLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), ReboundingSwipeActionCallback.ReboundableViewHolder {
+
+        init {
+            binding.root.background = EventSwipeActionDrawable(binding.root.context)
+        }
 
         fun bind(item: EventAndEventSteps) {
 
             binding.apply {
                 eventAndSteps = item
+                binding.root.isActivated = item.event.isDone
+                eventCard.progress = if (item.event.isDone) 1F else 0F
                 // 展开与否
                 val isExpanded = expandedItemList.contains(adapterPosition)
                 stepContentExpand.toggleNoAnimator(isExpanded)
                 // 设置预览部分
                 eventContent = item.event.content
                 remindTime = item.event.dueDateTime.formatUi()
-                eventCard.progress = if (item.event.isDone) 1F else 0F
+
                 if (item.eventSteps.isNotEmpty()) {
                     stepContentExpand.addExpandableStatusListener(expandButton)
                     stepOverviewTv.bindStepsOverView(item.eventSteps)
@@ -123,21 +136,57 @@ class ExpandableHomeItemAdapter() :
                                 },
                                 onCollapsed = {
                                     expandedItemList.remove(adapterPosition)
-                                },
-                                /*整个卡片的高度视差*/
+                                }/*,
+                                为了实现滑动完成任务 只能暂时关闭这个功能了
+                                *//*整个卡片的高度视差*//*
                                 onFraction = { fraction, isExpanding ->
+                                    recyclerView.clipChildren = false
                                     val f = if (isExpanding) fraction else 1F - fraction
                                     val z = dp2px(dp = 8F) * f
                                     eventCard.translationZ = z
-                                }
+                                }*/
                             ))
                     }
                 }
                 executePendingBindings()
             }
         }
+
+        override val reboundableView: View
+            get() = binding.eventCard
+
+        override fun onReboundOffsetChanged(
+            currentSwipePercentage: Float,
+            swipeThreshold: Float,
+            currentTargetHasMetThresholdOnce: Boolean
+        ) {
+            if (currentTargetHasMetThresholdOnce) return
+            val isDone = binding.eventAndSteps?.event?.isDone ?: false
+
+            // Animate the top left corner radius of the email card as swipe happens.
+            val interpolation = (currentSwipePercentage / swipeThreshold).coerceIn(0F, 1F)
+            val adjustedInterpolation = abs((if (isDone) 1F else 0F) - interpolation)
+            binding.eventCard.progress = adjustedInterpolation
+
+            // Start the background animation once the threshold is met.
+            val thresholdMet = currentSwipePercentage >= swipeThreshold
+            val shouldStar = when {
+                thresholdMet && isDone -> false
+                thresholdMet && !isDone -> true
+                else -> return
+            }
+            binding.root.isActivated = shouldStar
+        }
+
+        override fun onRebounded() {
+            val event = binding.eventAndSteps?.event ?: return
+            eventItemListener.onEventDoneChanged(event, !event.isDone)
+        }
     }
 
+    interface EventItemListener {
+        fun onEventDoneChanged(event: Event, isDone: Boolean)
+    }
 
 }
 

@@ -22,6 +22,8 @@ interface EventDao {
 
     /* @Query("UPDATE $TABLE_NAME_EVENT SET state =:eventState WHERE id =:id")
      suspend fun updateEventState(eventState: EventState, id: Long)*/
+    @Query("UPDATE $TABLE_NAME_EVENT SET is_done =:isDone WHERE id =:id")
+    suspend fun updateEventDoneStatus(isDone: Int, id: Long)
 
     @Update
     suspend fun updateEvent(event: Event)
@@ -38,7 +40,7 @@ interface EventDao {
     @Query("DELETE FROM $TABLE_NAME_EVENT WHERE id = :id")
     suspend fun deleteById(id: Long)
 
-    @Query("SELECT * FROM (SELECT * FROM $TABLE_NAME_EVENT ORDER BY is_done asc) ORDER BY due_date_time desc")
+    @Query("SELECT * FROM (SELECT * FROM $TABLE_NAME_EVENT ORDER BY due_date_time desc) ORDER BY is_done asc")
     fun searchEventsByAll(): LiveData<List<EventAndEventSteps>>
 
     @Query("SELECT * FROM $TABLE_NAME_EVENT WHERE is_done =0 ORDER BY due_date_time desc")

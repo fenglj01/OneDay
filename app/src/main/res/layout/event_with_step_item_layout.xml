@@ -28,7 +28,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_4"
+        android:layout_marginHorizontal="@dimen/dp_4"
+        android:layout_marginVertical="@dimen/dp_2"
         android:background="?attr/colorSecondary">
 
         <com.google.android.material.card.MaterialCardView
