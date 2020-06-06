@@ -27,4 +27,13 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
         )
     }
 
+    fun removeEvent(event: Event) {
+        launchOnIO(
+            tryBlock = {
+                repository.removeEventById(event.eventId)
+            }
+        )
+    }
+
+
 }
