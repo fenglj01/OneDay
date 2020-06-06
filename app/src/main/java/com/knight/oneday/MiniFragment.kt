@@ -84,7 +84,16 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener {
     }
 
     override fun onEventLongPressed(event: Event) {
-        SureDeleteDialog().show(requireActivity().supportFragmentManager, "s")
+        if (SettingPreferences.showRemindDelete) {
+            SureDeleteDialog().apply {
+                onSure = {
+                    miniVm.removeEvent(event)
+                }
+            }.show(requireActivity().supportFragmentManager, DIALOG_TAG_DELETE_EVENT)
+        } else {
+            miniVm.removeEvent(event)
+        }
+
     }
 
     override fun onEventClicked(event: Event) {

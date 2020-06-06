@@ -21,6 +21,7 @@ class PreferenceAttrProxy<T>(val key: String, private val defaultValue: T) :
         const val KEY_SHOW_ALLOW_EXPIRED = "show_allow_expired"
         const val KEY_SHOW_ALLOW_FINISHED = "show_allow_finished"
         const val KEY_SHOW_SNACK_REMIND_NOT_SHOW_EXPIRED_EVENT = "remind_not_show_expired"
+        const val KEY_SHOW_REMIND_DELETE_EVENT = "remind_delete_event"
 
     }
 

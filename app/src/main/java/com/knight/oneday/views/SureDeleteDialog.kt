@@ -1,14 +1,13 @@
 package com.knight.oneday.views
 
-import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AlertDialog
+import android.widget.Switch
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.knight.oneday.R
-import java.lang.RuntimeException
-import java.util.zip.Inflater
+import com.knight.oneday.utilities.SettingPreferences
+import com.knight.oneday.utilities.singleClick
 
 /**
  * Create by FLJ in 2020/6/5 14:55
@@ -16,14 +15,31 @@ import java.util.zip.Inflater
  */
 class SureDeleteDialog : DialogFragment() {
 
-    /*R.layout.dialog_never_remind_delete*/
+    private lateinit var dialogView: View
+
+    var onSure: (() -> Unit)? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        dialogView = inflater.inflate(R.layout.dialog_never_remind_delete, container)
+        return dialogView
+    }
 
-        return inflater.inflate(R.layout.dialog_never_remind_delete, container)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        dialogView.findViewById<Switch>(R.id.sw).setOnCheckedChangeListener { _, isChecked ->
+            SettingPreferences.showRemindDelete = !isChecked
+        }
+        dialogView.findViewById<TextView>(R.id.tv_sure).singleClick {
+            dialog?.dismiss()
+            onSure?.invoke()
+        }
+        dialogView.findViewById<TextView>(R.id.tv_cancel).singleClick {
+            dialog?.dismiss()
+        }
     }
 
     override fun onStart() {

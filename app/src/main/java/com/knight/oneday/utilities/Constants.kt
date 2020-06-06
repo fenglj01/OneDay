@@ -13,3 +13,6 @@ const val TABLE_NAME_STEP = "steps"
 const val VIEW_MODEL_STATUS_ON_IO = 0
 const val VIEW_MODEL_STATUS_ON_SUCCESS = 1
 const val VIEW_MODEL_STATUS_ON_FAIL = 2
+
+
+const val DIALOG_TAG_DELETE_EVENT = "delete_event"

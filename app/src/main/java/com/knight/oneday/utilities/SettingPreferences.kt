@@ -3,6 +3,7 @@ package com.knight.oneday.utilities
 import com.knight.oneday.R
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_ALLOW_EXPIRED
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_ALLOW_FINISHED
+import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_REMIND_DELETE_EVENT
 import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_SNACK_REMIND_NOT_SHOW_EXPIRED_EVENT
 
 /**
@@ -13,6 +14,7 @@ object SettingPreferences {
 
     var showAllowExpired: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_EXPIRED, false)
     var showAllowFinished: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_FINISHED, false)
+    var showRemindDelete: Boolean by PreferenceAttrProxy(KEY_SHOW_REMIND_DELETE_EVENT, true)
 
     /* 是否展示提示用户当前列表不展示过期任务 */
     var showRemindNotAllowExpired: Boolean by PreferenceAttrProxy(
