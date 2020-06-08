@@ -13,6 +13,7 @@ import com.knight.oneday.R
 import com.knight.oneday.data.Step
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
+import com.knight.oneday.utilities.getString
 import com.knight.oneday.views.getDrawableOrNull
 import com.knight.oneday.views.hsv.HorizontalStepView
 import com.knight.oneday.views.step.*
@@ -162,8 +163,11 @@ fun TextView.bindStepsOverView(steps: List<Step>) {
         visibility = View.GONE
     } else {
         visibility = View.VISIBLE
-        val nowStep = steps.first { it.state == EventState.UNFINISHED }
-        text = "一共 $size 步 当前第 ${nowStep.serialNumber} 步: ${nowStep.content}"
+        val nowStep = steps.indexOfFirst { it.state == EventState.UNFINISHED }
+        text = getString(R.string.over_view_step).format(
+            size,
+            nowStep + 1
+        )
     }
 }
 

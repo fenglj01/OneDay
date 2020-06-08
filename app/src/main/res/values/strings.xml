@@ -60,7 +60,7 @@
     <string name="plase_finished_previous_step">请先完成上一步创建</string>
     <string name="create_event_fail">创建事件失败</string>
     <string name="finish">完成</string>
-    <string name="over_view_step">一共 %1$d 步，当前第 %2$d 步</string>
+    <string name="over_view_step">共: %1$d步，当前:第 %2$d 步</string>
     <string name="choice_date_time"><![CDATA[日期&时间]]></string>
     <string name="am">AM</string>
     <string name="pm">PM</string>
@@ -93,4 +93,5 @@
     <string name="cancel">取消</string>
     <string name="title_sure_delete">确认删除？</string>
     <string name="message_sure_delete_event">确认删除这个事件吗?</string>
+    <string name="event_step_overview">共:%1$d步,当前:%2$d</string>
 </resources>
