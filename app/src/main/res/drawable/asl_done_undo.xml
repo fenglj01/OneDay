@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/done"
+        android:drawable="@drawable/ic_done_black_18dp"
+        android:state_activated="false" />
+
+    <item
+        android:id="@+id/undo"
+        android:drawable="@drawable/ic_one_day_undo"
+        android:state_activated="true" />
+
+    <transition
+        android:drawable="@drawable/avd_done_to_undo"
+        android:fromId="@id/done"
+        android:toId="@id/undo" />
+
+    <transition
+        android:drawable="@drawable/avd_undo_to_done"
+        android:fromId="@id/undo"
+        android:toId="@id/done" />
+
+</animated-selector>

@@ -39,4 +39,6 @@ data class Step(
     override fun toString(): String {
         return "id $stepId - eventId $eventId content $content"
     }
+
+    fun isDone(): Boolean = this.state == EventState.FINISHED
 }

@@ -16,6 +16,13 @@ class AvdDrawableImageButton : AppCompatImageButton {
     var onButtonClickListener: OnButtonClickListener? = null
 
     var nowState: State = false
+        set(value) {
+            field = value
+            setImageState(
+                if (nowState) intArrayOf(android.R.attr.state_activated)
+                else intArrayOf(-android.R.attr.state_activated), true
+            )
+        }
 
     constructor(context: Context?) : this(context, null)
 
@@ -34,10 +41,7 @@ class AvdDrawableImageButton : AppCompatImageButton {
         editText.addTextChangedListener { editable ->
             editable?.run {
                 nowState = condition.invoke(length)
-                setImageState(
-                    if (nowState) intArrayOf(android.R.attr.state_activated)
-                    else intArrayOf(-android.R.attr.state_activated), true
-                )
+
             }
         }
     }
@@ -48,6 +52,10 @@ class AvdDrawableImageButton : AppCompatImageButton {
                 if (nowState) onStateOnReserveClick() else onStateOnForwardClick()
             }
         }
+    }
+
+    fun revert() {
+        nowState = !nowState
     }
 
 

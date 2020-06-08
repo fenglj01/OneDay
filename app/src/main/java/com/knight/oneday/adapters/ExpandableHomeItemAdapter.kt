@@ -14,6 +14,7 @@ import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.formatUi
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.views.OnButtonClickListener
 import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
 import com.knight.oneday.views.hsv.OnStepIndicatorClickListener
 import com.knight.oneday.views.swipe.EventSwipeActionDrawable
@@ -149,9 +150,25 @@ class ExpandableHomeItemAdapter(
                             hsv.onStepIndicatorClickListener =
                                 object : OnStepIndicatorClickListener {
                                     override fun onStepIndicatorClick(pos: Int) {
-                                        tvStep.text = item.eventSteps[pos].content
+                                        val currentStep = item.eventSteps[pos]
+                                        tvStep.text = currentStep.content
+                                        /* 对按钮的操作 */
+                                        stepDoneUndoIb.setImageState(
+                                            if (currentStep.isDone()) intArrayOf(android.R.attr.state_activated) else intArrayOf(
+                                                -android.R.attr.state_activated
+                                            ), true
+                                        )
                                     }
                                 }
+                            stepDoneUndoIb.onButtonClickListener = object : OnButtonClickListener {
+                                override fun onStateOnForwardClick() {
+                                    stepDoneUndoIb.revert()
+                                }
+
+                                override fun onStateOnReserveClick() {
+                                    stepDoneUndoIb.revert()
+                                }
+                            }
                             hsv.bindStepIndicator(item.eventSteps)
                             /* 获取当前正在执行项的位置 */
                             val currentIndex =
