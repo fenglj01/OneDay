@@ -319,7 +319,7 @@ class StepIndicator @JvmOverloads constructor(
     private fun isShowingUnFinishedStatus() = currentCount in 0 until stepCount
 
     /* 是否显示了已完成的项目 */
-    private fun isShowingFinishedStatus() = currentCount != INVALID_STATUS_COUNT
+    private fun isShowingFinishedStatus() = currentCount > 0
 
     /**
      * 初始化绘制的内容

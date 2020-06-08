@@ -43,7 +43,7 @@ class HorizontalStepView @JvmOverloads constructor(
     }
 
     fun selectStepNumber(): Int {
-        return stepIndicator.selectedIndex
+        return stepIndicator.selectedIndex - 1
     }
 
 }

@@ -164,7 +164,7 @@ class ExpandableHomeItemAdapter(
                             stepDoneUndoIb.onButtonClickListener = object : OnButtonClickListener {
                                 override fun onStateOnForwardClick() {
                                     stepDoneUndoIb.revert()
-                                    val selectIndex = hsv.selectStepNumber() - 1
+                                    val selectIndex = hsv.selectStepNumber()
                                     if (selectIndex in item.eventSteps.indices) {
                                         eventItemListener.onStepIbClicked(
                                             item.eventSteps[selectIndex],
