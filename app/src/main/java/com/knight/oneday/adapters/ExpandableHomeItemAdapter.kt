@@ -97,6 +97,14 @@ class ExpandableHomeItemAdapter(
                     stepOverviewTv.isVisible = isVisible
                 }
 
+                /* 修改事件相关内容字体颜色 根据是否完成 */
+                fun changeTextColor(isDone: Boolean) {
+                    val alpha = if (isDone) 0.6F else 1F
+                    remindTimeIv.alpha = alpha
+                    remindTimeTv.alpha = alpha
+                    overviewEventContent.alpha = alpha
+                }
+
                 /* 基本内容初始化 */
                 eventAndSteps = item
                 binding.root.isActivated = item.event.isDone
@@ -104,6 +112,7 @@ class ExpandableHomeItemAdapter(
 
                 /* 如果一完成那么不需要显示步骤预览以及可展开了 */
                 changeStepViewVisible(!item.event.isDone)
+                changeTextColor(item.event.isDone)
                 // 设置预览部分
                 eventContent = item.event.content
                 remindTime = item.event.dueDateTime.formatUi()
