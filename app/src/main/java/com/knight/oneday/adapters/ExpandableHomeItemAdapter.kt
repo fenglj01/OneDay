@@ -3,6 +3,7 @@ package com.knight.oneday.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -89,6 +90,24 @@ class ExpandableHomeItemAdapter(
 
             binding.apply {
 
+                /* 修改步骤预览展开相关的可见性 */
+                fun changeStepViewVisible(isVisible: Boolean) {
+                    expandButton.isVisible = isVisible
+                    stepContentExpand.isVisible = isVisible
+                    stepOverviewTv.isVisible = isVisible
+                }
+
+                /* 基本内容初始化 */
+                eventAndSteps = item
+                binding.root.isActivated = item.event.isDone
+                eventCard.progress = if (item.event.isDone) 1F else 0F
+
+                /* 如果一完成那么不需要显示步骤预览以及可展开了 */
+                changeStepViewVisible(!item.event.isDone)
+                // 设置预览部分
+                eventContent = item.event.content
+                remindTime = item.event.dueDateTime.formatUi()
+
                 // 点击 长按事件
                 eventCard.singleClick {
                     eventItemListener.onEventClicked(item.event)
@@ -97,58 +116,50 @@ class ExpandableHomeItemAdapter(
                     eventItemListener.onEventLongPressed(item.event)
                     true
                 }
-
-                eventAndSteps = item
-                binding.root.isActivated = item.event.isDone
-                eventCard.progress = if (item.event.isDone) 1F else 0F
-                // 展开与否
-                val isExpanded = expandedItemList.contains(adapterPosition)
-                stepContentExpand.toggleNoAnimator(isExpanded)
-                // 设置预览部分
-                eventContent = item.event.content
-                remindTime = item.event.dueDateTime.formatUi()
-
-                if (item.eventSteps.isNotEmpty()) {
-                    stepContentExpand.addExpandableStatusListener(expandButton)
-                    stepOverviewTv.bindStepsOverView(item.eventSteps)
-                    expandButton.singleClick {
-                        stepContentExpand.toggle()
-                    }
-                    expandButton.visibility = View.VISIBLE
-                    stepContentExpand.visibility = View.VISIBLE
-                    stepOverviewTv.visibility = View.VISIBLE
-                } else {
-                    expandButton.visibility = View.GONE
-                    stepContentExpand.visibility = View.GONE
-                    stepOverviewTv.visibility = View.GONE
-                }
-
-                // 设置内容部分
-                with(includeContent) {
-                    content = item
+                /* 如果用户已经完成了这项任务 那么不需要做内容的适配了 */
+                if (!item.event.isDone) {
+                    // 展开step内容相关
+                    val isExpanded = expandedItemList.contains(adapterPosition)
+                    stepContentExpand.toggleNoAnimator(isExpanded)
+                    /* 步骤是否为空的情况决定预览和站看内容的可见性 */
                     if (item.eventSteps.isNotEmpty()) {
-                        /* 步骤指示器点击事件 */
-                        hsv.onStepIndicatorClickListener = object : OnStepIndicatorClickListener {
-                            override fun onStepIndicatorClick(pos: Int) {
-                                tvStep.text = item.eventSteps[pos].content
-                            }
+                        stepContentExpand.addExpandableStatusListener(expandButton)
+                        stepOverviewTv.bindStepsOverView(item.eventSteps)
+                        expandButton.singleClick {
+                            stepContentExpand.toggle()
                         }
-                        /* 获取当前正在执行项的位置 */
-                        val currentIndex =
-                            item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED }
-                        tvStep.text =
-                            if (currentIndex != -1) item.eventSteps[currentIndex].content else item.eventSteps.first().content
-                        /* 展开内容的监听 */
-                        stepContentExpand.addExpandableStatusListener(
-                            ExpandableStatusListenerLambdaAdapter(
-                                onExpanded = {
-                                    expandedItemList.add(adapterPosition)
-                                    /* 滚动到当前项 */
-                                    hsv.smoothScrollToStep(item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED } + 1)
-                                },
-                                onCollapsed = {
-                                    expandedItemList.remove(adapterPosition)
-                                }/*,
+                        changeStepViewVisible(true)
+                    } else {
+                        changeStepViewVisible(false)
+                    }
+                    // 设置内容部分
+                    with(includeContent) {
+                        content = item
+                        if (item.eventSteps.isNotEmpty()) {
+                            /* 步骤指示器点击事件 */
+                            hsv.onStepIndicatorClickListener =
+                                object : OnStepIndicatorClickListener {
+                                    override fun onStepIndicatorClick(pos: Int) {
+                                        tvStep.text = item.eventSteps[pos].content
+                                    }
+                                }
+                            hsv.bindStepIndicator(item.eventSteps)
+                            /* 获取当前正在执行项的位置 */
+                            val currentIndex =
+                                item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED }
+                            tvStep.text =
+                                if (currentIndex != -1) item.eventSteps[currentIndex].content else item.eventSteps.first().content
+                            /* 展开内容的监听 */
+                            stepContentExpand.addExpandableStatusListener(
+                                ExpandableStatusListenerLambdaAdapter(
+                                    onExpanded = {
+                                        expandedItemList.add(adapterPosition)
+                                        /* 滚动到当前项 */
+                                        hsv.smoothScrollToStep(item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED } + 1)
+                                    },
+                                    onCollapsed = {
+                                        expandedItemList.remove(adapterPosition)
+                                    }/*,
                                 为了实现滑动完成任务 只能暂时关闭这个功能了
                                 *//*整个卡片的高度视差*//*
                                 onFraction = { fraction, isExpanding ->
@@ -157,8 +168,9 @@ class ExpandableHomeItemAdapter(
                                     val z = dp2px(dp = 8F) * f
                                     eventCard.translationZ = z
                                 }*/
+                                )
                             )
-                        )
+                        }
                     }
                 }
                 executePendingBindings()

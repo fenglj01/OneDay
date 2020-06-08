@@ -24,7 +24,6 @@
 
         <com.knight.oneday.views.hsv.HorizontalStepView
             android:id="@+id/hsv"
-            bindStepIndicator="@{content.eventSteps}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_16"
