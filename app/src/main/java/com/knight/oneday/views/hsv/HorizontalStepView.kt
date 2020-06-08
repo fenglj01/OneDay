@@ -42,5 +42,9 @@ class HorizontalStepView @JvmOverloads constructor(
         smoothScrollTo(stepIndicator.getXPositionByStep(stepCount), scrollY)
     }
 
+    fun selectStepNumber(): Int {
+        return stepIndicator.selectedIndex
+    }
+
 }
 

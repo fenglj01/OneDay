@@ -33,6 +33,14 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
         )
     }
 
+    fun updateStepState(isDone: Boolean, stepId: Long) {
+        launchOnIO(
+            tryBlock = {
+                repository.updateStepState(isDone, stepId)
+            }
+        )
+    }
+
     fun refreshList() {
         eventList = repository.searchEventsWithSteps()
     }

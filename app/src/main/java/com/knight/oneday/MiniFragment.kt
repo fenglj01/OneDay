@@ -2,24 +2,20 @@ package com.knight.oneday
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
-import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.knight.oneday.adapters.ExpandableHomeItemAdapter
 import com.knight.oneday.data.Event
-import com.knight.oneday.data.EventAndEventSteps
+import com.knight.oneday.data.Step
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
 import com.knight.oneday.views.SureDeleteDialog
-import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
-import java.time.LocalDateTime
 
 /**
  * @author knight
@@ -30,7 +26,7 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
     SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val miniVm: MiniViewModel by viewModels {
-        InjectorUtils.miniEventViewModelFactory(
+        InjectorUtils.eventWithStepViewModelFactory(
             requireContext()
         )
     }
@@ -107,5 +103,9 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
 
     override fun onEventClicked(event: Event) {
 
+    }
+
+    override fun onStepIbClicked(step: Step, isDone: Boolean) {
+        miniVm.updateStepState(isDone, step.stepId)
     }
 }

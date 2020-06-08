@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.EventAndEventSteps
+import com.knight.oneday.data.Step
 import com.knight.oneday.databinding.EventWithStepItemLayoutBinding
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.dp2px
@@ -163,10 +164,25 @@ class ExpandableHomeItemAdapter(
                             stepDoneUndoIb.onButtonClickListener = object : OnButtonClickListener {
                                 override fun onStateOnForwardClick() {
                                     stepDoneUndoIb.revert()
+                                    val selectIndex = hsv.selectStepNumber() - 1
+                                    if (selectIndex in item.eventSteps.indices) {
+                                        eventItemListener.onStepIbClicked(
+                                            item.eventSteps[selectIndex],
+                                            true
+                                        )
+                                    }
+
                                 }
 
                                 override fun onStateOnReserveClick() {
                                     stepDoneUndoIb.revert()
+                                    val selectIndex = hsv.selectStepNumber()
+                                    if (selectIndex in item.eventSteps.indices) {
+                                        eventItemListener.onStepIbClicked(
+                                            item.eventSteps[selectIndex],
+                                            false
+                                        )
+                                    }
                                 }
                             }
                             hsv.bindStepIndicator(item.eventSteps)
@@ -239,6 +255,7 @@ class ExpandableHomeItemAdapter(
         fun onEventDoneChanged(event: Event, isDone: Boolean)
         fun onEventLongPressed(event: Event)
         fun onEventClicked(event: Event)
+        fun onStepIbClicked(step: Step, isDone: Boolean)
     }
 
 }

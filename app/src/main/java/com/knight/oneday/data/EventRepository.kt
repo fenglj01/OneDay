@@ -8,7 +8,10 @@ import java.util.*
  * Create by FLJ in 2020/3/2 14:52
  * 事件仓库，仓库也严格的使用单例来保证严谨
  */
-class EventRepository private constructor(private val eventDao: EventDao) {
+class EventRepository private constructor(
+    private val eventDao: EventDao,
+    private val stepDao: StepDao
+) {
 
     suspend fun updateEventDoneStatus(eventId: Long, isDone: Boolean) =
         eventDao.updateEventDoneStatus(if (isDone) 1 else 0, eventId)
@@ -35,13 +38,17 @@ class EventRepository private constructor(private val eventDao: EventDao) {
         eventDao.deleteById(id)
     }
 
+    suspend fun updateStepState(isDone: Boolean, stepId: Long) {
+        stepDao.updateStepState(if (isDone) EventState.FINISHED else EventState.UNFINISHED, stepId)
+    }
+
 
     companion object {
         private var INSTANCE: EventRepository? = null
 
-        fun getInstance(eventDao: EventDao): EventRepository {
+        fun getInstance(eventDao: EventDao, stepDao: StepDao): EventRepository {
             return INSTANCE ?: synchronized(this) {
-                INSTANCE ?: EventRepository(eventDao).also { INSTANCE = it }
+                INSTANCE ?: EventRepository(eventDao, stepDao).also { INSTANCE = it }
             }
         }
     }

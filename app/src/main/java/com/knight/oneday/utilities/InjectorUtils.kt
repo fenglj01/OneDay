@@ -14,21 +14,24 @@ object InjectorUtils {
 
     fun dayEventAndStepViewModelFactory(context: Context): DayEventAndStepViewModel {
         return DayEventAndStepViewModel(
-            getEventRepository(context),
+            getEventWithStepRepository(context),
             getStepRepository(context)
         )
     }
 
-    fun miniEventViewModelFactory(context: Context): MiniViewModelFactory {
-        return MiniViewModelFactory(getEventRepository(context))
+    fun eventWithStepViewModelFactory(context: Context): MiniViewModelFactory {
+        return MiniViewModelFactory(getEventWithStepRepository(context))
     }
 
     fun createEventViewModelFactory(context: Context): CreateEventViewModelFactory {
-        return CreateEventViewModelFactory(getEventRepository(context), getStepRepository(context))
+        return CreateEventViewModelFactory(getEventWithStepRepository(context), getStepRepository(context))
     }
 
-    private fun getEventRepository(context: Context): EventRepository =
-        EventRepository.getInstance(AppDatabase.getDatabase(context.applicationContext).eventDao())
+    private fun getEventWithStepRepository(context: Context): EventRepository =
+        EventRepository.getInstance(
+            AppDatabase.getDatabase(context.applicationContext).eventDao(),
+            (AppDatabase.getDatabase(context.applicationContext).stepDao())
+        )
 
     private fun getStepRepository(context: Context): StepRepository =
         StepRepository.getInstance((AppDatabase.getDatabase(context.applicationContext).stepDao()))
