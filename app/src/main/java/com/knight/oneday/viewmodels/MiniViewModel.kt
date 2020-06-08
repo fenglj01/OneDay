@@ -12,9 +12,7 @@ import com.knight.oneday.utilities.SettingPreferences
  */
 class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
 
-    val eventList =
-        if (SettingPreferences.showAllowFinished) repository.searchEventsWithStepsByAll()
-        else repository.searchEventsWithStepsByUnFinished()
+    var eventList = repository.searchEventsWithSteps()
 
     fun updateEventDoneStatus(event: Event, isDone: Boolean) {
         launchOnIO(
@@ -33,6 +31,10 @@ class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
                 repository.removeEventById(event.eventId)
             }
         )
+    }
+
+    fun refreshList() {
+        eventList = repository.searchEventsWithSteps()
     }
 
 

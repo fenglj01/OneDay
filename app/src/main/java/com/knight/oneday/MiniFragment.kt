@@ -1,11 +1,14 @@
 package com.knight.oneday
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.preference.Preference
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.knight.oneday.adapters.ExpandableHomeItemAdapter
 import com.knight.oneday.data.Event
@@ -23,7 +26,8 @@ import java.time.LocalDateTime
  * create at 20-3-9 下午7:21
  * 极简风格的主页
  */
-class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener {
+class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
+    SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val miniVm: MiniViewModel by viewModels {
         InjectorUtils.miniEventViewModelFactory(
@@ -76,7 +80,12 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener {
     }
 
     private fun initListeners() {
+        PreferenceManager.getDefaultSharedPreferences(context)
+            .registerOnSharedPreferenceChangeListener(this)
+    }
 
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (key == PreferenceAttrProxy.KEY_SHOW_ALLOW_FINISHED) miniVm.refreshList()
     }
 
     override fun onEventDoneChanged(event: Event, isDone: Boolean) {

@@ -13,7 +13,7 @@ import com.knight.oneday.utilities.PreferenceAttrProxy.Companion.KEY_SHOW_SNACK_
 object SettingPreferences {
 
     var showAllowExpired: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_EXPIRED, false)
-    var showAllowFinished: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_FINISHED, false)
+    var showAllowFinished: Boolean by PreferenceAttrProxy(KEY_SHOW_ALLOW_FINISHED, true)
     var showRemindDelete: Boolean by PreferenceAttrProxy(KEY_SHOW_REMIND_DELETE_EVENT, true)
 
     /* 是否展示提示用户当前列表不展示过期任务 */

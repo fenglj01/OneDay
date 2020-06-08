@@ -1,6 +1,7 @@
 package com.knight.oneday.data
 
 import com.knight.oneday.utilities.EventState
+import com.knight.oneday.utilities.SettingPreferences
 import java.util.*
 
 /**
@@ -15,6 +16,9 @@ class EventRepository private constructor(private val eventDao: EventDao) {
     fun searchEventsWithStepsByAll() = eventDao.searchEventsByAll()
 
     fun searchEventsWithStepsByUnFinished() = eventDao.searchEventsByUnFinished()
+
+    fun searchEventsWithSteps() =
+        if (SettingPreferences.showAllowFinished) eventDao.searchEventsByAll() else eventDao.searchEventsByUnFinished()
 
     suspend fun updateEvent(event: Event) {
         eventDao.updateEvent(event)

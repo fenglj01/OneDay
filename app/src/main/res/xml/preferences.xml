@@ -10,7 +10,7 @@
 
 
         <SwitchPreference
-            app:defaultValue="false"
+            app:defaultValue="true"
             app:iconSpaceReserved="false"
             app:key="show_allow_finished"
             app:title="@string/show_allow_finished" />
