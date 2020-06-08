@@ -186,6 +186,12 @@ fun StepListControlView.bindStepList(list: List<Step>) {
 
 @BindingAdapter("bindStepIndicator")
 fun HorizontalStepView.bindStepIndicator(list: List<Step>) {
-    setUpStepIndicator(list.size, list.indexOfFirst { it.state == EventState.UNFINISHED } + 1)
+    val firstUnfinishedIndex = list.indexOfFirst { it.state == EventState.UNFINISHED }
+    /* 如果所有步骤都完成了那么currentIndex置为最后一步的后一步? */
+    val currentCount = if (firstUnfinishedIndex == -1) list.size + 1 else firstUnfinishedIndex + 1
+    setUpStepIndicator(
+        list.size,
+        currentCount
+    )
 }
 
