@@ -41,9 +41,7 @@ class StepIndicator @JvmOverloads constructor(
     /* 步骤的总数 */
     var stepCount: Int by OnLayoutProp(0)
     /* 当前的步骤数 如果在读取过attrs后更改这个属性 那么需要requestLayout */
-    var currentCount: Int by OnLayoutProp(INVALID_STATUS_COUNT) {
-        if (selectedIndex == INVALID_STATUS_COUNT) selectedIndex = currentCount
-    }
+    var currentCount: Int by OnLayoutProp(INVALID_STATUS_COUNT)
     var circleRadius: Float by OnLayoutProp(16F.px)
     /* drawable的修改需要触发重绘 */
     var finishedDrawable: Drawable? by OnValidateProp(null) {

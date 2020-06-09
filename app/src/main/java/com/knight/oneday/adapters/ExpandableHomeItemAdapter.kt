@@ -35,7 +35,10 @@ class ExpandableHomeItemAdapter(
     ) {
 
     var currentChangedItemIndex: Int = -1
+    /* 记录已展开得项目 */
     private val expandedItemList: MutableSet<Int> = mutableSetOf()
+    /* 记录事件对应选择得Index */
+    private val selectedIndexList: MutableMap<Long, Int> = mutableMapOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventCellViewHolder {
         return EventCellViewHolder(
@@ -108,16 +111,13 @@ class ExpandableHomeItemAdapter(
 
                 /* 设置按钮的选中状态 */
                 fun setupStepDoneUndoIb(pos: Int) {
-                    if (pos !in item.eventSteps.indices) {
-                        includeContent.stepDoneUndoIb.isVisible = false
-                        return
-                    } else {
-                        includeContent.stepDoneUndoIb.isVisible = true
-                        val currentStep = item.eventSteps[pos]
-                        includeContent.tvStep.text = currentStep.content
-                        /* 对按钮的操作 */
-                        includeContent.stepDoneUndoIb.nowState = currentStep.isDone()
-                    }
+                    val selectedIndex = if (pos in item.eventSteps.indices) pos else 0
+
+                    val currentStep = item.eventSteps[selectedIndex]
+                    includeContent.tvStep.text = currentStep.content
+                    /* 对按钮的操作 */
+                    includeContent.stepDoneUndoIb.nowState = currentStep.isDone()
+
                 }
 
                 /* 基本内容初始化 */
@@ -167,6 +167,7 @@ class ExpandableHomeItemAdapter(
                                 object : OnStepIndicatorClickListener {
                                     override fun onStepIndicatorClick(pos: Int) {
                                         setupStepDoneUndoIb(pos)
+                                        selectedIndexList[item.event.eventId] = pos
                                     }
                                 }
                             /* 步骤得完成和撤销完成 */
@@ -182,11 +183,10 @@ class ExpandableHomeItemAdapter(
                                 }
                             }
                             hsv.bindStepIndicator(item.eventSteps)
+                            val selectedIndex = selectedIndexList[item.event.eventId] ?: 0
+                            hsv.setSelectedIndex(selectedIndexList[item.event.eventId] ?: 0)
                             /* 获取当前正在执行项的位置 */
-                            val currentIndex =
-                                item.eventSteps.indexOfFirst { it.state == EventState.UNFINISHED }
-                            tvStep.text =
-                                if (currentIndex != -1) item.eventSteps[currentIndex].content else item.eventSteps.first().content
+                            tvStep.text = item.eventSteps[selectedIndex].content
                             /* 展开内容的监听 */
                             stepContentExpand.addExpandableStatusListener(
                                 ExpandableStatusListenerLambdaAdapter(
