@@ -18,4 +18,9 @@ class ExpandStatusButton @JvmOverloads constructor(
         rotation = if (isExpanding) 180F * fraction else 180f * (1 - fraction)
     }
 
+
+    fun setStatus(isExpanded: Boolean) {
+        rotation = if (isExpanded) 180F else 0F
+    }
 }
+

@@ -145,6 +145,7 @@ class ExpandableHomeItemAdapter(
                     // 展开step内容相关
                     val isExpanded = expandedItemList.contains(adapterPosition)
                     stepContentExpand.toggleNoAnimator(isExpanded)
+                    expandButton.setStatus(isExpanded)
                     /* 步骤是否为空的情况决定预览和站看内容的可见性 */
                     if (item.eventSteps.isNotEmpty()) {
                         stepContentExpand.addExpandableStatusListener(expandButton)
