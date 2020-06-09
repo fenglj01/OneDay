@@ -4,6 +4,7 @@ import androidx.room.*
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.utilities.TABLE_NAME_EVENT
+import com.knight.oneday.utilities.currentTimeMills
 import java.util.*
 
 /**
@@ -29,4 +30,6 @@ data class Event(
     override fun toString(): String {
         return "$eventId - $content -$isDone"
     }
+
+    fun isExpired(): Boolean = this.dueDateTime.timeInMillis < currentTimeMills()
 }

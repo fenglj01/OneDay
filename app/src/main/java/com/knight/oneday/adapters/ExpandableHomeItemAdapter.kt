@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.knight.oneday.R
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.data.Step
@@ -19,6 +20,7 @@ import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
 import com.knight.oneday.views.hsv.OnStepIndicatorClickListener
 import com.knight.oneday.views.swipe.EventSwipeActionDrawable
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
+import com.knight.oneday.views.themeColor
 import kotlin.math.abs
 
 /**
@@ -107,6 +109,16 @@ class ExpandableHomeItemAdapter(
                     remindTimeIv.alpha = alpha
                     remindTimeTv.alpha = alpha
                     overviewEventContent.alpha = alpha
+                    val color = root.context.themeColor(
+                        if (item.event.isExpired() && !isDone) R.attr.colorError
+                        else R.attr.colorOnSurface
+                    )
+                    val drawable = root.context.getDrawable(
+                        if (item.event.isExpired() && !isDone) R.drawable.ic_one_day_schedule_expired
+                        else R.drawable.ic_one_day_schedule
+                    )
+                    remindTimeIv.setImageDrawable(drawable)
+                    remindTimeTv.setTextColor(color)
                 }
 
                 /* 设置按钮的选中状态 */

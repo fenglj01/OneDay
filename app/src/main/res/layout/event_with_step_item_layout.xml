@@ -62,7 +62,7 @@
                         android:layout_height="@dimen/dp_24"
                         android:layout_marginStart="@dimen/dp_16"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:src="@drawable/ic_one_day_event_remind_time"
+                        android:src="@drawable/ic_one_day_schedule"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
