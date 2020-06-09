@@ -2,6 +2,7 @@ package com.knight.oneday
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -65,6 +66,7 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
 
     private fun subscribeUi() {
         miniVm.eventList.observe(viewLifecycleOwner) { listEvents ->
+            Log.d("TAG","listEvents")
             adapter.submitList(listEvents) {
                 /*用于currentListChange中计算出变化的位置后 进行滚动*/
                 if (adapter.currentChangedItemIndex in listEvents.indices) {

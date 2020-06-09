@@ -48,12 +48,13 @@ class AvdDrawableImageButton : AppCompatImageButton {
     }
 
     private fun initListener() {
-        singleClick {
+        setOnClickListener {
             onButtonClickListener?.run {
                 if (nowState) onStateOnReserveClick() else onStateOnForwardClick()
             }
             onButtonClicked?.run {
                 onButtonClicked(nowState)
+                nowState = !nowState
             }
         }
     }

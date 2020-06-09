@@ -116,11 +116,7 @@ class ExpandableHomeItemAdapter(
                         val currentStep = item.eventSteps[pos]
                         includeContent.tvStep.text = currentStep.content
                         /* 对按钮的操作 */
-                        includeContent.stepDoneUndoIb.setImageState(
-                            if (currentStep.isDone()) intArrayOf(android.R.attr.state_activated) else intArrayOf(
-                                -android.R.attr.state_activated
-                            ), true
-                        )
+                        includeContent.stepDoneUndoIb.nowState = currentStep.isDone()
                     }
                 }
 
@@ -163,8 +159,8 @@ class ExpandableHomeItemAdapter(
                     // 设置内容部分
                     with(includeContent) {
                         content = item
-                        setupStepDoneUndoIb(hsv.selectStepIndex())
                         if (item.eventSteps.isNotEmpty()) {
+                            setupStepDoneUndoIb(hsv.selectStepIndex())
                             /* 步骤指示器点击事件 */
                             hsv.onStepIndicatorClickListener =
                                 object : OnStepIndicatorClickListener {
@@ -179,9 +175,8 @@ class ExpandableHomeItemAdapter(
                                     if (selectedIndex in item.eventSteps.indices) {
                                         eventItemListener.onStepIbClicked(
                                             item.eventSteps[selectedIndex],
-                                            !nowState
+                                            isDone = !nowState
                                         )
-                                        stepDoneUndoIb.nowState = !nowState
                                     }
                                 }
                             }
