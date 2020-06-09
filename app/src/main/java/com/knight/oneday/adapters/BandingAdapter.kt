@@ -164,10 +164,17 @@ fun TextView.bindStepsOverView(steps: List<Step>) {
     } else {
         visibility = View.VISIBLE
         val nowStep = steps.indexOfFirst { it.state == EventState.UNFINISHED }
-        text = getString(R.string.over_view_step).format(
-            size,
-            nowStep + 1
-        )
+        text = if (nowStep == -1) {
+            getString(R.string.over_view_step_all_finished).format(
+                size
+            )
+        } else {
+            getString(R.string.over_view_step).format(
+                size,
+                nowStep + 1
+            )
+        }
+
     }
 }
 

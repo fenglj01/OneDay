@@ -94,4 +94,5 @@
     <string name="title_sure_delete">确认删除？</string>
     <string name="message_sure_delete_event">确认删除这个事件吗?</string>
     <string name="event_step_overview">共:%1$d步,当前:%2$d</string>
+    <string name="over_view_step_all_finished">共:%1$d步,全部完成</string>
 </resources>
