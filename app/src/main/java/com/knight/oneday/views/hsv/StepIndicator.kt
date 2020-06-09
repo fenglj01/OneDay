@@ -35,15 +35,12 @@ class StepIndicator @JvmOverloads constructor(
     /* 绘制内容集合 */
     private val drawingData: MutableList<StepItem> = mutableListOf()
     /* 记录完成的步骤 */
-    var finishedCount: MutableList<Int> by OnLayoutProp(mutableListOf()) {
-        initCirclePaints()
-    }
+    var finishedCount: MutableList<Int> by OnLayoutProp(mutableListOf())
     /* 步骤的总数 */
     var stepCount: Int by OnLayoutProp(0)
     /* 当前的步骤数 如果在读取过attrs后更改这个属性 那么需要requestLayout */
     var currentCount: Int by OnLayoutProp(INVALID_STATUS_COUNT) {
         if (selectedIndex == INVALID_STATUS_COUNT) selectedIndex = currentCount
-        initCirclePaints()
     }
     var circleRadius: Float by OnLayoutProp(16F.px)
     /* drawable的修改需要触发重绘 */
@@ -239,71 +236,65 @@ class StepIndicator @JvmOverloads constructor(
      */
     private fun initCirclePaints() {
 
-        if (isShowingExecutingStatus()) {
-            if (circleFillExecutingPaint == null) {
-                circleFillExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                circleFillExecutingPaint?.apply {
-                    style = Paint.Style.FILL
-                    color = circleFillExecutingColor
-                }
+        if (circleFillExecutingPaint == null) {
+            circleFillExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+            circleFillExecutingPaint?.apply {
+                style = Paint.Style.FILL
+                color = circleFillExecutingColor
             }
         }
 
-        if (isShowingUnFinishedStatus()) {
-            if (circleFillPaint == null) {
-                circleFillPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                circleFillPaint?.apply {
-                    style = Paint.Style.FILL
-                    color = circleFillColor
-                }
+
+        if (circleFillPaint == null) {
+            circleFillPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+            circleFillPaint?.apply {
+                style = Paint.Style.FILL
+                color = circleFillColor
             }
         }
 
-        if (isShowingFinishedStatus()) {
-            if (circleFillFinishedPaint == null) {
-                circleFillFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                circleFillFinishedPaint?.apply {
-                    style = Paint.Style.FILL
-                    color = circleFillFinishedColor
-                }
+
+        if (circleFillFinishedPaint == null) {
+            circleFillFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+            circleFillFinishedPaint?.apply {
+                style = Paint.Style.FILL
+                color = circleFillFinishedColor
             }
         }
+
 
         /* 如果风格是描边加填充那么需要对其初始化 */
         if (circleStyle == CIRCLE_TYPE_FILL_STOKE) {
 
-            if (isShowingFinishedStatus()) {
-                if (circleStrokeFinishedPaint == null) {
-                    circleStrokeFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                    circleStrokeFinishedPaint?.apply {
-                        style = Paint.Style.STROKE
-                        color = circleStrokeFinishedColor
-                        strokeWidth = circleStrokeWidth
-                    }
+            if (circleStrokeFinishedPaint == null) {
+                circleStrokeFinishedPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                circleStrokeFinishedPaint?.apply {
+                    style = Paint.Style.STROKE
+                    color = circleStrokeFinishedColor
+                    strokeWidth = circleStrokeWidth
                 }
             }
 
-            if (isShowingExecutingStatus()) {
-                if (circleStrokeExecutingPaint == null) {
-                    circleStrokeExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                    circleStrokeExecutingPaint?.apply {
-                        style = Paint.Style.STROKE
-                        color = circleStrokeExecutingColor
-                        strokeWidth = circleStrokeWidth
-                    }
+
+            if (circleStrokeExecutingPaint == null) {
+                circleStrokeExecutingPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                circleStrokeExecutingPaint?.apply {
+                    style = Paint.Style.STROKE
+                    color = circleStrokeExecutingColor
+                    strokeWidth = circleStrokeWidth
                 }
             }
 
-            if (isShowingUnFinishedStatus()) {
-                if (circleStrokePaint == null) {
-                    circleStrokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-                    circleStrokePaint?.apply {
-                        style = Paint.Style.STROKE
-                        color = circleStrokeColor
-                        strokeWidth = circleStrokeWidth
-                    }
+
+            if (circleStrokePaint == null) {
+                circleStrokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+                circleStrokePaint?.apply {
+                    style = Paint.Style.STROKE
+                    color = circleStrokeColor
+                    strokeWidth = circleStrokeWidth
                 }
             }
+
 
         }
         /* 文字 */
