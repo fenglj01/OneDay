@@ -15,6 +15,7 @@ import com.knight.oneday.data.Step
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.MiniViewModel
+import com.knight.oneday.views.SectionDecoration
 import com.knight.oneday.views.SureDeleteDialog
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
 
@@ -61,12 +62,30 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
         ItemTouchHelper(ReboundingSwipeActionCallback()).apply {
             attachToRecyclerView(binding.rvEvent)
         }
+        binding.rvEvent.addItemDecoration(
+            SectionDecoration(
+                requireContext(),
+                object : SectionDecoration.SectionCallback {
+                    override fun getSectionContent(dataPosition: Int): String {
+                        if (dataPosition !in adapter.currentList.indices) return ""
+                        adapter.currentList[dataPosition].event.let { event ->
+                            return when {
+                                event.isDone -> "已完成"
+                                event.isExpired() -> "已过期"
+                                else -> "计划"
+                            }
+                        }
+                    }
+
+                }
+            )
+        )
         binding.rvEvent.adapter = adapter
     }
 
     private fun subscribeUi() {
         miniVm.eventList.observe(viewLifecycleOwner) { listEvents ->
-            Log.d("TAG","listEvents")
+            Log.d("TAG", "listEvents")
             adapter.submitList(listEvents) {
                 /*用于currentListChange中计算出变化的位置后 进行滚动*/
                 if (adapter.currentChangedItemIndex in listEvents.indices) {

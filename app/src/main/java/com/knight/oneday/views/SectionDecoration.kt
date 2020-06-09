@@ -31,22 +31,21 @@ class SectionDecoration(
     private val sectionPaint: TextPaint
     private val decorationPaint: Paint
     private val sectionHeight: Int
-    private val sectionResources: Resources
+    private val sectionResources: Resources = context.resources
     private val sectionTextRect: Rect
     private val sectionTextHeight: Float
     private val sectionTextPadding: Float
 
     init {
-        sectionResources = context.resources
         sectionPaint = TextPaint().apply {
             isAntiAlias = true
             textSize = 16F.sp
-            color = sectionResources.getColor(R.color.white_50)
+            color = context.themeColor(R.attr.colorOnSurface)
             textAlign = Paint.Align.LEFT
         }
         decorationPaint = Paint().apply {
             isAntiAlias = true
-            color = sectionResources.getColor(R.color.black_800)
+            color = context.getColor(android.R.color.transparent)
         }
         sectionHeight = sectionResources.getDimensionPixelSize(R.dimen.dp_32)
         sectionTextRect = Rect()
