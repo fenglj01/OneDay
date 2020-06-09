@@ -28,9 +28,10 @@ class HorizontalStepView @JvmOverloads constructor(
         addView(stepIndicator)
     }
 
-    fun setUpStepIndicator(stepCount: Int, currentCount: Int) {
+    fun setUpStepIndicator(stepCount: Int, currentCount: Int, finishedCount: MutableList<Int>) {
         stepIndicator.stepCount = stepCount
         stepIndicator.currentCount = currentCount
+        stepIndicator.finishedCount = finishedCount
     }
 
     fun scrollToStep(stepCount: Int) {

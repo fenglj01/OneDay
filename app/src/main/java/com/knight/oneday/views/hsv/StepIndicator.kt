@@ -34,7 +34,10 @@ class StepIndicator @JvmOverloads constructor(
     private var propsInitializedOnce: Boolean = false
     /* 绘制内容集合 */
     private val drawingData: MutableList<StepItem> = mutableListOf()
-
+    /* 记录完成的步骤 */
+    var finishedCount: MutableList<Int> by OnLayoutProp(mutableListOf()) {
+        initCirclePaints()
+    }
     /* 步骤的总数 */
     var stepCount: Int by OnLayoutProp(0)
     /* 当前的步骤数 如果在读取过attrs后更改这个属性 那么需要requestLayout */
@@ -315,11 +318,11 @@ class StepIndicator @JvmOverloads constructor(
     /* 是否有正在执行项需要展示 currentCount 在步骤数内说明有展示的 */
     private fun isShowingExecutingStatus() = currentCount in 1..stepCount
 
-    /* 是否有未完成项目需要展示 currentCount 在步骤数内切不是最后一项代表 有展示的 */
-    private fun isShowingUnFinishedStatus() = currentCount in 0 until stepCount
+    /* 是否有未完成项目需要展示 完成的步骤集合的数目小于整个步骤数代表包含未完成的数目 */
+    private fun isShowingUnFinishedStatus() = finishedCount.size < stepCount
 
     /* 是否显示了已完成的项目 */
-    private fun isShowingFinishedStatus() = currentCount > 0
+    private fun isShowingFinishedStatus() = finishedCount.size != 0
 
     /**
      * 初始化绘制的内容
@@ -330,11 +333,11 @@ class StepIndicator @JvmOverloads constructor(
         lastPoint.y = paddingTop.toFloat() + (circleRadius + (circleStrokeWidth / 2))
 
         for (pos in 0 until stepCount) {
-            var circleStrokePaint: Paint?
-            var circleFillPaint: Paint?
-            var textPaint: TextPaint?
-            var linePaint: Paint?
-            var itemDrawable: Drawable?
+            var circleStrokePaint: Paint? = null
+            var circleFillPaint: Paint? = null
+            var textPaint: TextPaint? = null
+            var linePaint: Paint = this.linePaint
+            var itemDrawable: Drawable? = null
 
             var circleRadius = this.circleRadius
 
@@ -348,7 +351,7 @@ class StepIndicator @JvmOverloads constructor(
                     linePaint = this.lineExecutingPaint
                 }
                 /* 未完成项 绘制内容为 stepNumber 圆 线 */
-                isShowingUnFinishedStatus() && pos in (currentCount..stepCount) -> {
+                isShowingUnFinishedStatus() && !finishedCount.contains(pos + 1) -> {
                     itemDrawable = null
                     circleFillPaint = this.circleFillPaint
                     circleStrokePaint = this.circleStrokePaint
@@ -356,7 +359,7 @@ class StepIndicator @JvmOverloads constructor(
                     linePaint = this.linePaint
                 }
                 /* 完成项 绘制内容为icon 圆 线 */
-                else -> {
+                isShowingFinishedStatus() && finishedCount.contains(pos + 1) -> {
                     itemDrawable = this.finishedDrawable
                     circleFillPaint = this.circleFillFinishedPaint
                     circleStrokePaint = this.circleStrokeFinishedPaint

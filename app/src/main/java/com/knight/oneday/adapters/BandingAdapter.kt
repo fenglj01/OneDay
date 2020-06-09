@@ -189,9 +189,13 @@ fun HorizontalStepView.bindStepIndicator(list: List<Step>) {
     val firstUnfinishedIndex = list.indexOfFirst { it.state == EventState.UNFINISHED }
     /* 如果所有步骤都完成了那么currentIndex置为最后一步的后一步? */
     val currentCount = if (firstUnfinishedIndex == -1) list.size + 1 else firstUnfinishedIndex + 1
+    /* 所有完成项的count集合 */
+    val finishedCount =
+        list.asSequence().filter { it.isDone() }.map { it.serialNumber }.toMutableList()
     setUpStepIndicator(
         list.size,
-        currentCount
+        currentCount,
+        finishedCount
     )
 }
 

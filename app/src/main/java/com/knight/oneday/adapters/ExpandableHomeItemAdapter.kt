@@ -161,30 +161,6 @@ class ExpandableHomeItemAdapter(
                                         )
                                     }
                                 }
-                            stepDoneUndoIb.onButtonClickListener = object : OnButtonClickListener {
-                                override fun onStateOnForwardClick() {
-                                    stepDoneUndoIb.revert()
-                                    val selectIndex = hsv.selectStepNumber()
-                                    if (selectIndex in item.eventSteps.indices) {
-                                        eventItemListener.onStepIbClicked(
-                                            item.eventSteps[selectIndex],
-                                            true
-                                        )
-                                    }
-
-                                }
-
-                                override fun onStateOnReserveClick() {
-                                    stepDoneUndoIb.revert()
-                                    val selectIndex = hsv.selectStepNumber()
-                                    if (selectIndex in item.eventSteps.indices) {
-                                        eventItemListener.onStepIbClicked(
-                                            item.eventSteps[selectIndex],
-                                            false
-                                        )
-                                    }
-                                }
-                            }
                             hsv.bindStepIndicator(item.eventSteps)
                             /* 获取当前正在执行项的位置 */
                             val currentIndex =
@@ -201,15 +177,7 @@ class ExpandableHomeItemAdapter(
                                     },
                                     onCollapsed = {
                                         expandedItemList.remove(adapterPosition)
-                                    }/*,
-                                为了实现滑动完成任务 只能暂时关闭这个功能了
-                                *//*整个卡片的高度视差*//*
-                                onFraction = { fraction, isExpanding ->
-                                    recyclerView.clipChildren = false
-                                    val f = if (isExpanding) fraction else 1F - fraction
-                                    val z = dp2px(dp = 8F) * f
-                                    eventCard.translationZ = z
-                                }*/
+                                    }
                                 )
                             )
                         }
