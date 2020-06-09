@@ -6,10 +6,12 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.knight.oneday.R
 import com.knight.oneday.utilities.*
+import com.knight.oneday.views.themeColor
 import kotlin.math.abs
 import kotlin.reflect.KProperty
 
@@ -130,7 +132,9 @@ class StepIndicator @JvmOverloads constructor(
             circleRadius =
                 getDimension(R.styleable.HorizontalStepView_hsvCircleRadius, circleRadius)
             finishedDrawable = getDrawable(R.styleable.HorizontalStepView_hsvFinishedDrawable)
+            finishedDrawable?.setTint(context.themeColor(R.attr.colorOnSurface))
             executingDrawable = getDrawable(R.styleable.HorizontalStepView_hsvExecutingDrawable)
+            executingDrawable?.setTint(context.themeColor(R.attr.colorOnSurface))
             circleStrokeWidth =
                 getDimension(R.styleable.HorizontalStepView_hsvCircleStokeWidth, circleStrokeWidth)
             circleFillColor =
@@ -422,6 +426,7 @@ class StepIndicator @JvmOverloads constructor(
             )
 
         }
+        Log.d("TAG", "$drawingData")
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
