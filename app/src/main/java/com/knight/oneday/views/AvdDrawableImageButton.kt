@@ -14,6 +14,7 @@ import com.knight.oneday.utilities.singleClick
 class AvdDrawableImageButton : AppCompatImageButton {
 
     var onButtonClickListener: OnButtonClickListener? = null
+    var onButtonClicked: OnButtonClicked? = null
 
     var nowState: State = false
         set(value) {
@@ -51,11 +52,10 @@ class AvdDrawableImageButton : AppCompatImageButton {
             onButtonClickListener?.run {
                 if (nowState) onStateOnReserveClick() else onStateOnForwardClick()
             }
+            onButtonClicked?.run {
+                onButtonClicked(nowState)
+            }
         }
-    }
-
-    fun revert() {
-        nowState = !nowState
     }
 
 
@@ -69,4 +69,9 @@ interface OnButtonClickListener {
 
     /* 当按钮处于逆向阶段时被点击 */
     fun onStateOnReserveClick()
+}
+
+/* 简化在adapter中得使用 */
+interface OnButtonClicked {
+    fun onButtonClicked(nowState: Boolean)
 }

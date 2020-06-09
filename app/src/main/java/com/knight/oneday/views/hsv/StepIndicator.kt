@@ -561,7 +561,7 @@ class StepIndicator @JvmOverloads constructor(
                     /* 按下抬起时间小于半秒 距离小于10 判断为单击事件 */
                     if (timeGap < 500L && abs(downUpXGap) < 10) {
                         val index = getStepNumberByTouchEvent(event.x)
-                        if (index != -1 && index + 1 != selectedIndex) {
+                        if (index != -1) {
                             onStepIndicatorClickListener?.onStepIndicatorClick(index)
                             selectedIndex = index + 1
                         }

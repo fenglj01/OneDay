@@ -12,10 +12,9 @@ import com.knight.oneday.data.EventAndEventSteps
 import com.knight.oneday.data.Step
 import com.knight.oneday.databinding.EventWithStepItemLayoutBinding
 import com.knight.oneday.utilities.EventState
-import com.knight.oneday.utilities.dp2px
 import com.knight.oneday.utilities.formatUi
 import com.knight.oneday.utilities.singleClick
-import com.knight.oneday.views.OnButtonClickListener
+import com.knight.oneday.views.OnButtonClicked
 import com.knight.oneday.views.expand.ExpandableStatusListenerLambdaAdapter
 import com.knight.oneday.views.hsv.OnStepIndicatorClickListener
 import com.knight.oneday.views.swipe.EventSwipeActionDrawable
@@ -107,6 +106,24 @@ class ExpandableHomeItemAdapter(
                     overviewEventContent.alpha = alpha
                 }
 
+                /* 设置按钮的选中状态 */
+                fun setupStepDoneUndoIb(pos: Int) {
+                    if (pos !in item.eventSteps.indices) {
+                        includeContent.stepDoneUndoIb.isVisible = false
+                        return
+                    } else {
+                        includeContent.stepDoneUndoIb.isVisible = true
+                        val currentStep = item.eventSteps[pos]
+                        includeContent.tvStep.text = currentStep.content
+                        /* 对按钮的操作 */
+                        includeContent.stepDoneUndoIb.setImageState(
+                            if (currentStep.isDone()) intArrayOf(android.R.attr.state_activated) else intArrayOf(
+                                -android.R.attr.state_activated
+                            ), true
+                        )
+                    }
+                }
+
                 /* 基本内容初始化 */
                 eventAndSteps = item
                 binding.root.isActivated = item.event.isDone
@@ -146,21 +163,28 @@ class ExpandableHomeItemAdapter(
                     // 设置内容部分
                     with(includeContent) {
                         content = item
+                        setupStepDoneUndoIb(hsv.selectStepIndex())
                         if (item.eventSteps.isNotEmpty()) {
                             /* 步骤指示器点击事件 */
                             hsv.onStepIndicatorClickListener =
                                 object : OnStepIndicatorClickListener {
                                     override fun onStepIndicatorClick(pos: Int) {
-                                        val currentStep = item.eventSteps[pos]
-                                        tvStep.text = currentStep.content
-                                        /* 对按钮的操作 */
-                                        stepDoneUndoIb.setImageState(
-                                            if (currentStep.isDone()) intArrayOf(android.R.attr.state_activated) else intArrayOf(
-                                                -android.R.attr.state_activated
-                                            ), true
-                                        )
+                                        setupStepDoneUndoIb(pos)
                                     }
                                 }
+                            /* 步骤得完成和撤销完成 */
+                            stepDoneUndoIb.onButtonClicked = object : OnButtonClicked {
+                                override fun onButtonClicked(nowState: Boolean) {
+                                    val selectedIndex = hsv.selectStepIndex()
+                                    if (selectedIndex in item.eventSteps.indices) {
+                                        eventItemListener.onStepIbClicked(
+                                            item.eventSteps[selectedIndex],
+                                            !nowState
+                                        )
+                                        stepDoneUndoIb.nowState = !nowState
+                                    }
+                                }
+                            }
                             hsv.bindStepIndicator(item.eventSteps)
                             /* 获取当前正在执行项的位置 */
                             val currentIndex =
