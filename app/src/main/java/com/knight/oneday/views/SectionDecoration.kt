@@ -45,7 +45,7 @@ class SectionDecoration(
         }
         decorationPaint = Paint().apply {
             isAntiAlias = true
-            color = sectionResources.getColor(android.R.color.transparent)
+            color = context.themeColor(android.R.attr.colorBackground)
         }
         sectionHeight = sectionResources.getDimensionPixelSize(R.dimen.dp_32)
         sectionTextRect = Rect()
