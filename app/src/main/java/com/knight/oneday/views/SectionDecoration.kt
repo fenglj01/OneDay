@@ -51,7 +51,7 @@ class SectionDecoration(
         sectionTextRect = Rect()
         sectionPaint.getTextBounds("1", 0, 1, sectionTextRect)
         sectionTextHeight = sectionTextRect.height().toFloat()
-        sectionTextPadding = dp2px(context, 16F)
+        sectionTextPadding = dp2px(context, 4F)
     }
 
     override fun getItemOffsets(
@@ -92,17 +92,7 @@ class SectionDecoration(
                     view.top - (sectionHeight / 2 - sectionTextHeight / 2),
                     sectionPaint
                 )
-            } else {    // 绘制分割线
-                val lineTop = sectionBottom - 1
-                c.drawLine(
-                    sectionLeft.toFloat(),
-                    lineTop.toFloat(),
-                    sectionRight.toFloat(),
-                    lineTop.toFloat(),
-                    decorationPaint
-                )
             }
-
         }
     }
 
@@ -159,6 +149,4 @@ class SectionDecoration(
 
 }
 
-/* 分段标题 */
-data class SectionBean(val content: String)
 

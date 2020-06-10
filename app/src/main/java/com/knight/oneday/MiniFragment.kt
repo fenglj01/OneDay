@@ -25,7 +25,7 @@ import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
  * 极简风格的主页
  */
 class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
-    SharedPreferences.OnSharedPreferenceChangeListener {
+    SharedPreferences.OnSharedPreferenceChangeListener, SectionDecoration.SectionCallback {
 
     private val miniVm: MiniViewModel by viewModels {
         InjectorUtils.eventWithStepViewModelFactory(
@@ -62,30 +62,12 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
         ItemTouchHelper(ReboundingSwipeActionCallback()).apply {
             attachToRecyclerView(binding.rvEvent)
         }
-        binding.rvEvent.addItemDecoration(
-            SectionDecoration(
-                requireContext(),
-                object : SectionDecoration.SectionCallback {
-                    override fun getSectionContent(dataPosition: Int): String {
-                        if (dataPosition !in adapter.currentList.indices) return ""
-                        adapter.currentList[dataPosition].event.let { event ->
-                            return when {
-                                event.isDone -> "已完成"
-                                event.isExpired() -> "已过期"
-                                else -> "计划"
-                            }
-                        }
-                    }
-
-                }
-            )
-        )
+        binding.rvEvent.addItemDecoration(SectionDecoration(requireContext(), this@MiniFragment))
         binding.rvEvent.adapter = adapter
     }
 
     private fun subscribeUi() {
         miniVm.eventList.observe(viewLifecycleOwner) { listEvents ->
-            Log.d("TAG", "listEvents")
             adapter.submitList(listEvents) {
                 /*用于currentListChange中计算出变化的位置后 进行滚动*/
                 if (adapter.currentChangedItemIndex in listEvents.indices) {
@@ -103,6 +85,17 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (key == PreferenceAttrProxy.KEY_SHOW_ALLOW_FINISHED) miniVm.refreshList()
+    }
+
+    override fun getSectionContent(dataPosition: Int): String {
+        if (dataPosition !in adapter.currentList.indices) return ""
+        adapter.currentList[dataPosition].event.let { event ->
+            return when {
+                event.isDone -> getString(R.string.section_finished)
+                event.isExpired() -> getString(R.string.section_expired)
+                else -> getString(R.string.section_plan)
+            }
+        }
     }
 
     override fun onEventDoneChanged(event: Event, isDone: Boolean) {
