@@ -14,6 +14,7 @@ import com.knight.oneday.create.CreateEventFragment
 import com.knight.oneday.databinding.FragmentAddEventBinding
 import com.knight.oneday.utilities.getInputManagerService
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.views.choice.ChoiceInputView
 import com.knight.oneday.views.themeInterpolator
 
 /**
@@ -44,7 +45,14 @@ class AddEventFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startTransitions()
+        initView()
         initEvent()
+    }
+
+    private fun initView() {
+        binding.apply {
+
+        }
     }
 
     private fun initEvent() {
@@ -52,6 +60,16 @@ class AddEventFragment : Fragment() {
             addBackIc.singleClick {
                 hideSoftInput()
                 findNavController().navigateUp()
+            }
+            addDateCiv.onChoiceInputClicked = object : ChoiceInputView.OnChoiceInputClicked {
+                override fun onChoiceInputClicked() {
+
+                }
+            }
+            addTimeCiv.onChoiceInputClicked = object : ChoiceInputView.OnChoiceInputClicked {
+                override fun onChoiceInputClicked() {
+
+                }
             }
         }
     }

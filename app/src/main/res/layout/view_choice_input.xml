@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorTransparent"
-    android:paddingHorizontal="@dimen/dp_16"
+    android:paddingHorizontal="@dimen/dp_20"
     android:paddingTop="@dimen/dp_16"
     tools:context="com.knight.oneday.add.AddEventFragment">
 

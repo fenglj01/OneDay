@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.blankj.utilcode.util.BarUtils
+import com.jaeger.library.StatusBarUtil
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.ThemePreference
@@ -133,7 +134,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.miniFragment -> {
                 binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()
-                BarUtils.setStatusBarColor(this, this.themeColor(R.attr.colorSurface))
+                StatusBarUtil.setColor(this, this.themeColor(R.attr.colorSurface), 0)
             }
             R.id.createEventFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
@@ -142,12 +143,12 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.addEventFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()
-                BarUtils.setStatusBarColor(this, resources.getColor(R.color.color_FFE4D4))
+                StatusBarUtil.setColor(this, resources.getColor(R.color.color_FFE4D4), 0)
             }
             R.id.settingFragment -> {
                 bottomNavDrawer.close()
                 hideBottomAppBarAndFab()
-                BarUtils.setStatusBarColor(this, this.themeColor(R.attr.colorSurface))
+                StatusBarUtil.setColor(this, this.themeColor(R.attr.colorSurface), 0)
             }
         }
     }

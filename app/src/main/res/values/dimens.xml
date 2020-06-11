@@ -34,5 +34,6 @@
     <dimen name="dp_28">28dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="sp_8">8sp</dimen>
+    <dimen name="dp_20">20dp</dimen>
 
 </resources>

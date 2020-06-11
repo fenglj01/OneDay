@@ -87,4 +87,5 @@ dependencies {
     implementation 'com.haibin:calendarview:3.6.9'
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.blankj:utilcodex:1.29.0'
+    implementation 'com.jaeger.statusbarutil:library:1.5.1'
 }

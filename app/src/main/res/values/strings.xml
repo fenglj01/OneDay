@@ -101,4 +101,5 @@
     <string name="event_name">任务名称</string>
     <string name="date">日期</string>
     <string name="time">时间</string>
+    <string name="name">内容</string>
 </resources>
