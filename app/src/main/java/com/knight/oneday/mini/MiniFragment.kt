@@ -62,7 +62,7 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
         ItemTouchHelper(ReboundingSwipeActionCallback()).apply {
             attachToRecyclerView(binding.rvEvent)
         }
-        binding.rvEvent.addItemDecoration(SectionDecoration(requireContext(), this@MiniFragment))
+//        binding.rvEvent.addItemDecoration(SectionDecoration(requireContext(), this@MiniFragment))
         binding.rvEvent.adapter = adapter
     }
 

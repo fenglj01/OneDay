@@ -5,17 +5,20 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import com.blankj.utilcode.util.BarUtils
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.ThemePreference
 import com.knight.oneday.utilities.contentView
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.views.themeColor
 import kotlin.LazyThreadSafetyMode.NONE
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener,
@@ -130,18 +133,21 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.miniFragment -> {
                 binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()
+                BarUtils.setStatusBarColor(this, this.themeColor(R.attr.colorSurface))
             }
             R.id.createEventFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()
             }
-            R.id.addEventFragment ->{
+            R.id.addEventFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()
+                BarUtils.setStatusBarColor(this, resources.getColor(R.color.color_FFE4D4))
             }
             R.id.settingFragment -> {
                 bottomNavDrawer.close()
                 hideBottomAppBarAndFab()
+                BarUtils.setStatusBarColor(this, this.themeColor(R.attr.colorSurface))
             }
         }
     }
