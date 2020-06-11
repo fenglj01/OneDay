@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.R
+import com.knight.oneday.create.CreateEventFragment
 import com.knight.oneday.databinding.FragmentAddEventBinding
+import com.knight.oneday.utilities.getInputManagerService
+import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.themeInterpolator
 
 /**
@@ -19,6 +23,13 @@ import com.knight.oneday.views.themeInterpolator
 class AddEventFragment : Fragment() {
 
     private lateinit var binding: FragmentAddEventBinding
+
+    companion object {
+
+        const val HIDE_SOFT_INPUT_TAG = 2020
+
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +44,23 @@ class AddEventFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         startTransitions()
+        initEvent()
+    }
+
+    private fun initEvent() {
+        binding.apply {
+            addBackIc.singleClick {
+                hideSoftInput()
+                findNavController().navigateUp()
+            }
+        }
+    }
+
+    private fun hideSoftInput() {
+        getInputManagerService().hideSoftInputFromWindow(
+            binding.addEventContent.windowToken,
+            HIDE_SOFT_INPUT_TAG
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

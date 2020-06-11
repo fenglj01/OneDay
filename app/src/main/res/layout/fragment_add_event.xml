@@ -10,6 +10,8 @@
         android:id="@+id/add_event_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:background="#FFE4D4">
 
         <androidx.appcompat.widget.AppCompatImageButton
