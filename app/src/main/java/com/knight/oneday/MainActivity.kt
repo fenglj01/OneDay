@@ -135,6 +135,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                 binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()
             }
+            R.id.addEventFragment ->{
+                binding.bottomAppBar.hideOnScroll = false
+                hideBottomAppBarAndFab()
+            }
             R.id.settingFragment -> {
                 bottomNavDrawer.close()
                 hideBottomAppBarAndFab()

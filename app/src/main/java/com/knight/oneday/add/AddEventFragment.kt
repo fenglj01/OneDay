@@ -1,11 +1,16 @@
 package com.knight.oneday.add
 
 import android.os.Bundle
+import android.transition.Slide
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.blankj.utilcode.util.BarUtils
+import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.R
+import com.knight.oneday.databinding.FragmentAddEventBinding
+import com.knight.oneday.views.themeInterpolator
 
 /**
  * Create by FLJ in 2020/6/11 9:30
@@ -13,13 +18,49 @@ import com.knight.oneday.R
  */
 class AddEventFragment : Fragment() {
 
+    private lateinit var binding: FragmentAddEventBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_add_event, container, false)
+        binding = FragmentAddEventBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        startTransitions()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        prepareTransitions()
+    }
+
+    private fun prepareTransitions() {
+        postponeEnterTransition()
+    }
+
+    private fun startTransitions() {
+        binding.executePendingBindings()
+
+        enterTransition = MaterialContainerTransform(requireContext()).apply {
+            startView = requireActivity().findViewById(R.id.fab)
+            endView = binding.addEventContent
+            duration = resources.getInteger(R.integer.one_day_motion_default_large).toLong()
+            interpolator = requireContext().themeInterpolator(R.attr.motionInterpolatorPersistent)
+        }
+
+        returnTransition = Slide().apply {
+            duration = resources.getInteger(R.integer.one_day_motion_duration_medium).toLong()
+            interpolator = requireContext().themeInterpolator(R.attr.motionInterpolatorOutgoing)
+        }
+
+        startPostponedEnterTransition()
+    }
+
 
 }
