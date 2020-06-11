@@ -25,7 +25,7 @@ import com.ramotion.directselect.DSListView
 
 /**
  * Create by FLJ in 2020/6/11 9:30
- * 创建事件 思考过后 化繁为简 暂时不要加入步骤 清单这样的功能了
+ * 创建事件 思考过后 化繁为简 暂时不要加入步骤 清单这样的功能了 交给binding 减少代码
  */
 class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     DSListView.OnDSListViewStatusChangedListener {
