@@ -1,4 +1,4 @@
-package com.knight.oneday.viewmodels
+package com.knight.oneday.create
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +13,10 @@ class CreateEventViewModelFactory(
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CreateEventViewModel(eventRes, stepRes) as T
+        return CreateEventViewModel(
+            eventRes,
+            stepRes
+        ) as T
     }
 
 }

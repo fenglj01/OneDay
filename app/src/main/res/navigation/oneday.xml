@@ -8,42 +8,30 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.knight.oneday.StartFragment"
+        android:name="com.knight.oneday.start.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
 
         <action
-            android:id="@+id/action_startFragment_to_customFragment"
-            app:destination="@id/customFragment" />
-        <action
             android:id="@+id/action_startFragment_to_miniFragment"
             app:destination="@id/miniFragment" />
-        <action
-            android:id="@+id/action_startFragment_to_standardFragment"
-            app:destination="@id/standardFragment" />
         <action
             android:id="@+id/action_startFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.knight.oneday.WelcomeFragment"
+        android:name="com.knight.oneday.start.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
 
         <action
             android:id="@+id/action_welcomeFragment_to_miniFragment"
             app:destination="@id/miniFragment" />
-        <action
-            android:id="@+id/action_welcomeFragment_to_standardFragment"
-            app:destination="@id/standardFragment" />
-        <action
-            android:id="@+id/action_welcomeFragment_to_customFinishFragment"
-            app:destination="@id/customFinishFragment" />
     </fragment>
     <fragment
         android:id="@+id/miniFragment"
-        android:name="com.knight.oneday.MiniFragment"
+        android:name="com.knight.oneday.mini.MiniFragment"
         android:label="fragment_mini"
         tools:layout="@layout/fragment_mini" >
         <action
@@ -52,35 +40,14 @@
         <action
             android:id="@+id/action_miniFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
-        <action android:id="@+id/action_miniFragment_to_customFragment"
-            app:destination="@id/customFragment"/>
-    </fragment>
-    <fragment
-        android:id="@+id/standardFragment"
-        android:name="com.knight.oneday.StandardFragment"
-        android:label="fragment_standard"
-        tools:layout="@layout/fragment_standard" />
-    <fragment
-        android:id="@+id/customFragment"
-        android:name="com.knight.oneday.CustomFragment"
-        android:label="fragment_custom"
-        tools:layout="@layout/fragment_custom" />
-    <fragment
-        android:id="@+id/customFinishFragment"
-        android:name="com.knight.oneday.CustomFinishFragment"
-        android:label="fragment_custom_finish"
-        tools:layout="@layout/fragment_custom_finish" >
-        <action
-            android:id="@+id/action_customFinishFragment_to_customFragment2"
-            app:destination="@id/customFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.knight.oneday.SettingFragment"
+        android:name="com.knight.oneday.setting.SettingFragment"
         android:label="SettingFragment" />
     <fragment
         android:id="@+id/createEventFragment"
-        android:name="com.knight.oneday.CreateEventFragment"
+        android:name="com.knight.oneday.create.CreateEventFragment"
         android:label="fragment_create_event"
         tools:layout="@layout/fragment_create_event" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.knight.oneday.viewmodels
+package com.knight.oneday.create
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +7,7 @@ import com.knight.oneday.data.EventRepository
 import com.knight.oneday.data.Step
 import com.knight.oneday.data.StepRepository
 import com.knight.oneday.utilities.*
+import com.knight.oneday.viewmodels.BaseViewModel
 import com.knight.oneday.views.step.CreateStepContent
 import com.knight.oneday.views.step.STEP_STATE_UNFINISHED
 import java.util.*

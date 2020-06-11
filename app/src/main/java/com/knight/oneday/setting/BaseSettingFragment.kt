@@ -1,9 +1,10 @@
-package com.knight.oneday
+package com.knight.oneday.setting
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceFragmentCompat
+import com.knight.oneday.R
 import kotlinx.android.synthetic.main.fragment_preferences.*
 
 /**

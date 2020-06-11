@@ -6,7 +6,7 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.knight.oneday.R
-import com.knight.oneday.utilities.SettingPreferences
+import com.knight.oneday.setting.SettingPreferences
 import com.knight.oneday.utilities.singleClick
 
 /**

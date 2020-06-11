@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.knight.oneday.viewmodels.CreateEventViewModel" />
+            type="com.knight.oneday.create.CreateEventViewModel" />
 
     </data>
 
@@ -23,7 +23,7 @@
         android:paddingHorizontal="@dimen/dp_4"
         android:paddingTop="@dimen/dp_8"
         app:paddingTopSystemWindowInsets="@{true}"
-        tools:context=".CreateEventFragment">
+        tools:context=".create.CreateEventFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/create_event_card_view"

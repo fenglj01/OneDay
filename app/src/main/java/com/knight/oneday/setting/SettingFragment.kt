@@ -1,4 +1,6 @@
-package com.knight.oneday
+package com.knight.oneday.setting
+
+import com.knight.oneday.R
 
 
 /**

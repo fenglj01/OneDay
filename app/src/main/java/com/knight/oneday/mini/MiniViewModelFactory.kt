@@ -1,4 +1,4 @@
-package com.knight.oneday.viewmodels
+package com.knight.oneday.mini
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

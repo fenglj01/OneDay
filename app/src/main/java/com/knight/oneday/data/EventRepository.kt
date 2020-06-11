@@ -1,8 +1,7 @@
 package com.knight.oneday.data
 
 import com.knight.oneday.utilities.EventState
-import com.knight.oneday.utilities.SettingPreferences
-import java.util.*
+import com.knight.oneday.setting.SettingPreferences
 
 /**
  * Create by FLJ in 2020/3/2 14:52

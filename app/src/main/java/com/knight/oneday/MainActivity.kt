@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
@@ -12,15 +11,11 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.preference.ListPreference
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
-import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.ThemePreference
 import com.knight.oneday.utilities.contentView
 import com.knight.oneday.utilities.singleClick
-import com.knight.oneday.viewmodels.DayEventAndStepViewModel
 import kotlin.LazyThreadSafetyMode.NONE
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener,

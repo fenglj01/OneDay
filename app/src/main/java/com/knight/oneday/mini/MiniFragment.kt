@@ -1,20 +1,20 @@
-package com.knight.oneday
+package com.knight.oneday.mini
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.knight.oneday.R
 import com.knight.oneday.adapters.ExpandableHomeItemAdapter
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.Step
 import com.knight.oneday.databinding.FragmentMiniBinding
+import com.knight.oneday.setting.SettingPreferences
 import com.knight.oneday.utilities.*
-import com.knight.oneday.viewmodels.MiniViewModel
 import com.knight.oneday.views.SectionDecoration
 import com.knight.oneday.views.SureDeleteDialog
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback

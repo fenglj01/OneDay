@@ -1,9 +1,11 @@
 package com.knight.oneday.utilities
 
 import android.content.Context
+import com.knight.oneday.create.CreateEventViewModelFactory
 import com.knight.oneday.data.AppDatabase
 import com.knight.oneday.data.EventRepository
 import com.knight.oneday.data.StepRepository
+import com.knight.oneday.mini.MiniViewModelFactory
 import com.knight.oneday.viewmodels.*
 
 /**
@@ -12,19 +14,17 @@ import com.knight.oneday.viewmodels.*
  */
 object InjectorUtils {
 
-    fun dayEventAndStepViewModelFactory(context: Context): DayEventAndStepViewModel {
-        return DayEventAndStepViewModel(
-            getEventWithStepRepository(context),
-            getStepRepository(context)
+    fun eventWithStepViewModelFactory(context: Context): MiniViewModelFactory {
+        return MiniViewModelFactory(
+            getEventWithStepRepository(context)
         )
     }
 
-    fun eventWithStepViewModelFactory(context: Context): MiniViewModelFactory {
-        return MiniViewModelFactory(getEventWithStepRepository(context))
-    }
-
     fun createEventViewModelFactory(context: Context): CreateEventViewModelFactory {
-        return CreateEventViewModelFactory(getEventWithStepRepository(context), getStepRepository(context))
+        return CreateEventViewModelFactory(
+            getEventWithStepRepository(context),
+            getStepRepository(context)
+        )
     }
 
     private fun getEventWithStepRepository(context: Context): EventRepository =

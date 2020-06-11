@@ -1,9 +1,8 @@
-package com.knight.oneday.viewmodels
+package com.knight.oneday.mini
 
-import android.nfc.tech.IsoDep
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.EventRepository
-import com.knight.oneday.utilities.SettingPreferences
+import com.knight.oneday.viewmodels.BaseViewModel
 
 /**
  * @author knight

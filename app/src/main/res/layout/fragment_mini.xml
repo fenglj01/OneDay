@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.knight.oneday.viewmodels.MiniViewModel" />
+            type="com.knight.oneday.mini.MiniViewModel" />
 
     </data>
 
