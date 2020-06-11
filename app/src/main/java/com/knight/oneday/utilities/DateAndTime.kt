@@ -11,6 +11,7 @@ const val formatYearMonthDay = "yyyy-MM-dd"
 const val formatYearMonth = "yyyy-MM"
 const val formatHourMin = "HH:mm"
 const val formatMonthDay = "MM-dd"
+const val formatWeekDayMonth = "E,dd日-MM月"
 
 val todayStr = getString(R.string.today)
 val tomorrowStr = getString(R.string.tomorrow)
@@ -35,6 +36,8 @@ fun currentYearMonth(): String = currentTimeMills().formatYearMonth()
 
 fun currentHourMin(): String = currentTimeMills().formatHourMin()
 
+fun currentWeekDayMonth(): String = currentTimeMills().formatWeekMonthDay()
+
 fun Long.format24Hex(): String {
     return SimpleDateFormat(format24HStr, getDefault()).format(this)
 }
@@ -49,6 +52,9 @@ fun Long.formatYearMonth(): String = SimpleDateFormat(formatYearMonth, getDefaul
 fun Long.formatHourMin(): String = SimpleDateFormat(formatHourMin, getDefault()).format(this)
 
 fun Long.formatMonthDay(): String = SimpleDateFormat(formatMonthDay, getDefault()).format(this)
+
+fun Long.formatWeekMonthDay(): String =
+    SimpleDateFormat(formatWeekDayMonth, getDefault()).format(this)
 
 fun Calendar.formatUi(): String {
     val year = get(Calendar.YEAR)

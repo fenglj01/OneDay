@@ -47,6 +47,10 @@ class ChoiceInputView @JvmOverloads constructor(
         }
     }
 
+    fun setContentText(content: String) {
+        contentTv.text = content
+    }
+
 
     interface OnChoiceInputClicked {
         fun onChoiceInputClicked()

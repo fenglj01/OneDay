@@ -14,6 +14,7 @@ import com.knight.oneday.data.Step
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.utilities.getString
+import com.knight.oneday.views.choice.ChoiceInputView
 import com.knight.oneday.views.getDrawableOrNull
 import com.knight.oneday.views.hsv.HorizontalStepView
 import com.knight.oneday.views.step.*
@@ -130,7 +131,7 @@ private fun recordInitialPaddingForView(view: View) = InitialPadding(
 
 private fun recordInitialMarginForView(view: View): InitialMargin {
     val lp = view.layoutParams as? ViewGroup.MarginLayoutParams
-        ?: throw IllegalArgumentException("Invalid view layout params")
+        ?: throw IllegalArgumentException("Invalid view layout params") as Throwable
     return InitialMargin(lp.leftMargin, lp.topMargin, lp.rightMargin, lp.bottomMargin)
 }
 
@@ -204,5 +205,10 @@ fun HorizontalStepView.bindStepIndicator(list: List<Step>) {
         currentCount,
         finishedCount
     )
+}
+
+@BindingAdapter("bindContentText")
+fun ChoiceInputView.bindContentText(content: String) {
+    setContentText(content)
 }
 

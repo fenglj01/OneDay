@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.R
 import com.knight.oneday.create.CreateEventFragment
 import com.knight.oneday.databinding.FragmentAddEventBinding
+import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.getInputManagerService
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.choice.ChoiceInputView
@@ -24,6 +26,12 @@ import com.knight.oneday.views.themeInterpolator
 class AddEventFragment : Fragment() {
 
     private lateinit var binding: FragmentAddEventBinding
+
+    private val addVM by viewModels<AddEventViewModel> {
+        InjectorUtils.addEventViewModelFactory(
+            requireContext()
+        )
+    }
 
     companion object {
 
@@ -39,6 +47,7 @@ class AddEventFragment : Fragment() {
     ): View? {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
+        binding.vm = addVM
         return binding.root
     }
 

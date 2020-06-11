@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.knight.oneday.add.AddEventViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,9 +47,9 @@
             android:id="@+id/add_name_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="@dimen/dp_16"
             android:text="@string/name"
+            android:alpha="?attr/emphasisMediumAlpha"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             app:layout_constraintStart_toStartOf="@id/add_title_tv"
             app:layout_constraintTop_toBottomOf="@id/add_title_tv" />
@@ -55,22 +58,37 @@
             android:id="@+id/add_name_il"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp_16"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_8"
+            android:background="@null"
             android:hint="@string/event_name"
             app:layout_constraintStart_toStartOf="@id/add_title_tv"
             app:layout_constraintTop_toBottomOf="@id/add_name_hint" />
 
+        <ImageView
+            android:id="@+id/subject_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/divider"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            app:backgroundTint="@color/color_on_surface_emphasis_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_name_il" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/dp_24"
+            android:layout_marginTop="@dimen/dp_20"
             android:background="@drawable/top_right_conner_surface_bg"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_name_il">
+            app:layout_constraintTop_toBottomOf="@id/subject_divider">
 
 
             <com.knight.oneday.views.choice.ChoiceInputView
                 android:id="@+id/add_date_civ"
+                bindContentText="@{vm.previewDateContent}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_16"
@@ -81,6 +99,7 @@
 
             <com.knight.oneday.views.choice.ChoiceInputView
                 android:id="@+id/add_time_civ"
+                bindContentText="@{vm.previewTimeContent}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:civIcon="@drawable/ic_one_day_schedule"
