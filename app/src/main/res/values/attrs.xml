@@ -156,6 +156,11 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="ChoiceInputView">
+        <attr name="civIcon" format="reference" />
+        <attr name="civTitle" format="string" />
+    </declare-styleable>
+
     <attr name="stepColorFill" format="color" />
     <attr name="stepColorStroke" format="color" />
     <attr name="stepColorFinishedFill" format="color" />
@@ -165,4 +170,6 @@
     <attr name="stepLineColor" format="color" />
     <attr name="stepLineFinishedColor" format="color" />
     <attr name="stepLineExecutingColor" format="color" />
+
+    <attr name="colorTransparent" format="color" />
 </resources>

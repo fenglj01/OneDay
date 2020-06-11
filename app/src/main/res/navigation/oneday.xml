@@ -10,7 +10,7 @@
         android:id="@+id/startFragment"
         android:name="com.knight.oneday.start.StartFragment"
         android:label="fragment_start"
-        tools:layout="@layout/fragment_start" >
+        tools:layout="@layout/fragment_start">
 
         <action
             android:id="@+id/action_startFragment_to_miniFragment"
@@ -23,7 +23,7 @@
         android:id="@+id/welcomeFragment"
         android:name="com.knight.oneday.start.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
+        tools:layout="@layout/fragment_welcome">
 
         <action
             android:id="@+id/action_welcomeFragment_to_miniFragment"
@@ -33,13 +33,16 @@
         android:id="@+id/miniFragment"
         android:name="com.knight.oneday.mini.MiniFragment"
         android:label="fragment_mini"
-        tools:layout="@layout/fragment_mini" >
+        tools:layout="@layout/fragment_mini">
         <action
             android:id="@+id/action_miniFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
         <action
             android:id="@+id/action_miniFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_miniFragment_to_addEventFragment"
+            app:destination="@id/addEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -50,4 +53,9 @@
         android:name="com.knight.oneday.create.CreateEventFragment"
         android:label="fragment_create_event"
         tools:layout="@layout/fragment_create_event" />
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="com.knight.oneday.add.AddEventFragment"
+        android:label="fragment_add_event"
+        tools:layout="@layout/fragment_add_event" />
 </navigation>

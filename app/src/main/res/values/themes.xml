@@ -80,7 +80,7 @@
         <item name="motionInterpolatorOutgoing">@android:interpolator/accelerate_cubic</item>
 
         <item name="preferenceTheme">@style/Theme.MyApp.PreferenceThemeOverlay</item>
-
+        <item name="colorTransparent">#0000</item>
         <!-- 步骤View 相关 -->
         <item name="stepColorFill">#bebebe</item>
         <item name="stepColorStroke">#8e8e8e</item>
@@ -110,6 +110,7 @@
         <item name="materialCalendarTheme">
             @style/ThemeOverlay.MaterialComponents.MaterialCalendar.Overlay
         </item>
+
     </style>
 
     <style name="Theme.MyApp.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFE4D4">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/add_back_ic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_4"
+            android:layout_marginVertical="@dimen/dp_16"
+            android:background="?attr/actionBarItemBackground"
+            android:padding="@dimen/dp_12"
+            android:src="@drawable/icon_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/add_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/add_event_title"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_back_ic" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_name_il"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:hint="@string/event_name"
+            app:boxBackgroundColor="?attr/colorTransparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_title_tv">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/colorTransparent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_24"
+            android:background="@drawable/top_right_conner_surface_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_name_il">
+
+
+            <com.knight.oneday.views.choice.ChoiceInputView
+                android:id="@+id/add_date_civ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                app:civIcon="@drawable/ic_one_day_date"
+                app:civTitle="@string/date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.knight.oneday.views.choice.ChoiceInputView
+                android:id="@+id/add_time_civ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:civIcon="@drawable/ic_one_day_schedule"
+                app:civTitle="@string/time"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_date_civ" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
