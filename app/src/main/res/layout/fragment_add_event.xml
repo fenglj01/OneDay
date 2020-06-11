@@ -9,8 +9,16 @@
             type="com.knight.oneday.add.AddEventViewModel" />
 
         <variable
+            name="tagAdapter"
+            type="com.knight.oneday.adapters.TagPickerAdapter" />
+
+        <variable
             name="onChoiceInputClicked"
             type="com.knight.oneday.views.choice.ChoiceInputView.OnChoiceInputClicked" />
+
+        <variable
+            name="onDLStatusChangedListener"
+            type="com.ramotion.directselect.DSListView.OnDSListViewStatusChangedListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,6 +120,41 @@
                 app:civTitle="@string/time"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/add_date_civ" />
+
+            <com.ramotion.directselect.DSListView
+                android:id="@+id/add_tag_dsl"
+                bindAdapter="@{tagAdapter}"
+                bindStatusChangeListener="@{onDLStatusChangedListener}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorSurface"
+                android:visibility="invisible"
+                app:picker_box_view="@id/add_tag_picker"
+                app:scale_animations="true"
+                app:scale_animations_factor="1.15"
+                app:scale_animations_pivot_center="true"
+                app:selected_index="1"
+                app:selector_background="@drawable/tag_picker_bg_list_selector" />
+
+            <com.knight.oneday.views.EventTagPickerBox
+                android:id="@+id/add_tag_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="@id/add_time_civ"
+                app:layout_constraintStart_toStartOf="@id/add_time_civ"
+                app:layout_constraintTop_toBottomOf="@id/add_time_civ" />
+
+            <ImageView
+                android:id="@+id/add_tag_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/dp_20"
+                android:background="@drawable/divider"
+                app:backgroundTint="@color/color_on_surface_emphasis_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_tag_picker" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

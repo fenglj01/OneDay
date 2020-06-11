@@ -11,6 +11,7 @@ import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import com.knight.oneday.R
 import com.knight.oneday.data.Step
+import com.knight.oneday.nav.NavigationModelItem
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.EventType
 import com.knight.oneday.utilities.getString
@@ -18,6 +19,7 @@ import com.knight.oneday.views.choice.ChoiceInputView
 import com.knight.oneday.views.getDrawableOrNull
 import com.knight.oneday.views.hsv.HorizontalStepView
 import com.knight.oneday.views.step.*
+import com.ramotion.directselect.DSListView
 
 @BindingAdapter("bindStepNumber")
 fun StepNumberView.bindStepNumber(number: Int) {
@@ -210,5 +212,16 @@ fun HorizontalStepView.bindStepIndicator(list: List<Step>) {
 @BindingAdapter("bindContentText")
 fun ChoiceInputView.bindContentText(content: String) {
     setContentText(content)
+}
+
+@BindingAdapter("bindAdapter")
+fun DSListView<NavigationModelItem.NavEventTag>.bindAdapter(adapter: TagPickerAdapter) {
+    setAdapter(adapter)
+    selectedIndex = 0
+}
+
+@BindingAdapter("bindStatusChangeListener")
+fun DSListView<NavigationModelItem.NavEventTag>.bindStatusChangeListener(listener: DSListView.OnDSListViewStatusChangedListener) {
+    setStatusChangedListener(listener)
 }
 
