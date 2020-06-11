@@ -2,6 +2,7 @@ package com.knight.oneday.views.choice
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageButton
@@ -20,16 +21,12 @@ class ChoiceInputView @JvmOverloads constructor(
     private val iconIv: AppCompatImageButton
     private val titleTv: AppCompatTextView
     private val contentTv: AppCompatTextView
-    private val gpClick: Group
-    var onChoiceInputClicked: OnChoiceInputClicked? = null
 
     init {
         contentView = LayoutInflater.from(context).inflate(R.layout.view_choice_input, this, true)
         iconIv = contentView.findViewById(R.id.choice_input_icon)
         titleTv = contentView.findViewById(R.id.choice_input_title)
         contentTv = contentView.findViewById(R.id.choice_input_content)
-        /* 点击事件缩小了一下范围 增加体验 */
-        gpClick = contentView.findViewById(R.id.gp_click)
         val ta = context.obtainStyledAttributes(attrs, R.styleable.ChoiceInputView)
         with(ta) {
             val iconRes = ta.getResourceId(R.styleable.ChoiceInputView_civIcon, 0)
@@ -38,14 +35,8 @@ class ChoiceInputView @JvmOverloads constructor(
             titleTv.text = title
             recycle()
         }
-        initEvent()
     }
 
-    private fun initEvent() {
-        gpClick.singleClick {
-            onChoiceInputClicked?.onChoiceInputClicked()
-        }
-    }
 
     fun setContentText(content: String) {
         contentTv.text = content
@@ -53,7 +44,7 @@ class ChoiceInputView @JvmOverloads constructor(
 
 
     interface OnChoiceInputClicked {
-        fun onChoiceInputClicked()
+        fun onChoiceInputClicked(contentViewId: Int)
     }
 
 }

@@ -2,6 +2,7 @@ package com.knight.oneday.add
 
 import android.os.Bundle
 import android.transition.Slide
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ import com.knight.oneday.views.themeInterpolator
  * Create by FLJ in 2020/6/11 9:30
  * 创建事件 思考过后 化繁为简 暂时不要加入步骤 清单这样的功能了
  */
-class AddEventFragment : Fragment() {
+class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked {
 
     private lateinit var binding: FragmentAddEventBinding
 
@@ -48,6 +49,7 @@ class AddEventFragment : Fragment() {
         binding = FragmentAddEventBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.vm = addVM
+        binding.onChoiceInputClicked = this
         return binding.root
     }
 
@@ -69,16 +71,6 @@ class AddEventFragment : Fragment() {
             addBackIc.singleClick {
                 hideSoftInput()
                 findNavController().navigateUp()
-            }
-            addDateCiv.onChoiceInputClicked = object : ChoiceInputView.OnChoiceInputClicked {
-                override fun onChoiceInputClicked() {
-
-                }
-            }
-            addTimeCiv.onChoiceInputClicked = object : ChoiceInputView.OnChoiceInputClicked {
-                override fun onChoiceInputClicked() {
-
-                }
             }
         }
     }
@@ -117,5 +109,12 @@ class AddEventFragment : Fragment() {
         startPostponedEnterTransition()
     }
 
-
+    override fun onChoiceInputClicked(contentViewId: Int) {
+        when (contentViewId) {
+            0 -> {
+            }
+            1 -> {
+            }
+        }
+    }
 }

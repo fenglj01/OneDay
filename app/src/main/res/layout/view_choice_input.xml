@@ -9,12 +9,6 @@
     android:paddingTop="@dimen/dp_16"
     tools:context="com.knight.oneday.add.AddEventFragment">
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/gp_click"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="choice_input_icon,choice_input_content" />
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/choice_input_title"
         android:layout_width="wrap_content"

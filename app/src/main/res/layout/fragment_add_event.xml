@@ -7,6 +7,10 @@
         <variable
             name="vm"
             type="com.knight.oneday.add.AddEventViewModel" />
+
+        <variable
+            name="onChoiceInputClicked"
+            type="com.knight.oneday.views.choice.ChoiceInputView.OnChoiceInputClicked" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,8 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
-            android:text="@string/name"
             android:alpha="?attr/emphasisMediumAlpha"
+            android:text="@string/name"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             app:layout_constraintStart_toStartOf="@id/add_title_tv"
             app:layout_constraintTop_toBottomOf="@id/add_title_tv" />
@@ -69,9 +73,9 @@
             android:id="@+id/subject_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@drawable/divider"
-            android:layout_marginTop="@dimen/dp_8"
             android:layout_marginHorizontal="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_8"
+            android:background="@drawable/divider"
             app:backgroundTint="@color/color_on_surface_emphasis_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_16"
+                android:onClick="@{() -> onChoiceInputClicked.onChoiceInputClicked(0)}"
                 app:civIcon="@drawable/ic_one_day_date"
                 app:civTitle="@string/date"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +107,7 @@
                 bindContentText="@{vm.previewTimeContent}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> onChoiceInputClicked.onChoiceInputClicked(1)}"
                 app:civIcon="@drawable/ic_one_day_schedule"
                 app:civTitle="@string/time"
                 app:layout_constraintStart_toStartOf="parent"
