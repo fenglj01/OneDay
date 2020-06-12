@@ -11,7 +11,7 @@ const val formatYearMonthDay = "yyyy-MM-dd"
 const val formatYearMonth = "yyyy-MM"
 const val formatHourMin = "HH:mm"
 const val formatMonthDay = "MM-dd"
-const val formatWeekDayMonth = "E,dd日-MM月"
+const val formatWeekDayMonth = "E,dd-MM"
 
 val todayStr = getString(R.string.today)
 val tomorrowStr = getString(R.string.tomorrow)
