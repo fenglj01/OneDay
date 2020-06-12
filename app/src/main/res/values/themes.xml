@@ -110,6 +110,8 @@
         <item name="materialCalendarTheme">
             @style/ThemeOverlay.MaterialComponents.MaterialCalendar.Overlay
         </item>
+        <item name="colorControlNormal">?attr/colorError</item>
+        <item name="colorControlActivated">?attr/colorError</item>
 
     </style>
 
@@ -117,6 +119,17 @@
         <item name="android:layout">@layout/fragment_preferences</item>
     </style>
 
+    <style name="Theme.TimePicker" parent="@android:style/Widget.Material.TimePicker">
+        <item name="android:editTextStyle">@style/Widget.EditText.OnSecondary</item>
+        <item name="colorControlNormal">?attr/colorOnSecondary</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.EditText.OnSecondary" parent="@android:style/Widget.EditText">
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+    </style>
 
 
 </resources>

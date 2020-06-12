@@ -20,6 +20,7 @@ import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.getInputManagerService
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.choice.ChoiceInputView
+import com.knight.oneday.views.dialog.TimePickerDialog
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
 
@@ -31,6 +32,7 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     DSListView.OnDSListViewStatusChangedListener {
 
     private lateinit var binding: FragmentAddEventBinding
+    private val timePicker: TimePickerDialog by lazy { TimePickerDialog() }
 
     private val addVM by viewModels<AddEventViewModel> {
         InjectorUtils.addEventViewModelFactory(
@@ -124,6 +126,7 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             0 -> {
             }
             1 -> {
+                timePicker.show(requireActivity().supportFragmentManager, "")
             }
         }
     }
