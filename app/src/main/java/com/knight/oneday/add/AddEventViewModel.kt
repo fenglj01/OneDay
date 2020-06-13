@@ -11,4 +11,7 @@ class AddEventViewModel(val rep: EventRepository) : BaseViewModel() {
     val previewDateContent: String = currentWeekDayMonth()
     val previewTimeContent: String = currentHourMin()
 
+    fun prepareHourMinStr(hourOfDay: Int, minute: Int) =
+        "${if (hourOfDay < 10) "0$hourOfDay" else "$hourOfDay"}:${if (minute < 10) "0$minute" else "$minute"}"
+
 }

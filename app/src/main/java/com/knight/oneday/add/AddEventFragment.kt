@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TimePicker
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -32,7 +33,7 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     DSListView.OnDSListViewStatusChangedListener {
 
     private lateinit var binding: FragmentAddEventBinding
-    private val timePicker: TimePickerDialog by lazy { TimePickerDialog() }
+    private val timePicker: TimePickerDialog by lazy { TimePickerDialog(obtainTimePickerListener()) }
 
     private val addVM by viewModels<AddEventViewModel> {
         InjectorUtils.addEventViewModelFactory(
@@ -145,4 +146,11 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
         // 灵活的处理整个布局的多点触控问题
         binding.addEventContent.isMotionEventSplittingEnabled = enable
     }
+
+    private fun obtainTimePickerListener(): TimePickerDialog.TimePickerListener =
+        object : TimePickerDialog.TimePickerConfirmListener() {
+            override fun onTimeConfirm(hourOfDay: Int, minute: Int) {
+                binding.addTimeCiv.setContentText(addVM.prepareHourMinStr(hourOfDay, minute))
+            }
+        }
 }
