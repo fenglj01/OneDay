@@ -40,6 +40,12 @@
         <item name="cornerSize">@dimen/dp_8</item>
     </style>
 
+    <style name="ShapeAppearance.MyTheme.SmallComponent.MaxConner" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <!--Your custom shape here-->
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/dp_32</item>
+    </style>
+
     <!--Shape Appearance for medium components like cards, alert dialogs-->
     <style name="ShapeAppearance.MyTheme.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <!--Your custom shape here-->

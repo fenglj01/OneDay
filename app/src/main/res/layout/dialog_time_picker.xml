@@ -3,8 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/colorSecondary"
+    android:background="@drawable/top_right_conner_surface_bg"
     android:padding="@dimen/dp_16">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/time_picker_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_time_picker"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/time_picker_title_iv"
+        android:layout_width="8dp"
+        android:layout_height="2dp"
+        android:layout_marginVertical="@dimen/dp_4"
+        android:background="?attr/colorOnSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/time_picker_title_tv" />
 
     <TimePicker
         android:id="@+id/time_picker"
@@ -14,7 +35,29 @@
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/time_picker_title_iv" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/time_picker_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_4"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toStartOf="@id/time_picker_sure_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/time_picker"
+        app:shapeAppearance="@style/ShapeAppearance.MyTheme.SmallComponent.MaxConner" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/time_picker_sure_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_4"
+        android:text="@string/sure"
+        android:theme="@style/OneDay.PrimarySecondary.Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/time_picker_cancel_btn"
+        app:layout_constraintTop_toBottomOf="@id/time_picker"
+        app:shapeAppearance="@style/ShapeAppearance.MyTheme.SmallComponent.MaxConner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
