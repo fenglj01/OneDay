@@ -17,5 +17,6 @@
         android:layout_height="@dimen/dp_32"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:tint="?attr/colorSecondary"
         android:src="@drawable/ic_one_day_arrows" />
 </RelativeLayout>
