@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/top_right_conner_surface_bg"
+    android:paddingVertical="@dimen/dp_16">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/date_picker_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_date_picker"
+        android:textAppearance="?attr/textAppearanceButton"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/date_picker_title_iv"
+        android:layout_width="8dp"
+        android:layout_height="2dp"
+        android:layout_marginVertical="@dimen/dp_4"
+        android:background="?attr/colorOnSurface"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date_picker_title_tv" />
+
+    <com.knight.oneday.views.dialog.CurrentDateView
+        android:id="@+id/current_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="@id/date_picker_title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/date_picker_title_tv" />
+
+    <com.haibin.calendarview.CalendarLayout
+        android:id="@+id/date_picker_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/dp_8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date_picker_title_iv">
+
+        <com.haibin.calendarview.CalendarView
+            android:id="@+id/date_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorSurface"
+            app:calendar_height="46dp"
+            app:calendar_padding="10dp"
+            app:current_day_text_color="?attr/colorSecondary"
+            app:current_month_text_color="?attr/colorOnSurface"
+            app:layout_constraintTop_toBottomOf="@id/date_time_tv"
+            app:month_view="com.knight.oneday.views.choice.OneDayMonthView"
+            app:other_month_text_color="@color/color_on_surface_emphasis_disabled"
+            app:selected_text_color="?attr/colorOnSecondary"
+            app:selected_theme_color="?attr/colorSecondary"
+            app:week_background="?attr/colorSurface"
+            app:week_text_color="?attr/colorOnSurface" />
+    </com.haibin.calendarview.CalendarLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/date_picker_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_4"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toStartOf="@id/date_picker_sure_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date_picker_layout"
+        app:shapeAppearance="@style/ShapeAppearance.MyTheme.SmallComponent.MaxConner" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/date_picker_sure_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_4"
+        android:text="@string/sure"
+        android:theme="@style/OneDay.PrimarySecondary.Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/date_picker_cancel_btn"
+        app:layout_constraintTop_toBottomOf="@id/date_picker_layout"
+        app:shapeAppearance="@style/ShapeAppearance.MyTheme.SmallComponent.MaxConner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

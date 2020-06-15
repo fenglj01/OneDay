@@ -18,9 +18,11 @@ import com.knight.oneday.create.CreateEventFragment
 import com.knight.oneday.databinding.FragmentAddEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.InjectorUtils
+import com.knight.oneday.utilities.formatWeekMonthDay
 import com.knight.oneday.utilities.getInputManagerService
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.choice.ChoiceInputView
+import com.knight.oneday.views.dialog.DatePickerDialog
 import com.knight.oneday.views.dialog.TimePickerDialog
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
@@ -34,6 +36,7 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
 
     private lateinit var binding: FragmentAddEventBinding
     private val timePicker: TimePickerDialog by lazy { TimePickerDialog(obtainTimePickerListener()) }
+    private val datePicker: DatePickerDialog by lazy { DatePickerDialog(obtainDatePickerListener()) }
 
     private val addVM by viewModels<AddEventViewModel> {
         InjectorUtils.addEventViewModelFactory(
@@ -44,6 +47,9 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     companion object {
 
         const val HIDE_SOFT_INPUT_TAG = 2020
+
+        const val TAG_TIME_PICKER_DIALOG = "time_picker_dialog"
+        const val TAG_DATE_PICKER_DIALOG = "date_picker_dialog"
 
     }
 
@@ -125,9 +131,10 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     override fun onChoiceInputClicked(contentViewId: Int) {
         when (contentViewId) {
             0 -> {
+                datePicker.show(requireActivity().supportFragmentManager, TAG_TIME_PICKER_DIALOG)
             }
             1 -> {
-                timePicker.show(requireActivity().supportFragmentManager, "")
+                timePicker.show(requireActivity().supportFragmentManager, TAG_DATE_PICKER_DIALOG)
             }
         }
     }
@@ -151,6 +158,13 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
         object : TimePickerDialog.TimePickerConfirmListener() {
             override fun onTimeConfirm(hourOfDay: Int, minute: Int) {
                 binding.addTimeCiv.setContentText(addVM.prepareHourMinStr(hourOfDay, minute))
+            }
+        }
+
+    private fun obtainDatePickerListener(): DatePickerDialog.OnDatePickerListener =
+        object : DatePickerDialog.OnDatePickerConfirmListener() {
+            override fun onDateConfirm(timeInMills: Long) {
+                binding.addDateCiv.setContentText(timeInMills.formatWeekMonthDay())
             }
         }
 }
