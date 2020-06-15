@@ -171,6 +171,7 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
 
     override fun onHide() {
         setContentSplitMotionEventEnable(false)
+        addVM.changeEventType(binding.addTagDsl.selectedIndex)
     }
 
     private fun setContentSplitMotionEventEnable(isShowDSListView: Boolean) {

@@ -18,7 +18,8 @@ data class Event(
     @ColumnInfo(name = "create_time") val createTime: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "completion_time") var completionTime: Calendar = createTime,
     @ColumnInfo(name = "due_date_time") var dueDateTime: Calendar = createTime,
-    @ColumnInfo(name = "is_done") var isDone: Boolean = false
+    @ColumnInfo(name = "is_done") var isDone: Boolean = false,
+    @ColumnInfo(name = "type") var eventType: EventType = EventType.NO_CATEGORY
 ) {
     /**
      * 主键的优化写法

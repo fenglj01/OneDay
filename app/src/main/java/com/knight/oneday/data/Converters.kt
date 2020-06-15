@@ -35,4 +35,10 @@ class Converters {
     @TypeConverter
     fun intToEventState(int: Int): EventState = EventState.values().first { it.ordinal == int }
 
+    @TypeConverter
+    fun eventTypeToInt(eventType: EventType): Int = eventType.ordinal
+
+    @TypeConverter
+    fun intToEventType(int: Int): EventType = EventType.values().first { it.ordinal == int }
+
 }

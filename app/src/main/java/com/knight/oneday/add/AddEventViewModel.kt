@@ -5,10 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.knight.oneday.data.Event
 import com.knight.oneday.data.EventRepository
-import com.knight.oneday.utilities.currentHourMin
-import com.knight.oneday.utilities.currentTimeMills
-import com.knight.oneday.utilities.currentWeekDayMonth
-import com.knight.oneday.utilities.format24Hex
+import com.knight.oneday.nav.NavigationModelItem
+import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.BaseViewModel
 import java.util.*
 
@@ -29,6 +27,7 @@ class AddEventViewModel(private val rep: EventRepository) : BaseViewModel() {
 
     var eventContent: String = ""
     var eventDueDateTime: Calendar = GregorianCalendar.getInstance()
+    var eventType: EventType = EventType.NO_CATEGORY
 
     private val _addEventStatus: MutableLiveData<Int> = MutableLiveData()
     val addEventStatus: LiveData<Int> = _addEventStatus
@@ -47,10 +46,10 @@ class AddEventViewModel(private val rep: EventRepository) : BaseViewModel() {
                 rep.createEvent(
                     event = Event(
                         content = eventContent,
-                        dueDateTime = eventDueDateTime
+                        dueDateTime = eventDueDateTime,
+                        eventType = eventType
                     )
                 ).run {
-                    Log.d("Tag", eventDueDateTime.timeInMillis.format24Hex())
                     _addEventStatus.postValue(ADD_STATUS_SUCCESS)
                 }
             },
@@ -76,5 +75,9 @@ class AddEventViewModel(private val rep: EventRepository) : BaseViewModel() {
             set(Calendar.HOUR_OF_DAY, hourOfDay)
             set(Calendar.MINUTE, minute)
         }
+    }
+
+    fun changeEventType(selectIndex: Int) {
+        eventType = EventType.values().first { it.ordinal == selectIndex }
     }
 }
