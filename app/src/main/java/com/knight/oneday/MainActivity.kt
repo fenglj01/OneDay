@@ -134,7 +134,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.miniFragment -> {
                 binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()
-                StatusBarUtil.setColor(this, this.themeColor(R.attr.colorSurface), 0)
             }
             R.id.createEventFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
@@ -143,12 +142,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.addEventFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()
-                StatusBarUtil.setColor(this, resources.getColor(R.color.color_FFE4D4), 0)
             }
             R.id.settingFragment -> {
                 bottomNavDrawer.close()
                 hideBottomAppBarAndFab()
-                StatusBarUtil.setColor(this, this.themeColor(R.attr.colorSurface), 0)
             }
         }
     }

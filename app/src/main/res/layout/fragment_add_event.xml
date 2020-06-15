@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -25,7 +26,7 @@
         android:id="@+id/add_event_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFE4D4"
+        android:background="?attr/colorSurface"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
@@ -89,75 +90,66 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_name_il" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <com.knight.oneday.views.choice.ChoiceInputView
+            android:id="@+id/add_date_civ"
+            bindContentText="@{vm.previewDateContent}"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/dp_20"
-            android:background="@drawable/top_right_conner_surface_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/subject_divider">
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> onChoiceInputClicked.onChoiceInputClicked(0)}"
+            app:civIcon="@drawable/ic_one_day_date"
+            app:civTitle="@string/date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subject_divider" />
 
+        <com.knight.oneday.views.choice.ChoiceInputView
+            android:id="@+id/add_time_civ"
+            bindContentText="@{vm.previewTimeContent}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> onChoiceInputClicked.onChoiceInputClicked(1)}"
+            app:civIcon="@drawable/ic_one_day_schedule"
+            app:civTitle="@string/time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_date_civ" />
 
-            <com.knight.oneday.views.choice.ChoiceInputView
-                android:id="@+id/add_date_civ"
-                bindContentText="@{vm.previewDateContent}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_16"
-                android:onClick="@{() -> onChoiceInputClicked.onChoiceInputClicked(0)}"
-                app:civIcon="@drawable/ic_one_day_date"
-                app:civTitle="@string/date"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <com.ramotion.directselect.DSListView
+            android:id="@+id/add_tag_dsl"
+            bindAdapter="@{tagAdapter}"
+            bindStatusChangeListener="@{onDLStatusChangedListener}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorSurface"
+            android:visibility="invisible"
+            app:picker_box_view="@id/add_tag_picker"
+            app:scale_animations="true"
+            app:scale_animations_factor="1.15"
+            app:scale_animations_pivot_center="true"
+            app:selected_index="1"
+            app:selector_background="@drawable/tag_picker_bg_list_selector" />
 
-            <com.knight.oneday.views.choice.ChoiceInputView
-                android:id="@+id/add_time_civ"
-                bindContentText="@{vm.previewTimeContent}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="@{() -> onChoiceInputClicked.onChoiceInputClicked(1)}"
-                app:civIcon="@drawable/ic_one_day_schedule"
-                app:civTitle="@string/time"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/add_date_civ" />
+        <com.knight.oneday.views.EventTagPickerBox
+            android:id="@+id/add_tag_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            app:layout_constraintEnd_toEndOf="@id/add_time_civ"
+            app:layout_constraintStart_toStartOf="@id/add_time_civ"
+            app:layout_constraintTop_toBottomOf="@id/add_time_civ" />
 
-            <com.ramotion.directselect.DSListView
-                android:id="@+id/add_tag_dsl"
-                bindAdapter="@{tagAdapter}"
-                bindStatusChangeListener="@{onDLStatusChangedListener}"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/colorSurface"
-                android:visibility="invisible"
-                app:picker_box_view="@id/add_tag_picker"
-                app:scale_animations="true"
-                app:scale_animations_factor="1.15"
-                app:scale_animations_pivot_center="true"
-                app:selected_index="1"
-                app:selector_background="@drawable/tag_picker_bg_list_selector" />
+        <ImageView
+            android:id="@+id/add_tag_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:background="@drawable/divider"
+            app:backgroundTint="@color/color_on_surface_emphasis_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_tag_picker" />
 
-            <com.knight.oneday.views.EventTagPickerBox
-                android:id="@+id/add_tag_picker"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_16"
-                app:layout_constraintEnd_toEndOf="@id/add_time_civ"
-                app:layout_constraintStart_toStartOf="@id/add_time_civ"
-                app:layout_constraintTop_toBottomOf="@id/add_time_civ" />
-
-            <ImageView
-                android:id="@+id/add_tag_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="@dimen/dp_20"
-                android:background="@drawable/divider"
-                app:backgroundTint="@color/color_on_surface_emphasis_medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/add_tag_picker" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </layout>
