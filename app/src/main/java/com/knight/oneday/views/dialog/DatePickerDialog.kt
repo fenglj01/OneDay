@@ -15,6 +15,9 @@ class DatePickerDialog(private var onDatePickerListener: OnDatePickerListener?) 
     BaseBottomDialogFragment() {
 
     private var pickTimeInMills = currentTimeMills()
+    private var pickYear: Int = 0
+    private var pickMonth: Int = 0
+    private var pickDay: Int = 0
 
     override fun dialogId(): Int = R.layout.dialog_date_picker
 
@@ -23,13 +26,16 @@ class DatePickerDialog(private var onDatePickerListener: OnDatePickerListener?) 
 
     override fun initEvent() {
         pickTimeInMills = date_view.selectedCalendar.timeInMillis
+        pickYear = date_view.curYear
+        pickMonth = date_view.curMonth
+        pickDay = date_view.curDay
 
         current_date.onClickListener = {
             date_view.scrollToCurrent()
         }
 
         date_picker_sure_btn.singleClick {
-            onDatePickerListener?.onDateConfirm(pickTimeInMills)
+            onDatePickerListener?.onDateConfirm(pickTimeInMills, pickYear, pickMonth, pickDay)
             dis()
         }
 
@@ -42,7 +48,10 @@ class DatePickerDialog(private var onDatePickerListener: OnDatePickerListener?) 
             override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
                 calendar?.run {
                     pickTimeInMills = timeInMillis
-                    onDatePickerListener?.onDateChange(timeInMillis)
+                    pickYear = year
+                    pickMonth = month
+                    pickDay = day
+                    onDatePickerListener?.onDateChange(timeInMillis, year, month, day)
                 }
             }
 
@@ -59,8 +68,8 @@ class DatePickerDialog(private var onDatePickerListener: OnDatePickerListener?) 
     }
 
     interface OnDatePickerListener {
-        fun onDateChange(timeInMills: Long)
-        fun onDateConfirm(timeInMills: Long)
+        fun onDateChange(timeInMills: Long, year: Int, month: Int, day: Int)
+        fun onDateConfirm(timeInMills: Long, year: Int, month: Int, day: Int)
         fun onDateCancel()
     }
 
@@ -68,7 +77,7 @@ class DatePickerDialog(private var onDatePickerListener: OnDatePickerListener?) 
         override fun onDateCancel() {
         }
 
-        override fun onDateChange(timeInMills: Long) {
+        override fun onDateChange(timeInMills: Long, year: Int, month: Int, day: Int) {
         }
     }
 

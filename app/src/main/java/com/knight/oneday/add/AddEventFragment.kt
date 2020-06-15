@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TimePicker
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.transition.MaterialContainerTransform
@@ -25,6 +27,7 @@ import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.choice.ChoiceInputView
 import com.knight.oneday.views.dialog.DatePickerDialog
 import com.knight.oneday.views.dialog.TimePickerDialog
+import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -88,13 +91,30 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     }
 
     private fun initEvent() {
+        addVM.addEventStatus.observe(viewLifecycleOwner, Observer { status ->
+            when (status) {
+                AddEventViewModel.ADD_STATUS_SUCCESS -> {
+                    findNavController().navigateUp()
+                }
+                AddEventViewModel.ADD_STATUS_CONTENT_IS_EMPTY -> {
+                    showSnackBar(binding.root, R.string.add_event_content_is_empty)
+                }
+                AddEventViewModel.ADD_STATUS_FAIL -> {
+                    showSnackBar(binding.root, R.string.add_event_fail)
+                }
+            }
+        })
         binding.apply {
             addBackIc.singleClick {
                 hideSoftInput()
                 findNavController().navigateUp()
             }
             addBtn.singleClick {
-
+                hideSoftInput()
+                addVM.addEvent()
+            }
+            addNameEdit.addTextChangedListener { content ->
+                content?.let { addVM.eventContent = content.toString() }
             }
         }
     }
@@ -162,13 +182,15 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     private fun obtainTimePickerListener(): TimePickerDialog.TimePickerListener =
         object : TimePickerDialog.TimePickerConfirmListener() {
             override fun onTimeConfirm(hourOfDay: Int, minute: Int) {
+                addVM.changeHourAndMinute(hourOfDay, minute)
                 binding.addTimeCiv.setContentText(addVM.prepareHourMinStr(hourOfDay, minute))
             }
         }
 
     private fun obtainDatePickerListener(): DatePickerDialog.OnDatePickerListener =
         object : DatePickerDialog.OnDatePickerConfirmListener() {
-            override fun onDateConfirm(timeInMills: Long) {
+            override fun onDateConfirm(timeInMills: Long, year: Int, month: Int, day: Int) {
+                addVM.changeDate(year, month, day)
                 binding.addDateCiv.setContentText(timeInMills.formatWeekMonthDay())
             }
         }

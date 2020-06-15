@@ -106,4 +106,6 @@
     <string name="title_date_picker">编辑 日期</string>
     <string name="type">类别</string>
     <string name="add_event">添加任务</string>
+    <string name="add_event_content_is_empty">任务能容不能为空哟~</string>
+    <string name="add_event_fail">任务创建失败!</string>
 </resources>
