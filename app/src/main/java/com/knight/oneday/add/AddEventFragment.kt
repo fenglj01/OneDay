@@ -20,10 +20,7 @@ import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.create.CreateEventFragment
 import com.knight.oneday.databinding.FragmentAddEventBinding
 import com.knight.oneday.nav.NavigationModel
-import com.knight.oneday.utilities.InjectorUtils
-import com.knight.oneday.utilities.formatWeekMonthDay
-import com.knight.oneday.utilities.getInputManagerService
-import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.utilities.*
 import com.knight.oneday.views.choice.ChoiceInputView
 import com.knight.oneday.views.dialog.DatePickerDialog
 import com.knight.oneday.views.dialog.TimePickerDialog
@@ -167,11 +164,13 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     override fun onShow() {
         setContentSplitMotionEventEnable(true)
         hideSoftInput()
+        binding.addBtn.alphaAnimationHide()
     }
 
     override fun onHide() {
         setContentSplitMotionEventEnable(false)
         addVM.changeEventType(binding.addTagDsl.selectedIndex)
+        binding.addBtn.alphaAnimationShow()
     }
 
     private fun setContentSplitMotionEventEnable(isShowDSListView: Boolean) {

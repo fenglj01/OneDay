@@ -78,6 +78,7 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
     // Show Hide Listener
     private OnDSListViewStatusChangedListener statusChangedListener;
 
+
     public DSListView(Context context) {
         this(context, null);
     }
@@ -229,7 +230,7 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
     private void hideListView() {
         if (!readyToHide || animationInProgress || scrollInProgress || !listViewIsShown || adapter == null)
             return;
-        if (this.statusChangedListener != null) statusChangedListener.onHide();
+
         readyToHide = false;
         animationInProgress = true;
         listView.setEnabled(false);
@@ -244,9 +245,16 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
         hideAnimation.setInterpolator(new DecelerateInterpolator());
         hideAnimation.setAnimationListener(new AnimationListenerAdapter() {
             @Override
+            public void onAnimationStart(Animation animation) {
+                super.onAnimationStart(animation);
+                if (statusChangedListener != null) statusChangedListener.onHide();
+            }
+
+            @Override
             public void onAnimationEnd(Animation animation) {
                 listViewIsShown = false;
                 animationInProgress = false;
+
             }
         });
         DSListView.this.startAnimation(hideAnimation);
@@ -265,10 +273,9 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
 
     private void showListView() {
         if (animationInProgress || scrollInProgress || listViewIsShown) return;
-        if (this.statusChangedListener != null) statusChangedListener.onShow();
         listView.setEnabled(true);
         animationInProgress = true;
-
+        if (statusChangedListener != null) statusChangedListener.onShow();
         this.setVisibility(View.VISIBLE);
         this.bringToFront();
         this.readyToHide = false;
@@ -487,5 +494,6 @@ public class DSListView<T> extends RelativeLayout implements AbsListView.OnScrol
 
         void onHide();
     }
+
 
 }

@@ -1,26 +1,21 @@
 package com.knight.oneday.utilities
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
-import android.app.Activity
 import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.res.Resources
 import android.graphics.Paint
-import android.graphics.Rect
-import android.util.Log
-import android.view.KeyEvent
 import android.view.View
-import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.Checkable
-import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.knight.oneday.OneDayApp
+import com.ramotion.foldingcell.animations.AnimationEndListener
 
 /**
  * @author knight
@@ -108,4 +103,29 @@ fun TextView.strikeText() {
 fun TextView.clearStrikeText() {
     paintFlags = 0
     invalidate()
+}
+
+fun View.alphaAnimationShow() {
+    val showAnimation = AlphaAnimation(0f, 1f)
+    showAnimation.duration = 200
+    showAnimation.interpolator = AccelerateInterpolator()
+    showAnimation.setAnimationListener(object : AnimationEndListener() {
+        override fun onAnimationEnd(animation: Animation?) {
+            isVisible = true
+        }
+    })
+    startAnimation(showAnimation)
+}
+
+fun View.alphaAnimationHide() {
+    isVisible = false
+    val hideAnimation = AlphaAnimation(1f, 0f)
+    hideAnimation.duration = 200
+    hideAnimation.interpolator = DecelerateInterpolator()
+    hideAnimation.setAnimationListener(object : AnimationEndListener() {
+        override fun onAnimationEnd(animation: Animation?) {
+            isVisible = false
+        }
+    })
+    startAnimation(hideAnimation)
 }
