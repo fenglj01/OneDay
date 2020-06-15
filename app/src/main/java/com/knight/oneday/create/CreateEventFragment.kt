@@ -12,18 +12,18 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.R
-import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.data.RemindDate
 import com.knight.oneday.databinding.FragmentCreateEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.setting.SettingPreferences
 import com.knight.oneday.utilities.*
-import com.knight.oneday.views.DateTimeChoiceDialogFragment
+import com.knight.oneday.views.dialog.DateTimeChoiceDialogFragment
 import com.knight.oneday.views.OnButtonClickListener
 import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
 import kotlinx.android.synthetic.main.fragment_create_event.*
+import com.knight.oneday.adapters.TagPickerAdapter
 
 class CreateEventFragment : Fragment() {
 
@@ -70,7 +70,8 @@ class CreateEventFragment : Fragment() {
             }
 
             eventDateTv.singleClick {
-                dateDialog.show(parentFragmentManager,
+                dateDialog.show(
+                    parentFragmentManager,
                     DATE_PICKER_TAG
                 )
             }
@@ -82,7 +83,8 @@ class CreateEventFragment : Fragment() {
             eventSendEditIb.onButtonClickListener = object : OnButtonClickListener {
 
                 override fun onStateOnForwardClick() {
-                    showSnackBar(eventSendEditIb,
+                    showSnackBar(
+                        eventSendEditIb,
                         R.string.event_overview_length_hint
                     )
                 }

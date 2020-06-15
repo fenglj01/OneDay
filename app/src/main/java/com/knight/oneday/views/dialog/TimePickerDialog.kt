@@ -2,9 +2,12 @@ package com.knight.oneday.views.dialog
 
 import com.knight.oneday.R
 import com.knight.oneday.utilities.singleClick
-import com.knight.oneday.views.BaseBottomDialogFragment
 import kotlinx.android.synthetic.main.dialog_time_picker.*
 
+/**
+ * Create by FLJ in 2020/6/15 9:05
+ * 时间选择
+ */
 class TimePickerDialog(private val listener: TimePickerListener) : BaseBottomDialogFragment() {
 
     private var pickHourOfDay: Int = 0
@@ -19,7 +22,7 @@ class TimePickerDialog(private val listener: TimePickerListener) : BaseBottomDia
     }
 
     override fun initEvent() {
-        time_picker.setOnTimeChangedListener { view, hourOfDay, minute ->
+        time_picker.setOnTimeChangedListener { _, hourOfDay, minute ->
             listener.onTimeChanged(hourOfDay, minute)
             pickHourOfDay = hourOfDay
             pickMinute = minute
@@ -29,6 +32,7 @@ class TimePickerDialog(private val listener: TimePickerListener) : BaseBottomDia
             dialog?.dismiss()
         }
         time_picker_cancel_btn.singleClick {
+            listener.onTimeCancel()
             dialog?.dismiss()
         }
 

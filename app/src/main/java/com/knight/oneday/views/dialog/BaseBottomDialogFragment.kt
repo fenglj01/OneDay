@@ -1,4 +1,4 @@
-package com.knight.oneday.views
+package com.knight.oneday.views.dialog
 
 import android.os.Bundle
 import android.view.*
