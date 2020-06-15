@@ -135,6 +135,10 @@
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
 
+    <style name="OneDay.PrimarySecondary.Button.Icon" parent="@style/Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="colorPrimary">?attr/colorSecondary</item>
+    </style>
+
 
 
 
