@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TimePicker
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -26,6 +27,7 @@ import com.knight.oneday.views.dialog.DatePickerDialog
 import com.knight.oneday.views.dialog.TimePickerDialog
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Create by FLJ in 2020/6/11 9:30
@@ -90,6 +92,9 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             addBackIc.singleClick {
                 hideSoftInput()
                 findNavController().navigateUp()
+            }
+            addBtn.singleClick {
+
             }
         }
     }

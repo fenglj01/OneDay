@@ -75,6 +75,7 @@
             android:layout_marginTop="@dimen/dp_8"
             android:background="@null"
             android:hint="@string/event_name"
+            android:paddingStart="@dimen/dp_8"
             app:layout_constraintStart_toStartOf="@id/add_title_tv"
             app:layout_constraintTop_toBottomOf="@id/add_name_hint" />
 
@@ -113,6 +114,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_date_civ" />
 
+        <com.knight.oneday.views.EventTagPickerBox
+            android:id="@+id/add_tag_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_16"
+            app:layout_constraintEnd_toEndOf="@id/add_time_civ"
+            app:layout_constraintStart_toStartOf="@id/add_time_civ"
+            app:layout_constraintTop_toBottomOf="@id/add_time_civ" />
+
+        <ImageView
+            android:id="@+id/add_tag_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="@dimen/dp_20"
+            android:background="@drawable/divider"
+            app:backgroundTint="@color/color_on_surface_emphasis_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_tag_picker" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_20"
+            android:text="@string/add_event"
+            android:theme="@style/OneDay.PrimarySecondary.Button"
+            app:icon="@drawable/ic_one_day_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_tag_divider" />
+
         <com.ramotion.directselect.DSListView
             android:id="@+id/add_tag_dsl"
             bindAdapter="@{tagAdapter}"
@@ -127,39 +160,6 @@
             app:scale_animations_pivot_center="true"
             app:selected_index="1"
             app:selector_background="@drawable/tag_picker_bg_list_selector" />
-
-        <com.knight.oneday.views.EventTagPickerBox
-            android:id="@+id/add_tag_picker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_16"
-            app:layout_constraintEnd_toEndOf="@id/add_time_civ"
-            app:layout_constraintStart_toStartOf="@id/add_time_civ"
-            app:layout_constraintTop_toBottomOf="@id/add_time_civ" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_20"
-            android:text="@string/add_event"
-            android:theme="@style/OneDay.PrimarySecondary.Button.Icon"
-            app:icon="@drawable/ic_one_day_add"
-            app:layout_constraintEnd_toEndOf="@id/add_time_civ"
-            app:layout_constraintStart_toStartOf="@id/add_time_civ"
-            app:layout_constraintTop_toBottomOf="@id/add_tag_picker" />
-
-        <ImageView
-            android:id="@+id/add_tag_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="@dimen/dp_20"
-            android:background="@drawable/divider"
-            app:backgroundTint="@color/color_on_surface_emphasis_medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_tag_picker" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
