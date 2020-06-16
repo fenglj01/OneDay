@@ -69,27 +69,7 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
         binding.taskList.adapter = ad
         ad.submitList(
             mutableListOf(
-                TaskAndEventSteps(
-                    task = Task("aa")
-                ),
-                TaskAndEventSteps(
-                    task = Task("aa")
-                ), TaskAndEventSteps(
-                    task = Task("aa")
-                ),
-                TaskAndEventSteps(
-                    task = Task("aa")
-                ),
-                TaskAndEventSteps(
-                    task = Task("aa")
-                ),
-                TaskAndEventSteps(
-                    task = Task("aa")
-                ), TaskAndEventSteps(
-                    task = Task("aa")
-                ), TaskAndEventSteps(
-                    task = Task("aa")
-                )
+
             )
         )
     }

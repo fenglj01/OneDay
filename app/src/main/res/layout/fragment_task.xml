@@ -31,6 +31,7 @@
             android:id="@+id/task_calendar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/colorSurface"
             android:orientation="vertical"
             app:calendar_content_view_id="@id/task_list"
             app:default_status="shrink"
@@ -62,7 +63,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/task_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="?android:colorBackground" />
         </com.haibin.calendarview.CalendarLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
