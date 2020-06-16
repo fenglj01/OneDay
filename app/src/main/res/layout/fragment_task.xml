@@ -24,7 +24,6 @@
             bindSelectedDay="@{vm.previewDateContent}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,6 +31,9 @@
             android:id="@+id/task_calendar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:calendar_content_view_id="@id/task_list"
+            app:default_status="shrink"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/task_current_date">
 
@@ -47,11 +49,20 @@
                 app:current_month_text_color="?attr/colorOnSurface"
                 app:layout_constraintTop_toBottomOf="@id/date_time_tv"
                 app:month_view="com.knight.oneday.views.choice.OneDayMonthView"
+                app:month_view_scrollable="true"
+                app:month_view_show_mode="mode_only_current"
                 app:other_month_text_color="@color/color_on_surface_emphasis_disabled"
                 app:selected_text_color="?attr/colorOnSecondary"
                 app:selected_theme_color="?attr/colorSecondary"
                 app:week_background="?attr/colorSurface"
-                app:week_text_color="?attr/colorOnSurface" />
+                app:week_text_color="?attr/colorOnSurface"
+                app:week_view="com.knight.oneday.views.choice.OneDayWeekView"
+                app:week_view_scrollable="true" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/task_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </com.haibin.calendarview.CalendarLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
