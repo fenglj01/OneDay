@@ -17,7 +17,7 @@ import java.util.*
      * onDelete = ForeignKey.CASCADE 次级连删 当event删除时 相关的step也会被删除
      */
     foreignKeys = [ForeignKey(
-        entity = Event::class,
+        entity = Task::class,
         parentColumns = ["id"],
         childColumns = ["event_id"],
         onDelete = ForeignKey.CASCADE

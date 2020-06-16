@@ -7,7 +7,7 @@
     android:background="?attr/colorTransparent"
     android:paddingHorizontal="@dimen/dp_20"
     android:paddingTop="@dimen/dp_16"
-    tools:context="com.knight.oneday.add.AddEventFragment">
+    tools:context="com.knight.oneday.add.AddTaskFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/choice_input_title"

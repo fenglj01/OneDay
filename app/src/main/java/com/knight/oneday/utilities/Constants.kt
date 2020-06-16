@@ -6,8 +6,8 @@ package com.knight.oneday.utilities
  * 一些常用常量
  */
 const val DATABASE_NAME = "oneDay.db"
-const val TABLE_NAME_EVENT = "events"
-const val TABLE_NAME_STEP = "steps"
+const val TABLE_NAME_EVENT = "task"
+const val TABLE_NAME_STEP = "step"
 
 
 const val VIEW_MODEL_STATUS_ON_IO = 0

@@ -5,11 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.knight.oneday.data.Event
-import com.knight.oneday.data.EventAndEventSteps
+import com.knight.oneday.data.TaskAndEventSteps
 import com.knight.oneday.databinding.RvItemMiniEventBinding
-import com.knight.oneday.utilities.singleClick
-import kotlinx.android.synthetic.main.rv_item_mini_event.view.*
 
 /**
  * @author knight
@@ -17,7 +14,7 @@ import kotlinx.android.synthetic.main.rv_item_mini_event.view.*
  * 极简版事件Adapter
  */
 class MiniEventRecyclerViewAdapter :
-    ListAdapter<EventAndEventSteps, MiniEventRecyclerViewAdapter.MiniEventViewHolder>(
+    ListAdapter<TaskAndEventSteps, MiniEventRecyclerViewAdapter.MiniEventViewHolder>(
         EventDiffCallback()
     ) {
 
@@ -36,7 +33,7 @@ class MiniEventRecyclerViewAdapter :
     inner class MiniEventViewHolder(private val binding: RvItemMiniEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: EventAndEventSteps) {
+        fun bind(item: TaskAndEventSteps) {
             binding.apply {
                 eventAndSteps = item
                 // 决定了 突出得圆角(打算用来做已完成得处理)
@@ -48,20 +45,20 @@ class MiniEventRecyclerViewAdapter :
 
 }
 
-private class EventDiffCallback : DiffUtil.ItemCallback<EventAndEventSteps>() {
+private class EventDiffCallback : DiffUtil.ItemCallback<TaskAndEventSteps>() {
     override fun areItemsTheSame(
-        oldItem: EventAndEventSteps,
-        newItem: EventAndEventSteps
+        oldItem: TaskAndEventSteps,
+        newItem: TaskAndEventSteps
     ): Boolean {
-        return oldItem.event.eventId == newItem.event.eventId
+        return oldItem.task.eventId == newItem.task.eventId
     }
 
     override fun areContentsTheSame(
-        oldItem: EventAndEventSteps,
-        newItem: EventAndEventSteps
+        oldItem: TaskAndEventSteps,
+        newItem: TaskAndEventSteps
     ): Boolean {
-        return oldItem.event.content == newItem.event.content
-                && oldItem.event.isDone == newItem.event.isDone
-                && oldItem.event.eventId == newItem.event.eventId
+        return oldItem.task.content == newItem.task.content
+                && oldItem.task.isDone == newItem.task.isDone
+                && oldItem.task.eventId == newItem.task.eventId
     }
 }

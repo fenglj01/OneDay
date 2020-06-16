@@ -55,7 +55,7 @@
         tools:layout="@layout/fragment_create_event" />
     <fragment
         android:id="@+id/addEventFragment"
-        android:name="com.knight.oneday.add.AddEventFragment"
+        android:name="com.knight.oneday.add.AddTaskFragment"
         android:label="fragment_add_event"
         tools:layout="@layout/fragment_add_event" />
 </navigation>

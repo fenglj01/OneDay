@@ -67,7 +67,7 @@ object NavigationModel {
         postListUpdate()
     }
 
-    fun getNavTagString() = navigationTags.map { it.eventTag }
+    fun getNavTagString() = navigationTags.map { it.taskTag }
 
     fun getNavTagItems() = navigationTags
 

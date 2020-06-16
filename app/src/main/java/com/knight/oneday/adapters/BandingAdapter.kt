@@ -1,10 +1,8 @@
 package com.knight.oneday.adapters
 
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
-import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
@@ -13,7 +11,6 @@ import com.knight.oneday.R
 import com.knight.oneday.data.Step
 import com.knight.oneday.nav.NavigationModelItem
 import com.knight.oneday.utilities.EventState
-import com.knight.oneday.utilities.EventType
 import com.knight.oneday.utilities.getString
 import com.knight.oneday.views.choice.ChoiceInputView
 import com.knight.oneday.views.getDrawableOrNull

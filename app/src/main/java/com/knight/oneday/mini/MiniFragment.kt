@@ -10,7 +10,7 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.knight.oneday.R
 import com.knight.oneday.adapters.ExpandableHomeItemAdapter
-import com.knight.oneday.data.Event
+import com.knight.oneday.data.Task
 import com.knight.oneday.data.Step
 import com.knight.oneday.databinding.FragmentMiniBinding
 import com.knight.oneday.setting.SettingPreferences
@@ -89,7 +89,7 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
 
     override fun getSectionContent(dataPosition: Int): String {
         if (dataPosition !in adapter.currentList.indices) return ""
-        adapter.currentList[dataPosition].event.let { event ->
+        adapter.currentList[dataPosition].task.let { event ->
             return when {
                 event.isDone -> getString(R.string.section_finished)
                 event.isExpired() -> getString(R.string.section_expired)
@@ -98,24 +98,24 @@ class MiniFragment : Fragment(), ExpandableHomeItemAdapter.EventItemListener,
         }
     }
 
-    override fun onEventDoneChanged(event: Event, isDone: Boolean) {
-        miniVm.updateEventDoneStatus(event, isDone)
+    override fun onEventDoneChanged(task: Task, isDone: Boolean) {
+        miniVm.updateEventDoneStatus(task, isDone)
     }
 
-    override fun onEventLongPressed(event: Event) {
+    override fun onEventLongPressed(task: Task) {
         if (SettingPreferences.showRemindDelete) {
             SureDeleteDialog().apply {
                 onSure = {
-                    miniVm.removeEvent(event)
+                    miniVm.removeEvent(task)
                 }
             }.show(requireActivity().supportFragmentManager, DIALOG_TAG_DELETE_EVENT)
         } else {
-            miniVm.removeEvent(event)
+            miniVm.removeEvent(task)
         }
 
     }
 
-    override fun onEventClicked(event: Event) {
+    override fun onEventClicked(task: Task) {
 
     }
 

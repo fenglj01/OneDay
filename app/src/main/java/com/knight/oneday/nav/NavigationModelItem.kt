@@ -4,8 +4,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.DiffUtil
 import com.knight.oneday.R
-import com.knight.oneday.data.EventTag
-import com.knight.oneday.data.EventTagDiff
+import com.knight.oneday.data.TaskTag
+import com.knight.oneday.data.TaskTagDiff
 
 /**
  * Create by FLJ in 2020/3/25 14:54
@@ -25,7 +25,7 @@ sealed class NavigationModelItem {
     data class NavDivider(val title: String) : NavigationModelItem()
 
     // 事件分类
-    data class NavEventTag(val eventTag: EventTag, @DrawableRes var icon: Int = R.drawable.ic_one_day_tag) :
+    data class NavEventTag(val taskTag: TaskTag, @DrawableRes var icon: Int = R.drawable.ic_one_day_tag) :
         NavigationModelItem()
 
     // 相同区分
@@ -37,9 +37,9 @@ sealed class NavigationModelItem {
             return when {
                 oldItem is NavMenuItem && newItem is NavMenuItem -> oldItem.id == newItem.id
                 oldItem is NavDivider && newItem is NavDivider -> oldItem.title == newItem.title
-                oldItem is NavEventTag && newItem is NavEventTag -> EventTagDiff.areItemsTheSame(
-                    oldItem.eventTag,
-                    newItem.eventTag
+                oldItem is NavEventTag && newItem is NavEventTag -> TaskTagDiff.areItemsTheSame(
+                    oldItem.taskTag,
+                    newItem.taskTag
                 )
                 else -> oldItem == newItem
             }
@@ -52,9 +52,9 @@ sealed class NavigationModelItem {
             return when {
                 oldItem is NavMenuItem && newItem is NavMenuItem -> oldItem.id == newItem.id && oldItem.icon == newItem.icon && oldItem.titleRes == newItem.titleRes && oldItem.checked == newItem.checked
                 oldItem is NavDivider && newItem is NavDivider -> oldItem.title == newItem.title
-                oldItem is NavEventTag && newItem is NavEventTag -> EventTagDiff.areContentsTheSame(
-                    oldItem.eventTag,
-                    newItem.eventTag
+                oldItem is NavEventTag && newItem is NavEventTag -> TaskTagDiff.areContentsTheSame(
+                    oldItem.taskTag,
+                    newItem.taskTag
                 )
                 else -> false
             }

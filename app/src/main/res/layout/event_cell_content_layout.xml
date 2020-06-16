@@ -6,7 +6,7 @@
 
         <variable
             name="content"
-            type="com.knight.oneday.data.EventAndEventSteps" />
+            type="com.knight.oneday.data.TaskAndEventSteps" />
 
         <variable
             name="topic"

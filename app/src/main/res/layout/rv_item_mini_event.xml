@@ -7,7 +7,7 @@
 
         <variable
             name="eventAndSteps"
-            type="com.knight.oneday.data.EventAndEventSteps" />
+            type="com.knight.oneday.data.TaskAndEventSteps" />
 
         <variable
             name="topic"
@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
-                    android:text="@{eventAndSteps.event.content}"
+                    android:text="@{eventAndSteps.task.content}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/event_remind_time_iv" />

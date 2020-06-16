@@ -1,13 +1,8 @@
 package com.knight.oneday.data
 
 import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import com.knight.oneday.utilities.EventState
-import com.knight.oneday.utilities.EventType
-import java.time.Instant
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneOffset
+import com.knight.oneday.utilities.TaskType
 import java.util.*
 
 /**
@@ -36,9 +31,9 @@ class Converters {
     fun intToEventState(int: Int): EventState = EventState.values().first { it.ordinal == int }
 
     @TypeConverter
-    fun eventTypeToInt(eventType: EventType): Int = eventType.ordinal
+    fun eventTypeToInt(taskType: TaskType): Int = taskType.ordinal
 
     @TypeConverter
-    fun intToEventType(int: Int): EventType = EventType.values().first { it.ordinal == int }
+    fun intToEventType(int: Int): TaskType = TaskType.values().first { it.ordinal == int }
 
 }

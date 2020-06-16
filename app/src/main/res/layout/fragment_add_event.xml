@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.knight.oneday.add.AddEventViewModel" />
+            type="com.knight.oneday.add.AddTaskViewModel" />
 
         <variable
             name="tagAdapter"
@@ -114,7 +114,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_date_civ" />
 
-        <com.knight.oneday.views.EventTagPickerBox
+        <com.knight.oneday.views.TaskTagPickerBox
             android:id="@+id/add_tag_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

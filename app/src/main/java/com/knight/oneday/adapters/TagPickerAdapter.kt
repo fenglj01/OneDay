@@ -43,7 +43,7 @@ class TagPickerAdapter(
         }
         getItem(position)?.run {
             vh.tagIcon.setImageResource(icon)
-            vh.tagTitle.text = eventTag
+            vh.tagTitle.text = taskTag
         }
         return rootView
     }

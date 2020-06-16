@@ -1,8 +1,7 @@
 package com.knight.oneday.data
 
 import androidx.room.*
-import com.knight.oneday.utilities.EventState
-import com.knight.oneday.utilities.EventType
+import com.knight.oneday.utilities.TaskType
 import com.knight.oneday.utilities.TABLE_NAME_EVENT
 import com.knight.oneday.utilities.currentTimeMills
 import java.util.*
@@ -13,13 +12,13 @@ import java.util.*
  * 事件表
  */
 @Entity(tableName = TABLE_NAME_EVENT)
-data class Event(
+data class Task(
     val content: String,
     @ColumnInfo(name = "create_time") val createTime: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "completion_time") var completionTime: Calendar = createTime,
     @ColumnInfo(name = "due_date_time") var dueDateTime: Calendar = createTime,
     @ColumnInfo(name = "is_done") var isDone: Boolean = false,
-    @ColumnInfo(name = "type") var eventType: EventType = EventType.NO_CATEGORY
+    @ColumnInfo(name = "type") var taskType: TaskType = TaskType.NO_CATEGORY
 ) {
     /**
      * 主键的优化写法

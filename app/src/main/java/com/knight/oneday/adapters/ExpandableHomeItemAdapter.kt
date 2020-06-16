@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
-import com.knight.oneday.data.Event
-import com.knight.oneday.data.EventAndEventSteps
+import com.knight.oneday.data.Task
+import com.knight.oneday.data.TaskAndEventSteps
 import com.knight.oneday.data.Step
 import com.knight.oneday.databinding.EventWithStepItemLayoutBinding
 import com.knight.oneday.utilities.EventState
@@ -32,7 +32,7 @@ class ExpandableHomeItemAdapter(
     val eventItemListener: EventItemListener,
     val recyclerView: RecyclerView
 ) :
-    ListAdapter<EventAndEventSteps, ExpandableHomeItemAdapter.EventCellViewHolder>(
+    ListAdapter<TaskAndEventSteps, ExpandableHomeItemAdapter.EventCellViewHolder>(
         EventAndStepsDiffCallback
     ) {
 
@@ -58,8 +58,8 @@ class ExpandableHomeItemAdapter(
     }
 
     override fun onCurrentListChanged(
-        previousList: MutableList<EventAndEventSteps>,
-        currentList: MutableList<EventAndEventSteps>
+        previousList: MutableList<TaskAndEventSteps>,
+        currentList: MutableList<TaskAndEventSteps>
     ) {
         super.onCurrentListChanged(previousList, currentList)
         if (previousList.isNullOrEmpty()) return
@@ -92,7 +92,7 @@ class ExpandableHomeItemAdapter(
             binding.root.background = EventSwipeActionDrawable(binding.root.context)
         }
 
-        fun bind(item: EventAndEventSteps) {
+        fun bind(item: TaskAndEventSteps) {
 
             binding.apply {
 
@@ -110,11 +110,11 @@ class ExpandableHomeItemAdapter(
                     remindTimeTv.alpha = alpha
                     overviewEventContent.alpha = alpha
                     val color = root.context.themeColor(
-                        if (item.event.isExpired() && !isDone) R.attr.colorError
+                        if (item.task.isExpired() && !isDone) R.attr.colorError
                         else R.attr.colorOnSurface
                     )
                     val drawable = root.context.getDrawable(
-                        if (item.event.isExpired() && !isDone) R.drawable.ic_one_day_schedule_expired
+                        if (item.task.isExpired() && !isDone) R.drawable.ic_one_day_schedule_expired
                         else R.drawable.ic_one_day_schedule
                     )
                     remindTimeIv.setImageDrawable(drawable)
@@ -134,26 +134,26 @@ class ExpandableHomeItemAdapter(
 
                 /* 基本内容初始化 */
                 eventAndSteps = item
-                binding.root.isActivated = item.event.isDone
-                eventCard.progress = if (item.event.isDone) 1F else 0F
+                binding.root.isActivated = item.task.isDone
+                eventCard.progress = if (item.task.isDone) 1F else 0F
 
                 /* 如果一完成那么不需要显示步骤预览以及可展开了 */
-                changeStepViewVisible(!item.event.isDone)
-                changeTextColor(item.event.isDone)
+                changeStepViewVisible(!item.task.isDone)
+                changeTextColor(item.task.isDone)
                 // 设置预览部分
-                eventContent = item.event.content
-                remindTime = item.event.dueDateTime.formatUi()
+                eventContent = item.task.content
+                remindTime = item.task.dueDateTime.formatUi()
 
                 // 点击 长按事件
                 eventCard.singleClick {
-                    eventItemListener.onEventClicked(item.event)
+                    eventItemListener.onEventClicked(item.task)
                 }
                 eventCard.setOnLongClickListener {
-                    eventItemListener.onEventLongPressed(item.event)
+                    eventItemListener.onEventLongPressed(item.task)
                     true
                 }
                 /* 如果用户已经完成了这项任务 那么不需要做内容的适配了 */
-                if (!item.event.isDone) {
+                if (!item.task.isDone) {
                     // 展开step内容相关
                     val isExpanded = expandedItemList.contains(adapterPosition)
                     stepContentExpand.toggleNoAnimator(isExpanded)
@@ -179,7 +179,7 @@ class ExpandableHomeItemAdapter(
                                 object : OnStepIndicatorClickListener {
                                     override fun onStepIndicatorClick(pos: Int) {
                                         setupStepDoneUndoIb(pos)
-                                        selectedIndexList[item.event.eventId] = pos
+                                        selectedIndexList[item.task.eventId] = pos
                                     }
                                 }
                             /* 步骤得完成和撤销完成 */
@@ -195,8 +195,8 @@ class ExpandableHomeItemAdapter(
                                 }
                             }
                             hsv.bindStepIndicator(item.eventSteps)
-                            val selectedIndex = selectedIndexList[item.event.eventId] ?: 0
-                            hsv.setSelectedIndex(selectedIndexList[item.event.eventId] ?: 0)
+                            val selectedIndex = selectedIndexList[item.task.eventId] ?: 0
+                            hsv.setSelectedIndex(selectedIndexList[item.task.eventId] ?: 0)
                             /* 获取当前正在执行项的位置 */
                             tvStep.text = item.eventSteps[selectedIndex].content
                             /* 展开内容的监听 */
@@ -228,7 +228,7 @@ class ExpandableHomeItemAdapter(
             currentTargetHasMetThresholdOnce: Boolean
         ) {
             if (currentTargetHasMetThresholdOnce) return
-            val isDone = binding.eventAndSteps?.event?.isDone ?: false
+            val isDone = binding.eventAndSteps?.task?.isDone ?: false
 
             // Animate the top left corner radius of the email card as swipe happens.
             val interpolation = (currentSwipePercentage / swipeThreshold).coerceIn(0F, 1F)
@@ -246,31 +246,31 @@ class ExpandableHomeItemAdapter(
         }
 
         override fun onRebounded() {
-            val event = binding.eventAndSteps?.event ?: return
+            val event = binding.eventAndSteps?.task ?: return
             eventItemListener.onEventDoneChanged(event, !event.isDone)
         }
     }
 
     interface EventItemListener {
-        fun onEventDoneChanged(event: Event, isDone: Boolean)
-        fun onEventLongPressed(event: Event)
-        fun onEventClicked(event: Event)
+        fun onEventDoneChanged(task: Task, isDone: Boolean)
+        fun onEventLongPressed(task: Task)
+        fun onEventClicked(task: Task)
         fun onStepIbClicked(step: Step, isDone: Boolean)
     }
 
 }
 
-object EventAndStepsDiffCallback : DiffUtil.ItemCallback<EventAndEventSteps>() {
+object EventAndStepsDiffCallback : DiffUtil.ItemCallback<TaskAndEventSteps>() {
     override fun areItemsTheSame(
-        oldItem: EventAndEventSteps,
-        newItem: EventAndEventSteps
+        oldItem: TaskAndEventSteps,
+        newItem: TaskAndEventSteps
     ): Boolean {
-        return oldItem.event.eventId == newItem.event.eventId
+        return oldItem.task.eventId == newItem.task.eventId
     }
 
     override fun areContentsTheSame(
-        oldItem: EventAndEventSteps,
-        newItem: EventAndEventSteps
+        oldItem: TaskAndEventSteps,
+        newItem: TaskAndEventSteps
     ): Boolean {
         return oldItem == newItem
     }

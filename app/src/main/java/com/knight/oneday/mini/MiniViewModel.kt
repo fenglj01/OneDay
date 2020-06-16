@@ -1,7 +1,7 @@
 package com.knight.oneday.mini
 
-import com.knight.oneday.data.Event
-import com.knight.oneday.data.EventRepository
+import com.knight.oneday.data.Task
+import com.knight.oneday.data.TaskRepository
 import com.knight.oneday.viewmodels.BaseViewModel
 
 /**
@@ -9,25 +9,25 @@ import com.knight.oneday.viewmodels.BaseViewModel
  * create at 20-3-9 下午7:51
  * 极简风格的ViewModel
  */
-class MiniViewModel(private val repository: EventRepository) : BaseViewModel() {
+class MiniViewModel(private val repository: TaskRepository) : BaseViewModel() {
 
     var eventList = repository.searchEventsWithSteps()
 
-    fun updateEventDoneStatus(event: Event, isDone: Boolean) {
+    fun updateEventDoneStatus(task: Task, isDone: Boolean) {
         launchOnIO(
             tryBlock = {
                 repository.updateEventDoneStatus(
-                    eventId = event.eventId,
+                    eventId = task.eventId,
                     isDone = isDone
                 )
             }
         )
     }
 
-    fun removeEvent(event: Event) {
+    fun removeEvent(task: Task) {
         launchOnIO(
             tryBlock = {
-                repository.removeEventById(event.eventId)
+                repository.removeEventById(task.eventId)
             }
         )
     }

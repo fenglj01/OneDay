@@ -2,22 +2,17 @@ package com.knight.oneday.add
 
 import android.os.Bundle
 import android.transition.Slide
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TimePicker
-import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.R
 import com.knight.oneday.adapters.TagPickerAdapter
-import com.knight.oneday.create.CreateEventFragment
 import com.knight.oneday.databinding.FragmentAddEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.*
@@ -27,20 +22,19 @@ import com.knight.oneday.views.dialog.TimePickerDialog
 import com.knight.oneday.views.showSnackBar
 import com.knight.oneday.views.themeInterpolator
 import com.ramotion.directselect.DSListView
-import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Create by FLJ in 2020/6/11 9:30
  * 创建事件 思考过后 化繁为简 暂时不要加入步骤 清单这样的功能了 交给binding 减少代码
  */
-class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
+class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     DSListView.OnDSListViewStatusChangedListener {
 
     private lateinit var binding: FragmentAddEventBinding
     private val timePicker: TimePickerDialog by lazy { TimePickerDialog(obtainTimePickerListener()) }
     private val datePicker: DatePickerDialog by lazy { DatePickerDialog(obtainDatePickerListener()) }
 
-    private val addVM by viewModels<AddEventViewModel> {
+    private val addVM by viewModels<AddTaskViewModel> {
         InjectorUtils.addEventViewModelFactory(
             requireContext()
         )
@@ -88,15 +82,15 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     }
 
     private fun initEvent() {
-        addVM.addEventStatus.observe(viewLifecycleOwner, Observer { status ->
+        addVM.addTaskStatus.observe(viewLifecycleOwner, Observer { status ->
             when (status) {
-                AddEventViewModel.ADD_STATUS_SUCCESS -> {
+                AddTaskViewModel.ADD_STATUS_SUCCESS -> {
                     findNavController().navigateUp()
                 }
-                AddEventViewModel.ADD_STATUS_CONTENT_IS_EMPTY -> {
+                AddTaskViewModel.ADD_STATUS_CONTENT_IS_EMPTY -> {
                     showSnackBar(binding.root, R.string.add_event_content_is_empty)
                 }
-                AddEventViewModel.ADD_STATUS_FAIL -> {
+                AddTaskViewModel.ADD_STATUS_FAIL -> {
                     showSnackBar(binding.root, R.string.add_event_fail)
                 }
             }
@@ -108,10 +102,10 @@ class AddEventFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             }
             addBtn.singleClick {
                 hideSoftInput()
-                addVM.addEvent()
+                addVM.addTask()
             }
             addNameEdit.addTextChangedListener { content ->
-                content?.let { addVM.eventContent = content.toString() }
+                content?.let { addVM.taskContent = content.toString() }
             }
         }
     }

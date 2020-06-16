@@ -8,16 +8,16 @@ import androidx.room.Relation
  * 事件及事件对应的步骤
  * 这不是一个表只是为了更好的架构
  */
-data class EventAndEventSteps(
+data class TaskAndEventSteps(
     /* @Embedded 嵌入*/
     @Embedded
-    val event: Event,
+    val task: Task,
     /* @Relation 关系*/
     @Relation(parentColumn = "id", entityColumn = "event_id")
     val eventSteps: List<Step> = emptyList()
 ) {
     override fun toString(): String {
-        return "event:${event.eventId}-${event.content} \n steps :$eventSteps"
+        return "event:${task.eventId}-${task.content} \n steps :$eventSteps"
     }
 
     fun haveSteps(): Boolean = eventSteps.isNotEmpty()

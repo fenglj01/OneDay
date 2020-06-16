@@ -2,8 +2,8 @@ package com.knight.oneday.create
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.knight.oneday.data.Event
-import com.knight.oneday.data.EventRepository
+import com.knight.oneday.data.Task
+import com.knight.oneday.data.TaskRepository
 import com.knight.oneday.data.Step
 import com.knight.oneday.data.StepRepository
 import com.knight.oneday.utilities.*
@@ -17,7 +17,7 @@ import java.util.*
  * 创建事件ViewModel
  */
 class CreateEventViewModel(
-    private val eventRes: EventRepository,
+    private val taskRes: TaskRepository,
     private val stepRes: StepRepository
 ) : BaseViewModel() {
     var remindYearMonthDay = currentYearMonthDay()
@@ -34,7 +34,7 @@ class CreateEventViewModel(
     fun createEvent() {
         _viewModelStatus.postValue(VIEW_MODEL_STATUS_ON_IO)
         launchOnIO(tryBlock = {
-            eventRes.createEvent(createEventBean()).let { eventId ->
+            taskRes.createEvent(createEventBean()).let { eventId ->
                 createStep(eventId)
             }
             _viewModelStatus.postValue(VIEW_MODEL_STATUS_ON_SUCCESS)
@@ -52,12 +52,12 @@ class CreateEventViewModel(
         }
     }
 
-    private fun createEventBean(): Event {
+    private fun createEventBean(): Task {
         val createTime = Calendar.getInstance()
         val remindTime = if (eventRemindDate != null) Calendar.getInstance().apply {
             timeInMillis = eventRemindDate!!
         } else createTime
-        return Event(
+        return Task(
             content = eventContent,
             dueDateTime = remindTime
         )

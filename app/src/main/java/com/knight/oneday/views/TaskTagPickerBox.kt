@@ -1,7 +1,6 @@
 package com.knight.oneday.views
 
 import android.content.Context
-import android.media.Image
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,7 @@ import com.ramotion.directselect.DSAbstractPickerBox
  * Create by FLJ in 2020/4/9 10:37
  * 事件分类 Tag 选择器
  */
-class EventTagPickerBox : DSAbstractPickerBox<NavigationModelItem.NavEventTag> {
+class TaskTagPickerBox : DSAbstractPickerBox<NavigationModelItem.NavEventTag> {
 
     private lateinit var cellTv: TextView
     private lateinit var cellIv: ImageView
@@ -48,7 +47,7 @@ class EventTagPickerBox : DSAbstractPickerBox<NavigationModelItem.NavEventTag> {
     override fun onSelect(tagItem: NavigationModelItem.NavEventTag?, tagIndex: Int) {
         tagItem?.run {
             cellIv.setImageResource(icon)
-            cellTv.text = eventTag
+            cellTv.text = taskTag
         }
     }
 
