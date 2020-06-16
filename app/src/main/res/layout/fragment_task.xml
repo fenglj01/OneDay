@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.knight.oneday.task.TaskViewModel" />
+
+        <variable
+            name="calendarSelectedListener"
+            type="com.haibin.calendarview.CalendarView.OnCalendarSelectListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.knight.oneday.calendar.CalendarToolView
+            android:id="@+id/task_current_date"
+            bindSelectedDay="@{vm.previewDateContent}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.haibin.calendarview.CalendarLayout
+            android:id="@+id/task_calendar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/task_current_date">
+
+            <com.haibin.calendarview.CalendarView
+                android:id="@+id/task_calendar_view"
+                bindCalendarSelectedListener="@{calendarSelectedListener}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorSurface"
+                app:calendar_height="46dp"
+                app:calendar_padding="10dp"
+                app:current_day_text_color="?attr/colorSecondary"
+                app:current_month_text_color="?attr/colorOnSurface"
+                app:layout_constraintTop_toBottomOf="@id/date_time_tv"
+                app:month_view="com.knight.oneday.views.choice.OneDayMonthView"
+                app:other_month_text_color="@color/color_on_surface_emphasis_disabled"
+                app:selected_text_color="?attr/colorOnSecondary"
+                app:selected_theme_color="?attr/colorSecondary"
+                app:week_background="?attr/colorSurface"
+                app:week_text_color="?attr/colorOnSurface" />
+        </com.haibin.calendarview.CalendarLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

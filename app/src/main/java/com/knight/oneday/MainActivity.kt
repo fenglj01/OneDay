@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             setShowMotionSpecResource(R.animator.fab_show)
             setHideMotionSpecResource(R.animator.fab_hide)
             singleClick {
-                navController.navigate(R.id.action_miniFragment_to_addEventFragment)
+                navController.navigate(/*R.id.action_miniFragment_to_addEventFragment*/R.id.action_taskFragment_to_addEventFragment)
             }
         }
         bottomNavDrawer.apply {
@@ -131,6 +131,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         arguments: Bundle?
     ) {
         when (destination.id) {
+            R.id.taskFragment ->{
+                binding.bottomAppBar.hideOnScroll = true
+                showBottomAppBarAndFab()
+            }
             R.id.miniFragment -> {
                 binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()

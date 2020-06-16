@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/oneday"
-    app:startDestination="@id/miniFragment"
+    app:startDestination="@id/taskFragment"
     tools:ignore="UnusedNavigation">
 
     <fragment
@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_startFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
@@ -58,4 +61,17 @@
         android:name="com.knight.oneday.add.AddTaskFragment"
         android:label="fragment_add_event"
         tools:layout="@layout/fragment_add_event" />
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.knight.oneday.task.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task">
+
+        <action
+            android:id="@+id/action_taskFragment_to_addEventFragment"
+            app:destination="@id/addEventFragment" />
+        <action
+            android:id="@+id/action_taskFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
 </navigation>

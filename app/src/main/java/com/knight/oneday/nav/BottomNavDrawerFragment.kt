@@ -225,7 +225,7 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     override fun onNavMenuItemClicked(item: NavigationModelItem.NavMenuItem) {
         when (item.id) {
             3 -> {
-                findNavController().navigate(R.id.action_miniFragment_to_settingFragment)
+                findNavController().navigate(/*R.id.action_miniFragment_to_settingFragment*/R.id.action_taskFragment_to_settingFragment)
             }
         }
     }

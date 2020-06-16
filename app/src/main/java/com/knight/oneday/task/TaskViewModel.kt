@@ -1,5 +1,6 @@
 package com.knight.oneday.task
 
+import com.knight.oneday.utilities.currentWeekDayMonth
 import com.knight.oneday.viewmodels.BaseViewModel
 
 /**
@@ -7,4 +8,7 @@ import com.knight.oneday.viewmodels.BaseViewModel
  * 新版主页ViewModel
  */
 class TaskViewModel : BaseViewModel() {
+
+    val previewDateContent: String = currentWeekDayMonth()
+
 }
