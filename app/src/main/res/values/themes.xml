@@ -91,6 +91,17 @@
         <item name="stepLineColor">#8e8e8e</item>
         <item name="stepLineFinishedColor">#008853</item>
         <item name="stepLineExecutingColor">#78002e</item>
+        <!-- 时间线recyclerView 颜色相关 -->
+        <item name="tlColor">?attr/colorOnBackground</item>
+        <item name="tlExpiredFillColor">#ad1357</item>
+        <item name="tlExpiredStrokeColor">#78002e</item>
+        <item name="tlExpiredTextColor">#ad1357</item>
+        <item name="tlFinishedFillColor">#1EB980</item>
+        <item name="tlFinishedStrokeColor">#008853</item>
+        <item name="tlFinishedTextColor">#1EB980</item>
+        <item name="tlUnfinishedFillColor">#bebebe</item>
+        <item name="tlUnfinishedStrokeColor">#8e8e8e</item>
+        <item name="tlUnfinishedTextColor">#bebebe</item>
     </style>
 
     <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -138,8 +149,6 @@
     <style name="OneDay.PrimarySecondary.Button.Icon" parent="@style/Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="colorPrimary">?attr/colorSecondary</item>
     </style>
-
-
 
 
 </resources>

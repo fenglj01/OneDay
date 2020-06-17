@@ -172,4 +172,39 @@
     <attr name="stepLineExecutingColor" format="color" />
 
     <attr name="colorTransparent" format="color" />
+
+    <attr name="tlColor" format="color" />
+    <attr name="tlUnfinishedFillColor" format="color" />
+    <attr name="tlUnfinishedStrokeColor" format="color" />
+    <attr name="tlFinishedFillColor" format="color" />
+    <attr name="tlFinishedStrokeColor" format="color" />
+    <attr name="tlExpiredFillColor" format="color" />
+    <attr name="tlExpiredStrokeColor" format="color" />
+    <attr name="tlUnfinishedTextColor" format="color" />
+    <attr name="tlFinishedTextColor" format="color" />
+    <attr name="tlExpiredTextColor" format="color" />
+
+    <declare-styleable name="TaskTimeLineRecyclerView">
+        <attr name="timeLineColor" format="color" />
+        <attr name="timeLineUnfinishedFillColor" format="color" />
+        <attr name="timeLineUnfinishedStrokeColor" format="color" />
+        <attr name="timeLineFinishedFillColor" format="color" />
+        <attr name="timeLineFinishedStrokeColor" format="color" />
+        <attr name="timeLineExpiredFillColor" format="color" />
+        <attr name="timeLineExpiredStrokeColor" format="color" />
+        <attr name="timeLineFinishedTextColor" format="color" />
+        <attr name="timeLineExpiredTextColor" format="color" />
+        <attr name="timeLineUnfinishedTextColor" format="color" />
+        <attr name="timeLineTextSize" format="dimension" />
+        <attr name="timeLineCircleRadius" format="dimension" />
+        <attr name="timeLineWidth" format="dimension" />
+        <attr name="timeLineUnfinishedIcon" format="reference" />
+        <attr name="timeLineFinishedIcon" format="reference" />
+        <attr name="timeLineExpiredIcon" format="reference" />
+        <attr name="timeLineStrokeWidth" format="dimension" />
+        <attr name="timeLineStyle">
+            <flag name="fill" value="0" />
+            <flag name="fill_stroke" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>
