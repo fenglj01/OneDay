@@ -41,7 +41,6 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initCalendar()
-
     }
 
     private fun initCalendar() {
@@ -51,27 +50,6 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
                     binding.taskCalendarView.scrollToCurrent()
                 }
             }
-        binding.taskList.layoutManager = LinearLayoutManager(requireContext())
-        val ad = ExpandableHomeItemAdapter(object : ExpandableHomeItemAdapter.EventItemListener {
-            override fun onEventDoneChanged(task: Task, isDone: Boolean) {
-
-            }
-
-            override fun onEventLongPressed(task: Task) {
-            }
-
-            override fun onEventClicked(task: Task) {
-            }
-
-            override fun onStepIbClicked(step: Step, isDone: Boolean) {
-            }
-        }, binding.taskList)
-        binding.taskList.adapter = ad
-        ad.submitList(
-            mutableListOf(
-
-            )
-        )
     }
 
     override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
