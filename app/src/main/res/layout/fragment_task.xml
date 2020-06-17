@@ -60,10 +60,14 @@
                 app:week_view="com.knight.oneday.views.choice.OneDayWeekView"
                 app:week_view_scrollable="true" />
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.knight.oneday.task.TaskTimeLineRecyclerView
                 android:id="@+id/task_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:paddingBottomSystemWindowInsets="@{true}"
+                app:paddingTopSystemWindowInsets="@{true}"
                 android:background="?android:colorBackground" />
         </com.haibin.calendarview.CalendarLayout>
 

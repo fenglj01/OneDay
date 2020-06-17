@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.view.View
 import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
 import androidx.annotation.Dimension
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.utilities.TaskType
@@ -25,6 +24,8 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
     private val textPaint: TextPaint = TextPaint(Paint.ANTI_ALIAS_FLAG)
     private val timeLinePaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val timeLineIconPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val timeLineCirclePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val timeLineCircleStrokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     init {
         textPaint.apply {
@@ -32,13 +33,101 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
             color = params.timeLineUnFinishedTextColor
         }
         timeLinePaint.apply {
-            color = params.timeLineUnFinishedFillColor
+            color = params.timeLineColor
+        }
+        timeLineCircleStrokePaint.apply {
+            style = Paint.Style.STROKE
+            strokeWidth = params.timeLineStrokeWidth
         }
     }
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
+
+        val visibleCount = parent.childCount
+
+        for (index in 0..visibleCount) {
+            val visibleItemView = parent.getChildAt(index)
+            val visibleItemViewPosition = parent.getChildAdapterPosition(visibleItemView)
+            if (visibleItemView == null) return
+            /* 绘制时间轴圆 */
+            drawTimeLine(visibleItemView, c, visibleItemViewPosition)
+
+        }
+
     }
+
+
+    private fun drawTimeLine(visibleItemView: View, canvas: Canvas, visibleItemViewPosition: Int) {
+
+        val centerX = visibleItemView.left - params.timeLineStartOffset / 2
+        val centerY = visibleItemView.top + visibleItemView.height / 2F
+
+        val lineX = centerX
+        val topLineStartY = params.timeLineTopOffset
+        val topLineEndY = centerY - params.timeLineCircleRadius - 4F.dp
+        val bottomLineStatY = centerY + params.timeLineCircleRadius + 4F.dp
+        val bottomLineEndY = visibleItemView.bottom.toFloat()
+        /* 绘制时间线 */
+        canvas.drawLine(lineX, topLineStartY, lineX, topLineEndY, timeLinePaint)
+        canvas.drawLine(lineX, bottomLineStatY, lineX, bottomLineEndY, timeLinePaint)
+
+        val taskStatus =
+            params.timeLineCallback?.getTaskStatus(visibleItemViewPosition) ?: STATUS_UNFINISHED
+
+        prepareCircleFillColor(taskStatus)
+
+        /* 绘制圆 */
+        canvas.drawCircle(centerX, centerY, params.timeLineCircleRadius, timeLineCirclePaint)
+        /* 绘制描边 */
+        if (params.timeLineStyle == STYLE_FILL_STROKE) {
+            prepareCircleStrokeColor(taskStatus)
+            canvas.drawCircle(
+                centerX,
+                centerY,
+                params.timeLineCircleRadius,
+                timeLineCircleStrokePaint
+            )
+        }
+        /* 绘制标志icon */
+        val drawableCircle = prepareDrawable(taskStatus)
+        drawableCircle?.run {
+            val drawableWidth = intrinsicWidth
+            val drawableHeight = intrinsicHeight
+            val rect = Rect(
+                (centerX - drawableWidth / 2).toInt(),
+                (centerY - drawableHeight / 2).toInt(),
+                (centerX + drawableWidth / 2).toInt(),
+                (centerY + drawableHeight / 2).toInt()
+            )
+            bounds = rect
+            draw(canvas)
+        }
+
+    }
+
+    private fun prepareDrawable(taskStatus: Int): Drawable? = when (taskStatus) {
+        STATUS_EXPIRED -> params.timeLineExpiredIcon
+        STATUS_FINISHED -> params.timeLineFinishedIcon
+        else -> params.timeLineUnfinishedIcon
+    }
+
+    private fun prepareCircleFillColor(taskStatus: Int) {
+        timeLineCirclePaint.color = when (taskStatus) {
+            STATUS_EXPIRED -> params.timeLineExpiredFillColor
+            STATUS_FINISHED -> params.timeLineFinishedFillColor
+            else -> params.timeLineUnFinishedFillColor
+        }
+    }
+
+    private fun prepareCircleStrokeColor(taskStatus: Int) {
+        timeLineCircleStrokePaint.color = when (taskStatus) {
+            STATUS_EXPIRED -> params.timeLineExpiredStrokeColor
+            STATUS_FINISHED -> params.timeLineFinishedStrokeColor
+            else -> params.timeLineUnFinishedStrokeColor
+        }
+    }
+
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -89,6 +178,8 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         var timeLineStartOffset = 100f.dp
         @Dimension
         var timeLineTopOffset = 48F.dp
+        @Dimension
+        var timeLineStrokeWidth = 2f.dp
 
         var timeLineStyle = 0
 
@@ -104,6 +195,10 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
 
         const val STYLE_FILL = 0
         const val STYLE_FILL_STROKE = 1
+
+        const val STATUS_UNFINISHED = 0
+        const val STATUS_FINISHED = 1
+        const val STATUS_EXPIRED = 2
 
         private val timeLineParams = TaskTimeLineParams()
 
@@ -204,6 +299,11 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
 
         fun setTimeLineTopOffset(offset: Float): BUILD {
             timeLineParams.timeLineTopOffset = offset
+            return this
+        }
+
+        fun setTimeLineStrokeWidth(width: Float): BUILD {
+            timeLineParams.timeLineStrokeWidth = width
             return this
         }
 

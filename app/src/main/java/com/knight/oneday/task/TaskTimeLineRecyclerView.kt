@@ -100,22 +100,29 @@ class TaskTimeLineRecyclerView @JvmOverloads constructor(
                 getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineStartOffset, 100F.dp)
             ).setTimeLineTopOffset(
                 getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineTopOffset, 48F.dp)
+            ).setTimeLineStrokeWidth(
+                getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineStrokeWidth, 2F.dp)
             ).setTimeLineContentCallback(this@TaskTimeLineRecyclerView)
                 .create()
+            addItemDecoration(itemDecoration)
             recycle()
         }
 
     }
 
+    fun setItemDecoration() {
+        addItemDecoration(itemDecoration)
+    }
+
     override fun getTime(position: Int): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return ""
     }
 
     override fun getTaskType(position: Int): TaskType {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return TaskType.ENTERTAINMENT
     }
 
     override fun getTaskStatus(position: Int): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return TaskTimeLineItemDecoration.STATUS_UNFINISHED
     }
 }

@@ -104,7 +104,7 @@
 
     <style name="TaskTimeLineRecyclerView">
         <item name="timeLineColor">?attr/tlColor</item>
-        <item name="timeLineCircleRadius">32dp</item>
+        <item name="timeLineCircleRadius">16dp</item>
         <item name="timeLineExpiredFillColor">?attr/tlExpiredFillColor</item>
         <item name="timeLineExpiredStrokeColor">?attr/tlExpiredStrokeColor</item>
         <item name="timeLineExpiredTextColor">?attr/tlExpiredTextColor</item>

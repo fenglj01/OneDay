@@ -50,6 +50,29 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
                     binding.taskCalendarView.scrollToCurrent()
                 }
             }
+        val taskAdapter = TaskAdapter()
+        binding.taskList.layoutManager = LinearLayoutManager(requireContext())
+        binding.taskList.adapter = taskAdapter
+        taskAdapter.submitList(
+            listOf(
+                Task(
+                    content = "a"
+                ),
+                Task(
+                    content = "b"
+                ),
+                Task(
+                    content = "c"
+                ),
+                Task(
+                    content = "d"
+                ),
+                Task(
+                    content = "e"
+                )
+            )
+        )
+
     }
 
     override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
