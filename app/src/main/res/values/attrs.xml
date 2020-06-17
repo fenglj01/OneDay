@@ -202,6 +202,8 @@
         <attr name="timeLineFinishedIcon" format="reference" />
         <attr name="timeLineExpiredIcon" format="reference" />
         <attr name="timeLineStrokeWidth" format="dimension" />
+        <attr name="timeLineStartOffset" format="dimension" />
+        <attr name="timeLineTopOffset" format="dimension" />
         <attr name="timeLineStyle">
             <flag name="fill" value="0" />
             <flag name="fill_stroke" value="1" />

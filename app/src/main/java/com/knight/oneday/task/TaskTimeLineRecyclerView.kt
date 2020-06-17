@@ -96,7 +96,12 @@ class TaskTimeLineRecyclerView @JvmOverloads constructor(
                 getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineCircleRadius, 32F.dp)
             ).setTimeLineWidth(
                 getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineWidth, 2F.dp)
-            ).setTimeLineContentCallback(this@TaskTimeLineRecyclerView).create()
+            ).setTimeLineStartOffset(
+                getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineStartOffset, 100F.dp)
+            ).setTimeLineTopOffset(
+                getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineTopOffset, 48F.dp)
+            ).setTimeLineContentCallback(this@TaskTimeLineRecyclerView)
+                .create()
             recycle()
         }
 

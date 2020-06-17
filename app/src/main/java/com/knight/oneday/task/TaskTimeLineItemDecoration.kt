@@ -47,6 +47,7 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
+        outRect.set(params.timeLineStartOffset.toInt(), params.timeLineTopOffset.toInt(), 0, 0)
     }
 
     interface TimeLineContentCallback {
@@ -84,6 +85,10 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         var timeLineCircleRadius = 24f.dp
         @Dimension
         var timeLineWidth = 2f.dp
+        @Dimension
+        var timeLineStartOffset = 100f.dp
+        @Dimension
+        var timeLineTopOffset = 48F.dp
 
         var timeLineStyle = 0
 
@@ -189,6 +194,16 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
 
         fun setTimeLineStyle(timeLineStyle: Int): BUILD {
             timeLineParams.timeLineStyle = timeLineStyle
+            return this
+        }
+
+        fun setTimeLineStartOffset(offset: Float): BUILD {
+            timeLineParams.timeLineStartOffset = offset
+            return this
+        }
+
+        fun setTimeLineTopOffset(offset: Float): BUILD {
+            timeLineParams.timeLineTopOffset = offset
             return this
         }
 

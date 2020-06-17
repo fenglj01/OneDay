@@ -121,6 +121,8 @@
         <item name="timeLineWidth">2dp</item>
         <item name="timeLineStrokeWidth">2dp</item>
         <item name="timeLineStyle">fill_stroke</item>
+        <item name="timeLineStartOffset">100dp</item>
+        <item name="timeLineTopOffset">48dp</item>
     </style>
 
 
