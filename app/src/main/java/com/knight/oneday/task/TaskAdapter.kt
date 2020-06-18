@@ -9,16 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.R
 import com.knight.oneday.adapters.EventAndStepsDiffCallback
 import com.knight.oneday.data.Task
+import com.knight.oneday.databinding.ItemTaskLayoutBinding
 import com.knight.oneday.utilities.currentTimeMills
 import com.knight.oneday.utilities.getHourAndMin
 import com.knight.oneday.views.step.STEP_STATE_UNFINISHED
 
-class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffUtilItemCallback) {
+class TaskAdapter(private val taskEventListener: TaskEventListener) :
+    ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffUtilItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_task_layout,
+            ItemTaskLayoutBinding.inflate(
+                LayoutInflater.from(parent.context),
                 parent,
                 false
             )
@@ -26,9 +28,16 @@ class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffUtilIt
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+        holder.bind(getItem(position), taskEventListener)
     }
 
-    inner class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class TaskViewHolder(private val binding: ItemTaskLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(task: Task, taskEventListener: TaskEventListener) {
+            binding.task = task
+            binding.taskEventListener = taskEventListener
+        }
 
     }
 
@@ -43,6 +52,16 @@ class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffUtilIt
         if (task.isDone) return TaskTimeLineItemDecoration.STATUS_FINISHED
         if (task.dueDateTime.timeInMillis < currentTimeMills()) return TaskTimeLineItemDecoration.STATUS_EXPIRED
         return STEP_STATE_UNFINISHED
+    }
+
+    interface TaskEventListener {
+
+        fun onTaskClicked(task: Task)
+
+        fun onTaskLongClicked(task: Task): Boolean
+
+        fun onTaskStatusChanged(task: Task, isDone: Boolean)
+
     }
 
 

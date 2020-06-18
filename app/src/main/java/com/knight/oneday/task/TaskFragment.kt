@@ -1,6 +1,7 @@
 package com.knight.oneday.task
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,8 @@ import com.knight.oneday.utilities.formatWeekMonthDay
  * Create by FLJ in 2020/6/11 9:28
  * 主页 在参阅一些好的手机后准备重构  ming天开搞
  */
-class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
+class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener,
+    TaskAdapter.TaskEventListener {
 
     private lateinit var binding: FragmentTaskBinding
 
@@ -53,20 +55,20 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
         binding.taskCalendarLayout.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
             if (scrollY < 0) {
 
-            }else{
+            } else {
 
             }
         }
-        val taskAdapter = TaskAdapter()
+        val taskAdapter = TaskAdapter(this)
         binding.taskList.layoutManager = LinearLayoutManager(requireContext())
         binding.taskList.adapter = taskAdapter
         taskAdapter.submitList(
             listOf(
                 Task(
-                    content = "a"
+                    content = "我是CokeYY,我喜欢创造易用而美的软件"
                 ),
                 Task(
-                    content = "b"
+                    content = "i am uzi,i can play Ad Carry"
                 ),
                 Task(
                     content = "c"
@@ -95,5 +97,17 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
     }
 
     override fun onCalendarOutOfRange(calendar: Calendar?) {
+    }
+
+    override fun onTaskClicked(task: Task) {
+        Log.d("task", "click $task")
+    }
+
+    override fun onTaskLongClicked(task: Task): Boolean {
+        Log.d("task", "longClick $task")
+        return true
+    }
+
+    override fun onTaskStatusChanged(task: Task, isDone: Boolean) {
     }
 }
