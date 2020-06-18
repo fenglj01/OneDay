@@ -115,7 +115,7 @@ class TaskTimeLineRecyclerView @JvmOverloads constructor(
     }
 
     override fun getTime(position: Int): String {
-        return ""
+        return "13:14"
     }
 
     override fun getTaskType(position: Int): TaskType {

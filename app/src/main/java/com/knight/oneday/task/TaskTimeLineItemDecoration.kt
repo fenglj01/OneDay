@@ -26,6 +26,7 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
     private val timeLineIconPaint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val timeLineCirclePaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val timeLineCircleStrokePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val timeLineTextRect: Rect = Rect()
 
     init {
         textPaint.apply {
@@ -65,14 +66,13 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         val centerX = visibleItemView.left - params.timeLineStartOffset * 0.25F
         val centerY = visibleItemView.top + visibleItemView.height / 2F
 
-        val lineX = centerX
         val topLineStartY = visibleItemView.top - params.timeLineTopOffset
         val topLineEndY = centerY - params.timeLineCircleRadius - 4F.dp
         val bottomLineStatY = centerY + params.timeLineCircleRadius + 4F.dp
         val bottomLineEndY = visibleItemView.bottom.toFloat()
         /* 绘制时间线 */
-        canvas.drawLine(lineX, topLineStartY, lineX, topLineEndY, timeLinePaint)
-        canvas.drawLine(lineX, bottomLineStatY, lineX, bottomLineEndY, timeLinePaint)
+        canvas.drawLine(centerX, topLineStartY, centerX, topLineEndY, timeLinePaint)
+        canvas.drawLine(centerX, bottomLineStatY, centerX, bottomLineEndY, timeLinePaint)
 
         val taskStatus =
             params.timeLineCallback?.getTaskStatus(visibleItemViewPosition) ?: STATUS_UNFINISHED
@@ -104,6 +104,16 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
             )
             bounds = rect
             draw(canvas)
+        }
+        /* 绘制时间 */
+        val timeText = params.timeLineCallback?.getTime(visibleItemViewPosition)
+        timeText?.run {
+            textPaint.getTextBounds(this, 0, length, timeLineTextRect)
+            val mw = textPaint.measureText(this)
+            val textX =
+                visibleItemView.left - params.timeLineStartOffset * 0.65F - mw / 2
+            val textY = centerY + timeLineTextRect.height() / 2
+            canvas.drawText(this, textX, textY, textPaint)
         }
 
     }
