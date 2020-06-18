@@ -118,7 +118,7 @@
         <item name="timeLineFinishedTextColor">?attr/tlFinishedTextColor</item>
         <item name="timeLineFinishedIcon">@drawable/ic_done_black_18dp</item>
         <item name="timeLineTextSize">12sp</item>
-        <item name="timeLineWidth">2dp</item>
+        <item name="timeLineWidth">1dp</item>
         <item name="timeLineStrokeWidth">2dp</item>
         <item name="timeLineStyle">fill_stroke</item>
         <item name="timeLineStartOffset">100dp</item>

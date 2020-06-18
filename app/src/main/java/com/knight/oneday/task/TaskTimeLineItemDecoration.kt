@@ -33,6 +33,8 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
             color = params.timeLineUnFinishedTextColor
         }
         timeLinePaint.apply {
+            style = Paint.Style.STROKE
+            strokeWidth = params.timeLineWidth
             color = params.timeLineColor
         }
         timeLineCircleStrokePaint.apply {
@@ -60,11 +62,11 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
 
     private fun drawTimeLine(visibleItemView: View, canvas: Canvas, visibleItemViewPosition: Int) {
 
-        val centerX = visibleItemView.left - params.timeLineStartOffset / 2
+        val centerX = visibleItemView.left - params.timeLineStartOffset * 0.25F
         val centerY = visibleItemView.top + visibleItemView.height / 2F
 
         val lineX = centerX
-        val topLineStartY = params.timeLineTopOffset
+        val topLineStartY = visibleItemView.top - params.timeLineTopOffset
         val topLineEndY = centerY - params.timeLineCircleRadius - 4F.dp
         val bottomLineStatY = centerY + params.timeLineCircleRadius + 4F.dp
         val bottomLineEndY = visibleItemView.bottom.toFloat()

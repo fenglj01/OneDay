@@ -102,6 +102,8 @@
         <item name="tlUnfinishedFillColor">#bebebe</item>
         <item name="tlUnfinishedStrokeColor">#8e8e8e</item>
         <item name="tlUnfinishedTextColor">#bebebe</item>
+
+        <item name="taskRecyclerBackColor">@color/color_EFF3FC</item>
     </style>
 
     <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">

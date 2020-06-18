@@ -183,6 +183,7 @@
     <attr name="tlUnfinishedTextColor" format="color" />
     <attr name="tlFinishedTextColor" format="color" />
     <attr name="tlExpiredTextColor" format="color" />
+    <attr name="taskRecyclerBackColor" format="color" />
 
     <declare-styleable name="TaskTimeLineRecyclerView">
         <attr name="timeLineColor" format="color" />

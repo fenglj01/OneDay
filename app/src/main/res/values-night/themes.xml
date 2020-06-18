@@ -44,5 +44,7 @@
         <item name="tlUnfinishedStrokeColor">#bebebe</item>
         <item name="tlUnfinishedTextColor">#8e8e8e</item>
 
+        <item name="taskRecyclerBackColor">#2E2E2E</item>
+
     </style>
 </resources>
