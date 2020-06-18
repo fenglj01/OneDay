@@ -115,14 +115,14 @@ class TaskTimeLineRecyclerView @JvmOverloads constructor(
     }
 
     override fun getTime(position: Int): String {
-        return "13:14"
+        return (adapter as TaskAdapter).getTaskHour(position)
     }
 
     override fun getTaskType(position: Int): TaskType {
-        return TaskType.ENTERTAINMENT
+        return (adapter as TaskAdapter).getTaskType(position)
     }
 
     override fun getTaskStatus(position: Int): Int {
-        return TaskTimeLineItemDecoration.STATUS_UNFINISHED
+        return (adapter as TaskAdapter).getTaskStatus(position)
     }
 }

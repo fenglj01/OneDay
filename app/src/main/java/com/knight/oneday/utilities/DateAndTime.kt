@@ -73,3 +73,5 @@ fun Calendar.formatUi(): String {
         timeInMillis.formatYearMonth()
     }
 }
+
+fun Calendar.getHourAndMin(): String = timeInMillis.formatHourMin()
