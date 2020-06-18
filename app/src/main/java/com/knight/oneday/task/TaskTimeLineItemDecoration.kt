@@ -108,6 +108,7 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         /* 绘制时间 */
         val timeText = params.timeLineCallback?.getTime(visibleItemViewPosition)
         timeText?.run {
+            prepareTextColor(taskStatus)
             textPaint.getTextBounds(this, 0, length, timeLineTextRect)
             val mw = textPaint.measureText(this)
             val textX =
@@ -116,6 +117,14 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
             canvas.drawText(this, textX, textY, textPaint)
         }
 
+    }
+
+    private fun prepareTextColor(taskStatus: Int) {
+        textPaint.color = when (taskStatus) {
+            STATUS_EXPIRED -> params.timeLineExpiredTextColor
+            STATUS_FINISHED -> params.timeLineFinishedTextColor
+            else -> params.timeLineUnFinishedTextColor
+        }
     }
 
     private fun prepareDrawable(taskStatus: Int): Drawable? = when (taskStatus) {
