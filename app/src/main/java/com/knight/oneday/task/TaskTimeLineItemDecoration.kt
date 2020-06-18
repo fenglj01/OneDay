@@ -1,9 +1,6 @@
 package com.knight.oneday.task
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
 import android.view.View
@@ -32,6 +29,8 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         textPaint.apply {
             textSize = params.timeLineTextSize
             color = params.timeLineUnFinishedTextColor
+            typeface = Typeface.MONOSPACE
+            isFakeBoldText = true
         }
         timeLinePaint.apply {
             style = Paint.Style.STROKE
