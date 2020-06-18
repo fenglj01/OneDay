@@ -3,7 +3,7 @@ package com.knight.oneday.add
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.knight.oneday.data.Task
-import com.knight.oneday.data.TaskRepository
+import com.knight.oneday.data.TaskAndStepRepository
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.BaseViewModel
 import java.util.*
@@ -12,7 +12,7 @@ import java.util.*
  * Create by FLJ in 2020/6/15 15:09
  * 添加
  */
-class AddTaskViewModel(private val rep: TaskRepository) : BaseViewModel() {
+class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel() {
 
     companion object {
         const val ADD_STATUS_CONTENT_IS_EMPTY = 0

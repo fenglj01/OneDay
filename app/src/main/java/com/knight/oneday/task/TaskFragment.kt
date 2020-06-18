@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
@@ -18,16 +19,21 @@ import com.knight.oneday.data.Task
 import com.knight.oneday.data.TaskAndEventSteps
 import com.knight.oneday.databinding.FragmentTaskBinding
 import com.knight.oneday.nav.NavigationModel
+import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.formatWeekMonthDay
 
 /**
  * Create by FLJ in 2020/6/11 9:28
  * 主页 在参阅一些好的手机后准备重构  ming天开搞
  */
-class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener,
-    TaskAdapter.TaskEventListener {
+class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
+    private lateinit var uiPresenter: TaskUiPresenter
+
+    private val taskVm: TaskViewModel by viewModels {
+        InjectorUtils.taskViewModelFactory(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,31 +41,23 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentTaskBinding.inflate(inflater, container, false)
-        binding.vm = TaskViewModel()
-        binding.calendarSelectedListener = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        uiPresenter = TaskUiPresenter(taskVm, binding)
+        binding.vm = taskVm
+        binding.calendarSelectedListener = uiPresenter
+
         initCalendar()
+
+        initRecyclerView()
+
     }
 
-    private fun initCalendar() {
-        binding.taskCurrentDate.onCurrentDayClicked =
-            object : CalendarToolView.OnCurrentDayClicked {
-                override fun onCurrentDayClicked() {
-                    binding.taskCalendarView.scrollToCurrent()
-                }
-            }
-        binding.taskCalendarLayout.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-            if (scrollY < 0) {
-
-            } else {
-
-            }
-        }
-        val taskAdapter = TaskAdapter(this)
+    private fun initRecyclerView() {
+        val taskAdapter = TaskAdapter(uiPresenter)
         binding.taskList.layoutManager = LinearLayoutManager(requireContext())
         binding.taskList.adapter = taskAdapter
         taskAdapter.submitList(
@@ -87,27 +85,15 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener,
                 )
             )
         )
-
     }
 
-    override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
-        binding.taskCurrentDate.changeSelectedDay(
-            calendar?.timeInMillis?.formatWeekMonthDay() ?: ""
-        )
+    private fun initCalendar() {
+        binding.taskCurrentDate.onCurrentDayClicked =
+            object : CalendarToolView.OnCurrentDayClicked {
+                override fun onCurrentDayClicked() {
+                    binding.taskCalendarView.scrollToCurrent()
+                }
+            }
     }
 
-    override fun onCalendarOutOfRange(calendar: Calendar?) {
-    }
-
-    override fun onTaskClicked(task: Task) {
-        Log.d("task", "click $task")
-    }
-
-    override fun onTaskLongClicked(task: Task): Boolean {
-        Log.d("task", "longClick $task")
-        return true
-    }
-
-    override fun onTaskStatusChanged(task: Task, isDone: Boolean) {
-    }
 }

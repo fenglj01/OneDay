@@ -1,7 +1,7 @@
 package com.knight.oneday.mini
 
 import com.knight.oneday.data.Task
-import com.knight.oneday.data.TaskRepository
+import com.knight.oneday.data.TaskAndStepRepository
 import com.knight.oneday.viewmodels.BaseViewModel
 
 /**
@@ -9,14 +9,14 @@ import com.knight.oneday.viewmodels.BaseViewModel
  * create at 20-3-9 下午7:51
  * 极简风格的ViewModel
  */
-class MiniViewModel(private val repository: TaskRepository) : BaseViewModel() {
+class MiniViewModel(private val andStepRepository: TaskAndStepRepository) : BaseViewModel() {
 
-    var eventList = repository.searchEventsWithSteps()
+    var eventList = andStepRepository.searchEventsWithSteps()
 
     fun updateEventDoneStatus(task: Task, isDone: Boolean) {
         launchOnIO(
             tryBlock = {
-                repository.updateEventDoneStatus(
+                andStepRepository.updateEventDoneStatus(
                     eventId = task.eventId,
                     isDone = isDone
                 )
@@ -27,7 +27,7 @@ class MiniViewModel(private val repository: TaskRepository) : BaseViewModel() {
     fun removeEvent(task: Task) {
         launchOnIO(
             tryBlock = {
-                repository.removeEventById(task.eventId)
+                andStepRepository.removeEventById(task.eventId)
             }
         )
     }
@@ -35,7 +35,7 @@ class MiniViewModel(private val repository: TaskRepository) : BaseViewModel() {
     fun updateStepState(isDone: Boolean, stepId: Long) {
         launchOnIO(
             tryBlock = {
-                repository.updateStepState(isDone, stepId).run {
+                andStepRepository.updateStepState(isDone, stepId).run {
 
                 }
             }, catchBlock = {
@@ -45,7 +45,7 @@ class MiniViewModel(private val repository: TaskRepository) : BaseViewModel() {
     }
 
     fun refreshList() {
-        eventList = repository.searchEventsWithSteps()
+        eventList = andStepRepository.searchEventsWithSteps()
     }
 
 

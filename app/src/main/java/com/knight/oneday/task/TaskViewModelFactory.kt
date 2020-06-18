@@ -1,14 +1,14 @@
-package com.knight.oneday.add
+package com.knight.oneday.task
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.knight.oneday.data.TaskAndStepRepository
+import com.knight.oneday.data.TaskRepository
 
-class AddTaskViewModelFactory(val rep: TaskAndStepRepository) : ViewModelProvider.NewInstanceFactory() {
+class TaskViewModelFactory(private val taskRep: TaskRepository) :
+    ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return AddTaskViewModel(
-            rep
-        ) as T
+        return TaskViewModel(taskRep) as T
     }
 }

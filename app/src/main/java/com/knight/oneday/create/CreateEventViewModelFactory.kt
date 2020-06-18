@@ -2,11 +2,11 @@ package com.knight.oneday.create
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.knight.oneday.data.TaskRepository
+import com.knight.oneday.data.TaskAndStepRepository
 import com.knight.oneday.data.StepRepository
 
 class CreateEventViewModelFactory(
-    private val taskRes: TaskRepository,
+    private val taskAndStepRes: TaskAndStepRepository,
     private val stepRes: StepRepository
 ) :
     ViewModelProvider.NewInstanceFactory() {
@@ -14,7 +14,7 @@ class CreateEventViewModelFactory(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return CreateEventViewModel(
-            taskRes,
+            taskAndStepRes,
             stepRes
         ) as T
     }
