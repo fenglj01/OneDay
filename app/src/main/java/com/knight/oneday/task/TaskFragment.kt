@@ -58,7 +58,6 @@ class TaskFragment : Fragment() {
 
     private fun initRecyclerView() {
         val taskAdapter = TaskAdapter(uiPresenter)
-        binding.taskList.layoutManager = LinearLayoutManager(requireContext())
         binding.taskList.adapter = taskAdapter
         taskAdapter.submitList(
             listOf(
