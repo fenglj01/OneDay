@@ -50,6 +50,13 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
                     binding.taskCalendarView.scrollToCurrent()
                 }
             }
+        binding.taskCalendarLayout.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY < 0) {
+
+            }else{
+
+            }
+        }
         val taskAdapter = TaskAdapter()
         binding.taskList.layoutManager = LinearLayoutManager(requireContext())
         binding.taskList.adapter = taskAdapter
@@ -69,6 +76,12 @@ class TaskFragment : Fragment(), CalendarView.OnCalendarSelectListener {
                 ),
                 Task(
                     content = "e"
+                ),
+                Task(
+                    content = "f"
+                ),
+                Task(
+                    content = "g"
                 )
             )
         )

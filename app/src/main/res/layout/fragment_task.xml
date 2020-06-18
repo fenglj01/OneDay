@@ -30,11 +30,13 @@
         <com.haibin.calendarview.CalendarLayout
             android:id="@+id/task_calendar_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="?attr/colorSurface"
             android:orientation="vertical"
+            android:paddingBottom="@dimen/dp_16"
             app:calendar_content_view_id="@id/task_list"
             app:default_status="shrink"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/task_current_date">
 
@@ -63,12 +65,11 @@
             <com.knight.oneday.task.TaskTimeLineRecyclerView
                 android:id="@+id/task_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:colorBackground"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:paddingBottomSystemWindowInsets="@{true}"
-                app:paddingTopSystemWindowInsets="@{true}"
-                android:background="?android:colorBackground" />
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
         </com.haibin.calendarview.CalendarLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
