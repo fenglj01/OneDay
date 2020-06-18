@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
@@ -30,6 +31,7 @@ class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
     private lateinit var uiPresenter: TaskUiPresenter
+    private lateinit var taskAdapter: TaskAdapter
 
     private val taskVm: TaskViewModel by viewModels {
         InjectorUtils.taskViewModelFactory(requireContext())
@@ -54,36 +56,20 @@ class TaskFragment : Fragment() {
 
         initRecyclerView()
 
+        observerLiveData()
+
+        taskVm.refreshTaskList()
+    }
+
+    private fun observerLiveData() {
+        taskVm.taskList.observe(viewLifecycleOwner, Observer {
+            taskAdapter.submitList(it)
+        })
     }
 
     private fun initRecyclerView() {
-        val taskAdapter = TaskAdapter(uiPresenter)
+        taskAdapter = TaskAdapter(uiPresenter)
         binding.taskList.adapter = taskAdapter
-        taskAdapter.submitList(
-            listOf(
-                Task(
-                    content = "我是CokeYY,我喜欢创造易用而美的软件"
-                ),
-                Task(
-                    content = "i am uzi,i can play Ad Carry"
-                ),
-                Task(
-                    content = "c"
-                ),
-                Task(
-                    content = "d"
-                ),
-                Task(
-                    content = "e"
-                ),
-                Task(
-                    content = "f"
-                ),
-                Task(
-                    content = "g"
-                )
-            )
-        )
     }
 
     private fun initCalendar() {

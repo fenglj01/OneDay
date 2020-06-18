@@ -16,11 +16,13 @@ import com.knight.oneday.utilities.formatWeekMonthDay
 class TaskUiPresenter(private val vm: TaskViewModel, private val binding: FragmentTaskBinding) :
     TaskAdapter.TaskEventListener, CalendarView.OnCalendarSelectListener {
 
-
     override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
         binding.taskCurrentDate.changeSelectedDay(
             calendar?.timeInMillis?.formatWeekMonthDay() ?: ""
         )
+        calendar?.run {
+            vm.changeTaskDay(year, month, day)
+        }
     }
 
     override fun onCalendarOutOfRange(calendar: Calendar?) {

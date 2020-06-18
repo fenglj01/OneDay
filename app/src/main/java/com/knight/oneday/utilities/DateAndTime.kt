@@ -75,3 +75,15 @@ fun Calendar.formatUi(): String {
 }
 
 fun Calendar.getHourAndMin(): String = timeInMillis.formatHourMin()
+
+fun Calendar.dayStartTime(): Calendar = apply {
+    set(Calendar.HOUR_OF_DAY, 0)
+    set(Calendar.MINUTE, 0)
+    set(Calendar.SECOND, 0)
+}
+
+fun Calendar.dayEndTime(): Calendar = apply {
+    set(Calendar.HOUR_OF_DAY, 23)
+    set(Calendar.MINUTE, 59)
+    set(Calendar.SECOND, 59)
+}

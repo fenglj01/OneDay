@@ -2,7 +2,7 @@ package com.knight.oneday.data
 
 import androidx.room.*
 import com.knight.oneday.utilities.TaskType
-import com.knight.oneday.utilities.TABLE_NAME_EVENT
+import com.knight.oneday.utilities.TABLE_NAME_TASK
 import com.knight.oneday.utilities.currentTimeMills
 import java.util.*
 
@@ -11,7 +11,7 @@ import java.util.*
  * create at 20-2-29 下午2:46
  * 事件表
  */
-@Entity(tableName = TABLE_NAME_EVENT)
+@Entity(tableName = TABLE_NAME_TASK)
 data class Task(
     val content: String,
     @ColumnInfo(name = "create_time") val createTime: Calendar = Calendar.getInstance(),
