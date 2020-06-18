@@ -33,7 +33,6 @@
             android:layout_height="0dp"
             android:background="?attr/colorSurface"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/dp_16"
             app:calendar_content_view_id="@id/task_list"
             app:default_status="shrink"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -67,6 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:colorBackground"
+                android:overScrollMode="never"
+                android:paddingBottom="@dimen/dp_16"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
