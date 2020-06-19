@@ -12,7 +12,7 @@ import java.util.*
  */
 @Dao
 interface TaskDao {
-    /*SELECT * FROM user WHERE age BETWEEN :minAge AND :maxAge*/
+
     @Query("SELECT * FROM task WHERE due_date_time BETWEEN :startTime AND :endTime")
     suspend fun getTaskByRange(startTime: Calendar, endTime: Calendar): List<Task>
 

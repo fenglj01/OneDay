@@ -51,7 +51,7 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         for (index in 0..visibleCount) {
             val visibleItemView = parent.getChildAt(index)
             val visibleItemViewPosition = parent.getChildAdapterPosition(visibleItemView)
-            if (visibleItemView == null) return
+            if (visibleItemView == null || visibleItemViewPosition < 0) return
             /* 绘制时间轴圆 */
             drawTimeLine(visibleItemView, c, visibleItemViewPosition)
 
