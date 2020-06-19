@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.knight.oneday.R
-import com.knight.oneday.adapters.EventAndStepsDiffCallback
 import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.ItemTaskLayoutBinding
 import com.knight.oneday.utilities.currentTimeMills
@@ -108,7 +106,7 @@ class TaskAdapter(private val taskEventListener: TaskEventListener) :
 
 object TaskDiffUtilItemCallback : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
-        return oldItem.eventId == newItem.eventId
+        return oldItem.taskId == newItem.taskId
     }
 
     override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {

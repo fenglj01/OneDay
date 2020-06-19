@@ -50,7 +50,7 @@ private class EventDiffCallback : DiffUtil.ItemCallback<TaskAndEventSteps>() {
         oldItem: TaskAndEventSteps,
         newItem: TaskAndEventSteps
     ): Boolean {
-        return oldItem.task.eventId == newItem.task.eventId
+        return oldItem.task.taskId == newItem.task.taskId
     }
 
     override fun areContentsTheSame(
@@ -59,6 +59,6 @@ private class EventDiffCallback : DiffUtil.ItemCallback<TaskAndEventSteps>() {
     ): Boolean {
         return oldItem.task.content == newItem.task.content
                 && oldItem.task.isDone == newItem.task.isDone
-                && oldItem.task.eventId == newItem.task.eventId
+                && oldItem.task.taskId == newItem.task.taskId
     }
 }

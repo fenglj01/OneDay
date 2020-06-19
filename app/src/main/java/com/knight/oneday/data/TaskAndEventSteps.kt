@@ -17,7 +17,7 @@ data class TaskAndEventSteps(
     val eventSteps: List<Step> = emptyList()
 ) {
     override fun toString(): String {
-        return "event:${task.eventId}-${task.content} \n steps :$eventSteps"
+        return "event:${task.taskId}-${task.content} \n steps :$eventSteps"
     }
 
     fun haveSteps(): Boolean = eventSteps.isNotEmpty()

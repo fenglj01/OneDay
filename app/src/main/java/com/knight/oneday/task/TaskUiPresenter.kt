@@ -1,19 +1,28 @@
 package com.knight.oneday.task
 
 
+import android.app.Activity
 import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
 import com.knight.oneday.calendar.CalendarToolView
 import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.FragmentTaskBinding
+import com.knight.oneday.setting.SettingPreferences
+import com.knight.oneday.utilities.DIALOG_TAG_DELETE_EVENT
 import com.knight.oneday.utilities.formatWeekMonthDay
+import com.knight.oneday.views.SureDeleteDialog
 
 /**
  * Create by FLJ in 2020/6/18 14:08
  * 处理一些Task UI 逻辑业务
  */
-class TaskUiPresenter(private val vm: TaskViewModel, private val binding: FragmentTaskBinding) :
+class TaskUiPresenter(
+    private val vm: TaskViewModel,
+    private val binding: FragmentTaskBinding,
+    private val act: FragmentActivity
+) :
     TaskAdapter.TaskEventListener, CalendarView.OnCalendarSelectListener {
 
     override fun onCalendarSelect(calendar: Calendar?, isClick: Boolean) {
@@ -33,7 +42,15 @@ class TaskUiPresenter(private val vm: TaskViewModel, private val binding: Fragme
     }
 
     override fun onTaskLongClicked(task: Task): Boolean {
-        Log.d("task", "longClick $task")
+        if (SettingPreferences.showRemindDelete) {
+            SureDeleteDialog().apply {
+                onSure = {
+                    vm.deleteTask(task)
+                }
+            }.show(act.supportFragmentManager, DIALOG_TAG_DELETE_EVENT)
+        } else {
+            vm.deleteTask(task)
+        }
         return true
     }
 

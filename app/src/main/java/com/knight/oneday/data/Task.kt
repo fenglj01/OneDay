@@ -25,10 +25,10 @@ data class Task(
      */
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var eventId: Long = 0
+    var taskId: Long = 0
 
     override fun toString(): String {
-        return "$eventId - $content -$isDone"
+        return "$taskId - $content -$isDone"
     }
 
     fun isExpired(): Boolean = this.dueDateTime.timeInMillis < currentTimeMills()

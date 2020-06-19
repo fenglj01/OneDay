@@ -17,7 +17,7 @@ class MiniViewModel(private val andStepRepository: TaskAndStepRepository) : Base
         launchOnIO(
             tryBlock = {
                 andStepRepository.updateEventDoneStatus(
-                    eventId = task.eventId,
+                    eventId = task.taskId,
                     isDone = isDone
                 )
             }
@@ -27,7 +27,7 @@ class MiniViewModel(private val andStepRepository: TaskAndStepRepository) : Base
     fun removeEvent(task: Task) {
         launchOnIO(
             tryBlock = {
-                andStepRepository.removeEventById(task.eventId)
+                andStepRepository.removeEventById(task.taskId)
             }
         )
     }

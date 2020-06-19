@@ -1,10 +1,8 @@
 package com.knight.oneday.task
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.knight.oneday.data.Task
-import com.knight.oneday.data.TaskAndStepRepository
 import com.knight.oneday.data.TaskRepository
 import com.knight.oneday.utilities.*
 import com.knight.oneday.viewmodels.BaseViewModel
@@ -36,7 +34,17 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
     fun changeTaskStatus(task: Task, isDone: Boolean) {
         launchOnIO(
             tryBlock = {
-                taskRep.updateEventDoneStatus(task.eventId, isDone).run {
+                taskRep.updateEventDoneStatus(task.taskId, isDone).run {
+                    refreshTaskList()
+                }
+            }
+        )
+    }
+
+    fun deleteTask(task: Task) {
+        launchOnIO(
+            tryBlock = {
+                taskRep.deleteTask(task.taskId).run {
                     refreshTaskList()
                 }
             }

@@ -179,7 +179,7 @@ class ExpandableHomeItemAdapter(
                                 object : OnStepIndicatorClickListener {
                                     override fun onStepIndicatorClick(pos: Int) {
                                         setupStepDoneUndoIb(pos)
-                                        selectedIndexList[item.task.eventId] = pos
+                                        selectedIndexList[item.task.taskId] = pos
                                     }
                                 }
                             /* 步骤得完成和撤销完成 */
@@ -195,8 +195,8 @@ class ExpandableHomeItemAdapter(
                                 }
                             }
                             hsv.bindStepIndicator(item.eventSteps)
-                            val selectedIndex = selectedIndexList[item.task.eventId] ?: 0
-                            hsv.setSelectedIndex(selectedIndexList[item.task.eventId] ?: 0)
+                            val selectedIndex = selectedIndexList[item.task.taskId] ?: 0
+                            hsv.setSelectedIndex(selectedIndexList[item.task.taskId] ?: 0)
                             /* 获取当前正在执行项的位置 */
                             tvStep.text = item.eventSteps[selectedIndex].content
                             /* 展开内容的监听 */
@@ -265,7 +265,7 @@ object EventAndStepsDiffCallback : DiffUtil.ItemCallback<TaskAndEventSteps>() {
         oldItem: TaskAndEventSteps,
         newItem: TaskAndEventSteps
     ): Boolean {
-        return oldItem.task.eventId == newItem.task.eventId
+        return oldItem.task.taskId == newItem.task.taskId
     }
 
     override fun areContentsTheSame(

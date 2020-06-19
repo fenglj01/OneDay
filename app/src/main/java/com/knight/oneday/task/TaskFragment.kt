@@ -50,7 +50,7 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        uiPresenter = TaskUiPresenter(taskVm, binding)
+        uiPresenter = TaskUiPresenter(taskVm, binding, requireActivity())
         binding.vm = taskVm
         binding.calendarSelectedListener = uiPresenter
 
