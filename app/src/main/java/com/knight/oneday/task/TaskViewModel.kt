@@ -27,10 +27,6 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
         launchOnIO(
             tryBlock = {
                 taskRep.searchTaskByDay(dayCurrent.dayStartTime(), dayCurrent.dayEndTime()).run {
-                    Log.d(
-                        "TaskViewModel",
-                        "$size -- ${dayCurrent.dayStartTime().timeInMillis.format24Hex()} ${dayCurrent.dayEndTime().timeInMillis.format24Hex()}"
-                    )
                     _taskList.postValue(this)
                 }
             }

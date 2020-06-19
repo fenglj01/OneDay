@@ -3,6 +3,9 @@ package com.knight.oneday.data
 import androidx.room.TypeConverter
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.TaskType
+import com.knight.oneday.utilities.format24HStr
+import com.knight.oneday.utilities.format24Hex
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -14,12 +17,23 @@ class Converters {
     /**
      * 时间戳和日期
      */
-    @TypeConverter
-    fun calendarToTimeStamp(calendar: Calendar): Long = calendar.timeInMillis
+     @TypeConverter
+     fun calendarToTimeStamp(calendar: Calendar): Long = calendar.timeInMillis
+
+     @TypeConverter
+     fun timeStampToCalendar(timeStamp: Long): Calendar =
+         Calendar.getInstance().apply { timeInMillis = timeStamp }
+
+
+   /* @TypeConverter
+    fun calendarToTimeStamp(calendar: Calendar): String = calendar.timeInMillis.format24Hex()
 
     @TypeConverter
-    fun timeStampToCalendar(timeStamp: Long): Calendar =
-        Calendar.getInstance().apply { timeInMillis = timeStamp }
+    fun timeStampToCalendar(formatDate: String): Calendar =
+        Calendar.getInstance().apply {
+            val date = SimpleDateFormat(format24HStr).parse(formatDate)
+            time = date
+        }*/
 
     /**
      * 事件状态和数据库Int
