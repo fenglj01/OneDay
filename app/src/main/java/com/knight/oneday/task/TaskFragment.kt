@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
@@ -22,6 +23,7 @@ import com.knight.oneday.databinding.FragmentTaskBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.formatWeekMonthDay
+import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
 
 /**
  * Create by FLJ in 2020/6/11 9:28
@@ -63,11 +65,15 @@ class TaskFragment : Fragment() {
 
     private fun observerLiveData() {
         taskVm.taskList.observe(viewLifecycleOwner, Observer {
+            Log.d("TaskViewModel", "refresh")
             taskAdapter.submitList(it)
         })
     }
 
     private fun initRecyclerView() {
+        ItemTouchHelper(ReboundingSwipeActionCallback()).apply {
+            attachToRecyclerView(binding.taskList)
+        }
         taskAdapter = TaskAdapter(uiPresenter)
         binding.taskList.adapter = taskAdapter
     }

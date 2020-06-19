@@ -16,6 +16,9 @@ class TaskRepository private constructor(
         )
     }
 
+    suspend fun updateEventDoneStatus(eventId: Long, isDone: Boolean) =
+        taskDao.updateEventDoneStatus(if (isDone) 1 else 0, eventId)
+
 
     companion object {
         private var INSTANCE: TaskRepository? = null

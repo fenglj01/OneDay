@@ -31,7 +31,16 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
                 }
             }
         )
+    }
 
+    fun changeTaskStatus(task: Task, isDone: Boolean) {
+        launchOnIO(
+            tryBlock = {
+                taskRep.updateEventDoneStatus(task.eventId, isDone).run {
+                    refreshTaskList()
+                }
+            }
+        )
     }
 
     fun changeTaskDay(year: Int, month: Int, day: Int) {

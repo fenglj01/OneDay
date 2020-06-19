@@ -38,5 +38,6 @@ class TaskUiPresenter(private val vm: TaskViewModel, private val binding: Fragme
     }
 
     override fun onTaskStatusChanged(task: Task, isDone: Boolean) {
+        vm.changeTaskStatus(task, isDone)
     }
 }

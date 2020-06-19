@@ -14,35 +14,43 @@
             type="com.knight.oneday.data.Task" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/task_item_card"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dp_16"
-        android:background="?attr/colorSurface"
-        android:elevation="@dimen/dp_2"
-        android:onClick="@{(view) -> taskEventListener.onTaskClicked(task)}"
-        android:onLongClick="@{(view) -> taskEventListener.onTaskLongClicked(task)}"
-        app:cardCornerRadius="@dimen/dp_8">
+        android:elevation="@dimen/dp_4"
+        android:background="?attr/colorTransparent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/task_item_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/dp_16"
-            android:paddingVertical="@dimen/dp_16">
+            android:background="?attr/colorSurface"
+            android:elevation="@dimen/dp_2"
+            android:onClick="@{(view) -> taskEventListener.onTaskClicked(task)}"
+            android:onLongClick="@{(view) -> taskEventListener.onTaskLongClicked(task)}">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/task_content_tv"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{task.content}"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                android:typeface="monospace"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="task" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:paddingHorizontal="@dimen/dp_16"
+                android:paddingVertical="@dimen/dp_16">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/task_content_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{task.content}"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:typeface="monospace"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="task" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+
+
 </layout>

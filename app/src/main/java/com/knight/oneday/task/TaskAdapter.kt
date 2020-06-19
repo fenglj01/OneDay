@@ -13,6 +13,9 @@ import com.knight.oneday.databinding.ItemTaskLayoutBinding
 import com.knight.oneday.utilities.currentTimeMills
 import com.knight.oneday.utilities.getHourAndMin
 import com.knight.oneday.views.step.STEP_STATE_UNFINISHED
+import com.knight.oneday.views.swipe.EventSwipeActionDrawable
+import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
+import kotlin.math.abs
 
 class TaskAdapter(private val taskEventListener: TaskEventListener) :
     ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffUtilItemCallback) {
@@ -32,13 +35,49 @@ class TaskAdapter(private val taskEventListener: TaskEventListener) :
     }
 
     class TaskViewHolder(private val binding: ItemTaskLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root), ReboundingSwipeActionCallback.ReboundableViewHolder {
+
+        init {
+            binding.root.background = EventSwipeActionDrawable(binding.root.context)
+        }
 
         fun bind(task: Task, taskEventListener: TaskEventListener) {
             binding.task = task
             binding.taskEventListener = taskEventListener
+            binding.root.isActivated = task.isDone
+            binding.taskItemCard.progress = if (task.isDone) 1F else 0F
         }
 
+        override val reboundableView: View
+            get() = binding.taskItemCard
+
+        override fun onReboundOffsetChanged(
+            currentSwipePercentage: Float,
+            swipeThreshold: Float,
+            currentTargetHasMetThresholdOnce: Boolean
+        ) {
+            if (currentTargetHasMetThresholdOnce) return
+            val isDone = binding.task?.isDone ?: false
+
+            // Animate the top left corner radius of the email card as swipe happens.
+            val interpolation = (currentSwipePercentage / swipeThreshold).coerceIn(0F, 1F)
+            val adjustedInterpolation = abs((if (isDone) 1F else 0F) - interpolation)
+            binding.taskItemCard.progress = adjustedInterpolation
+
+            // Start the background animation once the threshold is met.
+            val thresholdMet = currentSwipePercentage >= swipeThreshold
+            val shouldStar = when {
+                thresholdMet && isDone -> false
+                thresholdMet && !isDone -> true
+                else -> return
+            }
+            binding.root.isActivated = shouldStar
+        }
+
+        override fun onRebounded() {
+            val task = binding.task ?: return
+            binding.taskEventListener?.onTaskStatusChanged(task, !task.isDone)
+        }
     }
 
     fun getTask(position: Int) = getItem(position)
