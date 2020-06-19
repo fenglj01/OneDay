@@ -61,6 +61,11 @@
                 app:week_view="com.knight.oneday.views.choice.OneDayWeekView"
                 app:week_view_scrollable="true" />
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_8"
+                android:background="?attr/colorSurface" />
+
             <com.knight.oneday.task.TaskTimeLineRecyclerView
                 android:id="@+id/task_list"
                 android:layout_width="match_parent"
