@@ -164,6 +164,7 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     override fun onHide() {
         setContentSplitMotionEventEnable(false)
         addVM.changeEventType(binding.addTagDsl.selectedIndex)
+        binding.addTagIs.changeSelectedIndex(binding.addTagDsl.selectedIndex)
         binding.addBtn.alphaAnimationShow()
     }
 
