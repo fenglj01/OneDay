@@ -53,6 +53,8 @@
                 app:month_view="com.knight.oneday.views.choice.OneDayMonthView"
                 app:month_view_scrollable="true"
                 app:month_view_show_mode="mode_only_current"
+                app:day_text_size="@dimen/sp_12"
+                app:week_text_size="@dimen/sp_12"
                 app:other_month_text_color="@color/color_on_surface_emphasis_disabled"
                 app:selected_text_color="?attr/colorOnSecondary"
                 app:selected_theme_color="?attr/colorSecondary"

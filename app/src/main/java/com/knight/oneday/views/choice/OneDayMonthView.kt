@@ -7,6 +7,7 @@ import android.graphics.RectF
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.MonthView
 import com.knight.oneday.utilities.dp2px
+import com.knight.oneday.utilities.sp
 
 /**
  * Create by FLJ in 2020/5/11 15:34
@@ -25,7 +26,6 @@ class OneDayMonthView(context: Context) : MonthView(context) {
         hasScheme: Boolean,
         isSelected: Boolean
     ) {
-
         val baselineY = mTextBaseLine + y
         val cx = x + mItemWidth / 2
         when {
