@@ -62,9 +62,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
             android:layout_marginEnd="@dimen/dp_16"
+            app:layout_constraintBottom_toBottomOf="@id/add_title_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/add_title_tv"
-            app:layout_constraintBottom_toBottomOf="@id/add_title_tv" />
+            app:layout_constraintTop_toTopOf="@id/add_title_tv" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/add_name_hint"
@@ -85,7 +85,6 @@
             android:layout_marginTop="@dimen/dp_8"
             android:background="@null"
             android:hint="@string/event_name"
-            android:paddingStart="@dimen/dp_8"
             app:layout_constraintStart_toStartOf="@id/add_title_tv"
             app:layout_constraintTop_toBottomOf="@id/add_name_hint" />
 
@@ -146,15 +145,14 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/add_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_20"
             android:text="@string/add_event"
             android:theme="@style/OneDay.PrimarySecondary.Button"
-            app:icon="@drawable/ic_one_day_add"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_tag_divider" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.ramotion.directselect.DSListView
             android:id="@+id/add_tag_dsl"
