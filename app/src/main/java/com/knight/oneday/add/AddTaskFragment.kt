@@ -76,9 +76,6 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     }
 
     private fun initView() {
-        binding.apply {
-
-        }
     }
 
     private fun initEvent() {

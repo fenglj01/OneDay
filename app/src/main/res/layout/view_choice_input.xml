@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@drawable/divider"
-        app:backgroundTint="@color/color_on_surface_emphasis_medium"
+        app:backgroundTint="@color/color_on_surface_emphasis_disabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choice_input_content" />
