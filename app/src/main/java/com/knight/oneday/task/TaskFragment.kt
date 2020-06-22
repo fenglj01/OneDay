@@ -67,6 +67,10 @@ class TaskFragment : Fragment() {
         taskVm.taskList.observe(viewLifecycleOwner, Observer {
             taskAdapter.submitList(it)
         })
+        taskVm.taskMonthScheme.observe(viewLifecycleOwner, Observer {
+            binding.taskCalendarView.clearSchemeDate()
+            binding.taskCalendarView.addSchemeDate(it)
+        })
     }
 
     private fun initRecyclerView() {

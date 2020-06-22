@@ -2,6 +2,7 @@ package com.knight.oneday.utilities
 
 import com.knight.oneday.R
 import java.text.SimpleDateFormat
+import java.time.Month
 import java.util.*
 import java.util.Locale.getDefault
 
@@ -75,6 +76,26 @@ fun Calendar.formatUi(): String {
 }
 
 fun Calendar.getHourAndMin(): String = timeInMillis.formatHourMin()
+
+fun Calendar.monthFirstDay(): Calendar {
+    val first = Calendar.getInstance(getDefault())
+    first.set(Calendar.MONTH, get(Calendar.MONTH))
+    first.set(Calendar.DAY_OF_MONTH, 1)
+    first.set(Calendar.HOUR_OF_DAY, 0)
+    first.set(Calendar.MINUTE, 0)
+    first.set(Calendar.SECOND, 0)
+    return first
+}
+
+fun Calendar.monthEndDay(): Calendar {
+    val end = Calendar.getInstance(getDefault())
+    end.set(Calendar.MONTH, get(Calendar.MONTH))
+    end.set(Calendar.DAY_OF_MONTH, getActualMaximum(Calendar.DAY_OF_MONTH))
+    end.set(Calendar.HOUR_OF_DAY, 23)
+    end.set(Calendar.MINUTE, 59)
+    end.set(Calendar.SECOND, 59)
+    return end
+}
 
 fun Calendar.dayStartTime(): Calendar {
     val startCalendar = Calendar.getInstance(getDefault())

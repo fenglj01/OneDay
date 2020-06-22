@@ -2,12 +2,12 @@ package com.knight.oneday.views.choice
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Rect
+import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.RectF
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.MonthView
 import com.knight.oneday.utilities.dp2px
-import com.knight.oneday.utilities.sp
 
 /**
  * Create by FLJ in 2020/5/11 15:34
@@ -17,6 +17,8 @@ class OneDayMonthView(context: Context) : MonthView(context) {
 
     private var rectF: RectF = RectF()
     private val selectedRectConner: Float = dp2px(context, 8F)
+
+    private val mSchemeBasicPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     override fun onDrawText(
         canvas: Canvas?,
@@ -73,5 +75,10 @@ class OneDayMonthView(context: Context) : MonthView(context) {
     }
 
     override fun onDrawScheme(canvas: Canvas?, calendar: Calendar?, x: Int, y: Int) {
+        mSchemeBasicPaint.color = calendar?.schemeColor ?: Color.BLACK
+        val schemeList = calendar?.schemes
+        schemeList?.run {
+            canvas?.drawCircle(0F, 0F, 5F, mSchemeBasicPaint)
+        }
     }
 }

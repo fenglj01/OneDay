@@ -2,6 +2,8 @@ package com.knight.oneday.views.choice
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.RectF
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.WeekView
@@ -12,6 +14,7 @@ class OneDayWeekView(context: Context) : WeekView(context) {
     private var rectF: RectF = RectF()
     private val selectedRectConner: Float = dp2px(context, 8F)
 
+    private val mSchemeBasicPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     override fun onDrawText(
         canvas: Canvas?,
@@ -65,5 +68,10 @@ class OneDayWeekView(context: Context) : WeekView(context) {
     }
 
     override fun onDrawScheme(canvas: Canvas?, calendar: Calendar?, x: Int) {
+        mSchemeBasicPaint.color = calendar?.schemeColor ?: Color.BLACK
+        val schemeList = calendar?.schemes
+        schemeList?.run {
+            canvas?.drawCircle(0F, 0F, 5F, mSchemeBasicPaint)
+        }
     }
 }

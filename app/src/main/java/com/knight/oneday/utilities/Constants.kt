@@ -1,5 +1,7 @@
 package com.knight.oneday.utilities
 
+import com.haibin.calendarview.Calendar
+
 /**
  * @author knight
  * create at 20-2-29 下午2:48
@@ -14,5 +16,10 @@ const val VIEW_MODEL_STATUS_ON_IO = 0
 const val VIEW_MODEL_STATUS_ON_SUCCESS = 1
 const val VIEW_MODEL_STATUS_ON_FAIL = 2
 
+const val UI_CALENDAR_SCHEME_IS_DONE = 0
+const val UI_CALENDAR_SCHEME_IS_EXPIRED = 1
+const val UI_CALENDAR_SCHEME_NOT_EXPIRED = 2
 
 const val DIALOG_TAG_DELETE_EVENT = "delete_event"
+
+typealias UiCalendar = Calendar
