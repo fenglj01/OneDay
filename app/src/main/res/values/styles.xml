@@ -104,19 +104,16 @@
 
     <style name="TaskTimeLineRecyclerView">
         <item name="timeLineColor">?attr/tlColor</item>
-        <item name="timeLineCircleRadius">16dp</item>
+        <item name="timeLineCircleRadius">12dp</item>
         <item name="timeLineExpiredFillColor">?attr/tlExpiredFillColor</item>
         <item name="timeLineExpiredStrokeColor">?attr/tlExpiredStrokeColor</item>
         <item name="timeLineExpiredTextColor">?attr/tlExpiredTextColor</item>
-        <item name="timeLineExpiredIcon">@drawable/ic_one_day_warning</item>
         <item name="timeLineUnfinishedFillColor">?attr/tlUnfinishedFillColor</item>
         <item name="timeLineUnfinishedStrokeColor">?attr/tlUnfinishedStrokeColor</item>
         <item name="timeLineUnfinishedTextColor">?attr/tlUnfinishedTextColor</item>
-        <item name="timeLineUnfinishedIcon">@drawable/ic_flag_black_18dp</item>
         <item name="timeLineFinishedFillColor">?attr/tlFinishedFillColor</item>
         <item name="timeLineFinishedStrokeColor">?attr/tlFinishedStrokeColor</item>
         <item name="timeLineFinishedTextColor">?attr/tlFinishedTextColor</item>
-        <item name="timeLineFinishedIcon">@drawable/ic_done_black_18dp</item>
         <item name="timeLineTextSize">12sp</item>
         <item name="timeLineWidth">1dp</item>
         <item name="timeLineStrokeWidth">2dp</item>

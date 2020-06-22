@@ -18,8 +18,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dp_16"
-        android:outlineProvider="bounds"
-        android:elevation="@dimen/dp_2">
+        android:elevation="@dimen/dp_2"
+        android:outlineProvider="bounds">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/task_item_card"
@@ -34,14 +34,26 @@
                 android:paddingHorizontal="@dimen/dp_16"
                 android:paddingVertical="@dimen/dp_16">
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/task_tag_iv"
+                    bindTagImageSrc="@{task.taskType}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@mipmap/ic_tag_game" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/task_content_tv"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
                     android:text="@{task.content}"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:typeface="monospace"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/task_tag_iv"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="task" />
             </androidx.constraintlayout.widget.ConstraintLayout>

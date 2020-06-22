@@ -33,16 +33,16 @@
         <item name="stepLineFinishedColor">#008853</item>
         <item name="stepLineExecutingColor">#78002e</item>
         <!-- 时间线recyclerView 颜色相关 -->
-        <item name="tlColor">?attr/colorOnBackground</item>
-        <item name="tlExpiredFillColor">#78002e</item>
-        <item name="tlExpiredStrokeColor">#ad1357</item>
-        <item name="tlExpiredTextColor">#78002e</item>
-        <item name="tlFinishedFillColor">#008853</item>
-        <item name="tlFinishedStrokeColor">#1EB980</item>
-        <item name="tlFinishedTextColor">#008853</item>
-        <item name="tlUnfinishedFillColor">#8e8e8e</item>
-        <item name="tlUnfinishedStrokeColor">#bebebe</item>
-        <item name="tlUnfinishedTextColor">#8e8e8e</item>
+        <item name="tlColor">?attr/colorSecondary</item>
+        <item name="tlExpiredFillColor">#E11D1D</item>
+        <item name="tlExpiredStrokeColor">#fff</item>
+        <item name="tlExpiredTextColor">#fff</item>
+        <item name="tlFinishedFillColor">?attr/colorSecondary</item>
+        <item name="tlFinishedStrokeColor">#fff</item>
+        <item name="tlFinishedTextColor">#fff</item>
+        <item name="tlUnfinishedFillColor">#fff</item>
+        <item name="tlUnfinishedStrokeColor">#d6d6d6</item>
+        <item name="tlUnfinishedTextColor">#fff</item>
 
         <item name="taskRecyclerBackColor">#2E2E2E</item>
 
