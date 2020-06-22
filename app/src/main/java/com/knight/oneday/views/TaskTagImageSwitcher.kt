@@ -21,6 +21,7 @@ class TaskTagImageSwitcher(context: Context, attrs: AttributeSet?) :
     )
     private var index = 0
         set(value) {
+            if(field == value) return
             field = value
             setImageResource(imageList[index])
         }
