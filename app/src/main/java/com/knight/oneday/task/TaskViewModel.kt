@@ -1,5 +1,7 @@
 package com.knight.oneday.task
 
+import android.graphics.Color
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.knight.oneday.OneDayApp
@@ -28,13 +30,15 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
 
     val previewDateContent: String = currentWeekDayMonth()
 
+    private var isChangeMonth: Boolean = true
+
     fun refreshTaskList() {
         launchOnIO(
             tryBlock = {
                 taskRep.searchTaskByDay(dayCurrent.dayStartTime(), dayCurrent.dayEndTime()).run {
                     _taskList.postValue(this)
                 }
-                obtainCalendarScheme()
+                if (isChangeMonth) obtainCalendarScheme()
             }
         )
     }
@@ -44,58 +48,98 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
      */
     suspend fun obtainCalendarScheme() {
         val monthStartDay = dayCurrent.monthFirstDay()
-        val monthEndDay = dayCurrent.dayEndTime()
+        val monthEndDay = dayCurrent.monthEndDay()
         taskRep.searchTaskByDay(monthStartDay, monthEndDay).run {
             if (isNotEmpty()) {
                 val map = mutableMapOf<String, UiCalendar>()
                 forEach { task ->
-                    val key = task.dueDateTime.get(Calendar.DAY_OF_MONTH).toString()
+                    val year = task.dueDateTime.get(Calendar.YEAR)
+                    val month = task.dueDateTime.get(Calendar.MONTH) + 1
+                    val day = task.dueDateTime.get(Calendar.DAY_OF_MONTH)
 
-                    val uiCalendar = if (map.containsKey(key)) map[key] else UiCalendar()
+                    val key = UiCalendar()
 
-                    uiCalendar?.run {
-                        year = task.dueDateTime.get(Calendar.YEAR)
-                        month = task.dueDateTime.get(Calendar.MONTH)
-                        day = task.dueDateTime.get(Calendar.DAY_OF_MONTH)
+                    key.year = task.dueDateTime.get(Calendar.YEAR)
+                    key.month = task.dueDateTime.get(Calendar.MONTH) + 1
+                    key.day = task.dueDateTime.get(Calendar.DAY_OF_MONTH)
 
-                        when {
-                            task.isDone -> {
-                                if (schemes.indexOfFirst { it.type == UI_CALENDAR_SCHEME_IS_DONE } == -1) {
+                    if (map.containsKey(key.toString())) {
+                        val uiCalendar = map[key.toString()]
+                        uiCalendar?.let {
+                            it.year = year
+                            it.month = month
+                            it.day = day
+                            when {
+                                task.isDone -> {
+                                    if (!it.schemes.any { it.type == UI_CALENDAR_SCHEME_IS_DONE }) {
+                                        it.addScheme(
+                                            UiScheme(
+                                                UI_CALENDAR_SCHEME_IS_DONE,
+                                                themeColor(R.attr.colorFinished),
+                                                task.content
+                                            )
+                                        )
+                                    }
                                 }
-                                addScheme(
-                                    UI_CALENDAR_SCHEME_IS_DONE,
-                                    OneDayApp.instance().themeColor(R.attr.timeLineFinishedFillColor),
-                                    task.content
-                                )
-                            }
-                            task.isExpired() -> {
-                                if (schemes.indexOfFirst { it.type == UI_CALENDAR_SCHEME_IS_EXPIRED } == -1) {
+                                task.isExpired() -> {
+                                    if (!it.schemes.any { it.type == UI_CALENDAR_SCHEME_IS_EXPIRED }) {
+                                        it.addScheme(
+                                            UiScheme(
+                                                UI_CALENDAR_SCHEME_IS_EXPIRED,
+                                                themeColor(R.attr.colorExpired),
+                                                task.content
+                                            )
+                                        )
+                                    }
                                 }
-                                addScheme(
-                                    UI_CALENDAR_SCHEME_IS_EXPIRED,
-                                    OneDayApp.instance().themeColor(R.attr.timeLineExpiredFillColor),
-                                    task.content
-                                )
-
-
-                            }
-                            else -> {
-                                if (schemes.indexOfFirst { it.type == UI_CALENDAR_SCHEME_NOT_EXPIRED } == -1) {
+                                else -> {
+                                    if (!it.schemes.any { it.type == UI_CALENDAR_SCHEME_NOT_EXPIRED }) {
+                                        it.addScheme(
+                                            UiScheme(
+                                                UI_CALENDAR_SCHEME_NOT_EXPIRED,
+                                                themeColor(R.attr.colorUnFinished),
+                                                task.content
+                                            )
+                                        )
+                                    }
                                 }
-                                addScheme(
-                                    UI_CALENDAR_SCHEME_NOT_EXPIRED,
-                                    OneDayApp.instance().themeColor(R.attr.timeLineUnfinishedFillColor),
-                                    task.content
-                                )
-
                             }
                         }
-                        map.put(key, this)
+                    } else {
+                        val uiCalendar = UiCalendar()
+                        uiCalendar.let {
+                            it.year = year
+                            it.month = month
+                            it.day = day
+                            it.addScheme(
+                                UiScheme(
+                                    when {
+                                        task.isExpired() -> UI_CALENDAR_SCHEME_IS_EXPIRED
+                                        task.isDone -> UI_CALENDAR_SCHEME_IS_DONE
+                                        else -> UI_CALENDAR_SCHEME_NOT_EXPIRED
+                                    },
+                                    themeColor(
+                                        when {
+                                            task.isExpired() -> R.attr.colorExpired
+                                            task.isDone -> R.attr.colorFinished
+                                            else -> R.attr.colorUnFinished
+                                        }
+                                    ),
+                                    task.content
+                                )
+                            )
+                        }
+                        map.put(uiCalendar.toString(), uiCalendar)
                     }
                 }
                 _taskMonthScheme.postValue(map)
+                isChangeMonth = false
             }
         }
+    }
+
+    private fun obtainUiCalendar(year: Int, month: Int, day: Int) {
+
     }
 
 
@@ -120,6 +164,7 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
     }
 
     fun changeTaskDay(year: Int, month: Int, day: Int) {
+        isChangeMonth = dayCurrent.get(Calendar.MONTH) == month
         dayCurrent.apply {
             set(Calendar.YEAR, year)
             set(Calendar.MONTH, month - 1)

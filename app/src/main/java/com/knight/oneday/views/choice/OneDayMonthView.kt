@@ -2,12 +2,17 @@ package com.knight.oneday.views.choice
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
+import android.util.Log
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.MonthView
+import com.knight.oneday.R
+import com.knight.oneday.utilities.UI_CALENDAR_SCHEME_IS_DONE
+import com.knight.oneday.utilities.UI_CALENDAR_SCHEME_IS_EXPIRED
+import com.knight.oneday.utilities.dp
 import com.knight.oneday.utilities.dp2px
+import com.knight.oneday.views.themeColor
 
 /**
  * Create by FLJ in 2020/5/11 15:34
@@ -20,9 +25,12 @@ class OneDayMonthView(context: Context) : MonthView(context) {
 
     private val mSchemeBasicPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
+    private val schemeRadius = 2F.dp
+    private val schemeCirclePadding = 4F.dp
+
     override fun onDrawText(
-        canvas: Canvas?,
-        calendar: Calendar?,
+        canvas: Canvas,
+        calendar: Calendar,
         x: Int,
         y: Int,
         hasScheme: Boolean,
@@ -32,24 +40,24 @@ class OneDayMonthView(context: Context) : MonthView(context) {
         val cx = x + mItemWidth / 2
         when {
             isSelected -> {
-                canvas!!.drawText(
-                    calendar!!.day.toString(),
+                canvas.drawText(
+                    calendar.day.toString(),
                     cx.toFloat(),
                     baselineY,
                     mSelectTextPaint
                 )
             }
             hasScheme -> {
-                canvas!!.drawText(
-                    calendar!!.day.toString(),
+                canvas.drawText(
+                    calendar.day.toString(),
                     cx.toFloat(),
                     baselineY,
                     if (calendar.isCurrentDay) mCurDayTextPaint else if (calendar.isCurrentMonth) mSchemeTextPaint else mOtherMonthTextPaint
                 )
             }
             else -> {
-                canvas!!.drawText(
-                    calendar!!.day.toString(), cx.toFloat(), baselineY,
+                canvas.drawText(
+                    calendar.day.toString(), cx.toFloat(), baselineY,
                     if (calendar.isCurrentDay) mCurDayTextPaint else if (calendar.isCurrentMonth) mCurMonthTextPaint else mOtherMonthTextPaint
                 )
             }
@@ -58,8 +66,8 @@ class OneDayMonthView(context: Context) : MonthView(context) {
     }
 
     override fun onDrawSelected(
-        canvas: Canvas?,
-        calendar: Calendar?,
+        canvas: Canvas,
+        calendar: Calendar,
         x: Int,
         y: Int,
         hasScheme: Boolean
@@ -70,15 +78,84 @@ class OneDayMonthView(context: Context) : MonthView(context) {
             top = y.toFloat()
             bottom = (y + mItemHeight).toFloat()
         }
-        canvas?.drawRoundRect(rectF, selectedRectConner, selectedRectConner, mSelectedPaint)
+        canvas.drawRoundRect(rectF, selectedRectConner, selectedRectConner, mSelectedPaint)
+        if (hasScheme)
+            drawScheme(canvas, calendar, x, y, true)
         return false
     }
 
-    override fun onDrawScheme(canvas: Canvas?, calendar: Calendar?, x: Int, y: Int) {
-        mSchemeBasicPaint.color = calendar?.schemeColor ?: Color.BLACK
-        val schemeList = calendar?.schemes
-        schemeList?.run {
-            canvas?.drawCircle(0F, 0F, 5F, mSchemeBasicPaint)
+    private fun drawScheme(
+        canvas: Canvas,
+        calendar: Calendar,
+        x: Int,
+        y: Int,
+        isSelected: Boolean = false
+    ) {
+        val schemeSize = calendar.schemes.size
+
+        val schemeStartCenterX = (x + mItemWidth / 2).toFloat()
+        val schemeCenterY = y + mItemHeight - schemeCirclePadding - schemeRadius
+
+        when (schemeSize) {
+            1 -> {
+                prepareSchemePaintColor(calendar.schemes[0].type, isSelected)
+                canvas.drawCircle(
+                    schemeStartCenterX,
+                    schemeCenterY,
+                    schemeRadius,
+                    mSchemeBasicPaint
+                )
+            }
+            2 -> {
+                prepareSchemePaintColor(calendar.schemes[0].type, isSelected)
+                canvas.drawCircle(
+                    schemeStartCenterX - schemeRadius - schemeCirclePadding / 2,
+                    schemeCenterY,
+                    schemeRadius, mSchemeBasicPaint
+                )
+                prepareSchemePaintColor(calendar.schemes[1].type, isSelected)
+                canvas.drawCircle(
+                    schemeStartCenterX + schemeRadius + schemeCirclePadding / 2,
+                    schemeCenterY,
+                    schemeRadius,
+                    mSchemeBasicPaint
+                )
+            }
+            3 -> {
+                prepareSchemePaintColor(calendar.schemes[0].type, isSelected)
+                canvas.drawCircle(
+                    schemeStartCenterX - 2 * schemeRadius - schemeCirclePadding,
+                    schemeCenterY,
+                    schemeRadius,
+                    mSchemeBasicPaint
+                )
+                prepareSchemePaintColor(calendar.schemes[1].type, isSelected)
+                canvas.drawCircle(
+                    schemeStartCenterX,
+                    schemeCenterY,
+                    schemeRadius,
+                    mSchemeBasicPaint
+                )
+                prepareSchemePaintColor(calendar.schemes[2].type, isSelected)
+                canvas.drawCircle(
+                    schemeStartCenterX + 2 * schemeRadius + schemeCirclePadding,
+                    schemeCenterY,
+                    schemeRadius,
+                    mSchemeBasicPaint
+                )
+            }
+        }
+    }
+
+    override fun onDrawScheme(canvas: Canvas, calendar: Calendar, x: Int, y: Int) {
+        drawScheme(canvas, calendar, x, y)
+    }
+
+    private fun prepareSchemePaintColor(type: Int, isSelected: Boolean = false) {
+        mSchemeBasicPaint.color = when (type) {
+            UI_CALENDAR_SCHEME_IS_DONE -> context.themeColor(if (isSelected) R.attr.colorSurface else R.attr.colorFinished)
+            UI_CALENDAR_SCHEME_IS_EXPIRED -> context.themeColor(R.attr.colorExpired)
+            else -> context.themeColor(R.attr.colorUnFinished)
         }
     }
 }

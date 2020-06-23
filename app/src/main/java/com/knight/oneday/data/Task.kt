@@ -31,5 +31,5 @@ data class Task(
         return "$taskId - $content -$isDone"
     }
 
-    fun isExpired(): Boolean = this.dueDateTime.timeInMillis < currentTimeMills()
+    fun isExpired(): Boolean = this.dueDateTime.timeInMillis < currentTimeMills() && !isDone
 }

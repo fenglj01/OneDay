@@ -93,7 +93,7 @@
         <item name="stepLineExecutingColor">#78002e</item>
         <!-- 时间线recyclerView 颜色相关 -->
         <item name="tlColor">?attr/colorSecondary</item>
-        <item name="tlExpiredFillColor">#E11D1D</item>
+        <item name="tlExpiredFillColor">#ffc278</item>
         <item name="tlExpiredStrokeColor">#ffffff</item>
         <item name="tlExpiredTextColor">#333333</item>
         <item name="tlFinishedFillColor">#1EB980</item>
@@ -104,6 +104,11 @@
         <item name="tlUnfinishedTextColor">#333333</item>
 
         <item name="taskRecyclerBackColor">@color/color_EFF3FC</item>
+
+        <!-- 日历中 schemeColor -->
+        <item name="colorExpired">#ffc278</item>
+        <item name="colorFinished">#1EB980</item>
+        <item name="colorUnFinished">#8e8e8e</item>
     </style>
 
     <style name="Base.Theme.MaterialThemeBuilder" parent="Theme.MaterialComponents.DayNight.NoActionBar">

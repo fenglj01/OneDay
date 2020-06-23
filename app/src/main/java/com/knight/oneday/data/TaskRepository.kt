@@ -9,7 +9,6 @@ class TaskRepository private constructor(
 ) {
 
     suspend fun searchTaskByDay(startTime: Calendar, endTime: Calendar): List<Task> {
-        Log.d("TaskViewModel", "${startTime.timeInMillis} ${endTime.timeInMillis}")
         return taskDao.getTaskByRange(
             startTime,
             endTime
