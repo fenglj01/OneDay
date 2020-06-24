@@ -1,6 +1,7 @@
 package com.knight.oneday.views.choice
 
 import android.content.Context
+import android.graphics.BlurMaskFilter
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
@@ -20,13 +21,14 @@ import com.knight.oneday.views.themeColor
  */
 class OneDayMonthView(context: Context) : MonthView(context) {
 
-    private var rectF: RectF = RectF()
-    private val selectedRectConner: Float = dp2px(context, 8F)
-
     private val mSchemeBasicPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     private val schemeRadius = 2F.dp
-    private val schemeCirclePadding = 4F.dp
+    private val schemeCirclePadding = 2F.dp
+
+    init {
+        mSelectedPaint.maskFilter = BlurMaskFilter(25F, BlurMaskFilter.Blur.SOLID)
+    }
 
     override fun onDrawText(
         canvas: Canvas,
@@ -72,13 +74,9 @@ class OneDayMonthView(context: Context) : MonthView(context) {
         y: Int,
         hasScheme: Boolean
     ): Boolean {
-        rectF.apply {
-            left = x.toFloat()
-            right = (x + mItemWidth).toFloat()
-            top = y.toFloat()
-            bottom = (y + mItemHeight).toFloat()
-        }
-        canvas.drawRoundRect(rectF, selectedRectConner, selectedRectConner, mSelectedPaint)
+        val centerX = x.toFloat() + mItemWidth / 2
+        val centerY = y.toFloat() + mItemHeight / 2
+        canvas.drawCircle(centerX, centerY, mItemWidth / 2 - 4F.dp, mSelectedPaint)
         if (hasScheme)
             drawScheme(canvas, calendar, x, y, true)
         return false
@@ -94,7 +92,7 @@ class OneDayMonthView(context: Context) : MonthView(context) {
         val schemeSize = calendar.schemes.size
 
         val schemeStartCenterX = (x + mItemWidth / 2).toFloat()
-        val schemeCenterY = y + mItemHeight - schemeCirclePadding - schemeRadius
+        val schemeCenterY = y + mItemHeight - 4 * schemeCirclePadding - 4 * schemeRadius
 
         when (schemeSize) {
             1 -> {
