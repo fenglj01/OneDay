@@ -75,7 +75,6 @@ class TaskFragment : Fragment() {
         })
         taskVm.taskMonthScheme.observe(viewLifecycleOwner, Observer {
              binding.taskCalendarView.setSchemeDate(it)
-             Log.d("TaskViewModel", "${it.size} $it")
         })
     }
 
@@ -88,37 +87,11 @@ class TaskFragment : Fragment() {
     }
 
     private fun initCalendar() {
-        binding.taskCalendarView.setMonthView(OneDayMonthView::class.java)
-        binding.taskCalendarView.setWeekView(OneDayWeekView::class.java)
         binding.taskCurrentDate.onCurrentDayClicked =
             object : CalendarToolView.OnCurrentDayClicked {
                 override fun onCurrentDayClicked() {
                     binding.taskCalendarView.scrollToCurrent()
                 }
             }
-       /* val map = mutableMapOf<String, Calendar>()
-        map.put(getUiCalendar().toString(), getUiCalendar())
-        map.put(getUiCalendar().toString(), getUiCalendar())
-        map.put(getUiCalendar().toString(), getUiCalendar())
-        map.put(getUiCalendar().toString(), getUiCalendar())
-        binding.taskCalendarView.setSchemeDate(map)*/
-
     }
-
-    private fun getUiCalendar(): Calendar {
-        val uiCalendar = Calendar()
-        uiCalendar.year = binding.taskCalendarView.curYear
-        uiCalendar.month = binding.taskCalendarView.curMonth
-        uiCalendar.day = binding.taskCalendarView.curDay
-
-        uiCalendar.schemeColor = Color.BLACK
-        uiCalendar.scheme = "1"
-
-        uiCalendar.addScheme(Calendar.Scheme(Color.RED, "1"))
-        uiCalendar.addScheme(Calendar.Scheme(Color.GREEN, "2"))
-
-        Log.d("TaskViewModel", "$uiCalendar")
-        return uiCalendar
-    }
-
 }
