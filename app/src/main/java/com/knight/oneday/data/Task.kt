@@ -17,7 +17,7 @@ import java.util.*
 @Keep
 @Entity(tableName = TABLE_NAME_TASK)
 data class Task(
-    val content: String,
+    var content: String,
     @ColumnInfo(name = "create_time") val createTime: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "completion_time") var completionTime: Calendar = createTime,
     @ColumnInfo(name = "due_date_time") var dueDateTime: Calendar = createTime,

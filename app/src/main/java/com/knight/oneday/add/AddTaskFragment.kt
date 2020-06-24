@@ -79,20 +79,36 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
 
     private fun initView() {
         val safeArgs: AddTaskFragmentArgs by navArgs()
-        Log.d("safeArgs", "${safeArgs.task ?: 1}")
+        safeArgs.task?.let { task ->
+            binding.addTitleTv.text = getString(R.string.title_edit_task)
+            binding.addTagIs.changeSelectedIndex(TaskType.values().indexOf(task.taskType))
+            binding.addNameEdit.setText(task.content)
+            binding.addDateCiv.setContentText(task.dueDateTime.timeInMillis.formatWeekMonthDay())
+            binding.addTimeCiv.setContentText(task.dueDateTime.timeInMillis.formatHourMin())
+            binding.addBtn.setText(R.string.btn_edit_task)
+            binding.addTagDsl.selectedIndex = TaskType.values().indexOf(task.taskType)
+            addVM.initViewModelByTask(task)
+        }
     }
 
     private fun initEvent() {
-        addVM.addTaskStatus.observe(viewLifecycleOwner, Observer { status ->
+        addVM.viewModelStatus.observe(viewLifecycleOwner, Observer { status ->
             when (status) {
-                AddTaskViewModel.ADD_STATUS_SUCCESS -> {
+                AddTaskViewModel.ADD_STATUS_SUCCESS, AddTaskViewModel.EDIT_STATUS_SUCCESS -> {
                     findNavController().navigateUp()
                 }
-                AddTaskViewModel.ADD_STATUS_CONTENT_IS_EMPTY -> {
+                AddTaskViewModel.ADD_STATUS_CONTENT_IS_EMPTY, AddTaskViewModel.EDIT_STATUS_CONTENT_IS_EMPTY -> {
                     showSnackBar(binding.root, R.string.add_event_content_is_empty)
                 }
                 AddTaskViewModel.ADD_STATUS_FAIL -> {
                     showSnackBar(binding.root, R.string.add_event_fail)
+                }
+                AddTaskViewModel.EDIT_STATUS_FAIL -> {
+                    showSnackBar(binding.root, R.string.edit_task_fail)
+                }
+                AddTaskViewModel.EDIT_STATUS_NOTHING_CHANGED -> {
+                    Log.d("editTask", "isNothingChange")
+                    findNavController().navigateUp()
                 }
             }
         })
@@ -103,10 +119,10 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             }
             addBtn.singleClick {
                 hideSoftInput()
-                addVM.addTask()
+                addVM.confirm()
             }
             addNameEdit.addTextChangedListener { content ->
-                content?.let { addVM.taskContent = content.toString() }
+                content?.let { addVM.vmTaskContent = content.toString() }
             }
         }
     }
