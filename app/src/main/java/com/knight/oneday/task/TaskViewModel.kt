@@ -31,8 +31,6 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
 
     val previewDateContent: String = currentWeekDayMonth()
 
-    private var isChangeMonth: Boolean = true
-
     fun refreshTaskList() {
         launchOnIO(
             tryBlock = {
@@ -167,7 +165,7 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
     }
 
     fun changeTaskDay(year: Int, month: Int, day: Int) {
-        isChangeMonth = dayCurrent.get(Calendar.MONTH) == month
+        val isChangeMonth = dayCurrent.get(Calendar.MONTH) == month
         dayCurrent.apply {
             set(Calendar.YEAR, year)
             set(Calendar.MONTH, month - 1)
