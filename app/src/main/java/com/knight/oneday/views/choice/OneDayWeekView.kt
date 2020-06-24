@@ -49,7 +49,7 @@ class OneDayWeekView(context: Context) : WeekView(context) {
                     calendar!!.day.toString(),
                     cx.toFloat(),
                     baselineY,
-                    if (calendar.isCurrentDay) mCurDayTextPaint else if (calendar.isCurrentMonth) mSchemeTextPaint else mOtherMonthTextPaint
+                    if (calendar.isCurrentDay) mCurDayTextPaint else if (calendar.isCurrentMonth) mCurMonthTextPaint else mOtherMonthTextPaint
                 )
             }
             else -> {

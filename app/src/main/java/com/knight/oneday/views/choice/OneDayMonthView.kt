@@ -54,7 +54,7 @@ class OneDayMonthView(context: Context) : MonthView(context) {
                     calendar.day.toString(),
                     cx.toFloat(),
                     baselineY,
-                    if (calendar.isCurrentDay) mCurDayTextPaint else if (calendar.isCurrentMonth) mSchemeTextPaint else mOtherMonthTextPaint
+                    if (calendar.isCurrentDay) mCurDayTextPaint else if (calendar.isCurrentMonth) mCurMonthTextPaint else mOtherMonthTextPaint
                 )
             }
             else -> {
