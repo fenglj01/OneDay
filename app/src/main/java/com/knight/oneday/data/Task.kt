@@ -2,6 +2,7 @@ package com.knight.oneday.data
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.annotation.Keep
 import androidx.room.*
 import com.knight.oneday.utilities.TaskType
 import com.knight.oneday.utilities.TABLE_NAME_TASK
@@ -13,6 +14,7 @@ import java.util.*
  * create at 20-2-29 下午2:46
  * 事件表
  */
+@Keep
 @Entity(tableName = TABLE_NAME_TASK)
 data class Task(
     val content: String,

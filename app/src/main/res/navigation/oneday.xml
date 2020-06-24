@@ -60,7 +60,13 @@
         android:id="@+id/addEventFragment"
         android:name="com.knight.oneday.add.AddTaskFragment"
         android:label="fragment_add_event"
-        tools:layout="@layout/fragment_add_event" />
+        tools:layout="@layout/fragment_add_event">
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="com.knight.oneday.data.Task"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/taskFragment"
         android:name="com.knight.oneday.task.TaskFragment"
