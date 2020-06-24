@@ -2,6 +2,7 @@ package com.knight.oneday.add
 
 import android.os.Bundle
 import android.transition.Slide
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.R
 import com.knight.oneday.adapters.TagPickerAdapter
@@ -76,6 +78,8 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     }
 
     private fun initView() {
+        val safeArgs: AddTaskFragmentArgs by navArgs()
+        Log.d("safeArgs", "${safeArgs.task ?: 1}")
     }
 
     private fun initEvent() {

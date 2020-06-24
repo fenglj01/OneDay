@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haibin.calendarview.Calendar
@@ -56,7 +57,7 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        uiPresenter = TaskUiPresenter(taskVm, binding, requireActivity())
+        uiPresenter = TaskUiPresenter(taskVm, binding, requireActivity(), findNavController())
         binding.vm = taskVm
         binding.calendarSelectedListener = uiPresenter
 
@@ -74,7 +75,7 @@ class TaskFragment : Fragment() {
             taskAdapter.submitList(it)
         })
         taskVm.taskMonthScheme.observe(viewLifecycleOwner, Observer {
-             binding.taskCalendarView.setSchemeDate(it)
+            binding.taskCalendarView.setSchemeDate(it)
         })
     }
 

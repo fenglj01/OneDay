@@ -4,8 +4,12 @@ package com.knight.oneday.task
 import android.app.Activity
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
+import com.knight.oneday.R
+import com.knight.oneday.add.AddTaskFragmentArgs
 import com.knight.oneday.calendar.CalendarToolView
 import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.FragmentTaskBinding
@@ -21,7 +25,8 @@ import com.knight.oneday.views.SureDeleteDialog
 class TaskUiPresenter(
     private val vm: TaskViewModel,
     private val binding: FragmentTaskBinding,
-    private val act: FragmentActivity
+    private val act: FragmentActivity,
+    private val navController: NavController
 ) :
     TaskAdapter.TaskEventListener, CalendarView.OnCalendarSelectListener {
 
@@ -38,7 +43,7 @@ class TaskUiPresenter(
     }
 
     override fun onTaskClicked(task: Task) {
-        Log.d("task", "click $task")
+        navController.navigate(TaskFragmentDirections.actionTaskFragmentToAddEventFragment(task))
     }
 
     override fun onTaskLongClicked(task: Task): Boolean {
