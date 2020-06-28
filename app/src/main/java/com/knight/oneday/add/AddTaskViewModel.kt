@@ -29,8 +29,8 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
     val previewTimeContent: String = currentHourMin()
 
     var vmTaskContent: String = ""
-    var vmTaskDueDateTime: Calendar = GregorianCalendar.getInstance()
-    var vmTaskType: TaskType = TaskType.NO_CATEGORY
+    private var vmTaskDueDateTime: Calendar = GregorianCalendar.getInstance()
+    private var vmTaskType: TaskType = TaskType.NO_CATEGORY
 
     private val _viewModelStatus: MutableLiveData<Int> = MutableLiveData()
     val viewModelStatus: LiveData<Int> = _viewModelStatus
