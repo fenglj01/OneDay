@@ -27,10 +27,21 @@ sealed class NavigationModelItem {
 
     // 事件分类
     data class NavTaskTag(
+        val id: Int,
         val taskTag: TaskTag, @DrawableRes var icon: Int = R.drawable.ic_one_day_tag,
-        var taskType: TaskType = TaskType.NO_CATEGORY
-    ) :
-        NavigationModelItem()
+        var taskType: TaskType = TaskType.NO_CATEGORY,
+        var checked: Boolean = false
+    ) : NavigationModelItem()
+
+    object NavTaskTagDiff : DiffUtil.ItemCallback<NavTaskTag>() {
+        override fun areItemsTheSame(oldItem: NavTaskTag, newItem: NavTaskTag): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: NavTaskTag, newItem: NavTaskTag): Boolean {
+            return oldItem.id == newItem.id && oldItem.checked == newItem.checked && oldItem.taskType == newItem.taskType
+        }
+    }
 
     // 相同区分
     object NavModeItemDiff : DiffUtil.ItemCallback<NavigationModelItem>() {
@@ -41,10 +52,7 @@ sealed class NavigationModelItem {
             return when {
                 oldItem is NavMenuItem && newItem is NavMenuItem -> oldItem.id == newItem.id
                 oldItem is NavDivider && newItem is NavDivider -> oldItem.title == newItem.title
-                oldItem is NavTaskTag && newItem is NavTaskTag -> TaskTagDiff.areItemsTheSame(
-                    oldItem.taskTag,
-                    newItem.taskTag
-                )
+                oldItem is NavTaskTag && newItem is NavTaskTag -> oldItem.id == newItem.id
                 else -> oldItem == newItem
             }
         }
@@ -56,9 +64,9 @@ sealed class NavigationModelItem {
             return when {
                 oldItem is NavMenuItem && newItem is NavMenuItem -> oldItem.id == newItem.id && oldItem.icon == newItem.icon && oldItem.titleRes == newItem.titleRes && oldItem.checked == newItem.checked
                 oldItem is NavDivider && newItem is NavDivider -> oldItem.title == newItem.title
-                oldItem is NavTaskTag && newItem is NavTaskTag -> TaskTagDiff.areContentsTheSame(
-                    oldItem.taskTag,
-                    newItem.taskTag
+                oldItem is NavTaskTag && newItem is NavTaskTag -> NavTaskTagDiff.areContentsTheSame(
+                    oldItem,
+                    newItem
                 )
                 else -> false
             }

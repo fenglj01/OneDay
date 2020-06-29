@@ -62,10 +62,14 @@
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.knight.oneday.category.CategoryFragment"
+        tools:layout="@layout/fragment_category"
         android:label="CategoryFragment" >
         <argument
             android:name="taskType"
             app:argType="com.knight.oneday.utilities.TaskType"
             android:defaultValue="NO_CATEGORY" />
+        <action
+            android:id="@+id/action_categoryFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
 </navigation>

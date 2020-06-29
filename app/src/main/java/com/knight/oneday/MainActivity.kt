@@ -133,6 +133,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     ) {
         when (destination.id) {
             R.id.taskFragment -> {
+                bottomNavDrawer.close()
                 binding.bottomAppBar.hideOnScroll = true
                 setBottomAppBarAndFabByTaskFrag()
             }
@@ -161,7 +162,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         }
         NavigationModel.setNavigationMenuItemChecked(0)
     }
-
 
     private fun showBottomAppBarAndFab() {
         binding.run {

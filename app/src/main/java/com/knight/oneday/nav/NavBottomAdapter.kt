@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.knight.oneday.databinding.NavDividerItemLayoutBinding
-import com.knight.oneday.databinding.NavEventTagItemLayoutBinding
 import com.knight.oneday.databinding.NavMenuItemLayoutBinding
+import com.knight.oneday.databinding.NavTaskTagItemLayoutBinding
 
 /**
  * Create by FLJ in 2020/3/25 15:20
@@ -34,14 +34,15 @@ class NavBottomAdapter(private val listener: NavigationAdapterListener) :
                     false
                 )
             )
-            VIEW_TYPE_NAV_EVENT_TAG_ITEM -> NavigationViewHolder.NavEventTagViewHolder(
-                NavEventTagItemLayoutBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                ),
-                listener
-            )
+            VIEW_TYPE_NAV_EVENT_TAG_ITEM ->
+                NavigationViewHolder.NavTaskTagViewHolder(
+                    NavTaskTagItemLayoutBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    listener
+                )
             else -> throw RuntimeException("Unsupported view holder type")
         } as NavigationViewHolder<NavigationModelItem>
     }

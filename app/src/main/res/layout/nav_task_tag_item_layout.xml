@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="navTaskTag"
+            type="com.knight.oneday.nav.NavigationModelItem.NavTaskTag" />
+
+        <variable
+            name="navListener"
+            type="com.knight.oneday.nav.NavBottomAdapter.NavigationAdapterListener" />
+    </data>
+
+    <CheckedTextView
+        android:id="@+id/nav_task_tag_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navigation_drawer_menu_item_height"
+        android:background="?attr/selectableItemBackground"
+        android:checked="@{navTaskTag.checked}"
+        android:drawablePadding="@dimen/dp_32"
+        android:ellipsize="end"
+        android:gravity="center_vertical|start"
+        android:lines="1"
+        android:onClick="@{() -> navListener.onNavEventTagClicked(navTaskTag)}"
+        android:paddingLeft="@dimen/dp_32"
+        android:paddingRight="@dimen/dp_32"
+        android:text="@{navTaskTag.taskTag}"
+        android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textColor="@color/color_navigation_drawer_menu_item"
+        app:drawableStart="@{navTaskTag.icon}"
+        tools:text="Inbox" />
+</layout>

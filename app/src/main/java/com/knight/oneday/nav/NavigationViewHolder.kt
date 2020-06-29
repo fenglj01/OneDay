@@ -3,8 +3,8 @@ package com.knight.oneday.nav
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.databinding.NavDividerItemLayoutBinding
-import com.knight.oneday.databinding.NavEventTagItemLayoutBinding
 import com.knight.oneday.databinding.NavMenuItemLayoutBinding
+import com.knight.oneday.databinding.NavTaskTagItemLayoutBinding
 
 /**
  * Create by FLJ in 2020/3/25 15:06
@@ -39,13 +39,13 @@ sealed class NavigationViewHolder<T : NavigationModelItem>(view: View) :
         }
     }
 
-    class NavEventTagViewHolder(
-        private val binding: NavEventTagItemLayoutBinding,
+    class NavTaskTagViewHolder(
+        private val binding: NavTaskTagItemLayoutBinding,
         private val listener: NavBottomAdapter.NavigationAdapterListener
     ) : NavigationViewHolder<NavigationModelItem.NavTaskTag>(binding.root) {
         override fun bind(navItem: NavigationModelItem.NavTaskTag) {
             binding.run {
-                navEventTag = navItem
+                navTaskTag = navItem
                 navListener = listener
                 executePendingBindings()
             }

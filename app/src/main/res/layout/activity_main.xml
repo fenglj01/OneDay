@@ -52,8 +52,8 @@
 
                  <ImageView
                      android:id="@+id/bottom_app_bar_icon"
-                     android:layout_width="@dimen/dp_32"
-                     android:layout_height="@dimen/dp_32"
+                     android:layout_width="@dimen/dp_24"
+                     android:layout_height="@dimen/dp_24"
                      android:contentDescription="@string/theme_system"
                      android:src="@mipmap/ic_launcher_round" />
 

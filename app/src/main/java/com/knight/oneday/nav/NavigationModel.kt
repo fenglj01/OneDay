@@ -1,5 +1,6 @@
 package com.knight.oneday.nav
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.knight.oneday.R
@@ -21,12 +22,12 @@ object NavigationModel {
             titleRes = R.string.nav_menu_about,
             checked = false
         ),
-       /* NavigationModelItem.NavMenuItem(
-            id = 2,
-            icon = R.drawable.ic_one_day_chart,
-            titleRes = R.string.nav_menu_chart,
-            checked = false
-        ),*/
+        /* NavigationModelItem.NavMenuItem(
+             id = 2,
+             icon = R.drawable.ic_one_day_chart,
+             titleRes = R.string.nav_menu_chart,
+             checked = false
+         ),*/
         NavigationModelItem.NavMenuItem(
             id = 3,
             icon = R.drawable.ic_one_day_settings,
@@ -37,29 +38,39 @@ object NavigationModel {
 
     private val navigationTags = mutableListOf(
         NavigationModelItem.NavTaskTag(
+            4,
             getString(R.string.tag_no_tag),
             R.drawable.ic_one_day_tag_no_type,
-            TaskType.NO_CATEGORY
+            TaskType.NO_CATEGORY,
+            false
         ),
         NavigationModelItem.NavTaskTag(
+            5,
             getString(R.string.tag_life),
             R.drawable.ic_one_day_tag_life,
-            TaskType.LIFE
+            TaskType.LIFE,
+            false
         ),
         NavigationModelItem.NavTaskTag(
+            6,
             getString(R.string.tag_work),
             R.drawable.ic_one_day_tag_work,
-            TaskType.WORK
+            TaskType.WORK,
+            false
         ),
         NavigationModelItem.NavTaskTag(
+            7,
             getString(R.string.tag_entertainment),
             R.drawable.ic_one_day_tag_leisure,
-            TaskType.ENTERTAINMENT
+            TaskType.ENTERTAINMENT,
+            false
         ),
         NavigationModelItem.NavTaskTag(
+            8,
             getString(R.string.tag_health),
             R.drawable.ic_one_day_tag_sport,
-            TaskType.HEALTH
+            TaskType.HEALTH,
+            false
         )
     )
 
@@ -79,10 +90,19 @@ object NavigationModel {
 
     fun setNavigationMenuItemChecked(id: Int): Boolean {
         var updated = false
+
         navigationMenuItems.forEachIndexed { index, item ->
             val shouldCheck = item.id == id
             if (item.checked != shouldCheck) {
                 navigationMenuItems[index] = item.copy(checked = shouldCheck)
+                updated = true
+            }
+        }
+
+        navigationTags.forEachIndexed { index, navTaskTag ->
+            val shouldCheck = navTaskTag.id == id
+            if (navTaskTag.checked != shouldCheck) {
+                navigationTags[index] = navTaskTag.copy(checked = shouldCheck)
                 updated = true
             }
         }

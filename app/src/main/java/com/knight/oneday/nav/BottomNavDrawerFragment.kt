@@ -3,6 +3,7 @@ package com.knight.oneday.nav
 import android.animation.ValueAnimator
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,14 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.knight.oneday.R
 import com.knight.oneday.databinding.FragmentBottomNavDrawerBinding
+import com.knight.oneday.nav.strategy.AppJumpStrategy
 import com.knight.oneday.task.TaskFragmentDirections
 import com.knight.oneday.utilities.TaskType
 import com.knight.oneday.utilities.singleClick
@@ -48,6 +51,8 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     private val bottomSheetCallback = BottomNavigationDrawerCallback()
 
     private val sandwichSlideActions = mutableListOf<OnSandwichSlideAction>()
+
+    private val appJumpStrategy: AppJumpStrategy by lazy { AppJumpStrategy(this) }
 
     // 背景形状
     private val backgroundShapeDrawable: MaterialShapeDrawable by lazy(LazyThreadSafetyMode.NONE) {
@@ -226,35 +231,29 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     }
 
     override fun onNavMenuItemClicked(item: NavigationModelItem.NavMenuItem) {
-
-        if (NavigationModel.setNavigationMenuItemChecked(item.id)) close()
-
+        val changed = NavigationModel.setNavigationMenuItemChecked(item.id)
+        if (!changed) {
+            close()
+            return
+        }
         when (item.id) {
-            3 -> {
-                findNavController().navigate(R.id.action_taskFragment_to_settingFragment)
-            }
+            0 -> appJumpStrategy.jumpHome()
+            1 -> appJumpStrategy.jumpAbout()
+            2 -> appJumpStrategy.jumpChart()
+            3 -> appJumpStrategy.jumpSetting()
         }
     }
 
     override fun onNavEventTagClicked(navTag: NavigationModelItem.NavTaskTag) {
 
-        findNavController().currentDestination?.let { destination ->
-            when (destination.id) {
-                R.id.taskFragment -> {
-                    findNavController().navigate(
-                        TaskFragmentDirections.actionTaskFragmentToCategoryFragment(
-                            navTag.taskType
-                        )
-                    )
-                    OBSERVER.navTag.postValue(navTag.taskType)
-                }
-                else -> {
-                    close()
-                    OBSERVER.navTag.postValue(navTag.taskType)
-                }
-            }
+        val changed = NavigationModel.setNavigationMenuItemChecked(navTag.id)
+        if (!changed) {
+            close()
+            return
         }
-
+        appJumpStrategy.jumpCategory(navTag.taskType)
+        OBSERVER.navTag.postValue(navTag.taskType)
+        close()
     }
 
     fun addOnSlideAction(action: OnSlideAction) {
