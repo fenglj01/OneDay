@@ -2,6 +2,8 @@ package com.knight.oneday.utilities
 
 import android.content.Context
 import com.knight.oneday.add.AddTaskViewModelFactory
+import com.knight.oneday.category.CategoryViewModel
+import com.knight.oneday.category.CategoryViewModelFactory
 import com.knight.oneday.data.AppDatabase
 import com.knight.oneday.data.TaskAndStepRepository
 import com.knight.oneday.data.StepRepository
@@ -23,6 +25,12 @@ object InjectorUtils {
     fun addEventViewModelFactory(context: Context): AddTaskViewModelFactory {
         return AddTaskViewModelFactory(
             getEventWithStepRepository(context)
+        )
+    }
+
+    fun categoryViewModelFactory(context: Context): CategoryViewModelFactory {
+        return CategoryViewModelFactory(
+            getTaskRepository(context)
         )
     }
 

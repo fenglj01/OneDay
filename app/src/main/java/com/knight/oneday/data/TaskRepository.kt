@@ -1,6 +1,7 @@
 package com.knight.oneday.data
 
 import android.util.Log
+import com.knight.oneday.utilities.TaskType
 import com.knight.oneday.utilities.format24Hex
 import java.util.*
 
@@ -14,6 +15,8 @@ class TaskRepository private constructor(
             endTime
         )
     }
+
+    fun searchTaskByType(taskType: TaskType) = taskDao.getTaskByType(taskType)
 
     suspend fun updateEventDoneStatus(eventId: Long, isDone: Boolean) =
         taskDao.updateEventDoneStatus(if (isDone) 1 else 0, eventId)

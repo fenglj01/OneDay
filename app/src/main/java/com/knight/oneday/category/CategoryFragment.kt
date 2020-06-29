@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.knight.oneday.databinding.FragmentCategoryBinding
 import com.knight.oneday.nav.BottomNavDrawerFragment
+import com.knight.oneday.utilities.InjectorUtils
 
 /**
  * Create by FLJ in 2020/6/29 9:11
@@ -18,6 +20,10 @@ import com.knight.oneday.nav.BottomNavDrawerFragment
 class CategoryFragment : Fragment() {
 
     private lateinit var binding: FragmentCategoryBinding
+
+    private val vm by viewModels<CategoryViewModel> {
+        InjectorUtils.categoryViewModelFactory(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,10 +38,10 @@ class CategoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val safeArgs: CategoryFragmentArgs by navArgs()
         safeArgs.taskType.run {
-            Log.d("TaskType", "$this")
+            Log.d("TaskType->Jump", "$this")
         }
         BottomNavDrawerFragment.navTag.observe(viewLifecycleOwner, Observer {
-            Log.d("TaskTypeOb", "$it")
+            Log.d("TaskType->Observe", "$it")
         })
     }
 

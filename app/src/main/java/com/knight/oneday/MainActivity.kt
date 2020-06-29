@@ -122,6 +122,8 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             if (navController.currentDestination?.id == R.id.categoryFragment) {
                 binding.bottomAppBarTitle.text = getString(getAppBarTitleByTaskType(it))
                 binding.bottomAppBarIcon.setImageResource(getAppBarIconByTaskType(it))
+            } else {
+                setBottomAppBarAndFabByTaskFrag()
             }
         })
     }
