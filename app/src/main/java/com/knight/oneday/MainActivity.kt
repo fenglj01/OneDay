@@ -159,6 +159,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             bottomAppBar.performShow()
             fab.show()
         }
+        NavigationModel.setNavigationMenuItemChecked(0)
     }
 
 
