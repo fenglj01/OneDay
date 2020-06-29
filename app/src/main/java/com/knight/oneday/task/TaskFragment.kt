@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.transition.Hold
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
 import com.knight.oneday.R
@@ -44,6 +45,13 @@ class TaskFragment : Fragment() {
 
     private val taskVm: TaskViewModel by viewModels {
         InjectorUtils.taskViewModelFactory(requireContext())
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = Hold().apply {
+            duration = resources.getInteger(R.integer.one_day_motion_default_large).toLong()
+        }
     }
 
     override fun onCreateView(

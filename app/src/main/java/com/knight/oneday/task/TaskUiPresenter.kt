@@ -3,6 +3,7 @@ package com.knight.oneday.task
 
 import android.app.Activity
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -42,7 +43,7 @@ class TaskUiPresenter(
     override fun onCalendarOutOfRange(calendar: Calendar?) {
     }
 
-    override fun onTaskClicked(task: Task) {
+    override fun onTaskClicked(view: View, task: Task) {
         navController.navigate(TaskFragmentDirections.actionTaskFragmentToAddEventFragment(task))
     }
 

@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         arguments: Bundle?
     ) {
         when (destination.id) {
-            R.id.taskFragment ->{
+            R.id.taskFragment -> {
                 binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()
             }
@@ -142,6 +142,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.settingFragment -> {
                 bottomNavDrawer.close()
                 hideBottomAppBarAndFab()
+            }
+            R.id.categoryFragment -> {
+                binding.bottomAppBar.hideOnScroll = true
+                showBottomAppBarAndFab()
             }
         }
     }

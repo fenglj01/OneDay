@@ -24,7 +24,7 @@
             android:id="@+id/task_item_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{(view) -> taskEventListener.onTaskClicked(task)}"
+            android:onClick="@{(view) -> taskEventListener.onTaskClicked(view,task)}"
             android:onLongClick="@{(view) -> taskEventListener.onTaskLongClicked(task)}">
 
             <androidx.constraintlayout.widget.ConstraintLayout

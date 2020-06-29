@@ -29,6 +29,7 @@
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.knight.oneday.setting.SettingFragment"
+        tools:layout="@layout/fragment_preferences"
         android:label="SettingFragment" />
 
     <fragment
@@ -54,5 +55,17 @@
         <action
             android:id="@+id/action_taskFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_taskFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.knight.oneday.category.CategoryFragment"
+        android:label="CategoryFragment" >
+        <argument
+            android:name="taskType"
+            app:argType="com.knight.oneday.utilities.TaskType"
+            android:defaultValue="NO_CATEGORY" />
     </fragment>
 </navigation>

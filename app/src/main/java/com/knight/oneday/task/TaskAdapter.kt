@@ -93,7 +93,7 @@ class TaskAdapter(private val taskEventListener: TaskEventListener) :
 
     interface TaskEventListener {
 
-        fun onTaskClicked(task: Task)
+        fun onTaskClicked(view: View, task: Task)
 
         fun onTaskLongClicked(task: Task): Boolean
 
