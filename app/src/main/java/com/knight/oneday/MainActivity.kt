@@ -5,7 +5,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -13,12 +12,9 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import com.blankj.utilcode.util.BarUtils
-import com.jaeger.library.StatusBarUtil
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.*
-import com.knight.oneday.views.themeColor
 import kotlin.LazyThreadSafetyMode.NONE
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener,
@@ -138,9 +134,9 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         when (destination.id) {
             R.id.taskFragment -> {
                 binding.bottomAppBar.hideOnScroll = true
-                showBottomAppBarAndFab()
+                setBottomAppBarAndFabByTaskFrag()
             }
-            R.id.addEventFragment -> {
+            R.id.addTaskFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()
             }
@@ -155,6 +151,16 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             }
         }
     }
+
+    private fun setBottomAppBarAndFabByTaskFrag() {
+        binding.run {
+            bottomAppBarIcon.setImageResource(R.mipmap.ic_launcher_round)
+            bottomAppBarTitle.text = ""
+            bottomAppBar.performShow()
+            fab.show()
+        }
+    }
+
 
     private fun showBottomAppBarAndFab() {
         binding.run {

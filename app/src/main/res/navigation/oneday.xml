@@ -33,7 +33,7 @@
         android:label="SettingFragment" />
 
     <fragment
-        android:id="@+id/addEventFragment"
+        android:id="@+id/addTaskFragment"
         android:name="com.knight.oneday.add.AddTaskFragment"
         android:label="fragment_add_event"
         tools:layout="@layout/fragment_add_event">
@@ -51,7 +51,7 @@
 
         <action
             android:id="@+id/action_taskFragment_to_addEventFragment"
-            app:destination="@id/addEventFragment" />
+            app:destination="@id/addTaskFragment" />
         <action
             android:id="@+id/action_taskFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
