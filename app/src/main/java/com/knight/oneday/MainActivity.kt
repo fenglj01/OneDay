@@ -135,14 +135,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                 binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()
             }
-            R.id.miniFragment -> {
-                binding.bottomAppBar.hideOnScroll = true
-                showBottomAppBarAndFab()
-            }
-            R.id.createEventFragment -> {
-                binding.bottomAppBar.hideOnScroll = false
-                hideBottomAppBarAndFab()
-            }
             R.id.addEventFragment -> {
                 binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()

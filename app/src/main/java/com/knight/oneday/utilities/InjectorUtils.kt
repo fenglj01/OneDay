@@ -2,12 +2,10 @@ package com.knight.oneday.utilities
 
 import android.content.Context
 import com.knight.oneday.add.AddTaskViewModelFactory
-import com.knight.oneday.create.CreateEventViewModelFactory
 import com.knight.oneday.data.AppDatabase
 import com.knight.oneday.data.TaskAndStepRepository
 import com.knight.oneday.data.StepRepository
 import com.knight.oneday.data.TaskRepository
-import com.knight.oneday.mini.MiniViewModelFactory
 import com.knight.oneday.task.TaskViewModelFactory
 
 /**
@@ -25,19 +23,6 @@ object InjectorUtils {
     fun addEventViewModelFactory(context: Context): AddTaskViewModelFactory {
         return AddTaskViewModelFactory(
             getEventWithStepRepository(context)
-        )
-    }
-
-    fun eventWithStepViewModelFactory(context: Context): MiniViewModelFactory {
-        return MiniViewModelFactory(
-            getEventWithStepRepository(context)
-        )
-    }
-
-    fun createEventViewModelFactory(context: Context): CreateEventViewModelFactory {
-        return CreateEventViewModelFactory(
-            getEventWithStepRepository(context),
-            getStepRepository(context)
         )
     }
 
