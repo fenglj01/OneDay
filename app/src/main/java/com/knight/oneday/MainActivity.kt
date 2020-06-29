@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             setShowMotionSpecResource(R.animator.fab_show)
             setHideMotionSpecResource(R.animator.fab_hide)
             singleClick {
-                navController.navigate(R.id.action_taskFragment_to_addEventFragment)
+                bottomNavDrawer.appJumpStrategy.jumpByFloatingBar()
             }
         }
         bottomNavDrawer.apply {

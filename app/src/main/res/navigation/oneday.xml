@@ -71,5 +71,8 @@
         <action
             android:id="@+id/action_categoryFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
     </fragment>
 </navigation>

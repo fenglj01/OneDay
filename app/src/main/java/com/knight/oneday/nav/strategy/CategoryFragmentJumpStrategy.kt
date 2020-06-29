@@ -29,5 +29,6 @@ class CategoryFragmentJumpStrategy(
     }
 
     override fun jumpByFloatingBar() {
+        nav.findNavController().navigate(R.id.action_categoryFragment_to_addTaskFragment)
     }
 }

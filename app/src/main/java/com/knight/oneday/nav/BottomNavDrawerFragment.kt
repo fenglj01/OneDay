@@ -52,7 +52,7 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
 
     private val sandwichSlideActions = mutableListOf<OnSandwichSlideAction>()
 
-    private val appJumpStrategy: AppJumpStrategy by lazy { AppJumpStrategy(this) }
+    val appJumpStrategy: AppJumpStrategy by lazy { AppJumpStrategy(this) }
 
     // 背景形状
     private val backgroundShapeDrawable: MaterialShapeDrawable by lazy(LazyThreadSafetyMode.NONE) {
