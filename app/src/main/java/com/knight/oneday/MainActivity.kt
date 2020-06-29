@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -16,9 +17,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.jaeger.library.StatusBarUtil
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
-import com.knight.oneday.utilities.ThemePreference
-import com.knight.oneday.utilities.contentView
-import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.utilities.*
 import com.knight.oneday.views.themeColor
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -123,6 +122,12 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY)
             }
         }
+        BottomNavDrawerFragment.navTag.observe(this, Observer {
+            if (navController.currentDestination?.id == R.id.categoryFragment) {
+                binding.bottomAppBarTitle.text = getString(getAppBarTitleByTaskType(it))
+                binding.bottomAppBarIcon.setImageResource(getAppBarIconByTaskType(it))
+            }
+        })
     }
 
     override fun onDestinationChanged(
@@ -144,6 +149,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                 hideBottomAppBarAndFab()
             }
             R.id.categoryFragment -> {
+                bottomNavDrawer.close()
                 binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()
             }

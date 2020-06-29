@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -16,6 +17,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.knight.oneday.R
 import com.knight.oneday.databinding.FragmentBottomNavDrawerBinding
+import com.knight.oneday.task.TaskFragmentDirections
+import com.knight.oneday.utilities.TaskType
 import com.knight.oneday.utilities.singleClick
 import com.knight.oneday.views.themeColor
 import com.knight.oneday.views.themeInterpolator
@@ -223,14 +226,35 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     }
 
     override fun onNavMenuItemClicked(item: NavigationModelItem.NavMenuItem) {
+
+        if (NavigationModel.setNavigationMenuItemChecked(item.id)) close()
+
         when (item.id) {
             3 -> {
-                findNavController().navigate(/*R.id.action_miniFragment_to_settingFragment*/R.id.action_taskFragment_to_settingFragment)
+                findNavController().navigate(R.id.action_taskFragment_to_settingFragment)
             }
         }
     }
 
-    override fun onNavEventTagClicked(folder: NavigationModelItem.NavEventTag) {
+    override fun onNavEventTagClicked(navTag: NavigationModelItem.NavTaskTag) {
+
+        findNavController().currentDestination?.let { destination ->
+            when (destination.id) {
+                R.id.taskFragment -> {
+                    findNavController().navigate(
+                        TaskFragmentDirections.actionTaskFragmentToCategoryFragment(
+                            navTag.taskType
+                        )
+                    )
+                    OBSERVER.navTag.postValue(navTag.taskType)
+                }
+                else -> {
+                    close()
+                    OBSERVER.navTag.postValue(navTag.taskType)
+                }
+            }
+        }
+
     }
 
     fun addOnSlideAction(action: OnSlideAction) {
@@ -248,5 +272,11 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     fun addOnSandwichSlideAction(action: OnSandwichSlideAction) {
         sandwichSlideActions.add(action)
     }
+
+
+    companion object OBSERVER {
+        val navTag = MutableLiveData<TaskType>()
+    }
+
 
 }

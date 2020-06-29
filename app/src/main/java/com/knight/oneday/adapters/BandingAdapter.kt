@@ -212,13 +212,13 @@ fun ChoiceInputView.bindContentText(content: String) {
 }
 
 @BindingAdapter("bindAdapter")
-fun DSListView<NavigationModelItem.NavEventTag>.bindAdapter(adapter: TagPickerAdapter) {
+fun DSListView<NavigationModelItem.NavTaskTag>.bindAdapter(adapter: TagPickerAdapter) {
     setAdapter(adapter)
     selectedIndex = 0
 }
 
 @BindingAdapter("bindStatusChangeListener")
-fun DSListView<NavigationModelItem.NavEventTag>.bindStatusChangeListener(listener: DSListView.OnDSListViewStatusChangedListener) {
+fun DSListView<NavigationModelItem.NavTaskTag>.bindStatusChangeListener(listener: DSListView.OnDSListViewStatusChangedListener) {
     setStatusChangedListener(listener)
 }
 

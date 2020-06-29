@@ -14,7 +14,7 @@ import com.ramotion.directselect.DSAbstractPickerBox
  * Create by FLJ in 2020/4/9 10:37
  * 事件分类 Tag 选择器
  */
-class TaskTagPickerBox : DSAbstractPickerBox<NavigationModelItem.NavEventTag> {
+class TaskTagPickerBox : DSAbstractPickerBox<NavigationModelItem.NavTaskTag> {
 
     private lateinit var cellTv: TextView
     private lateinit var cellIv: ImageView
@@ -44,7 +44,7 @@ class TaskTagPickerBox : DSAbstractPickerBox<NavigationModelItem.NavEventTag> {
         cellRoot = findViewById(R.id.cell_container)
     }
 
-    override fun onSelect(tagItem: NavigationModelItem.NavEventTag?, tagIndex: Int) {
+    override fun onSelect(tagItem: NavigationModelItem.NavTaskTag?, tagIndex: Int) {
         tagItem?.run {
             cellIv.setImageResource(icon)
             cellTv.text = taskTag

@@ -50,12 +50,12 @@
                     android:src="@drawable/ic_one_day_arrow_drop_up"
                     android:tint="?attr/colorOnSurface" />
 
-                <!-- <ImageView
+                 <ImageView
                      android:id="@+id/bottom_app_bar_icon"
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
+                     android:layout_width="@dimen/dp_32"
+                     android:layout_height="@dimen/dp_32"
                      android:contentDescription="@string/theme_system"
-                     android:src="@mipmap/ic_launcher" />-->
+                     android:src="@mipmap/ic_launcher_round" />
 
                 <TextView
                     android:id="@+id/bottom_app_bar_title"
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="@dimen/dp_8"
-                    android:text="@string/test_date"
+                    tools:text="@string/test_date"
                     android:textAppearance="?attr/textAppearanceBody1"
                      />
             </LinearLayout>

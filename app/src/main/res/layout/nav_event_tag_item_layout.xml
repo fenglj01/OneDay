@@ -19,7 +19,7 @@
 
         <variable
             name="navEventTag"
-            type="com.knight.oneday.nav.NavigationModelItem.NavEventTag" />
+            type="com.knight.oneday.nav.NavigationModelItem.NavTaskTag" />
 
         <variable
             name="navListener"

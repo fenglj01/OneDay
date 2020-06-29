@@ -3,6 +3,7 @@ package com.knight.oneday.nav
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.knight.oneday.R
+import com.knight.oneday.utilities.TaskType
 import com.knight.oneday.utilities.getString
 
 object NavigationModel {
@@ -20,12 +21,12 @@ object NavigationModel {
             titleRes = R.string.nav_menu_about,
             checked = false
         ),
-        NavigationModelItem.NavMenuItem(
+       /* NavigationModelItem.NavMenuItem(
             id = 2,
             icon = R.drawable.ic_one_day_chart,
             titleRes = R.string.nav_menu_chart,
             checked = false
-        ),
+        ),*/
         NavigationModelItem.NavMenuItem(
             id = 3,
             icon = R.drawable.ic_one_day_settings,
@@ -35,25 +36,30 @@ object NavigationModel {
     )
 
     private val navigationTags = mutableListOf(
-        NavigationModelItem.NavEventTag(
+        NavigationModelItem.NavTaskTag(
             getString(R.string.tag_no_tag),
-            R.drawable.ic_one_day_tag_no_type
+            R.drawable.ic_one_day_tag_no_type,
+            TaskType.NO_CATEGORY
         ),
-        NavigationModelItem.NavEventTag(
+        NavigationModelItem.NavTaskTag(
             getString(R.string.tag_life),
-            R.drawable.ic_one_day_tag_life
+            R.drawable.ic_one_day_tag_life,
+            TaskType.LIFE
         ),
-        NavigationModelItem.NavEventTag(
+        NavigationModelItem.NavTaskTag(
             getString(R.string.tag_work),
-            R.drawable.ic_one_day_tag_work
+            R.drawable.ic_one_day_tag_work,
+            TaskType.WORK
         ),
-        NavigationModelItem.NavEventTag(
+        NavigationModelItem.NavTaskTag(
             getString(R.string.tag_entertainment),
-            R.drawable.ic_one_day_tag_leisure
+            R.drawable.ic_one_day_tag_leisure,
+            TaskType.ENTERTAINMENT
         ),
-        NavigationModelItem.NavEventTag(
+        NavigationModelItem.NavTaskTag(
             getString(R.string.tag_health),
-            R.drawable.ic_one_day_tag_sport
+            R.drawable.ic_one_day_tag_sport,
+            TaskType.HEALTH
         )
     )
 

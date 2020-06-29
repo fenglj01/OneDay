@@ -42,8 +42,8 @@ sealed class NavigationViewHolder<T : NavigationModelItem>(view: View) :
     class NavEventTagViewHolder(
         private val binding: NavEventTagItemLayoutBinding,
         private val listener: NavBottomAdapter.NavigationAdapterListener
-    ) : NavigationViewHolder<NavigationModelItem.NavEventTag>(binding.root) {
-        override fun bind(navItem: NavigationModelItem.NavEventTag) {
+    ) : NavigationViewHolder<NavigationModelItem.NavTaskTag>(binding.root) {
+        override fun bind(navItem: NavigationModelItem.NavTaskTag) {
             binding.run {
                 navEventTag = navItem
                 navListener = listener

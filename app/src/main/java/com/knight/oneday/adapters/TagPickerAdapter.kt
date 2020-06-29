@@ -18,8 +18,8 @@ import com.knight.oneday.nav.NavigationModelItem
 class TagPickerAdapter(
     context: Context,
     @LayoutRes val resource: Int,
-    private val tags: List<NavigationModelItem.NavEventTag>
-) : ArrayAdapter<NavigationModelItem.NavEventTag>(context, resource, tags) {
+    private val tags: List<NavigationModelItem.NavTaskTag>
+) : ArrayAdapter<NavigationModelItem.NavTaskTag>(context, resource, tags) {
 
     override fun getItemId(position: Int): Long = position.toLong()
 
