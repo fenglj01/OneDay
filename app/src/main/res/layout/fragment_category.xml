@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:background="?attr/taskRecyclerBackColor"
             android:overScrollMode="never"
-            android:paddingBottom="@dimen/dp_16"
+            android:paddingBottom="@dimen/dp_24"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:timeLineTimeStyle="dateAndHourMin" />
