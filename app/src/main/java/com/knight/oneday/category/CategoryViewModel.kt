@@ -9,13 +9,16 @@ import com.knight.oneday.viewmodels.BaseViewModel
 
 class CategoryViewModel(private val rep: TaskRepository) : BaseViewModel() {
 
-    var taskType = TaskType.NO_CATEGORY
-        set(value) {
-            if (value == field) return
-            field = value
-            _taskList.postValue(rep.searchTaskByType(field).value)
-        }
-
     private var _taskList = MutableLiveData<List<Task>>()
     val taskList: LiveData<List<Task>> = _taskList
+
+    fun searchByType(taskType: TaskType) {
+        launchOnIO(
+            tryBlock = {
+                rep.searchTaskByType(taskType).let {
+                    _taskList.postValue(it)
+                }
+            }
+        )
+    }
 }

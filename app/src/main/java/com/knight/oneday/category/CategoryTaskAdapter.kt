@@ -1,19 +1,18 @@
 package com.knight.oneday.category
 
-import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
-import com.knight.oneday.data.Task
 import com.knight.oneday.task.TaskAdapter
-import com.knight.oneday.task.TaskDiffUtilItemCallback
+import com.knight.oneday.utilities.format24Hex
+import com.knight.oneday.utilities.formatWeekMonthDay
 
+/**
+ * Create by FLJ in 2020/6/30 9:43
+ * 分类任务适配上注意修改一下时间显示即可
+ */
 class CategoryTaskAdapter(private val taskEventListener: TaskAdapter.TaskEventListener) :
-    ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffUtilItemCallback) {
+    TaskAdapter(taskEventListener) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdapter.TaskViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getTaskHour(position: Int): String {
+        return getTask(position).dueDateTime.timeInMillis.format24Hex()
     }
 
-    override fun onBindViewHolder(holder: TaskAdapter.TaskViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 }

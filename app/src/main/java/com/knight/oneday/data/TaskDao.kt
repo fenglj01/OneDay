@@ -19,7 +19,7 @@ interface TaskDao {
     suspend fun getTaskByRange(startTime: Calendar, endTime: Calendar): List<Task>
 
     @Query("SELECT * FROM task WHERE type =:type ORDER BY due_date_time asc")
-    fun getTaskByType(type: TaskType): LiveData<List<Task>>
+    suspend fun getTaskByType(type: TaskType): List<Task>
 
     @Query("SELECT * FROM $TABLE_NAME_TASK WHERE is_done = 1")
     fun getAllUnFinishedEvents(): LiveData<List<Task>>

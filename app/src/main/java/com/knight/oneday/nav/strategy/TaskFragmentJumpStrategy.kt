@@ -26,10 +26,9 @@ class TaskFragmentJumpStrategy(
 
     override fun jumpCategory(taskType: TaskType) {
         nav.findNavController().navigate(
-            TaskFragmentDirections.actionTaskFragmentToCategoryFragment(
-                taskType
-            )
+            R.id.action_taskFragment_to_categoryFragment
         )
+        BottomNavDrawerFragment.navTag.postValue(taskType)
     }
 
     override fun jumpByFloatingBar() {

@@ -252,7 +252,6 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
             return
         }
         appJumpStrategy.jumpCategory(navTag.taskType)
-        OBSERVER.navTag.postValue(navTag.taskType)
         close()
     }
 

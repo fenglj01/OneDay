@@ -3,6 +3,7 @@ package com.knight.oneday.task
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.text.TextPaint
+import android.util.Log
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
@@ -53,7 +54,13 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
             val visibleItemViewPosition = parent.getChildAdapterPosition(visibleItemView)
             if (visibleItemView == null || visibleItemViewPosition < 0) return
             /* 绘制时间轴圆 */
-            drawTimeLine(visibleItemView, c, visibleItemViewPosition)
+
+            try {
+                drawTimeLine(visibleItemView, c, visibleItemViewPosition)
+            } catch (e: Exception) {
+                Log.d("TaskType->Exception", "${e.message}")
+                return
+            }
 
         }
 
