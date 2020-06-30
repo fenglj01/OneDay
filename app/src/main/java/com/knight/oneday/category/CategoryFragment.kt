@@ -39,9 +39,14 @@ class CategoryFragment : Fragment() {
         val safeArgs: CategoryFragmentArgs by navArgs()
         safeArgs.taskType.run {
             Log.d("TaskType->Jump", "$this")
+            vm.taskType = this
         }
         BottomNavDrawerFragment.navTag.observe(viewLifecycleOwner, Observer {
             Log.d("TaskType->Observe", "$it")
+            vm.taskType = it
+        })
+        vm.taskList.observe(viewLifecycleOwner, Observer {
+
         })
     }
 
