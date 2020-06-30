@@ -8,15 +8,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.appbar.AppBarLayout
 import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.FragmentCategoryBinding
 import com.knight.oneday.nav.BottomNavDrawerFragment
+import com.knight.oneday.setting.SettingPreferences
 import com.knight.oneday.task.TaskAdapter
+import com.knight.oneday.utilities.DIALOG_TAG_DELETE_EVENT
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.TaskType
+import com.knight.oneday.views.SureDeleteDialog
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
 
 /**
@@ -52,9 +56,6 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
 
         })
 
-
-
-
     }
 
     private fun initTaskRecyclerView() {
@@ -78,13 +79,27 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
     }
 
     override fun onTaskClicked(view: View, task: Task) {
-
+        findNavController().navigate(
+            CategoryFragmentDirections.actionCategoryFragmentToAddTaskFragment(
+                task
+            )
+        )
     }
 
     override fun onTaskLongClicked(task: Task): Boolean {
-        return false
+        if (SettingPreferences.showRemindDelete) {
+            SureDeleteDialog().apply {
+                onSure = {
+                    vm.deleteTask(task)
+                }
+            }.show(requireActivity().supportFragmentManager, DIALOG_TAG_DELETE_EVENT)
+        } else {
+            vm.deleteTask(task)
+        }
+        return true
     }
 
     override fun onTaskStatusChanged(task: Task, isDone: Boolean) {
+        vm.changeTaskStatus(task, isDone)
     }
 }
