@@ -16,4 +16,6 @@ interface JumpStrategy {
 
     fun jumpByFloatingBar()
 
+    fun jumpSearch()
+
 }

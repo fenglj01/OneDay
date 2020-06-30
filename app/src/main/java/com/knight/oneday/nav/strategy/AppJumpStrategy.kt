@@ -59,4 +59,8 @@ class AppJumpStrategy(
     override fun jumpByFloatingBar() {
         currentJumpStrategy.jumpByFloatingBar()
     }
+
+    override fun jumpSearch() {
+        currentJumpStrategy.jumpSearch()
+    }
 }

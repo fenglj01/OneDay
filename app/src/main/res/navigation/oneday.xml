@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_taskFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_taskFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -70,5 +73,12 @@
         <action
             android:id="@+id/action_categoryFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.knight.oneday.search.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

@@ -8,6 +8,8 @@ import com.knight.oneday.data.AppDatabase
 import com.knight.oneday.data.TaskAndStepRepository
 import com.knight.oneday.data.StepRepository
 import com.knight.oneday.data.TaskRepository
+import com.knight.oneday.search.SearchViewModel
+import com.knight.oneday.search.SearchViewModelFactory
 import com.knight.oneday.task.TaskViewModelFactory
 
 /**
@@ -30,6 +32,12 @@ object InjectorUtils {
 
     fun categoryViewModelFactory(context: Context): CategoryViewModelFactory {
         return CategoryViewModelFactory(
+            getTaskRepository(context)
+        )
+    }
+
+    fun searchViewModelFactory(context: Context): SearchViewModelFactory {
+        return SearchViewModelFactory(
             getTaskRepository(context)
         )
     }

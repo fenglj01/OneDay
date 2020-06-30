@@ -152,6 +152,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                 binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()
             }
+            R.id.searchFragment -> {
+                binding.bottomAppBar.hideOnScroll = false
+                hideBottomAppBarAndFab()
+            }
         }
     }
 
@@ -184,6 +188,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.menu_settings -> {
                 bottomNavDrawer.close()
                 showUiModeChangeDialog()
+            }
+            R.id.menu_search -> {
+                bottomNavDrawer.close()
+                bottomNavDrawer.appJumpStrategy.jumpSearch()
             }
         }
         return true

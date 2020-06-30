@@ -34,4 +34,8 @@ class TaskFragmentJumpStrategy(
     override fun jumpByFloatingBar() {
         nav.findNavController().navigate(R.id.action_taskFragment_to_addEventFragment)
     }
+
+    override fun jumpSearch() {
+        nav.findNavController().navigate(R.id.action_taskFragment_to_searchFragment)
+    }
 }
