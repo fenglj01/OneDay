@@ -48,12 +48,14 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         super.onDraw(c, parent, state)
 
         val visibleCount = parent.childCount
+        val positionIndices = params.timeLineCallback?.getIndexIndices() ?: return
 
         for (index in 0..visibleCount) {
             val visibleItemView = parent.getChildAt(index)
             val visibleItemViewPosition = parent.getChildAdapterPosition(visibleItemView)
-            if (visibleItemView == null || visibleItemViewPosition < 0) return
-            /* 绘制时间轴圆 */
+            val visiblePositionAllow = positionIndices.contains(visibleItemViewPosition)
+            /* 做好越界判断处理 避免发生问题 */
+            if (visibleItemView == null || !visiblePositionAllow) return
 
             try {
                 drawTimeLine(visibleItemView, c, visibleItemViewPosition)
@@ -112,7 +114,10 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
             draw(canvas)
         }
         /* 绘制时间 */
-        val timeText = params.timeLineCallback?.getTime(visibleItemViewPosition)
+        val timeText = params.timeLineCallback?.getTime(
+            visibleItemViewPosition,
+            timeLineParams.timeLineTimeType
+        )
         timeText?.run {
             prepareTextColor(taskStatus)
             textPaint.getTextBounds(this, 0, length, timeLineTextRect)
@@ -167,7 +172,8 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
     }
 
     interface TimeLineContentCallback {
-        fun getTime(position: Int): String
+        fun getIndexIndices(): IntRange
+        fun getTime(position: Int, timeType: Int): String
         fun getTaskType(position: Int): TaskType
         fun getTaskStatus(position: Int): Int
     }
@@ -216,6 +222,8 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
 
         var timeLineCallback: TimeLineContentCallback? = null
 
+        var timeLineTimeType: Int = TIME_TYPE_ONLY_HOUR_AND_MIN
+
     }
 
     companion object BUILD {
@@ -226,6 +234,9 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
         const val STATUS_UNFINISHED = 0
         const val STATUS_FINISHED = 1
         const val STATUS_EXPIRED = 2
+
+        const val TIME_TYPE_ONLY_HOUR_AND_MIN = 0
+        const val TIME_TYPE_DATE_AND_HOUR_MIN = 1
 
         private val timeLineParams = TaskTimeLineParams()
 
@@ -331,6 +342,11 @@ class TaskTimeLineItemDecoration private constructor(private val params: TaskTim
 
         fun setTimeLineStrokeWidth(width: Float): BUILD {
             timeLineParams.timeLineStrokeWidth = width
+            return this
+        }
+
+        fun setTimeLineTimeType(style: Int): BUILD {
+            timeLineParams.timeLineTimeType = style
             return this
         }
 

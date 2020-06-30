@@ -15,7 +15,7 @@ import com.knight.oneday.views.swipe.EventSwipeActionDrawable
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
 import kotlin.math.abs
 
-open class TaskAdapter(private val taskEventListener: TaskEventListener) :
+class TaskAdapter(private val taskEventListener: TaskEventListener) :
     ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffUtilItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -78,9 +78,12 @@ open class TaskAdapter(private val taskEventListener: TaskEventListener) :
         }
     }
 
+    fun getTaskListIndices() = currentList.indices
+
     fun getTask(position: Int) = getItem(position)
 
-    open fun getTaskHour(position: Int) = getTask(position).dueDateTime.getHourAndMin()
+    fun getTaskHour(position: Int, isDay: Boolean) =
+        if (isDay) getTask(position).dueDateTime.getHourAndMin() else "aaa"
 
     fun getTaskType(position: Int) = getTask(position).taskType
 

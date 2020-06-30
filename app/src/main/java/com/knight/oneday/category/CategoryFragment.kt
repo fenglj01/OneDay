@@ -25,7 +25,7 @@ import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
 class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
 
     private lateinit var binding: FragmentCategoryBinding
-    private lateinit var categoryAdapter: CategoryTaskAdapter
+    private lateinit var categoryAdapter: TaskAdapter
 
     private val vm by viewModels<CategoryViewModel> {
         InjectorUtils.categoryViewModelFactory(requireContext())
@@ -54,7 +54,7 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
         ItemTouchHelper(ReboundingSwipeActionCallback()).apply {
             attachToRecyclerView(binding.categoryList)
         }
-        categoryAdapter = CategoryTaskAdapter(this)
+        categoryAdapter = TaskAdapter(this)
         binding.categoryList.adapter = categoryAdapter
     }
 

@@ -17,8 +17,15 @@ class TaskTimeLineRecyclerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : BaseTimeLineRecyclerView(context, attrs, defStyleAttr) {
 
-    override fun getTime(position: Int): String {
-        return (adapter as TaskAdapter).getTaskHour(position)
+    override fun getIndexIndices(): IntRange {
+        return (adapter as TaskAdapter).getTaskListIndices()
+    }
+
+    override fun getTime(position: Int, timeType: Int): String {
+        return (adapter as TaskAdapter).getTaskHour(
+            position,
+            timeType == TaskTimeLineItemDecoration.TIME_TYPE_ONLY_HOUR_AND_MIN
+        )
     }
 
     override fun getTaskType(position: Int): TaskType {

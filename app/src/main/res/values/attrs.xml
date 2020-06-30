@@ -213,5 +213,9 @@
             <flag name="fill" value="0" />
             <flag name="fill_stroke" value="1" />
         </attr>
+        <attr name="timeLineTimeStyle">
+            <flag name="onlyHourMin" value="0" />
+            <flag name="dateAndHourMin" value="1" />
+        </attr>
     </declare-styleable>
 </resources>

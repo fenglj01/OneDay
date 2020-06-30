@@ -99,6 +99,8 @@ abstract class BaseTimeLineRecyclerView @JvmOverloads constructor(
                 getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineTopOffset, 48F.dp)
             ).setTimeLineStrokeWidth(
                 getDimension(R.styleable.TaskTimeLineRecyclerView_timeLineStrokeWidth, 2F.dp)
+            ).setTimeLineTimeType(
+                getInt(R.styleable.TaskTimeLineRecyclerView_timeLineTimeStyle, 0)
             ).setTimeLineContentCallback(this@BaseTimeLineRecyclerView)
                 .create()
             addItemDecoration(itemDecoration)
