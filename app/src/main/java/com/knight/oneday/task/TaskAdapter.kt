@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.ItemTaskLayoutBinding
 import com.knight.oneday.utilities.currentTimeMills
+import com.knight.oneday.utilities.format24Hex
+import com.knight.oneday.utilities.formatMonthDay
 import com.knight.oneday.utilities.getHourAndMin
 import com.knight.oneday.views.step.STEP_STATE_UNFINISHED
 import com.knight.oneday.views.swipe.EventSwipeActionDrawable
@@ -83,7 +85,8 @@ class TaskAdapter(private val taskEventListener: TaskEventListener) :
     fun getTask(position: Int) = getItem(position)
 
     fun getTaskHour(position: Int, isDay: Boolean) =
-        if (isDay) getTask(position).dueDateTime.getHourAndMin() else "aaa"
+        if (isDay) getTask(position).dueDateTime.getHourAndMin()
+        else getTask(position).dueDateTime.timeInMillis.formatMonthDay()
 
     fun getTaskType(position: Int) = getTask(position).taskType
 

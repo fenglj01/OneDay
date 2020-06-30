@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.google.android.material.appbar.AppBarLayout
 import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.FragmentCategoryBinding
 import com.knight.oneday.nav.BottomNavDrawerFragment
@@ -46,6 +47,12 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
         initTaskRecyclerView()
 
         observeLiveData()
+
+        binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+
+        })
+
+
 
 
     }
