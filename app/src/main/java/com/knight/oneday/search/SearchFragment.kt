@@ -8,13 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.knight.oneday.R
 import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.FragmentSearchBinding
+import com.knight.oneday.setting.SettingPreferences
 import com.knight.oneday.task.TaskAdapter
+import com.knight.oneday.utilities.DIALOG_TAG_DELETE_EVENT
 import com.knight.oneday.utilities.InjectorUtils
 import com.knight.oneday.utilities.getInputManagerService
 import com.knight.oneday.utilities.singleClick
+import com.knight.oneday.views.SureDeleteDialog
+import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
 
 /**
  * Create by FLJ in 2020/6/30 16:42
@@ -51,6 +56,9 @@ class SearchFragment : Fragment(), TaskAdapter.TaskEventListener {
     }
 
     private fun initView() {
+        ItemTouchHelper(ReboundingSwipeActionCallback()).apply {
+            attachToRecyclerView(binding.searchTaskList)
+        }
         binding.searchTaskList.adapter = adapter
         binding.searchBackIb.singleClick {
             hideSoftInput()
@@ -77,14 +85,27 @@ class SearchFragment : Fragment(), TaskAdapter.TaskEventListener {
     }
 
     override fun onTaskClicked(view: View, task: Task) {
-
+        hideSoftInput()
+        findNavController().navigate(
+            SearchFragmentDirections.actionSearchFragmentToAddTaskFragment(task)
+        )
     }
 
     override fun onTaskLongClicked(task: Task): Boolean {
+        if (SettingPreferences.showRemindDelete) {
+            SureDeleteDialog().apply {
+                onSure = {
+                    vm.deleteTask(task)
+                }
+            }.show(requireActivity().supportFragmentManager, DIALOG_TAG_DELETE_EVENT)
+        } else {
+            vm.deleteTask(task)
+        }
         return true
     }
 
     override fun onTaskStatusChanged(task: Task, isDone: Boolean) {
+        vm.changeTaskStatus(task, isDone)
     }
 
     private fun hideSoftInput() {
