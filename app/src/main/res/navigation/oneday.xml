@@ -29,8 +29,8 @@
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.knight.oneday.setting.SettingFragment"
-        tools:layout="@layout/fragment_preferences"
-        android:label="SettingFragment" />
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_preferences" />
 
     <fragment
         android:id="@+id/addTaskFragment"
@@ -65,8 +65,8 @@
     <fragment
         android:id="@+id/categoryFragment"
         android:name="com.knight.oneday.category.CategoryFragment"
-        tools:layout="@layout/fragment_category"
-        android:label="CategoryFragment" >
+        android:label="CategoryFragment"
+        tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_categoryFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
@@ -80,5 +80,10 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.knight.oneday.search.SearchFragment"
-        android:label="SearchFragment" />
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
 </navigation>

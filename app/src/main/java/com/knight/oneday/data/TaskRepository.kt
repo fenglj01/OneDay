@@ -16,6 +16,8 @@ class TaskRepository private constructor(
         )
     }
 
+    suspend fun searchTaskByText(text:String )= taskDao.getTaskByContentLike(text)
+
     suspend fun searchTaskByType(taskType: TaskType) = taskDao.getTaskByType(taskType)
 
     suspend fun updateEventDoneStatus(eventId: Long, isDone: Boolean) =

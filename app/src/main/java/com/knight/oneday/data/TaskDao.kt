@@ -21,6 +21,9 @@ interface TaskDao {
     @Query("SELECT * FROM task WHERE type =:type ORDER BY due_date_time asc")
     suspend fun getTaskByType(type: TaskType): List<Task>
 
+    @Query("SELECT * FROM task WHERE content LIKE :text ORDER BY due_date_time asc")
+    suspend fun getTaskByContentLike(text: String): List<Task>
+
     @Query("SELECT * FROM $TABLE_NAME_TASK WHERE is_done = 1")
     fun getAllUnFinishedEvents(): LiveData<List<Task>>
 
