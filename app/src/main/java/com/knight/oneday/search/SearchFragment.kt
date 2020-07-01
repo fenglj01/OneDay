@@ -13,6 +13,7 @@ import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.FragmentSearchBinding
 import com.knight.oneday.task.TaskAdapter
 import com.knight.oneday.utilities.InjectorUtils
+import com.knight.oneday.utilities.getInputManagerService
 import com.knight.oneday.utilities.singleClick
 
 /**
@@ -52,6 +53,7 @@ class SearchFragment : Fragment(), TaskAdapter.TaskEventListener {
     private fun initView() {
         binding.searchTaskList.adapter = adapter
         binding.searchBackIb.singleClick {
+            hideSoftInput()
             findNavController().navigateUp()
         }
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -83,5 +85,12 @@ class SearchFragment : Fragment(), TaskAdapter.TaskEventListener {
     }
 
     override fun onTaskStatusChanged(task: Task, isDone: Boolean) {
+    }
+
+    private fun hideSoftInput() {
+        getInputManagerService().hideSoftInputFromWindow(
+            binding.searchBar.windowToken,
+            2000
+        )
     }
 }
