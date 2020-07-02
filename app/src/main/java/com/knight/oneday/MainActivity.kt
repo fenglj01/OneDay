@@ -1,10 +1,14 @@
 package com.knight.oneday
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -12,6 +16,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.*
@@ -128,19 +133,13 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         })
     }
 
-    override fun onDestinationChanged(
-        controller: NavController,
-        destination: NavDestination,
-        arguments: Bundle?
-    ) {
-        when (destination.id) {
+    private fun setBottomAppBarAndFab(id: Int) {
+        when (id) {
             R.id.taskFragment -> {
                 bottomNavDrawer.close()
-                binding.bottomAppBar.hideOnScroll = true
                 setBottomAppBarAndFabByTaskFrag()
             }
             R.id.addTaskFragment -> {
-                binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()
             }
             R.id.settingFragment -> {
@@ -149,14 +148,20 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             }
             R.id.categoryFragment -> {
                 bottomNavDrawer.close()
-                binding.bottomAppBar.hideOnScroll = true
                 showBottomAppBarAndFab()
             }
             R.id.searchFragment -> {
-                binding.bottomAppBar.hideOnScroll = false
                 hideBottomAppBarAndFab()
             }
         }
+    }
+
+    override fun onDestinationChanged(
+        controller: NavController,
+        destination: NavDestination,
+        arguments: Bundle?
+    ) {
+        setBottomAppBarAndFab(destination.id)
     }
 
     private fun setBottomAppBarAndFabByTaskFrag() {

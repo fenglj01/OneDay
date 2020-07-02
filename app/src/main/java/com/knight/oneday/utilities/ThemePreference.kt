@@ -44,8 +44,8 @@ class ThemePreference(private val sp: SharedPreferences) {
     }
 
     companion object {
-        private const val PREFERENCE_THEME_KEY = "theme"
-        private const val PREFERENCE_THEME_DEF_VAL = "System"
+        const val PREFERENCE_THEME_KEY = "theme"
+        const val PREFERENCE_THEME_DEF_VAL = "System"
 
         val PREFERENCE_THEME_ARRAY = arrayOf("Light", "Dark", "System")
 

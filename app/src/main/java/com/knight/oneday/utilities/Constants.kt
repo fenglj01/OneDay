@@ -22,5 +22,7 @@ const val UI_CALENDAR_SCHEME_NOT_EXPIRED = 0x13
 
 const val DIALOG_TAG_DELETE_EVENT = "delete_event"
 
+const val SAVE_STATE_CURRENT_ID = "SAVE_STATE_CURRENT_ID"
+
 typealias UiCalendar = Calendar
 typealias UiScheme = Calendar.Scheme

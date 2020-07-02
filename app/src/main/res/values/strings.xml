@@ -112,4 +112,5 @@
     <string name="btn_edit_task">完成编辑</string>
     <string name="edit_task_fail">任务编辑失败!</string>
     <string name="search">搜索</string>
+    <string name="theme_setting_title">主题设置</string>
 </resources>

@@ -9,6 +9,15 @@
         app:title="@string/show">
 
 
+       <!-- <ListPreference
+            app:defaultValue="@string/default_value_today"
+            app:entries="@array/theme_entities"
+            app:entryValues="@array/theme_values"
+            app:iconSpaceReserved="false"
+            app:key="theme"
+            app:title="@string/theme_setting_title"
+            app:useSimpleSummaryProvider="true" />-->
+
         <SwitchPreference
             app:defaultValue="true"
             app:iconSpaceReserved="false"
