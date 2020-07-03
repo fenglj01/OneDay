@@ -20,6 +20,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.LazyThreadSafetyMode.NONE
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener,
@@ -166,7 +167,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     private fun setBottomAppBarAndFabByTaskFrag() {
         binding.run {
-            bottomAppBarIcon.setImageResource(R.mipmap.ic_launcher_round)
+            bottomAppBarIcon.setImageResource(R.mipmap.icon_round)
             bottomAppBarTitle.text = ""
             bottomAppBar.performShow()
             fab.show()
