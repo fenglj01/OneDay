@@ -68,8 +68,8 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
 
     private fun observeLiveData() {
         BottomNavDrawerFragment.navTag.observe(viewLifecycleOwner, Observer {
-            Log.d("TaskType->Observe", "$it")
             vm.searchByType(it)
+            binding.categoryIcon.changeSelectedIndex(TaskType.values().indexOf(it))
         })
 
         vm.taskList.observe(viewLifecycleOwner, Observer {
