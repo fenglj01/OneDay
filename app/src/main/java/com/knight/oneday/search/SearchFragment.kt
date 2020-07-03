@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -81,6 +82,7 @@ class SearchFragment : Fragment(), TaskAdapter.TaskEventListener {
     private fun observeLiveData() {
         vm.taskList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
+            binding.searchEmptyView.isVisible = it.isEmpty()
         })
     }
 
