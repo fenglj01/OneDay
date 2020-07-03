@@ -11,6 +11,8 @@ class CategoryViewModel(private val rep: TaskRepository) : BaseViewModel() {
 
     private var _taskList = MutableLiveData<List<Task>>()
     val taskList: LiveData<List<Task>> = _taskList
+    private var _taskCount = MutableLiveData<CategoryCount>()
+    val taskCount: LiveData<CategoryCount> = _taskCount
 
     private lateinit var currentTaskType: TaskType
 
@@ -19,10 +21,29 @@ class CategoryViewModel(private val rep: TaskRepository) : BaseViewModel() {
         launchOnIO(
             tryBlock = {
                 rep.searchTaskByType(taskType).let {
+
                     _taskList.postValue(it)
+
+                    prepareCategoryCount(it)
                 }
             }
         )
+    }
+
+    private fun prepareCategoryCount(list: List<Task>) {
+        if (list.isNotEmpty()) {
+            val finishedCount =
+                list.asSequence().filter { task -> task.isDone }.toList().size
+            val expiredCount =
+                list.asSequence().filter { task -> task.isExpired() }.toList().size
+            _taskCount.postValue(
+                CategoryCount(
+                    finishedCount,
+                    expiredCount,
+                    list.size
+                )
+            )
+        }
     }
 
     fun changeTaskStatus(task: Task, isDone: Boolean) {
@@ -44,4 +65,6 @@ class CategoryViewModel(private val rep: TaskRepository) : BaseViewModel() {
             }
         )
     }
+
+    data class CategoryCount(val finished: Int, val expired: Int, val total: Int)
 }

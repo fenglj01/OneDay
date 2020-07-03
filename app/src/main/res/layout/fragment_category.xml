@@ -41,10 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:elevation="0dp"
-                    app:layout_collapseMode="pin"
-                    app:subtitle="text"
-                    app:subtitleTextColor="@color/green_one_day"
-                    app:title="title" />
+                    app:layout_collapseMode="pin" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 

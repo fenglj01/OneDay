@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -76,6 +77,10 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
         vm.taskList.observe(viewLifecycleOwner, Observer {
             categoryAdapter.submitList(it)
             binding.emptyBySearchView.isVisible = it.isEmpty()
+        })
+
+        vm.taskCount.observe(viewLifecycleOwner, Observer { count ->
+            binding.collapsingToolbar.title = "完成${count.finished},延期${count.expired}"
         })
     }
 
