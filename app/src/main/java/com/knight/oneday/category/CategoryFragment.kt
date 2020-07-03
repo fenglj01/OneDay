@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -73,8 +74,8 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
         })
 
         vm.taskList.observe(viewLifecycleOwner, Observer {
-            Log.d("TaskType->list", "$it")
             categoryAdapter.submitList(it)
+            binding.emptyBySearchView.isVisible = it.isEmpty()
         })
     }
 

@@ -113,4 +113,5 @@
     <string name="edit_task_fail">任务编辑失败!</string>
     <string name="search">搜索</string>
     <string name="theme_setting_title">主题设置</string>
+    <string name="text_here_is_nothing">这里,什么也没有~</string>
 </resources>

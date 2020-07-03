@@ -42,6 +42,8 @@
                     android:layout_height="?attr/actionBarSize"
                     android:elevation="0dp"
                     app:layout_collapseMode="pin"
+                    app:subtitle="text"
+                    app:subtitleTextColor="@color/green_one_day"
                     app:title="title" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
@@ -56,6 +58,14 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:timeLineTimeStyle="dateAndHourMin" />
+
+        <com.knight.oneday.views.EmptyBySearchView
+            android:id="@+id/empty_by_search_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
