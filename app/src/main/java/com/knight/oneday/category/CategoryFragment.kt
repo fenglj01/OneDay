@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.appbar.AppBarLayout
+import com.knight.oneday.R
 import com.knight.oneday.data.Task
 import com.knight.oneday.databinding.FragmentCategoryBinding
 import com.knight.oneday.nav.BottomNavDrawerFragment
@@ -80,7 +81,15 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
         })
 
         vm.taskCount.observe(viewLifecycleOwner, Observer { count ->
-            binding.collapsingToolbar.title = "完成${count.finished},延期${count.expired}"
+            binding.collapsingToolbar.title = if (count.total != 0) {
+                getString(R.string.title_category_frag).format(
+                    count.finished,
+                    count.expired
+                )
+            } else {
+                binding.appBarLayout.setExpanded(false, true)
+                ""
+            }
         })
     }
 

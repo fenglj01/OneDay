@@ -43,6 +43,10 @@ class CategoryViewModel(private val rep: TaskRepository) : BaseViewModel() {
                     list.size
                 )
             )
+        } else {
+            _taskCount.postValue(
+                CategoryCount(0, 0, 0)
+            )
         }
     }
 
