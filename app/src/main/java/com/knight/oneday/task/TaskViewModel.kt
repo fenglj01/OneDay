@@ -171,6 +171,7 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
             set(Calendar.MONTH, month - 1)
             set(Calendar.DAY_OF_MONTH, day)
         }
+        TaskFragment.selectDate.postValue(dayCurrent)
         /* 如果是修改了月份 那么全部刷新 如果只是修改了日期那么查询一下即可 */
         if (isChangeMonth) refreshTaskList() else filterTaskByCurrentDay()
     }

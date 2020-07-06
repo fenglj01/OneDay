@@ -3,6 +3,9 @@ package com.knight.oneday.views.dialog
 import com.haibin.calendarview.Calendar
 import com.haibin.calendarview.CalendarView
 import com.knight.oneday.R
+import com.knight.oneday.add.AddTaskFragment.Companion.ARG_SELECTED_CALENDAR
+import com.knight.oneday.add.AddTaskFragment.Companion.TAG_TIME_PICKER_DIALOG
+import com.knight.oneday.utilities.SysCalendar
 import com.knight.oneday.utilities.currentTimeMills
 import com.knight.oneday.utilities.singleClick
 import kotlinx.android.synthetic.main.dialog_date_picker.*
@@ -18,10 +21,18 @@ class DatePickerDialog(private var onDatePickerListener: OnDatePickerListener?) 
     private var pickYear: Int = 0
     private var pickMonth: Int = 0
     private var pickDay: Int = 0
+    private var initCalendar: SysCalendar? = null
 
     override fun dialogId(): Int = R.layout.dialog_date_picker
 
     override fun initView() {
+        initCalendar?.let {
+            date_view.scrollToCalendar(
+                it[SysCalendar.YEAR],
+                it[SysCalendar.MONTH] + 1,
+                it[SysCalendar.DAY_OF_MONTH]
+            )
+        }
     }
 
     override fun initEvent() {
@@ -61,7 +72,9 @@ class DatePickerDialog(private var onDatePickerListener: OnDatePickerListener?) 
     }
 
     override fun initData() {
+        initCalendar = arguments?.getSerializable(ARG_SELECTED_CALENDAR) as? SysCalendar
     }
+
 
     private fun dis() {
         if (dialog?.isShowing == true) dialog?.dismiss()

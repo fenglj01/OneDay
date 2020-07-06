@@ -11,6 +11,7 @@ import android.widget.FrameLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -20,6 +21,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.knight.oneday.R
 import com.knight.oneday.databinding.FragmentBottomNavDrawerBinding
 import com.knight.oneday.nav.strategy.AppJumpStrategy
+import com.knight.oneday.task.TaskFragment
 import com.knight.oneday.task.TaskFragmentDirections
 import com.knight.oneday.utilities.TaskType
 import com.knight.oneday.utilities.singleClick
@@ -177,6 +179,7 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
         initNavigationMenu()
     }
 
+
     private fun initNavigationMenu() {
         binding.run {
             val adapter = NavBottomAdapter(this@BottomNavDrawerFragment)
@@ -245,7 +248,6 @@ class BottomNavDrawerFragment : Fragment(), NavBottomAdapter.NavigationAdapterLi
     }
 
     override fun onNavEventTagClicked(navTag: NavigationModelItem.NavTaskTag) {
-
         val changed = NavigationModel.setNavigationMenuItemChecked(navTag.id)
         if (!changed) {
             close()

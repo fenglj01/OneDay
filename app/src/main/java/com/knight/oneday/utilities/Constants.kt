@@ -26,3 +26,5 @@ const val SAVE_STATE_CURRENT_ID = "SAVE_STATE_CURRENT_ID"
 
 typealias UiCalendar = Calendar
 typealias UiScheme = Calendar.Scheme
+
+typealias SysCalendar = java.util.Calendar

@@ -42,6 +42,11 @@
             android:defaultValue="@null"
             app:argType="com.knight.oneday.data.Task"
             app:nullable="true" />
+        <argument
+            android:name="date"
+            android:defaultValue="@null"
+            app:argType="java.util.Calendar"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/taskFragment"

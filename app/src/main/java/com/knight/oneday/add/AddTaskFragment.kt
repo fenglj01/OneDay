@@ -49,6 +49,8 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
         const val TAG_TIME_PICKER_DIALOG = "time_picker_dialog"
         const val TAG_DATE_PICKER_DIALOG = "date_picker_dialog"
 
+        const val ARG_SELECTED_CALENDAR = "arg_selected_calendar"
+
     }
 
 
@@ -88,6 +90,13 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             binding.addBtn.setText(R.string.btn_edit_task)
             binding.addTagDsl.selectedIndex = TaskType.values().indexOf(task.taskType)
             addVM.initViewModelByTask(task)
+        }
+        safeArgs.date?.let { sysCalendar ->
+            /* 传递当前选择的日期 */
+            datePicker.arguments = Bundle().apply {
+                putSerializable(ARG_SELECTED_CALENDAR, sysCalendar)
+            }
+            binding.addDateCiv.setContentText(sysCalendar.timeInMillis.formatWeekMonthDay())
         }
     }
 

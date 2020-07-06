@@ -2,11 +2,13 @@ package com.knight.oneday.nav.strategy
 
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.findNavController
 import com.knight.oneday.R
 import com.knight.oneday.nav.BottomNavDrawerFragment
+import com.knight.oneday.task.TaskFragment
 import com.knight.oneday.utilities.TaskType
 import java.lang.RuntimeException
 
