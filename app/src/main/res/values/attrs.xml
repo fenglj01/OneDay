@@ -84,18 +84,6 @@
         <attr name="el_withAnimator" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="HorizontalHourView">
-        <attr name="hhvTimeType" format="enum">
-            <enum name="twelve" value="0" />
-            <enum name="twenty_four" value="1" />
-        </attr>
-        <attr name="hhvSelectedTextColor" format="color" />
-        <attr name="hhvUnSelectedColor" format="color" />
-        <attr name="hhvSelectedTextSize" format="dimension" />
-        <attr name="hhvUnSelectedTextSize" format="dimension" />
-        <attr name="hhvNeedParallax" format="boolean" />
-        <attr name="hhvArrowRes" format="reference" />
-    </declare-styleable>
 
     <declare-styleable name="WheelView">
         <!-- 中间分割线外的item数量,整个滑动数量就为 wheelItemCount * 2 + 1  -->

@@ -66,15 +66,6 @@
         <item name="svSelectedStrokeWidth">2dp</item>
     </style>
 
-    <style name="HorizontalHourView">
-        <item name="hhvNeedParallax">true</item>
-        <item name="hhvSelectedTextColor">?attr/colorSecondary</item>
-        <item name="hhvUnSelectedColor">?attr/colorOnSurface</item>
-        <item name="hhvSelectedTextSize">@dimen/sp_12</item>
-        <item name="hhvUnSelectedTextSize">@dimen/sp_8</item>
-        <item name="hhvTimeType">twelve</item>
-        <item name="hhvArrowRes">@drawable/ic_one_day_arrow_down</item>
-    </style>
 
     <style name="HorizontalStepView">
         <item name="hsvFinishedDrawable">@drawable/ic_done_black_18dp</item>

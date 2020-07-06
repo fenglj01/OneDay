@@ -27,7 +27,7 @@ class OneDayMonthView(context: Context) : MonthView(context) {
     private val schemeCirclePadding = 2F.dp
 
     init {
-        mSelectedPaint.maskFilter = BlurMaskFilter(25F, BlurMaskFilter.Blur.SOLID)
+        mSelectedPaint.maskFilter = BlurMaskFilter(20F, BlurMaskFilter.Blur.SOLID)
     }
 
     override fun onDrawText(

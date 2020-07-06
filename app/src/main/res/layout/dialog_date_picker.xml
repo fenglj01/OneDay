@@ -54,7 +54,7 @@
             app:current_day_text_color="?attr/colorSecondary"
             app:current_month_text_color="?attr/colorOnSurface"
             app:layout_constraintTop_toBottomOf="@id/date_time_tv"
-            app:month_view="com.knight.oneday.views.choice.OneDayMonthView"
+            app:month_view="com.knight.oneday.views.choice.DatePickerMonthView"
             app:other_month_text_color="@color/color_on_surface_emphasis_disabled"
             app:selected_text_color="?attr/colorOnSecondary"
             app:selected_theme_color="?attr/colorSecondary"
