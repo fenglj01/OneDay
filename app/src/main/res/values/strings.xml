@@ -31,8 +31,6 @@
     <string name="tag_health">健康</string>
     <string name="menu_item_ui_mode">主题</string>
     <string name="menu_item_search">搜索</string>
-    <string name="menu_dark_theme_light">白昼</string>
-    <string name="menu_dark_theme_dark">黑暗</string>
     <string name="create_event_close_desc">退出创建</string>
     <string name="create_title">创建</string>
     <string name="event_overview_hint">事件名</string>
@@ -55,9 +53,6 @@
     <string name="tomorrow">明天</string>
     <string name="yesterday">昨天</string>
 
-    <string name="default_value_today">today</string>
-    <string name="default_value_unfinished">unfinished</string>
-    <string name="default_value_remind">remind</string>
     <string name="topic_never_remind">不再提示</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>

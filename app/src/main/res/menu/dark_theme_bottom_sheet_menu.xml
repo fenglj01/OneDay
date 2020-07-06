@@ -18,12 +18,12 @@
         <item
             android:id="@+id/menu_light"
             app:showAsAction="ifRoom"
-            android:title="@string/menu_dark_theme_light"/>
+            android:title="@string/theme_normal"/>
 
         <item
             android:id="@+id/menu_dark"
             app:showAsAction="ifRoom"
-            android:title="@string/menu_dark_theme_dark"/>
+            android:title="@string/theme_dark"/>
 
         <item
             android:id="@+id/menu_battery_saver"
