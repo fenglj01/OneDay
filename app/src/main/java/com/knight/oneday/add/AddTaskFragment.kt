@@ -98,6 +98,9 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             }
             binding.addDateCiv.setContentText(sysCalendar.timeInMillis.formatWeekMonthDay())
         }
+        safeArgs.category.let { taskType ->
+            binding.addTagDsl.selectedIndex = TaskType.values().indexOf(taskType)
+        }
     }
 
     private fun initEvent() {
@@ -116,7 +119,6 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
                     showSnackBar(binding.root, R.string.edit_task_fail)
                 }
                 AddTaskViewModel.EDIT_STATUS_NOTHING_CHANGED -> {
-                    Log.d("editTask", "isNothingChange")
                     findNavController().navigateUp()
                 }
             }

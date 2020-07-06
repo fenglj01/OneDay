@@ -47,6 +47,10 @@
             android:defaultValue="@null"
             app:argType="java.util.Calendar"
             app:nullable="true" />
+        <argument
+            android:name="category"
+            android:defaultValue="NO_CATEGORY"
+            app:argType="com.knight.oneday.utilities.TaskType" />
     </fragment>
     <fragment
         android:id="@+id/taskFragment"

@@ -55,10 +55,6 @@ class CategoryFragment : Fragment(), TaskAdapter.TaskEventListener {
 
         observeLiveData()
 
-        binding.appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-
-        })
-
     }
 
     private fun initTaskRecyclerView() {

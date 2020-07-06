@@ -1,14 +1,24 @@
 package com.knight.oneday.nav.strategy
 
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.knight.oneday.R
+import com.knight.oneday.category.CategoryFragmentDirections
 import com.knight.oneday.nav.BottomNavDrawerFragment
 import com.knight.oneday.utilities.TaskType
 
 class CategoryFragmentJumpStrategy(
     private val nav: BottomNavDrawerFragment
 ) : JumpStrategy {
+
+    private var currentTaskType: TaskType = TaskType.NO_CATEGORY
+
+    init {
+        BottomNavDrawerFragment.navTag.observe(nav, Observer {
+            currentTaskType = it
+        })
+    }
 
     override fun jumpHome() {
         nav.findNavController().navigateUp()
@@ -29,7 +39,13 @@ class CategoryFragmentJumpStrategy(
     }
 
     override fun jumpByFloatingBar() {
-        nav.findNavController().navigate(R.id.action_categoryFragment_to_addTaskFragment)
+        nav.findNavController().navigate(
+            CategoryFragmentDirections.actionCategoryFragmentToAddTaskFragment(
+                task = null,
+                date = null,
+                category = currentTaskType
+            )
+        )
     }
 
     override fun jumpSearch() {
