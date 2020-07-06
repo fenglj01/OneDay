@@ -36,7 +36,6 @@
             android:layout_marginStart="@dimen/dp_16"
             android:layout_marginEnd="@dimen/dp_16"
             android:background="@android:color/transparent"
-            android:hint="@string/step_overview_hint"
             android:lineHeight="@dimen/sp_18"
             android:minHeight="@dimen/dp_48"
             app:layout_constraintEnd_toStartOf="@id/step_remove"

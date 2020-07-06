@@ -51,7 +51,7 @@ class CreateStepView : RecyclerView, CreateStepAdapter.CreateStepAdapterListener
             )
             adapter?.notifyItemInserted(insertIndex)
         } else {
-            context.showSnackBar(this, R.string.plase_finished_previous_step)
+            context.showSnackBar(this, R.string.app_name)
         }
     }
 

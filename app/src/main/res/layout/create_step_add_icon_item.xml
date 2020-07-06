@@ -31,7 +31,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
-            android:text="@string/create_step_hint"
             android:textAppearance="?attr/textAppearanceCaption"
             android:textColor="?attr/colorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"

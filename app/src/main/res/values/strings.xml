@@ -9,18 +9,8 @@
     <string name="guide_step_five">完成一个步骤</string>
     <string name="guide_event_content">了解使用OneDay</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="test_date">3-9 </string>
-    <string name="test_week">星期一</string>
     <string name="menu_setting">设置</string>
-    <string name="menu_hide_finished">隐藏已完成</string>
     <string name="menu_about">关于</string>
-    <string name="hint_input_event">准备做点什么?</string>
-    <string name="section_no_date">无日期</string>
-    <string name="section_today">今天</string>
-    <string name="section_tomorrow">明天</string>
-    <string name="section_after_tomorrow">后天</string>
     <string name="section_by_date">%1$d-%2$d</string>
     <string name="section_finished">已完成</string>
     <string name="title_theme_preference">主题</string>
@@ -43,51 +33,31 @@
     <string name="menu_item_search">搜索</string>
     <string name="menu_dark_theme_light">白昼</string>
     <string name="menu_dark_theme_dark">黑暗</string>
-    <string name="menu_dark_theme_battery_saver">系统默认</string>
-    <string name="menu_dark_theme_system_default">系统默认</string>
     <string name="create_event_close_desc">退出创建</string>
     <string name="create_title">创建</string>
     <string name="event_overview_hint">事件名</string>
     <string name="event_tag_hint">分类</string>
-    <string name="hint_input_event_note">备注…</string>
     <string name="create_date">日期</string>
     <string name="selection_date">选择日期</string>
     <string name="tag_no_tag">无类别</string>
     <string name="event_overview_length_hint">事件名至少2个字符</string>
-    <string name="create_step_hint">创建一些步骤</string>
-    <string name="create_step_next_hint">下一步</string>
-    <string name="step_overview_hint">步骤...</string>
-    <string name="plase_finished_previous_step">请先完成上一步创建</string>
+
     <string name="create_event_fail">创建事件失败</string>
     <string name="finish">完成</string>
-    <string name="over_view_step">共: %1$d步，当前:第 %2$d 步</string>
     <string name="choice_date_time"><![CDATA[日期&时间]]></string>
     <string name="am">AM</string>
     <string name="pm">PM</string>
     <string name="create">创建</string>
-    <string name="create_allow_expired">允许创建过期事件</string>
-    <string name="create_day_mode">默认创建日期</string>
 
     <string name="show">展示</string>
     <string name="show_allow_finished">是否展示已完成事件</string>
-    <string name="show_allow_expired">是否展示已过期任务</string>
-    <string name="time_system">时间制度</string>
-    <string name="time_system_12h">12H</string>
-    <string name="now_not_show_expried_event">当前设置不展示过期任务,你可以设置中选择展示过期任务。</string>
-    <string name="dont_remind_agin">不再提示</string>
     <string name="today">今天</string>
     <string name="tomorrow">明天</string>
     <string name="yesterday">昨天</string>
-    <string name="title_list_show_strategy">列表展示日期范围</string>
 
     <string name="default_value_today">today</string>
     <string name="default_value_unfinished">unfinished</string>
     <string name="default_value_remind">remind</string>
-    <string name="title_list_group_priority">列表优先展示</string>
-    <string name="can_not_setting_false_show_expired">当前优先显示的是过期任务,请先修改优先展示</string>
-    <string name="can_not_setting_false_show_finished">当前优先显示的是完成任务,请先修改优先展示</string>
-    <string name="title_list_order">排序优先</string>
-    <string name="show_list_order_is_desc">是否升序排序</string>
     <string name="topic_never_remind">不再提示</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>
@@ -108,7 +78,7 @@
     <string name="add_event">添加任务</string>
     <string name="add_event_content_is_empty">任务能容不能为空哟~</string>
     <string name="add_event_fail">任务创建失败!</string>
-    <string name="title_edit_task">编辑\n此事件</string>
+    <string name="title_edit_task">编辑\n此任务</string>
     <string name="btn_edit_task">完成编辑</string>
     <string name="edit_task_fail">任务编辑失败!</string>
     <string name="search">搜索</string>

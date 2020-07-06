@@ -169,7 +169,7 @@ fun TextView.bindStepsOverView(steps: List<Step>) {
                 size
             )
         } else {
-            getString(R.string.over_view_step).format(
+            getString(R.string.event_step_overview).format(
                 size,
                 nowStep + 1
             )

@@ -28,5 +28,5 @@
         <item
             android:id="@+id/menu_system_default"
             app:showAsAction="ifRoom"
-            android:title="@string/menu_dark_theme_system_default"/>
+            android:title="@string/theme_system"/>
 </menu>
