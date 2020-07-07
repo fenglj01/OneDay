@@ -2,12 +2,12 @@
     <string name="app_name">OneDay</string>
 
     <!-- 引导步骤content -->
-    <string name="guide_step_one">创建一个次要任务</string>
-    <string name="guide_step_two">完成一个次要任务</string>
-    <string name="guide_step_three">创建一个重要任务</string>
-    <string name="guide_step_four">创建一个步骤</string>
-    <string name="guide_step_five">完成一个步骤</string>
-    <string name="guide_event_content">了解使用OneDay</string>
+    <string name="guide_step_one">1.右滑来完成一个任务</string>
+    <string name="guide_step_two">2.长按来删除一个任务</string>
+    <string name="guide_step_three">3.单击任务可进行编辑</string>
+    <string name="guide_step_four">现在，您可以右滑，或者可以长按删除掉这些引导。</string>
+    <string name="guide_step_five">再次感谢您的使用，如有疑问或建议可以在关于界面找到联系我的方式。</string>
+    <string name="guide_event_content">欢迎使用OneDay!</string>
 
     <string name="menu_setting">设置</string>
     <string name="menu_about">关于</string>
@@ -71,7 +71,7 @@
     <string name="title_date_picker">编辑 日期</string>
     <string name="type">类别</string>
     <string name="add_event">添加任务</string>
-    <string name="add_event_content_is_empty">任务能容不能为空哟~</string>
+    <string name="add_event_content_is_empty">任务内容不能为空哟~</string>
     <string name="add_event_fail">任务创建失败!</string>
     <string name="title_edit_task">编辑\n此任务</string>
     <string name="btn_edit_task">完成编辑</string>

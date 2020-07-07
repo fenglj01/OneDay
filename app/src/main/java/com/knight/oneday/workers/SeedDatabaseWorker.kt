@@ -20,19 +20,11 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) :
 
     override suspend fun doWork(): Result = coroutineScope {
         try {
-            val guideArray = applicationContext.resources.getStringArray(R.array.guide_content)
             val guideEvent = Task(
                 content = applicationContext.resources.getString(R.string.guide_event_content)
             )
             val database = AppDatabase.getDatabase(applicationContext)
             database.eventDao().insert(guideEvent)
-            database.stepDao().insertAll(guideArray.mapIndexed { index, content ->
-                Step(
-                    content = content,
-                    serialNumber = index + 1,
-                    eventId = 1
-                )
-            })
             Result.success()
         } catch (ex: Exception) {
             Log.e(TAG, "Error seeding database", ex)

@@ -54,4 +54,7 @@ interface TaskDao {
     @Query("SELECT * FROM $TABLE_NAME_TASK WHERE is_done =0 ORDER BY due_date_time desc")
     fun searchEventsByUnFinished(): LiveData<List<TaskAndEventSteps>>
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertAll(list: List<Task>)
+
 }

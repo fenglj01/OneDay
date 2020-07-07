@@ -2,12 +2,12 @@
     <string name="app_name">OneDay</string>
 
     <!-- 引导步骤content -->
-    <string name="guide_step_one">创建一个次要任务</string>
-    <string name="guide_step_two">完成一个次要任务</string>
-    <string name="guide_step_three">创建一个重要任务</string>
-    <string name="guide_step_four">创建一个步骤</string>
-    <string name="guide_step_five">完成一个步骤</string>
-    <string name="guide_event_content">了解使用OneDay</string>
+    <string name="guide_step_one">1.Swipe right to complete a task</string>
+    <string name="guide_step_two">2.Long press to delete a task</string>
+    <string name="guide_step_three">3.Click task to edit</string>
+    <string name="guide_step_four">Now you can swipe right, or you can long press to delete these guides.</string>
+    <string name="guide_step_five">Thank you again for your use, if you have any questions or suggestions, you can find the way to contact me on the about interface。</string>
+    <string name="guide_event_content">Welcome to One Day!</string>
 
     <string name="menu_setting">Setting</string>
     <string name="menu_about">About</string>
@@ -72,7 +72,7 @@
     <string name="title_date_picker">Edit Date</string>
     <string name="type">Category</string>
     <string name="add_event">Add Task</string>
-    <string name="add_event_content_is_empty">The task can not be empty~</string>
+    <string name="add_event_content_is_empty">The task content cannot be empty</string>
     <string name="add_event_fail">Task creation failed!</string>
     <string name="title_edit_task">Edit\nThis task</string>
     <string name="btn_edit_task">Finish editing</string>
