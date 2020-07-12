@@ -9,6 +9,7 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
@@ -17,7 +18,10 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import com.blankj.utilcode.util.BarUtils
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.jaeger.library.StatusBarUtil
+import com.knight.oneday.adapters.bindLayoutFullscreen
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.*
@@ -159,6 +163,8 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.welcomeFragment -> {
                 binding.bottomAppBar.isVisible = false
                 hideBottomAppBarAndFab()
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             }
         }
     }
