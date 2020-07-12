@@ -20,6 +20,7 @@ import com.jaeger.library.StatusBarUtil
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.LazyThreadSafetyMode.NONE
 
 
@@ -159,6 +160,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                 binding.bottomAppBar.isVisible = false
                 hideBottomAppBarAndFab()
             }
+            R.id.startFragment -> {
+                binding.bottomAppBar.isVisible = false
+                fab.hide()
+            }
         }
     }
 
@@ -209,6 +214,11 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     }
 
     override fun onBackPressed() {
+        when (navController.currentDestination?.id) {
+            R.id.taskFragment -> finish()
+            R.id.welcomeFragment -> finish()
+            R.id.startFragment -> finish()
+        }
         super.onBackPressed()
 
     }
