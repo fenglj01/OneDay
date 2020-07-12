@@ -1,13 +1,17 @@
 <resources>
     <string name="app_name">OneDay</string>
 
+    <string name="guide_welcome">Welcome to One Day!</string>
+    <string name="guide_finished">Complete the task</string>
+    <string name="guide_edit">Edit task</string>
+    <string name="guide_delete">Delete task</string>
+
     <!-- 引导步骤content -->
-    <string name="guide_step_one">1.Swipe right to complete a task</string>
-    <string name="guide_step_two">2.Long press to delete a task</string>
-    <string name="guide_step_three">3.Click task to edit</string>
-    <string name="guide_step_four">Now you can swipe right, or you can long press to delete these guides.</string>
-    <string name="guide_step_five">Thank you again for your use, if you have any questions or suggestions, you can find the way to contact me on the about interface。</string>
-    <string name="guide_event_content">Welcome to One Day!</string>
+    <string name="guide_finished_content">Swipe right to complete a task</string>
+    <string name="guide_delete_content">Long press to delete a task</string>
+    <string name="guide_edit_content">Click task to edit</string>
+    <string name="guide_welcome_content">Thank you for your use, if you have any questions or suggestions, you can find the way to contact me on the about interface。</string>
+
 
     <string name="menu_setting">Setting</string>
     <string name="menu_about">About</string>

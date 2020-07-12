@@ -2,13 +2,17 @@
 <resources>
     <string name="app_name">OneDay</string>
 
+    <string name="guide_welcome">欢迎使用OneDay!</string>
+    <string name="guide_finished">完成</string>
+    <string name="guide_edit">编辑</string>
+    <string name="guide_delete">删除</string>
+
     <!-- 引导步骤content -->
-    <string name="guide_step_one">1.Wischen Sie nach rechts, um eine Aufgabe abzuschließen</string>
-    <string name="guide_step_two">2.Lang drücken, um eine Aufgabe zu löschen</string>
-    <string name="guide_step_three">3.Klicken Sie zum Bearbeiten auf Aufgabe</string>
-    <string name="guide_step_four">Jetzt können Sie nach rechts wischen oder lange drücken, um diese Hilfslinien zu löschen.</string>
-    <string name="guide_step_five">Nochmals vielen Dank für Ihre Verwendung. Wenn Sie Fragen oder Anregungen haben, können Sie mich über die Info-Oberfläche kontaktieren.</string>
-    <string name="guide_event_content">Willkommen bei OneDay!</string>
+    <string name="guide_finished_content">Wischen Sie nach rechts, um eine Aufgabe abzuschließen</string>
+    <string name="guide_delete_content">Lang drücken, um eine Aufgabe zu löschen</string>
+    <string name="guide_edit_content">Klicken Sie zum Bearbeiten auf Aufgabe</string>
+    <string name="guide_welcome_content">Nochmals vielen Dank für Ihre Verwendung. Wenn Sie Fragen oder Anregungen haben, können Sie mich über die Info-Oberfläche kontaktieren.</string>
+
 
     <string name="menu_setting">Konfiguration</string>
     <string name="menu_about">auf</string>

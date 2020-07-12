@@ -2,13 +2,16 @@
 <resources>
     <string name="app_name">OneDay</string>
 
+    <string name="guide_welcome">欢迎使用OneDay!</string>
+    <string name="guide_finished">完成</string>
+    <string name="guide_edit">编辑</string>
+    <string name="guide_delete">删除</string>
+
     <!-- 引导步骤content -->
-    <string name="guide_step_one">1.右滑來完成一個任務</string>
-    <string name="guide_step_two">2.長按來刪除一個任務</string>
-    <string name="guide_step_three">3.單擊任務可進行編輯</string>
-    <string name="guide_step_four">現在，您可以右滑，或者可以長按刪除掉這些引導。</string>
-    <string name="guide_step_five">再次感謝您的使用，如有疑問或建議可以在關於界面找到聯繫我的方式。</string>
-    <string name="guide_event_content">歡迎使用OneDay!</string>
+    <string name="guide_finished_content">右滑來完成一個任務</string>
+    <string name="guide_delete_content">長按來刪除一個任務</string>
+    <string name="guide_edit_content">單擊任務可進行編輯</string>
+    <string name="guide_welcome_content">感謝您的使用，如有疑問或建議可以在關於界面找到聯繫我的方式。</string>
 
     <string name="menu_setting">設置</string>
     <string name="menu_about">關於</string>

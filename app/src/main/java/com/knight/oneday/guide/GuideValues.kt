@@ -11,15 +11,15 @@ val resourceArray = arrayListOf(
 )
 
 val titleArray = arrayListOf(
-    "welcome",
-    "finished",
-    "delete",
-    "edit"
+    getString(R.string.guide_welcome),
+    getString(R.string.guide_finished),
+    getString(R.string.guide_edit),
+    getString(R.string.guide_delete)
 )
 
 val contentArray = arrayListOf(
-    getString(R.string.guide_step_one),
-    getString(R.string.guide_step_two),
-    getString(R.string.guide_step_three),
-    getString(R.string.guide_step_four)
+    getString(R.string.guide_welcome_content),
+    getString(R.string.guide_finished_content),
+    getString(R.string.guide_edit_content),
+    getString(R.string.guide_delete_content)
 )

@@ -7,7 +7,6 @@ import androidx.work.WorkerParameters
 import com.knight.oneday.R
 import com.knight.oneday.data.AppDatabase
 import com.knight.oneday.data.Task
-import com.knight.oneday.data.Step
 import kotlinx.coroutines.coroutineScope
 import java.lang.Exception
 
@@ -21,7 +20,7 @@ class SeedDatabaseWorker(context: Context, workerParams: WorkerParameters) :
     override suspend fun doWork(): Result = coroutineScope {
         try {
             val guideEvent = Task(
-                content = applicationContext.resources.getString(R.string.guide_event_content)
+                content = applicationContext.resources.getString(R.string.guide_welcome_content)
             )
             val database = AppDatabase.getDatabase(applicationContext)
             database.eventDao().insert(guideEvent)
