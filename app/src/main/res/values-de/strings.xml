@@ -81,4 +81,6 @@
     <string name="theme_setting_title">Themen Einstellungen</string>
     <string name="text_here_is_nothing">Hier nichts~</string>
     <string name="title_category_frag">Durchführen:%1$d,Erweiterung:%2$d</string>
+
+    <string name="skip">skip</string>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/oneday"
-    app:startDestination="@id/taskFragment"
+    app:startDestination="@id/welcomeFragment"
     tools:ignore="UnusedNavigation">
 
     <fragment
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.knight.oneday.start.WelcomeFragment"
+        android:name="com.knight.oneday.guide.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome">
 

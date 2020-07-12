@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
@@ -137,6 +138,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     private fun setBottomAppBarAndFab(id: Int) {
         when (id) {
             R.id.taskFragment -> {
+                binding.bottomAppBar.isVisible = true
                 bottomNavDrawer.close()
                 setBottomAppBarAndFabByTaskFrag()
             }
@@ -152,6 +154,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
                 showBottomAppBarAndFab()
             }
             R.id.searchFragment -> {
+                hideBottomAppBarAndFab()
+            }
+            R.id.welcomeFragment -> {
+                binding.bottomAppBar.isVisible = false
                 hideBottomAppBarAndFab()
             }
         }
