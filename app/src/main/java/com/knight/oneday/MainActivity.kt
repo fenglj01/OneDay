@@ -137,7 +137,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     private fun setBottomAppBarAndFab(id: Int) {
         when (id) {
             R.id.taskFragment -> {
-                ScreenUtils.setNonFullScreen(this)
                 binding.bottomAppBar.isVisible = true
                 bottomNavDrawer.close()
                 setBottomAppBarAndFabByTaskFrag()
@@ -159,7 +158,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.welcomeFragment -> {
                 binding.bottomAppBar.isVisible = false
                 hideBottomAppBarAndFab()
-                ScreenUtils.setFullScreen(this)
             }
         }
     }
