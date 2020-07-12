@@ -6,8 +6,8 @@ import com.knight.oneday.utilities.getString
 val resourceArray = arrayListOf(
     R.mipmap.ill_welcome,
     R.mipmap.ill_finished_task,
-    R.mipmap.ill_delete_task,
-    R.mipmap.ill_edit_task
+    R.mipmap.ill_edit_task,
+    R.mipmap.ill_delete_task
 )
 
 val titleArray = arrayListOf(

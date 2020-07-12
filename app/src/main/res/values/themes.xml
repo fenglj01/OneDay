@@ -130,7 +130,6 @@
         </item>
         <item name="colorControlNormal">?attr/colorError</item>
         <item name="colorControlActivated">?attr/colorError</item>
-
     </style>
 
     <style name="Theme.MyApp.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">

@@ -25,6 +25,9 @@
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome">
 
+        <action
+            android:id="@+id/action_welcomeFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"

@@ -1,15 +1,11 @@
 package com.knight.oneday
 
 import android.annotation.SuppressLint
-import android.content.res.Configuration
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isVisible
@@ -19,14 +15,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.blankj.utilcode.util.BarUtils
-import com.google.android.material.bottomappbar.BottomAppBar
+import com.blankj.utilcode.util.ScreenUtils
 import com.jaeger.library.StatusBarUtil
-import com.knight.oneday.adapters.bindLayoutFullscreen
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.LazyThreadSafetyMode.NONE
+
 
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener,
     Toolbar.OnMenuItemClickListener {
@@ -142,6 +137,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     private fun setBottomAppBarAndFab(id: Int) {
         when (id) {
             R.id.taskFragment -> {
+                ScreenUtils.setNonFullScreen(this)
                 binding.bottomAppBar.isVisible = true
                 bottomNavDrawer.close()
                 setBottomAppBarAndFabByTaskFrag()
@@ -163,8 +159,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.welcomeFragment -> {
                 binding.bottomAppBar.isVisible = false
                 hideBottomAppBarAndFab()
-                getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                ScreenUtils.setFullScreen(this)
             }
         }
     }
@@ -213,5 +208,10 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             }
         }
         return true
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
     }
 }

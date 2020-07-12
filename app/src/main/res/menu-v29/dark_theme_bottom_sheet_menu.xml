@@ -16,7 +16,7 @@
 
     <item
         android:id="@+id/menu_light"
-        android:title="@string/theme_dark"
+        android:title="@string/theme_normal"
         app:showAsAction="ifRoom" />
 
     <item
