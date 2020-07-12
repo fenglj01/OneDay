@@ -85,5 +85,6 @@
     <string name="title_category_frag">完成:%1$d,延期:%2$d</string>
 
 
-    <string name="skip">skip</string>
+    <string name="skip">skip ></string>
+    <string name="start">Start ></string>
 </resources>

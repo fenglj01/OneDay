@@ -82,5 +82,6 @@
     <string name="theme_setting_title">主題設置</string>
     <string name="text_here_is_nothing">這裡,什麼也沒有~</string>
     <string name="title_category_frag">完成:%1$d,延期:%2$d</string>
-    <string name="skip">跳過</string>
+    <string name="skip">跳過 ></string>
+    <string name="start">開始 ></string>
 </resources>

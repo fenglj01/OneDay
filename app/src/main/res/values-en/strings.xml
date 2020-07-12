@@ -86,5 +86,6 @@
     <string name="text_here_is_nothing">Here, nothing~</string>
     <string name="title_category_frag">Completion: %1$d, Extension: %2$d</string>
 
-    <string name="skip">Skip</string>
+    <string name="skip">Skip ></string>
+    <string name="start">Start ></string>
 </resources>

@@ -31,7 +31,7 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val showAnimation = AlphaAnimation(0f, 1f)
-        showAnimation.duration = 800
+        showAnimation.duration = 1200
         showAnimation.interpolator = AccelerateInterpolator()
         showAnimation.setAnimationListener(object : AnimationEndListener() {
             override fun onAnimationEnd(animation: Animation?) {

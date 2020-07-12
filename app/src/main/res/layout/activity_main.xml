@@ -6,7 +6,6 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutFullscreen="@{false}"
         tools:context=".MainActivity">
 
 
@@ -63,8 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="@dimen/dp_8"
-                    android:textAppearance="?attr/textAppearanceBody1"
-                    tools:text="@string/test_date" />
+                    android:textAppearance="?attr/textAppearanceBody1" />
             </LinearLayout>
 
         </com.google.android.material.bottomappbar.BottomAppBar>
