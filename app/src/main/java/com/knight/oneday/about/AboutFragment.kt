@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.blankj.utilcode.util.AppUtils
 import com.knight.oneday.R
 import com.knight.oneday.databinding.FragmentAboutBinding
 import kotlinx.android.synthetic.main.fragment_about.*
@@ -32,6 +33,7 @@ class AboutFragment : Fragment() {
         binding.aboutTool.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+        binding.aboutAppVersion.text = "${AppUtils.getAppName()} v${AppUtils.getAppVersionName()}"
     }
 
 }

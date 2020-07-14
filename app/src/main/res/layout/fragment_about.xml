@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -21,6 +22,108 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/icon_back"
             app:title="@string/menu_about" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/about_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            android:elevation="@dimen/dp_4"
+            android:src="@mipmap/icon_round"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_tool" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/about_app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="@dimen/sp_12"
+            android:typeface="monospace"
+            app:layout_constraintEnd_toEndOf="@id/about_icon"
+            app:layout_constraintStart_toStartOf="@id/about_icon"
+            app:layout_constraintTop_toBottomOf="@id/about_icon"
+            tools:text="OneDay v1.0.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/about_thank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_32"
+            android:text="@string/about_thank"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="?attr/colorSecondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_app_version" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/about_thank_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:text="@string/about_thank_content"
+            android:textColor="?attr/colorOnSurface"
+            android:typeface="monospace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_thank" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/about_next_todo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_32"
+            android:text="@string/about_next_todo"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="?attr/colorSecondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_thank_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/about_next_todo_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:text="@string/about_next_todo_content"
+            android:textColor="?attr/colorOnSurface"
+            android:typeface="monospace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_next_todo" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/about_special_thanks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_32"
+            android:text="@string/about_special_thanks"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="?attr/colorSecondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_next_todo_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/about_special_thanks_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_16"
+            android:text="@string/about_special_thanks_content"
+            android:textColor="?attr/colorOnSurface"
+            android:typeface="monospace"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about_special_thanks" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
