@@ -30,7 +30,7 @@ class StartActivity : AppCompatActivity() {
         showAnimation.setAnimationListener(object : AnimationEndListener() {
             override fun onAnimationEnd(animation: Animation?) {
                 val intent = if (SettingPreferences.isFirstInstall) {
-                    Intent(this@StartActivity, MainActivity::class.java)
+                    Intent(this@StartActivity, TutorialPageActivity::class.java)
                 } else {
                     Intent(this@StartActivity, MainActivity::class.java)
                 }
