@@ -93,5 +93,5 @@
     <string name="about_next_todo">后续的版本种陆续增加以下功能:</string>
     <string name="about_next_todo_content">\t1.统计\n\t2.任务分组\n\t3.云同步\n\n还有更多,敬请期待!</string>
     <string name="about_special_thanks">特别感谢</string>
-    <string name="about_special_thanks_content">\tGoogle\n\thanbin.CalendarView\n\tblankj\n\tAppIntro\n\tUiYY</string>
+    <string name="about_special_thanks_content">\tGoogle\n\thanbin.CalendarView\n\tblankj\n\tAppIntro\n\tUiYY\n\tCuberto</string>
 </resources>

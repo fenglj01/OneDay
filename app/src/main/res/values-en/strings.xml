@@ -95,5 +95,5 @@
     <string name="about_next_todo">Subsequent versions:</string>
     <string name="about_next_todo_content">\t1. Statistics\n\t2. Task grouping\n\t3. Cloud synchronization\n\nThere are more, so stay tuned!</string>
     <string name="about_special_thanks">Special thanks</string>
-    <string name="about_special_thanks_content">\tGoogle\n\thanbin.CalendarView\n\tblankj\n\tAppIntro\n\tUiYY</string>
+    <string name="about_special_thanks_content">\tGoogle\n\thanbin.CalendarView\n\tblankj\n\tAppIntro\n\tUiYY\n\tCuberto</string>
 </resources>
