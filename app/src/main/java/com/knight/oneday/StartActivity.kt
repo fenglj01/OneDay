@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import androidx.preference.PreferenceManager
 import com.knight.oneday.setting.SettingPreferences
+import com.knight.oneday.utilities.ThemePreference
 import com.ramotion.foldingcell.animations.AnimationEndListener
 import kotlinx.android.synthetic.main.activity_start.*
 
@@ -20,6 +22,9 @@ class StartActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_start)
 
+        val isLight =
+            ThemePreference(PreferenceManager.getDefaultSharedPreferences(this)).nowUiModeIsLight()
+        start.setBackgroundColor(if (isLight) getColor(R.color.white_50) else getColor(R.color.black_800))
         startAnimation()
     }
 
