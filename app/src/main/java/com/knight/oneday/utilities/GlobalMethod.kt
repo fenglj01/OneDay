@@ -15,7 +15,7 @@ fun getAppBarTitleByTaskType(taskType: TaskType): Int =
         TaskType.NO_CATEGORY -> R.string.tag_no_tag
         TaskType.WORK -> R.string.tag_work
         TaskType.LIFE -> R.string.tag_life
-        TaskType.ENTERTAINMENT -> R.string.tag_entertainment
+        TaskType.ENTERTAINMENT -> R.string.tag_entertainment_abbreviation
         else -> R.string.tag_health
     }
 

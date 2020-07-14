@@ -32,6 +32,7 @@
     <string name="tag_life">Life</string>
     <string name="tag_work">Work</string>
     <string name="tag_entertainment">Entertainment</string>
+    <string name="tag_entertainment_abbreviation">ENTI</string>
     <string name="tag_health">Health</string>
     <string name="menu_item_ui_mode">Theme</string>
     <string name="menu_item_search">Search</string>
@@ -84,7 +85,7 @@
     <string name="search">Search</string>
     <string name="theme_setting_title">Theme settings</string>
     <string name="text_here_is_nothing">Here, nothing~</string>
-    <string name="title_category_frag">Completion: %1$d, Extension: %2$d</string>
+    <string name="title_category_frag">Done: %1$d, Delay: %2$d</string>
 
     <string name="skip">Skip ></string>
     <string name="start">Start ></string>

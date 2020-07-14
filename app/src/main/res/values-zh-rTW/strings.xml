@@ -30,6 +30,7 @@
     <string name="tag_life">生活</string>
     <string name="tag_work">工作</string>
     <string name="tag_entertainment">娛樂</string>
+    <string name="tag_entertainment_abbreviation">娛樂</string>
     <string name="tag_health">健康</string>
     <string name="menu_item_ui_mode">主題</string>
     <string name="menu_item_search">搜索</string>
