@@ -3,32 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/oneday"
-    app:startDestination="@id/startFragment"
+    app:startDestination="@id/taskFragment"
     tools:ignore="UnusedNavigation">
 
-    <fragment
-        android:id="@+id/startFragment"
-        android:name="com.knight.oneday.start.StartFragment"
-        android:label="fragment_start"
-        tools:layout="@layout/fragment_start">
-
-        <action
-            android:id="@+id/action_startFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
-        <action
-            android:id="@+id/action_startFragment_to_taskFragment"
-            app:destination="@id/taskFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/welcomeFragment"
-        android:name="com.knight.oneday.guide.WelcomeFragment"
-        android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome">
-
-        <action
-            android:id="@+id/action_welcomeFragment_to_taskFragment"
-            app:destination="@id/taskFragment" />
-    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.knight.oneday.setting.SettingFragment"

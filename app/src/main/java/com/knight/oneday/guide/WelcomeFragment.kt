@@ -49,7 +49,7 @@ class WelcomeFragment : Fragment() {
         })
         skip.singleClick {
             SettingPreferences.isFirstInstall = false
-            findNavController().navigate(R.id.action_welcomeFragment_to_taskFragment)
+            // findNavController().navigate(R.id.action_welcomeFragment_to_taskFragment)
         }
     }
 

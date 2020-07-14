@@ -156,14 +156,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             R.id.searchFragment -> {
                 hideBottomAppBarAndFab()
             }
-            R.id.welcomeFragment -> {
-                binding.bottomAppBar.isVisible = false
-                hideBottomAppBarAndFab()
-            }
-            R.id.startFragment -> {
-                binding.bottomAppBar.isVisible = false
-                fab.hide()
-            }
         }
     }
 
@@ -216,8 +208,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     override fun onBackPressed() {
         when (navController.currentDestination?.id) {
             R.id.taskFragment -> finish()
-            R.id.welcomeFragment -> finish()
-            R.id.startFragment -> finish()
         }
         super.onBackPressed()
 
