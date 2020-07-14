@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -16,6 +17,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ScreenUtils
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.jaeger.library.StatusBarUtil
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
@@ -129,8 +131,6 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             if (navController.currentDestination?.id == R.id.categoryFragment) {
                 binding.bottomAppBarTitle.text = getString(getAppBarTitleByTaskType(it))
                 binding.bottomAppBarIcon.setImageResource(getAppBarIconByTaskType(it))
-            } else {
-                setBottomAppBarAndFabByTaskFrag()
             }
         })
     }
@@ -155,6 +155,11 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
             }
             R.id.searchFragment -> {
                 hideBottomAppBarAndFab()
+            }
+            R.id.aboutFragment -> {
+                bottomNavDrawer.close()
+                hideBottomAppBarAndFab()
+
             }
         }
     }
@@ -188,6 +193,8 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         binding.run {
             bottomAppBar.performHide()
             fab.hide()
+            bottomAppBar.isVisible = false
+            fab.isVisible = false
         }
     }
 

@@ -27,6 +27,7 @@ class TaskFragmentJumpStrategy(
     }
 
     override fun jumpAbout() {
+        nav.findNavController().navigate(R.id.action_taskFragment_to_aboutFragment)
     }
 
     override fun jumpSetting() {

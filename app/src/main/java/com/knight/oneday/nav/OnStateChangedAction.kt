@@ -26,7 +26,8 @@ class ShowHideFabStateAction(
     override fun onStateChanged(sheet: View, newState: Int) {
         when (navController.currentDestination?.id) {
             R.id.settingFragment -> fab.hide()
-            else ->{
+            R.id.aboutFragment -> fab.hide()
+            else -> {
                 if (newState == BottomSheetBehavior.STATE_HIDDEN) {
                     fab.show()
                 } else {

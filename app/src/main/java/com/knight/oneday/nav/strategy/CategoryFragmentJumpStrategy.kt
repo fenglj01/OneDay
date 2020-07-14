@@ -25,6 +25,7 @@ class CategoryFragmentJumpStrategy(
     }
 
     override fun jumpAbout() {
+        nav.findNavController().navigate(R.id.action_categoryFragment_to_aboutFragment)
     }
 
     override fun jumpSetting() {
