@@ -2,6 +2,7 @@ package com.knight.oneday.add
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.knight.oneday.R
 import com.knight.oneday.data.Task
 import com.knight.oneday.data.TaskAndStepRepository
 import com.knight.oneday.utilities.*
@@ -25,12 +26,17 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
         const val EDIT_STATUS_NOTHING_CHANGED = 6
     }
 
-    val previewDateContent: String = currentWeekDayMonth()
-    val previewTimeContent: String = currentHourMin()
 
     var vmTaskContent: String = ""
-    private var vmTaskDueDateTime: Calendar = GregorianCalendar.getInstance()
+    private var vmTaskDueDateTime: Calendar = GregorianCalendar.getInstance().apply {
+        add(Calendar.MINUTE, 30)
+    }
     private var vmTaskType: TaskType = TaskType.NO_CATEGORY
+
+    val previewDateContent: String = vmTaskDueDateTime.timeInMillis.formatWeekMonthDay()
+    val previewTimeContent: String = "${vmTaskDueDateTime.timeInMillis.formatHourMin()}${getString(
+        R.string.after_30_min
+    )}"
 
     private val _viewModelStatus: MutableLiveData<Int> = MutableLiveData()
     val viewModelStatus: LiveData<Int> = _viewModelStatus
