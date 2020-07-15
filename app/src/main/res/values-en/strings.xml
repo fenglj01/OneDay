@@ -93,7 +93,7 @@
     <string name="about_thank">Thank you for using OneDay!</string>
     <string name="about_thank_content">If you find any problems or have good suggestions during the use process, please contact the following email: knightflj@gmail.com\n\nI would appreciate it!</string>
     <string name="about_next_todo">Subsequent versions:</string>
-    <string name="about_next_todo_content">\t1. Statistics\n\t2. Task grouping\n\t3. Cloud synchronization\n\nThere are more, so stay tuned!</string>
+    <string name="about_next_todo_content">\t1. Statistics\n\t2. Task grouping\n\t3. More Theme\n\nThere are more, so stay tuned!</string>
     <string name="about_special_thanks">Special thanks</string>
     <string name="about_special_thanks_content">\tGoogle\n\thanbin.CalendarView\n\tblankj\n\tAppIntro\n\tUiYY\n\tCuberto</string>
 </resources>

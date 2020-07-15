@@ -89,7 +89,7 @@
     <string name="about_thank">您好，感謝您使用OneDay!</string>
     <string name="about_thank_content">如果您在使用過程種發現任何問題或者有好的建議,請聯繫以下郵箱: knightflj@gmail.com\n\n我將不勝感激!</string>
     <string name="about_next_todo">後續的版本種陸續增加以下功能:</string>
-    <string name="about_next_todo_content">\t1.統計\n\t2.任務分組\n\t3.云同步\n\n還有更多,敬請期待!</string>
+    <string name="about_next_todo_content">\t1.統計\n\t2.任務分組\n\t3.更多主題\n\n還有更多,敬請期待!</string>
     <string name="about_special_thanks">特別感謝</string>
     <string name="about_special_thanks_content">\tGoogle\n\thanbin.CalendarView\n\tblankj\n\tAppIntro\n\tUiYY\n\tCuberto</string>
 </resources>
