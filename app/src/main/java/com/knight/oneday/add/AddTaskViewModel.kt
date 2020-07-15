@@ -1,5 +1,6 @@
 package com.knight.oneday.add
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.knight.oneday.R
@@ -113,7 +114,6 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
             set(Calendar.MONTH, month - 1)
             set(Calendar.DAY_OF_MONTH, day)
         }
-
     }
 
     fun changeHourAndMinute(hourOfDay: Int, minute: Int) {
@@ -130,7 +130,7 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
     fun initViewModelByTask(task: Task) {
         updateTask = task
         vmTaskContent = task.content
-        vmTaskDueDateTime = task.dueDateTime
+        vmTaskDueDateTime = task.dueDateTime.clone() as Calendar
         vmTaskType = task.taskType
         isAddTask = false
     }
