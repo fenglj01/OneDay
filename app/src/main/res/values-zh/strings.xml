@@ -94,4 +94,5 @@
     <string name="about_next_todo_content">\t1.统计\n\t2.任务分组\n\t3.更过主题\n\n还有更多,敬请期待!</string>
     <string name="about_special_thanks">特别感谢</string>
     <string name="about_special_thanks_content">\tGoogle\n\thanbin.CalendarView\n\tblankj\n\tAppIntro\n\tUiYY\n\tCuberto</string>
+    <string name="show_remind_delete">删除提示?</string>
 </resources>

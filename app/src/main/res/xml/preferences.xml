@@ -9,20 +9,26 @@
         app:title="@string/show">
 
 
-       <!-- <ListPreference
-            app:defaultValue="@string/default_value_today"
-            app:entries="@array/theme_entities"
-            app:entryValues="@array/theme_values"
-            app:iconSpaceReserved="false"
-            app:key="theme"
-            app:title="@string/theme_setting_title"
-            app:useSimpleSummaryProvider="true" />-->
+        <!-- <ListPreference
+             app:defaultValue="@string/default_value_today"
+             app:entries="@array/theme_entities"
+             app:entryValues="@array/theme_values"
+             app:iconSpaceReserved="false"
+             app:key="theme"
+             app:title="@string/theme_setting_title"
+             app:useSimpleSummaryProvider="true" />-->
+
+        <!-- <SwitchPreference
+             app:defaultValue="true"
+             app:iconSpaceReserved="false"
+             app:key="show_allow_finished"
+             app:title="@string/show_allow_finished" />-->
 
         <SwitchPreference
-            app:defaultValue="true"
+            android:defaultValue="true"
             app:iconSpaceReserved="false"
-            app:key="show_allow_finished"
-            app:title="@string/show_allow_finished" />
+            app:key="remind_delete_event"
+            app:title="@string/show_remind_delete" />
 
 
     </PreferenceCategory>
