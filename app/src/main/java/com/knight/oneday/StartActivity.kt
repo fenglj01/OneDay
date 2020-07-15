@@ -22,9 +22,6 @@ class StartActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_start)
 
-        val isLight =
-            ThemePreference(PreferenceManager.getDefaultSharedPreferences(this)).nowUiModeIsLight()
-        start.setBackgroundColor(if (isLight) getColor(R.color.white_50) else getColor(R.color.black_800))
         startAnimation()
     }
 
