@@ -31,14 +31,14 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
 
     val previewDateContent: String = currentWeekDayMonth()
 
-    fun refreshTaskList() {
+    fun refreshTaskList(needTask2CalendarScheme: Boolean = false) {
         launchOnIO(
             tryBlock = {
                 val monthStartDay = dayCurrent.monthFirstDay()
                 val monthEndDay = dayCurrent.monthEndDay()
                 taskRep.searchTaskByDay(monthStartDay, monthEndDay).run {
                     _taskMonthList = this
-                    if (isNotEmpty()) {
+                    if (isNotEmpty() || needTask2CalendarScheme) {
                         task2CalendarScheme()
                     }
                     filterTaskByCurrentDay()
@@ -158,7 +158,7 @@ class TaskViewModel(private val taskRep: TaskRepository) : BaseViewModel() {
         launchOnIO(
             tryBlock = {
                 taskRep.deleteTask(task.taskId).run {
-                    refreshTaskList()
+                    refreshTaskList(needTask2CalendarScheme = true)
                 }
             }
         )

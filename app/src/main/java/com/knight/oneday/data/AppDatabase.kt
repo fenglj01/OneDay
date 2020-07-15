@@ -34,14 +34,14 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     DATABASE_NAME
                 )
-                    .addCallback(object : RoomDatabase.Callback() {
+                    /*.addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
                             // 在创建数据库得时候 加载一些默认数据 (这里时引导用户使用得一些数据)
                             val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
                             WorkManager.getInstance(context).enqueue(request)
                         }
-                    })
+                    })*/
                     .build()
                 INSTANCE = instance
                 instance
