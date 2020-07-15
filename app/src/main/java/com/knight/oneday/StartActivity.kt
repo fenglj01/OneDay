@@ -9,7 +9,7 @@ import android.view.animation.Animation
 import androidx.preference.PreferenceManager
 import com.knight.oneday.setting.SettingPreferences
 import com.knight.oneday.utilities.ThemePreference
-import com.ramotion.foldingcell.animations.AnimationEndListener
+import com.knight.oneday.views.AnimationEndListener
 import kotlinx.android.synthetic.main.activity_start.*
 
 /**

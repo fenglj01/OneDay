@@ -49,7 +49,6 @@
                 app:calendar_padding="8dp"
                 app:current_day_text_color="?attr/colorSecondary"
                 app:current_month_text_color="?attr/colorOnSurface"
-                app:layout_constraintTop_toBottomOf="@id/date_time_tv"
                 app:month_view="com.knight.oneday.views.choice.OneDayMonthView"
                 app:month_view_scrollable="true"
                 app:month_view_show_mode="mode_only_current"

@@ -15,7 +15,7 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.knight.oneday.OneDayApp
-import com.ramotion.foldingcell.animations.AnimationEndListener
+import com.knight.oneday.views.AnimationEndListener
 
 /**
  * @author knight
@@ -129,3 +129,6 @@ fun View.alphaAnimationHide() {
     })
     startAnimation(hideAnimation)
 }
+
+
+

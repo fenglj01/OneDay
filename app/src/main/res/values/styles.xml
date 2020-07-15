@@ -20,78 +20,11 @@
         <item name="android:checkable">false</item>
     </style>
 
-    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Overlay" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="hintTextColor">?attr/colorOnSurface</item>
-        <item name="boxStrokeColor">@color/color_edit_text</item>
-    </style>
-
-    <style name="Widget.MaterialComponents.TextInputLayout.FilledBox.Overlay" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="hintTextColor">?attr/colorOnSurface</item>
-        <item name="boxStrokeColor">@color/color_edit_text</item>
-    </style>
-
-    <style name="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu.Overlay" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
-        <item name="hintTextColor">?attr/colorOnSurface</item>
-        <item name="boxStrokeColor">@color/color_edit_text</item>
-    </style>
-
     <style name="ThemeOverlay.MaterialComponents.MaterialCalendar.Overlay" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
         <item name="colorPrimary">@color/green_one_day</item>
     </style>
 
-    <style name="StepView">
-        <item name="svStatus">unfinished</item>
-        <item name="svAnimationDuration">200</item>
-        <item name="svLineType">solid</item>
-        <item name="svCircleRadius">12dp</item>
-        <item name="svFinishedCircleColor">?attr/colorSecondary</item>
-        <item name="svFinishedTextColor">?attr/colorOnSecondary</item>
-        <item name="svFinishedMarkColor">?attr/colorOnSecondary</item>
-        <item name="svFinishedLineColor">?attr/colorSecondary</item>
-        <item name="svUnfinishedCircleColor">#7FC2C4</item>
-        <item name="svUnfinishedTextColor">?attr/colorOnSurface</item>
-        <item name="svUnfinishedLineColor">?attr/colorOnSurface</item>
-        <item name="svExecutingCircleColor">?attr/colorError</item>
-        <item name="svExecutingLineColor">?attr/colorError</item>
-        <item name="svExecutingMarkColor">?attr/colorOnSecondary</item>
-        <item name="svExecutingTextColor">?attr/colorOnSecondary</item>
-        <item name="svStepNumber">0</item>
-        <item name="svStepNumberTextSize">14sp</item>
-        <item name="svLineHeight">1dp</item>
-        <item name="svLineLength">32dp</item>
-        <item name="svLineMargin">4dp</item>
-        <item name="svSelectedRadius">16dp</item>
-        <item name="svSelected">false</item>
-        <item name="svSelectedColor">?attr/colorSecondary</item>
-        <item name="svSelectedStrokeWidth">2dp</item>
-    </style>
 
-
-    <style name="HorizontalStepView">
-        <item name="hsvFinishedDrawable">@drawable/ic_done_black_18dp</item>
-        <item name="hsvExecutingDrawable">@drawable/ic_flag_black_18dp</item>
-        <item name="hsvCircleRadius">16dp</item>
-        <item name="hsvCircleStokeWidth">2dp</item>
-        <item name="hsvCircleFillColor">?attr/stepColorFill</item>
-        <item name="hsvCircleFillFinishedColor">?attr/stepColorFinishedFill</item>
-        <item name="hsvCircleFillExecutingColor">?attr/stepColorExecutingFill</item>
-        <item name="hsvCircleStokeColor">?attr/stepColorStroke</item>
-        <item name="hsvCircleStokeFinishedColor">?attr/stepColorFinishedStroke</item>
-        <item name="hsvCircleStokeExecutingColor">?attr/stepColorExecutingStroke</item>
-        <item name="hsvLineLength">30dp</item>
-        <item name="hsvLineHeight">2dp</item>
-        <item name="hsvLineGap">4dp</item>
-        <item name="hsvLineColor">?attr/stepLineColor</item>
-        <item name="hsvLineFinishedColor">?attr/stepLineFinishedColor</item>
-        <item name="hsvLineExecutingColor">?attr/stepLineExecutingColor</item>
-        <item name="hsvTextColor">?attr/colorOnSurface</item>
-        <item name="hsvTextSize">12sp</item>
-        <item name="hsvStyle">fillStoke</item>
-        <item name="hsvSelectedColor">?attr/colorOnSurface</item>
-        <item name="hsvSelectedRadius">12dp</item>
-        <item name="hsvSelectedStrokeWidth">1dp</item>
-        <item name="hsvSelectedStyle">dotted</item>
-    </style>
 
     <style name="TaskTimeLineRecyclerView">
         <item name="timeLineColor">?attr/tlColor</item>

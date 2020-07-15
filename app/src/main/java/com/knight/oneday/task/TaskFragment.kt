@@ -1,8 +1,6 @@
 package com.knight.oneday.task
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,27 +10,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.transition.Hold
-import com.haibin.calendarview.Calendar
-import com.haibin.calendarview.CalendarView
 import com.knight.oneday.R
-import com.knight.oneday.adapters.ExpandableHomeItemAdapter
-import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.calendar.CalendarToolView
-import com.knight.oneday.data.Step
-import com.knight.oneday.data.Task
-import com.knight.oneday.data.TaskAndEventSteps
 import com.knight.oneday.databinding.FragmentTaskBinding
-import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.InjectorUtils
-import com.knight.oneday.utilities.UiCalendar
-import com.knight.oneday.utilities.UiScheme
-import com.knight.oneday.utilities.formatWeekMonthDay
-import com.knight.oneday.views.choice.OneDayMonthView
-import com.knight.oneday.views.choice.OneDayWeekView
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
-import kotlinx.android.synthetic.main.dialog_date_time_chioce.*
 
 /**
  * Create by FLJ in 2020/6/11 9:28

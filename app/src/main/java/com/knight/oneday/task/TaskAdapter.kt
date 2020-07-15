@@ -12,7 +12,6 @@ import com.knight.oneday.utilities.currentTimeMills
 import com.knight.oneday.utilities.format24Hex
 import com.knight.oneday.utilities.formatMonthDay
 import com.knight.oneday.utilities.getHourAndMin
-import com.knight.oneday.views.step.STEP_STATE_UNFINISHED
 import com.knight.oneday.views.swipe.EventSwipeActionDrawable
 import com.knight.oneday.views.swipe.ReboundingSwipeActionCallback
 import kotlin.math.abs
@@ -94,7 +93,7 @@ class TaskAdapter(private val taskEventListener: TaskEventListener) :
         val task = getTask(position)
         if (task.isDone) return TaskTimeLineItemDecoration.STATUS_FINISHED
         if (task.dueDateTime.timeInMillis < currentTimeMills()) return TaskTimeLineItemDecoration.STATUS_EXPIRED
-        return STEP_STATE_UNFINISHED
+        return TaskTimeLineItemDecoration.STATUS_UNFINISHED
     }
 
     interface TaskEventListener {

@@ -84,7 +84,6 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     implementation "androidx.preference:preference-ktx:$preference_version"
     implementation project(path: ':direct-select')
-    implementation project(path: ':folding-cell')
     implementation 'com.haibin:calendarview:3.6.9'
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.blankj:utilcodex:1.29.0'

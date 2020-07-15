@@ -10,70 +10,17 @@
     <color name="green_one_day">#1EB980</color>
     <color name="green_one_day_dark">#008853</color>
     <color name="green_one_day_light">#62ecb0</color>
-
-    <color name="white_one_day">#ffffff</color>
-    <color name="white_one_day_dark">#cccccc</color>
-
-    <color name="blue_grey_one_day">#546e7a</color>
-    <color name="blue_grey_one_day_light">#819ca9</color>
-    <color name="blue_grey_one_day_dark">#29434e</color>
-
+    <color name="red_200">#cf6679</color>
     <color name="pink_one_day">#ad1357</color>
     <color name="pink_one_day_dark">#78002e</color>
-
-
     <color name="black_one_day">#000</color>
     <color name="black_one_day_900_alpha_020">#33000000</color>
     <color name="black_one_day_900_alpha_087">#de000000</color>
     <color name="black_one_day_900_alpha_060">#99000000</color>
     <color name="color_1e1e1e">#1e1e1e</color>
-
-    <color name="bg_side">#f4f0ff</color>
-
-    <color name="purple_200">#bb86fc</color> <!--Color primary (dark)-->
-    <color name="purple_500">#6200ee</color> <!--Color primary (light)-->
-    <color name="purple_600">#4b01d0</color> <!--Color primary variant (dark)-->
-    <color name="purple_700">#3700b3</color> <!--Color primary variant (light)-->
-
-    <color name="green_200">#03dac6</color> <!--Color secondary-->
-    <color name="green_500">#018786</color> <!--Color secondary variant-->
-
-    <color name="red_200">#cf6679</color> <!--Color error (dark)-->
-    <color name="red_600">#b00020</color> <!--Color error (light)-->
-
-    <!--Color surface (light), color on error (light), -->
-    <!--color on surface (dark), color on surface (dark)-->
-
-    <color name="black_800">#121212</color> <!--Color surface (dark)-->
-    <!--Color on secondary (light), color on background (light),-->
-    <!--color on surface (light)-->
+    <color name="black_800">#121212</color>
     <color name="black_900">#000000</color>
-
-    <color name="reply_white_50_alpha_060">#99ffffff</color>
-
-    <color name="reply_blue_50_alpha_060">#99eef0f2</color>
-    <color name="reply_black_900_alpha_020">#33000000</color>
-    <color name="reply_black_900_alpha_087">#de000000</color>
-    <color name="reply_black_900_alpha_060">#99000000</color>
-
-    <color name="green_0c9869">#0C9869</color>
-    <color name="amber_f3c282">#5081FE</color>
-
-    <color name="yanagicha">#919451</color>
-    <color name="nea">#88C069</color>
-    <color name="oitake">#698171</color>
-    <color name="chitosemidori">#45614A</color>
-    <color name="aotake">#088A6E</color>
-    <color name="veludo">#196952</color>
-    <color name="ominaeshi">#DBD141</color>
-
-    <color name="light_primary">#212121</color>
-    <color name="light_primary_variant">#424242</color>
-
-    <color name="light_secondary">#D32F2F</color>
-    <color name="light_secondary_variant">#B71C1C</color>
-
-    <color name="color_FFE4D4">#FFE4D4</color>
+    <color name="color_9ff">#99ffffff</color>
     <color name="color_EFF3FC">#EFF3FC</color>
 
 </resources>

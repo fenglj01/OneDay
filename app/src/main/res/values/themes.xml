@@ -41,7 +41,7 @@
         <item name="colorOnSurface">@color/black_one_day</item>
         <item name="colorOnError">@color/white_50</item>
         <!-- 屏幕背景 -->
-        <item name="scrimBackground">@color/reply_white_50_alpha_060</item>
+        <item name="scrimBackground">@color/color_9ff</item>
         <!--Material type attributes-->
         <item name="textAppearanceHeadline1">@style/TextAppearance.MyTheme.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.MyTheme.Headline2</item>

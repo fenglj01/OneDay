@@ -17,7 +17,7 @@
         <item name="colorOnBackground">@color/white_50</item>
         <item name="colorOnSurface">@color/white_50</item>
         <item name="colorOnError">@color/black_900</item>
-        <item name="scrimBackground">@color/reply_black_900_alpha_087</item>
+        <item name="scrimBackground">@color/black_one_day_900_alpha_087</item>
         <item name="expandedColor">@color/color_1e1e1e</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
         <item name="elevationOverlayEnabled">true</item>

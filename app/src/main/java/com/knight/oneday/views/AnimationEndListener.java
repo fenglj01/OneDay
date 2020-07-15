@@ -1,4 +1,4 @@
-package com.ramotion.foldingcell.animations;
+package com.knight.oneday.views;
 
 import android.view.animation.Animation;
 
