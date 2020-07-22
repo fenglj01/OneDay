@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.preference.PreferenceManager
 import com.facebook.stetho.Stetho
+import com.google.android.gms.ads.MobileAds
 import com.knight.oneday.utilities.ThemePreference
 
 class OneDayApp : Application() {
@@ -22,7 +23,7 @@ class OneDayApp : Application() {
         themePreference =
             ThemePreference(PreferenceManager.getDefaultSharedPreferences(this))
         Stetho.initializeWithDefaults(this)
-
+        MobileAds.initialize(this) {}
     }
 
 

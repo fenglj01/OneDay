@@ -13,6 +13,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
+import com.google.android.gms.ads.AdRequest
 import com.knight.oneday.databinding.ActivityMainBinding
 import com.knight.oneday.nav.*
 import com.knight.oneday.utilities.*
@@ -34,6 +35,14 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         initNavController()
         setUpBottomBarAndFab()
         observeUiMode()
+        initAds()
+    }
+
+    private fun initAds() {
+        binding.adView.run {
+            val adRequest = AdRequest.Builder().build()
+            loadAd(adRequest)
+        }
     }
 
     private fun initNavController() {
