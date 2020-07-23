@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
 import com.knight.oneday.setting.SettingPreferences
 import com.knight.oneday.utilities.ThemePreference
 import com.knight.oneday.views.AnimationEndListener
@@ -22,12 +25,12 @@ class StartActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_start)
 
-        startAnimation()
+        initAds()
     }
 
     private fun startAnimation() {
         val showAnimation = AlphaAnimation(0f, 1f)
-        showAnimation.duration = 1200
+        showAnimation.duration = 2000
         showAnimation.interpolator = AccelerateInterpolator()
         showAnimation.setAnimationListener(object : AnimationEndListener() {
             override fun onAnimationEnd(animation: Animation?) {
@@ -36,10 +39,29 @@ class StartActivity : AppCompatActivity() {
                 } else {
                     Intent(this@StartActivity, MainActivity::class.java)
                 }
+                icon.isVisible = true
                 startActivity(intent)
                 finish()
             }
         })
         icon.startAnimation(showAnimation)
+    }
+
+    private fun initAds() {
+        ad_view.run {
+            val adRequest = AdRequest.Builder().build()
+            loadAd(adRequest)
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    super.onAdLoaded()
+                    startAnimation()
+                }
+
+                override fun onAdFailedToLoad(p0: Int) {
+                    super.onAdFailedToLoad(p0)
+                    startAnimation()
+                }
+            }
+        }
     }
 }

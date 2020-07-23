@@ -35,15 +35,15 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         initNavController()
         setUpBottomBarAndFab()
         observeUiMode()
-        initAds()
+        // initAds()
     }
 
-    private fun initAds() {
+   /* private fun initAds() {
         binding.adView.run {
             val adRequest = AdRequest.Builder().build()
             loadAd(adRequest)
         }
-    }
+    }*/
 
     private fun initNavController() {
         binding.run {
