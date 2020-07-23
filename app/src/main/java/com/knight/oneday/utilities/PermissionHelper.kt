@@ -21,14 +21,14 @@ object PermissionHelper {
             }
             .callback(object : PermissionUtils.FullCallback {
                 override fun onGranted(granted: MutableList<String>) {
-
+                    onGranted?.invoke()
                 }
 
                 override fun onDenied(
                     deniedForever: MutableList<String>,
                     denied: MutableList<String>
                 ) {
-
+                    onDenied?.invoke()
                 }
             })
             .request()

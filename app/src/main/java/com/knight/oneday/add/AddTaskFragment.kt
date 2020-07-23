@@ -230,11 +230,12 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
 
     override fun onRemindStatusChanged(isRemind: Boolean) {
         if (isRemind) {
-            checkCalendarPermission()
+            PermissionHelper.checkPermission(
+                PermissionConstants.CALENDAR,
+                onGranted = {},
+                onDenied = {}
+            )
         }
     }
 
-    private fun checkCalendarPermission() {
-
-    }
 }
