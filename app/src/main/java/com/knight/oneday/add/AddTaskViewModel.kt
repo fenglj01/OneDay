@@ -3,6 +3,8 @@ package com.knight.oneday.add
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.blankj.utilcode.constant.PermissionConstants
+import com.blankj.utilcode.util.PermissionUtils
 import com.knight.oneday.R
 import com.knight.oneday.data.Task
 import com.knight.oneday.data.TaskAndStepRepository
@@ -134,4 +136,7 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
         vmTaskType = task.taskType
         isAddTask = false
     }
+
+
+
 }

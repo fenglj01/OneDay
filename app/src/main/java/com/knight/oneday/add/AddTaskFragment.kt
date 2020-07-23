@@ -1,5 +1,6 @@
 package com.knight.oneday.add
 
+import android.app.Activity
 import android.os.Bundle
 import android.transition.Slide
 import android.util.Log
@@ -12,6 +13,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.blankj.utilcode.constant.PermissionConstants
+import com.blankj.utilcode.util.PermissionUtils
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.R
 import com.knight.oneday.adapters.TagPickerAdapter
@@ -226,5 +229,12 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
         }
 
     override fun onRemindStatusChanged(isRemind: Boolean) {
+        if (isRemind) {
+            checkCalendarPermission()
+        }
+    }
+
+    private fun checkCalendarPermission() {
+
     }
 }
