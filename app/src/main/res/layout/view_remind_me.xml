@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorTransparent"
+    android:paddingTop="@dimen/dp_16">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_remind_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_8"
+        android:text="@string/remind_me"
+        android:layout_marginStart="@dimen/dp_20"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/sw_remind_me"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_16"
+        app:layout_constraintBottom_toBottomOf="@id/tv_remind_me"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_remind_me" />
+
+    <ImageView
+        android:id="@+id/subject_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/divider"
+        app:backgroundTint="@color/color_on_surface_emphasis_disabled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="@dimen/dp_20"
+        app:layout_constraintTop_toBottomOf="@+id/tv_remind_me" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,7 @@ import com.knight.oneday.adapters.TagPickerAdapter
 import com.knight.oneday.databinding.FragmentAddEventBinding
 import com.knight.oneday.nav.NavigationModel
 import com.knight.oneday.utilities.*
+import com.knight.oneday.views.RemindMeView
 import com.knight.oneday.views.choice.ChoiceInputView
 import com.knight.oneday.views.dialog.DatePickerDialog
 import com.knight.oneday.views.dialog.TimePickerDialog
@@ -30,7 +31,7 @@ import com.ramotion.directselect.DSListView
  * 创建事件 思考过后 化繁为简 暂时不要加入步骤 清单这样的功能了 交给binding 减少代码
  */
 class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
-    DSListView.OnDSListViewStatusChangedListener {
+    DSListView.OnDSListViewStatusChangedListener, RemindMeView.OnRemindStatusChangedListener {
 
     private lateinit var binding: FragmentAddEventBinding
     private val timePicker: TimePickerDialog by lazy { TimePickerDialog(obtainTimePickerListener()) }
@@ -69,6 +70,7 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             NavigationModel.getNavTagItems()
         )
         binding.onDLStatusChangedListener = this
+        binding.onRemindStatusChangedListener = this
         return binding.root
     }
 
@@ -80,7 +82,9 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
     }
 
     private fun initView() {
+
         val safeArgs: AddTaskFragmentArgs by navArgs()
+
         safeArgs.task?.let { task ->
             binding.addTitleTv.text = getString(R.string.title_edit_task)
             binding.addTagIs.changeSelectedIndex(TaskType.values().indexOf(task.taskType))
@@ -91,6 +95,7 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             binding.addTagDsl.selectedIndex = TaskType.values().indexOf(task.taskType)
             addVM.initViewModelByTask(task)
         }
+
         safeArgs.date?.let { sysCalendar ->
             /* 传递当前选择的日期 */
             datePicker.arguments = Bundle().apply {
@@ -98,9 +103,11 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             }
             binding.addDateCiv.setContentText(sysCalendar.timeInMillis.formatWeekMonthDay())
         }
+
         safeArgs.category.let { taskType ->
             binding.addTagDsl.selectedIndex = TaskType.values().indexOf(taskType)
         }
+
     }
 
     private fun initEvent() {
@@ -217,4 +224,7 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
                 binding.addDateCiv.setContentText(timeInMills.formatWeekMonthDay())
             }
         }
+
+    override fun onRemindStatusChanged(isRemind: Boolean) {
+    }
 }

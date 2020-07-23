@@ -96,4 +96,5 @@
     <string name="about_special_thanks_content">\tGoogle\n\thanbin.CalendarView\n\tblankj\n\tAppIntro\n\tUiYY\n\tCuberto</string>
     <string name="show_remind_delete">删除提示?</string>
     <string name="after_30_min">(30\'后)</string>
+    <string name="remind_me">提醒我</string>
 </resources>

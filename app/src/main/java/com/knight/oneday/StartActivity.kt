@@ -3,6 +3,7 @@ package com.knight.oneday
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -25,7 +26,9 @@ class StartActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_start)
 
-        initAds()
+         initAds()
+
+        // startAnimation()
     }
 
     private fun startAnimation() {

@@ -12,6 +12,7 @@ import com.knight.oneday.data.Step
 import com.knight.oneday.nav.NavigationModelItem
 import com.knight.oneday.utilities.EventState
 import com.knight.oneday.utilities.getString
+import com.knight.oneday.views.RemindMeView
 import com.knight.oneday.views.choice.ChoiceInputView
 import com.knight.oneday.views.getDrawableOrNull
 import com.ramotion.directselect.DSListView
@@ -151,7 +152,6 @@ fun View.requestApplyInsetsWhenAttached() {
 }
 
 
-
 @BindingAdapter("bindContentText")
 fun ChoiceInputView.bindContentText(content: String) {
     setContentText(content)
@@ -168,3 +168,7 @@ fun DSListView<NavigationModelItem.NavTaskTag>.bindStatusChangeListener(listener
     setStatusChangedListener(listener)
 }
 
+@BindingAdapter("bindRemindStatusChangedListener")
+fun RemindMeView.bindRemindStatusChangedListener(listener: RemindMeView.OnRemindStatusChangedListener) {
+    onRemindStatusChangedListener = listener
+}

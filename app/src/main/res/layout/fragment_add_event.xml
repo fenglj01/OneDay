@@ -20,6 +20,10 @@
         <variable
             name="onDLStatusChangedListener"
             type="com.ramotion.directselect.DSListView.OnDSListViewStatusChangedListener" />
+
+        <variable
+            name="onRemindStatusChangedListener"
+            type="com.knight.oneday.views.RemindMeView.OnRemindStatusChangedListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,14 +127,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/add_date_civ" />
 
+        <com.knight.oneday.views.RemindMeView
+            android:id="@+id/add_remind_me"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            app:bindRemindStatusChangedListener="@{onRemindStatusChangedListener}"
+            app:layout_constraintEnd_toEndOf="@id/add_time_civ"
+            app:layout_constraintStart_toStartOf="@id/add_time_civ"
+            app:layout_constraintTop_toBottomOf="@id/add_time_civ" />
+
+
         <com.knight.oneday.views.TaskTagPickerBox
             android:id="@+id/add_tag_picker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
-            app:layout_constraintEnd_toEndOf="@id/add_time_civ"
-            app:layout_constraintStart_toStartOf="@id/add_time_civ"
-            app:layout_constraintTop_toBottomOf="@id/add_time_civ" />
+            app:layout_constraintEnd_toEndOf="@id/add_remind_me"
+            app:layout_constraintStart_toStartOf="@id/add_remind_me"
+            app:layout_constraintTop_toBottomOf="@id/add_remind_me" />
 
         <ImageView
             android:id="@+id/add_tag_divider"
