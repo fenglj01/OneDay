@@ -9,6 +9,8 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
+import com.blankj.utilcode.util.NetworkUtils
+import com.blankj.utilcode.util.TimeUtils
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.knight.oneday.setting.SettingPreferences
@@ -26,9 +28,10 @@ class StartActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_start)
 
-        // initAds()
+        initAds()
 
-         startAnimation()
+        startAnimation()
+
     }
 
     private fun startAnimation() {
@@ -37,18 +40,22 @@ class StartActivity : AppCompatActivity() {
         showAnimation.interpolator = AccelerateInterpolator()
         showAnimation.setAnimationListener(object : AnimationEndListener() {
             override fun onAnimationEnd(animation: Animation?) {
-                val intent = if (SettingPreferences.isFirstInstall) {
-                    Intent(this@StartActivity, TutorialPageActivity::class.java)
-                } else {
-                    Intent(this@StartActivity, MainActivity::class.java)
-                }
                 icon.isVisible = true
-                startActivity(intent)
-                finish()
             }
         })
         icon.startAnimation(showAnimation)
     }
+
+    private fun goNext() {
+        val intent = if (SettingPreferences.isFirstInstall) {
+            Intent(this@StartActivity, TutorialPageActivity::class.java)
+        } else {
+            Intent(this@StartActivity, MainActivity::class.java)
+        }
+        startActivity(intent)
+        finish()
+    }
+
 
     private fun initAds() {
         ad_view.run {
@@ -57,12 +64,16 @@ class StartActivity : AppCompatActivity() {
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
                     super.onAdLoaded()
-                    startAnimation()
+                    postDelayed({
+                        goNext()
+                    }, 2000L)
                 }
 
                 override fun onAdFailedToLoad(p0: Int) {
                     super.onAdFailedToLoad(p0)
-                    startAnimation()
+                    postDelayed({
+                        goNext()
+                    }, 2000L)
                 }
             }
         }
