@@ -38,7 +38,7 @@ import com.ramotion.directselect.DSListView
  * 创建事件 思考过后 化繁为简 暂时不要加入步骤 清单这样的功能了 交给binding 减少代码
  */
 class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
-    DSListView.OnDSListViewStatusChangedListener, RemindMeView.OnRemindStatusChangedListener {
+    DSListView.OnDSListViewStatusChangedListener/*, RemindMeView.OnRemindStatusChangedListener*/ {
 
     private lateinit var binding: FragmentAddEventBinding
     private val timePicker: TimePickerDialog by lazy { TimePickerDialog(obtainTimePickerListener()) }
@@ -77,7 +77,7 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             NavigationModel.getNavTagItems()
         )
         binding.onDLStatusChangedListener = this
-        binding.onRemindStatusChangedListener = this
+//        binding.onRemindStatusChangedListener = this
         return binding.root
     }
 
@@ -232,7 +232,7 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
             }
         }
 
-    override fun onRemindStatusChanged(isRemind: Boolean) {
+    /*override fun onRemindStatusChanged(isRemind: Boolean) {
         if (isRemind) {
             PermissionUtils.permission(PermissionConstants.CALENDAR)
                 .rationale { activity, shouldRequest ->
@@ -253,7 +253,7 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
                 })
                 .request()
         }
-    }
+    }*/
 
 
 }

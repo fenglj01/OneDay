@@ -98,10 +98,10 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
                 ).run {
                     _viewModelStatus.postValue(ADD_STATUS_SUCCESS)
                 }
-                /* 如果需要进行提醒 */
+               /* *//* 如果需要进行提醒 *//*
                 if (calendarPermissionRequired) {
 
-                }
+                }*/
             },
             catchBlock = { _ ->
                 _viewModelStatus.postValue(ADD_STATUS_FAIL)
