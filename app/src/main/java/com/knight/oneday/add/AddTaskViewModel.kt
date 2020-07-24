@@ -92,7 +92,8 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
                     task = Task(
                         content = vmTaskContent,
                         dueDateTime = vmTaskDueDateTime,
-                        taskType = vmTaskType
+                        taskType = vmTaskType,
+                        needRemind = calendarPermissionRequired
                     )
                 ).run {
                     _viewModelStatus.postValue(ADD_STATUS_SUCCESS)
@@ -102,8 +103,7 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
 
                 }
             },
-            catchBlock = { e ->
-                Log.d("AddError", "${e.localizedMessage}")
+            catchBlock = { _ ->
                 _viewModelStatus.postValue(ADD_STATUS_FAIL)
             }
         )
