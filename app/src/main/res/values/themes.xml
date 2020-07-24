@@ -132,6 +132,10 @@
         <item name="colorControlActivated">?attr/colorError</item>
     </style>
 
+    <style name="MaterialAlertDialog.OneDay" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">?attr/colorSecondary</item>
+    </style>
+
     <style name="Theme.MyApp.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
         <item name="android:layout">@layout/fragment_preferences</item>
     </style>

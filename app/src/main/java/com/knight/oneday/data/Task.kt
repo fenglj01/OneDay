@@ -22,7 +22,8 @@ data class Task(
     @ColumnInfo(name = "completion_time") var completionTime: Calendar = createTime,
     @ColumnInfo(name = "due_date_time") var dueDateTime: Calendar = createTime,
     @ColumnInfo(name = "is_done") var isDone: Boolean = false,
-    @ColumnInfo(name = "type") var taskType: TaskType = TaskType.NO_CATEGORY
+    @ColumnInfo(name = "type") var taskType: TaskType = TaskType.NO_CATEGORY,
+    @ColumnInfo(name = "need_remind") var needRemind: Boolean = false
 ) : Parcelable {
     /**
      * 主键的优化写法

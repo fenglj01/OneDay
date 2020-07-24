@@ -16,7 +16,7 @@ import com.knight.oneday.workers.SeedDatabaseWorker
  * create at 20-2-29 下午4:01
  * AppDatabase
  */
-@Database(entities = [Step::class, Task::class], version = 1, exportSchema = true)
+@Database(entities = [Step::class, Task::class], version = 2, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun eventDao(): TaskDao
@@ -33,6 +33,8 @@ abstract class AppDatabase : RoomDatabase() {
                     context,
                     AppDatabase::class.java,
                     DATABASE_NAME
+                ).addMigrations(
+                    Migration1To2
                 )
                     /*.addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {

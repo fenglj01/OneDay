@@ -26,9 +26,9 @@ class StartActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_start)
 
-         initAds()
+        // initAds()
 
-        // startAnimation()
+         startAnimation()
     }
 
     private fun startAnimation() {

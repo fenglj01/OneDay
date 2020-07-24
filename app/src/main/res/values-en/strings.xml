@@ -99,4 +99,7 @@
     <string name="show_remind_delete">Remove prompt?</string>
     <string name="after_30_min">(30\'after)</string>
     <string name="remind_me">Remind me</string>
+    <string name="permission_title_calendar">Calendar permission required</string>
+    <string name="permission_msg_calendar">OneDay requires read and write calendar permissions to ensure the accuracy of the reminder function.</string>
+    <string name="accept">Accept</string>
 </resources>

@@ -97,4 +97,7 @@
     <string name="show_remind_delete">删除提示?</string>
     <string name="after_30_min">(30\'后)</string>
     <string name="remind_me">提醒我</string>
+    <string name="permission_title_calendar">Calendar permission required</string>
+    <string name="permission_msg_calendar">OneDay requires read and write calendar permissions to ensure the accuracy of the reminder function.</string>
+    <string name="accept">Accept</string>
 </resources>

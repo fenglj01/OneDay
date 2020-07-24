@@ -44,6 +44,8 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
     private val _viewModelStatus: MutableLiveData<Int> = MutableLiveData()
     val viewModelStatus: LiveData<Int> = _viewModelStatus
 
+    var calendarPermissionRequired: Boolean = false
+
     private var isAddTask = true
     private var updateTask: Task? = null
 
@@ -95,12 +97,25 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
                 ).run {
                     _viewModelStatus.postValue(ADD_STATUS_SUCCESS)
                 }
+                /* 如果需要进行提醒 */
+                if (calendarPermissionRequired) {
+
+                }
             },
-            catchBlock = {
+            catchBlock = { e ->
+                Log.d("AddError", "${e.localizedMessage}")
                 _viewModelStatus.postValue(ADD_STATUS_FAIL)
             }
         )
     }
+
+    /**
+     * 添加提醒事件
+     */
+    private fun addCalendarRemindMeEvent() {
+
+    }
+
 
     private fun checkCanAdd(): Boolean = vmTaskContent.isNotEmpty()
 
@@ -136,7 +151,6 @@ class AddTaskViewModel(private val rep: TaskAndStepRepository) : BaseViewModel()
         vmTaskType = task.taskType
         isAddTask = false
     }
-
 
 
 }

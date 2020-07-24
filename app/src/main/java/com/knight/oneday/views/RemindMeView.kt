@@ -17,16 +17,28 @@ class RemindMeView @JvmOverloads constructor(
 
     var onRemindStatusChangedListener: OnRemindStatusChangedListener? = null
 
+    private val switch: Switch
+
     init {
         LayoutInflater.from(context).inflate(R.layout.view_remind_me, this, true).run {
-            findViewById<Switch>(R.id.sw_remind_me).setOnCheckedChangeListener { _, isChecked ->
-                onRemindStatusChangedListener?.onRemindStatusChanged(isChecked)
+            switch = findViewById<Switch>(R.id.sw_remind_me).apply {
+                setOnCheckedChangeListener { _, isChecked ->
+                    onRemindStatusChangedListener?.onRemindStatusChanged(isChecked)
+                }
             }
         }
     }
 
     interface OnRemindStatusChangedListener {
         fun onRemindStatusChanged(isRemind: Boolean)
+    }
+
+    fun openRemindMe() {
+        switch.setOnCheckedChangeListener(null)
+    }
+
+    fun neverRemindMe() {
+        switch.isChecked = false
     }
 
 }

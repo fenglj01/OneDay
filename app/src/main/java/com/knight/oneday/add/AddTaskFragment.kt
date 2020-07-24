@@ -1,12 +1,15 @@
 package com.knight.oneday.add
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.transition.Slide
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +17,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.blankj.utilcode.constant.PermissionConstants
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.google.android.material.transition.MaterialContainerTransform
 import com.knight.oneday.R
@@ -230,12 +234,26 @@ class AddTaskFragment : Fragment(), ChoiceInputView.OnChoiceInputClicked,
 
     override fun onRemindStatusChanged(isRemind: Boolean) {
         if (isRemind) {
-            PermissionHelper.checkPermission(
-                PermissionConstants.CALENDAR,
-                onGranted = {},
-                onDenied = {}
-            )
+            PermissionUtils.permission(PermissionConstants.CALENDAR)
+                .rationale { activity, shouldRequest ->
+                    PermissionHelper.showRationaleDialog(activity, shouldRequest)
+                }
+                .callback(object : PermissionUtils.FullCallback {
+                    override fun onGranted(granted: MutableList<String>) {
+                        addVM.calendarPermissionRequired = true
+                    }
+
+                    override fun onDenied(
+                        deniedForever: MutableList<String>,
+                        denied: MutableList<String>
+                    ) {
+                        addVM.calendarPermissionRequired = false
+                        binding.addRemindMe.neverRemindMe()
+                    }
+                })
+                .request()
         }
     }
+
 
 }

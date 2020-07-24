@@ -1,5 +1,6 @@
 package com.knight.oneday.views
 
+import android.content.pm.PackageManager
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
