@@ -14,4 +14,6 @@
 
 项目大致预览:
 
+![alt](https://github.com/fenglj01/OneDay/blob/master/image/gifhome_320x694_51s.gif)
+
 
