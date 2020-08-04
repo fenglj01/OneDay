@@ -16,4 +16,10 @@
 
 ![alt](https://github.com/fenglj01/OneDay/blob/master/image/gifhome_320x694_51s.gif)
 
+> Jetpack 体验总结在[我的博客](https://juejin.im/post/6856675994901299213)中可见
+
+---
+
+Email:Lee_Mofeel@163.com,knightflj@gmail.com
+
 
