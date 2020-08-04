@@ -19,6 +19,8 @@ import kotlin.math.abs
 class TaskAdapter(private val taskEventListener: TaskEventListener) :
     ListAdapter<Task, TaskAdapter.TaskViewHolder>(TaskDiffUtilItemCallback) {
 
+    // var onTaskClick: OnTaskClick? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(
             ItemTaskLayoutBinding.inflate(
@@ -108,6 +110,7 @@ class TaskAdapter(private val taskEventListener: TaskEventListener) :
 
 
 }
+// typealias OnTaskClick = (() -> Unit)
 
 object TaskDiffUtilItemCallback : DiffUtil.ItemCallback<Task>() {
     override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
