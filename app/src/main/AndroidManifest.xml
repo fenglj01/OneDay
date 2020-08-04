@@ -16,11 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5981953164409139~6814056957" />
 
-        <activity android:name=".TutorialPageActivity"></activity>
+
+        <activity android:name=".TutorialPageActivity" />
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,16 +28,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

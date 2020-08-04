@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -11,8 +12,6 @@ import androidx.core.view.isVisible
 import androidx.preference.PreferenceManager
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.TimeUtils
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
 import com.knight.oneday.setting.SettingPreferences
 import com.knight.oneday.utilities.ThemePreference
 import com.knight.oneday.views.AnimationEndListener
@@ -28,7 +27,7 @@ class StartActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_start)
 
-        initAds()
+        // initAds()
 
         startAnimation()
 
@@ -41,6 +40,7 @@ class StartActivity : AppCompatActivity() {
         showAnimation.setAnimationListener(object : AnimationEndListener() {
             override fun onAnimationEnd(animation: Animation?) {
                 icon.isVisible = true
+                goNext()
             }
         })
         icon.startAnimation(showAnimation)
@@ -57,25 +57,25 @@ class StartActivity : AppCompatActivity() {
     }
 
 
-    private fun initAds() {
+    /*private fun initAds() {
         ad_view.run {
             val adRequest = AdRequest.Builder().build()
             loadAd(adRequest)
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
                     super.onAdLoaded()
-                    postDelayed({
-                        goNext()
-                    }, 2000L)
+                    delay(2000)
                 }
 
                 override fun onAdFailedToLoad(p0: Int) {
                     super.onAdFailedToLoad(p0)
-                    postDelayed({
-                        goNext()
-                    }, 2000L)
+                    delay(2000)
                 }
             }
         }
     }
+
+    private fun View.delay(mills: Long) {
+        postDelayed({ goNext() }, mills)
+    }*/
 }
